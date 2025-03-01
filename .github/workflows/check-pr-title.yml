@@ -1,31 +1,14 @@
-name: Test & analyze Flutter codebase
-
+name: Check PR Title
 on:
   pull_request:
-    branches: [ main ]
-    types: [ opened, synchronize, reopened, ready_for_review ]
+    branches: [ "main" ]
+    types: [opened, edited, synchronize, ready_for_review, reopened]
 
 jobs:
-  test-and-analyze:
-    name: Test & analyze Flutter codebase
-    if: github.event.pull_request.draft == false
-    runs-on: ubuntu-20.04
-
+  check-pr-title:
+    name: Check PR title
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v2
+      - uses: blumilksoftware/action-pr-title@e05fc76a1cc45b33644f1de51218be43ac121dd0 # v1.2.0 # https://github.com/blumilksoftware/action-pr-title
         with:
-          channel: 'stable'
-          cache: true
-
-      - name: Install dependencies
-        run: flutter pub get
-
-      - name: Copy environment
-        run: cp .env.example .env
-
-      - name: Run Flutter Analyze
-        run: flutter analyze
-
-      - name: Execute tests
-        run: flutter test
+          regex: '^(CommunityWithLegends\-\d+ )?- .+'
