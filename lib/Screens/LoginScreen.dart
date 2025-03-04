@@ -38,6 +38,7 @@ class LoginScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: ListView(
+                    physics: ScrollPhysics(parent: PageScrollPhysics()),
                     children: [
                       Column(
                         children: [
