@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
-class LoginViaTwitch extends StatelessWidget {
-  const LoginViaTwitch({super.key});
+enum AuthMode { login, register}
+
+class AuthViaTwitch extends StatelessWidget {
+  const AuthViaTwitch({super.key, required this.authMode});
+  final AuthMode authMode;
 
   @override
   Widget build(BuildContext context) {
@@ -10,14 +13,14 @@ class LoginViaTwitch extends StatelessWidget {
       Column(
         children: [
           Text(
-            "OR",
+             "OR",
             style: TextStyle(
               color: Colors.white,
               fontSize: 28,
             ),
           ),
           Text(
-            "Log in via",
+            authMode == AuthMode.login ? "Log in via" : "Register via",
             style: TextStyle(
               color: Colors.white,
               fontSize: 28,

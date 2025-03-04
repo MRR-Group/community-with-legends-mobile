@@ -12,7 +12,7 @@ class ClickableAuthText extends StatelessWidget {
     return Row(
       children: [
         Text(
-          "You don't have account?",
+          message,
           style: TextStyle(color: Colors.white, fontSize: 10),
         ),
         Spacer(),
@@ -21,11 +21,11 @@ class ClickableAuthText extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                "Click here",
+                linkText,
                 style: TextStyle(color: Colors.purple, fontSize: 10),
               ),
               Text(
-                "to register",
+                actionText,
                 style: TextStyle(color: Colors.white, fontSize: 10),
               ),
             ],
