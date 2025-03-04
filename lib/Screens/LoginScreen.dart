@@ -1,7 +1,7 @@
-import 'package:community_with_legends_mobile/Widgets/AuthAppBar.dart';
+import 'package:community_with_legends_mobile/Widgets/auth/AuthAppBar.dart';
 import 'package:community_with_legends_mobile/Widgets/BackgroundImage.dart';
+import 'package:community_with_legends_mobile/Widgets/auth/LoginViaTwitch.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 import '../Widgets/Button.dart';
 
@@ -57,10 +57,15 @@ class LoginScreen extends StatelessWidget {
                               filled: true,
                               label: Text(
                                 "Enter your email",
-                                style: TextStyle(fontSize: 18, color: Colors.white),
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                ),
                               ),
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(8)),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(8),
+                                ),
                               ),
                             ),
                             validator: (String? value) {
@@ -74,7 +79,10 @@ class LoginScreen extends StatelessWidget {
                             children: [
                               Text(
                                 "You don't have account?",
-                                style: TextStyle(color: Colors.white, fontSize: 10),
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                ),
                               ),
                               Spacer(),
                               Column(
@@ -109,10 +117,15 @@ class LoginScreen extends StatelessWidget {
                               filled: true,
                               label: Text(
                                 "Enter your password",
-                                style: TextStyle(fontSize: 18, color: Colors.white),
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                ),
                               ),
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(8)),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(8),
+                                ),
                               ),
                             ),
                             validator: (String? value) {
@@ -126,7 +139,10 @@ class LoginScreen extends StatelessWidget {
                             children: [
                               Text(
                                 "You don't have account?",
-                                style: TextStyle(color: Colors.white, fontSize: 10),
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                ),
                               ),
                               Spacer(),
                               Column(
@@ -152,20 +168,7 @@ class LoginScreen extends StatelessWidget {
                           SizedBox(height: 18),
                           Button(text: "Log in"),
                           SizedBox(height: 18),
-                          Column(
-                            children: [
-                              Text(
-                                "OR",
-                                style: TextStyle(color: Colors.white, fontSize: 28),
-                              ),
-                              Text(
-                                "Log in via",
-                                style: TextStyle(color: Colors.white, fontSize: 28),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 18),
-                          Image(image: Svg('lib/Assets/Images/twitch.svg')),
+                          LoginViaTwitch(),
                         ],
                       ),
                     ],
