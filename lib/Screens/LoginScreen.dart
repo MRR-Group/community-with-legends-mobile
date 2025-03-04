@@ -1,11 +1,10 @@
 import 'package:community_with_legends_mobile/Widgets/auth/AuthAppBar.dart';
 import 'package:community_with_legends_mobile/Widgets/BackgroundImage.dart';
 import 'package:community_with_legends_mobile/Widgets/auth/LoginViaTwitch.dart';
-import 'package:community_with_legends_mobile/Widgets/auth/PasswordInput.dart';
 import 'package:flutter/material.dart';
 
 import '../Widgets/Button.dart';
-import '../Widgets/auth/EmailInput.dart';
+import '../Widgets/auth/AuthTextInput.dart';
 import '../Widgets/auth/ClickableAuthText.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -49,7 +48,10 @@ class LoginScreen extends StatelessWidget {
 
                           SizedBox(height: 18),
 
-                          EmailInput(),
+                          AuthTextInput(
+                            text: "Enter your email",
+                            hint: 'Email',
+                          ),
                           ClickableAuthText(
                             message: "You don't have account?",
                             linkText: "Click here",
@@ -61,7 +63,11 @@ class LoginScreen extends StatelessWidget {
 
                           SizedBox(height: 18),
 
-                          PasswordInput(),
+                          AuthTextInput(
+                            text: "Enter your password",
+                            hint: 'Password',
+                            obscureText: true,
+                          ),
                           ClickableAuthText(
                             message: "You don't remember?",
                             linkText: "Click here",
@@ -72,9 +78,7 @@ class LoginScreen extends StatelessWidget {
                           ),
 
                           SizedBox(height: 18),
-
                           Button(text: "Log in"),
-
                           SizedBox(height: 18),
 
                           LoginViaTwitch(),
