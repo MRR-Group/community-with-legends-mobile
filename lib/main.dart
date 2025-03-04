@@ -1,5 +1,6 @@
 import 'package:community_with_legends_mobile/Screens/LoginScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,6 +16,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          fontFamily: GoogleFonts.getFont('Jaro').fontFamily,
+
       ),
       //home: LoginScreen(),
       home: LoginScreen(hasBottomNavigationBar: false),

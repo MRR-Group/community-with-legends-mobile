@@ -24,9 +24,8 @@ class BackgroundImage extends StatelessWidget {
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                stops: [0.0, 0.125, 1.0],
+                stops: [0.125, 1.0],
                 colors: [
-                  Color(0xFF181719),
                   Color(0xFF181719),
                   Color(0x001B2838),
                 ],
