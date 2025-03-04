@@ -10,20 +10,17 @@ import '../Widgets/auth/RegisterLink.dart';
 import '../Widgets/auth/ResetPasswordLink.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key, this.hasBottomNavigationBar});
+  const LoginScreen({super.key});
 
-  final bool? hasBottomNavigationBar;
 
   @override
   Widget build(BuildContext context) {
-    double bottomMargin;
-    hasBottomNavigationBar == false ? bottomMargin = 0 : bottomMargin = 50;
 
     return Scaffold(
       appBar: AuthAppBar(),
       body: Stack(
         children: [
-          BackgroundImage(bottomMargin: bottomMargin),
+          BackgroundImage(bottomMargin: 0),
           Center(
             heightFactor: 100,
             widthFactor: 100,

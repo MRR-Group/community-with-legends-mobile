@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       ),
 
       //home: LoginScreen(),
-      home: LoginScreen(hasBottomNavigationBar: false),
+      home: LoginScreen(),
     );
   }
 }
