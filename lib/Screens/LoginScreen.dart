@@ -17,6 +17,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: AuthAppBar(),
       body: Stack(
         children: [
