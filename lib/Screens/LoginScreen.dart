@@ -4,6 +4,7 @@ import 'package:community_with_legends_mobile/Widgets/auth/LoginViaTwitch.dart';
 import 'package:flutter/material.dart';
 
 import '../Widgets/Button.dart';
+import '../Widgets/auth/RegisterLink.dart';
 import '../Widgets/auth/ResetPasswordLink.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -76,36 +77,7 @@ class LoginScreen extends StatelessWidget {
                               return null;
                             },
                           ),
-                          Row(
-                            children: [
-                              Text(
-                                "You don't have account?",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 10,
-                                ),
-                              ),
-                              Spacer(),
-                              Column(
-                                children: [
-                                  Text(
-                                    "Click here",
-                                    style: TextStyle(
-                                      color: Colors.purple,
-                                      fontSize: 10,
-                                    ),
-                                  ),
-                                  Text(
-                                    "to register",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 10,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                          RegisterLink(),
                           SizedBox(height: 18),
                           TextFormField(
                             style: TextStyle(color: Color(0xFFB9B9BA)),
