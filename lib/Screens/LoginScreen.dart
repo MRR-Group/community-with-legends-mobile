@@ -1,9 +1,11 @@
 import 'package:community_with_legends_mobile/Widgets/auth/AuthAppBar.dart';
 import 'package:community_with_legends_mobile/Widgets/BackgroundImage.dart';
 import 'package:community_with_legends_mobile/Widgets/auth/LoginViaTwitch.dart';
+import 'package:community_with_legends_mobile/Widgets/auth/PasswordInput.dart';
 import 'package:flutter/material.dart';
 
 import '../Widgets/Button.dart';
+import '../Widgets/auth/EmailInput.dart';
 import '../Widgets/auth/RegisterLink.dart';
 import '../Widgets/auth/ResetPasswordLink.dart';
 
@@ -49,70 +51,23 @@ class LoginScreen extends StatelessWidget {
                               color: Color(0xFFFDFEFE),
                             ),
                           ),
+
                           SizedBox(height: 18),
-                          TextFormField(
-                            style: TextStyle(color: Color(0xFFB9B9BA)),
-                            decoration: const InputDecoration(
-                              constraints: BoxConstraints(maxHeight: 40),
-                              contentPadding: EdgeInsets.all(12),
-                              hintText: 'Email',
-                              fillColor: Color(0xFF212023),
-                              filled: true,
-                              label: Text(
-                                "Enter your email",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(8),
-                                ),
-                              ),
-                            ),
-                            validator: (String? value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter some text';
-                              }
-                              return null;
-                            },
-                          ),
+
+                          EmailInput(),
                           RegisterLink(),
+
                           SizedBox(height: 18),
-                          TextFormField(
-                            style: TextStyle(color: Color(0xFFB9B9BA)),
-                            obscureText: true,
-                            decoration: const InputDecoration(
-                              constraints: BoxConstraints(maxHeight: 40),
-                              contentPadding: EdgeInsets.all(12),
-                              hintText: 'Password',
-                              fillColor: Color(0xFF212023),
-                              filled: true,
-                              label: Text(
-                                "Enter your password",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(8),
-                                ),
-                              ),
-                            ),
-                            validator: (String? value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter some text';
-                              }
-                              return null;
-                            },
-                          ),
+
+                          PasswordInput(),
                           ResetPasswordLink(),
+
                           SizedBox(height: 18),
+
                           Button(text: "Log in"),
+
                           SizedBox(height: 18),
+
                           LoginViaTwitch(),
                         ],
                       ),
