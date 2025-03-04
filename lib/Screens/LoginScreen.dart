@@ -138,7 +138,7 @@ class LoginScreen extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                "You don't have account?",
+                                "You don't remember?",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 10,
@@ -155,7 +155,7 @@ class LoginScreen extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    "to register",
+                                    "to reset it",
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 10,
