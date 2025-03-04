@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 class ResetPasswordLink extends StatelessWidget {
   const ResetPasswordLink({super.key});
