@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
           fontFamily: GoogleFonts.getFont('Jaro').fontFamily,
 
       ),
+
       //home: LoginScreen(),
       home: LoginScreen(hasBottomNavigationBar: false),
     );
