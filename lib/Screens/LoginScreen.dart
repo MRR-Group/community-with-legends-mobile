@@ -34,7 +34,7 @@ class LoginScreen extends StatelessWidget {
               color: Color(0xff181719),
               child: SizedBox(
                 width: 300,
-                height: 550,
+                height: 600,
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: ListView(
