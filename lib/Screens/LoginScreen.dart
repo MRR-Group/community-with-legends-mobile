@@ -4,6 +4,7 @@ import 'package:community_with_legends_mobile/Widgets/auth/LoginViaTwitch.dart';
 import 'package:flutter/material.dart';
 
 import '../Widgets/Button.dart';
+import '../Widgets/auth/ResetPasswordLink.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key, this.hasBottomNavigationBar});
@@ -135,36 +136,7 @@ class LoginScreen extends StatelessWidget {
                               return null;
                             },
                           ),
-                          Row(
-                            children: [
-                              Text(
-                                "You don't remember?",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 10,
-                                ),
-                              ),
-                              Spacer(),
-                              Column(
-                                children: [
-                                  Text(
-                                    "Click here",
-                                    style: TextStyle(
-                                      color: Colors.purple,
-                                      fontSize: 10,
-                                    ),
-                                  ),
-                                  Text(
-                                    "to reset it",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 10,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                          ResetPasswordLink(),
                           SizedBox(height: 18),
                           Button(text: "Log in"),
                           SizedBox(height: 18),
