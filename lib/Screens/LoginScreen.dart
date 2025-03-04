@@ -6,16 +6,13 @@ import 'package:flutter/material.dart';
 
 import '../Widgets/Button.dart';
 import '../Widgets/auth/EmailInput.dart';
-import '../Widgets/auth/RegisterLink.dart';
-import '../Widgets/auth/ResetPasswordLink.dart';
+import '../Widgets/auth/ClickableAuthText.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AuthAppBar(),
@@ -53,12 +50,26 @@ class LoginScreen extends StatelessWidget {
                           SizedBox(height: 18),
 
                           EmailInput(),
-                          RegisterLink(),
+                          ClickableAuthText(
+                            message: "You don't have account?",
+                            linkText: "Click here",
+                            actionText: "to register",
+                            onPress: () {
+                              print("Pressed 'click here to regiser'");
+                            },
+                          ),
 
                           SizedBox(height: 18),
 
                           PasswordInput(),
-                          ResetPasswordLink(),
+                          ClickableAuthText(
+                            message: "You don't remember?",
+                            linkText: "Click here",
+                            actionText: "to reset it",
+                            onPress: () {
+                              print("Pressed 'click here to reset password'");
+                            },
+                          ),
 
                           SizedBox(height: 18),
 
