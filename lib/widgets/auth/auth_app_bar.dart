@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class AuthAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -8,8 +6,8 @@ class AuthAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      //title: Image(image: Svg('lib/Assets/Images/twitch.svg')),
-      title: Image.asset("lib/Assets/Images/logo.png"),
+      //title: Image(image: Svg('lib/assets/Images/twitch.svg')),
+      title: Image.asset("lib/assets/Images/logo.png"),
       centerTitle: true,
       backgroundColor: Color(0xFF181719),
       leading: Padding(padding: EdgeInsets.only(bottom: 300)),

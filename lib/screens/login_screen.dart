@@ -1,14 +1,14 @@
-import 'package:community_with_legends_mobile/Widgets/auth/AuthAppBar.dart';
-import 'package:community_with_legends_mobile/Widgets/BackgroundImage.dart';
-import 'package:community_with_legends_mobile/Widgets/auth/AuthViaTwitch.dart';
+import 'package:community_with_legends_mobile/Widgets/auth/auth_app_bar.dart';
+import 'package:community_with_legends_mobile/Widgets/background_image.dart';
+import 'package:community_with_legends_mobile/Widgets/auth/auth_via_twitch.dart';
 import 'package:flutter/material.dart';
 
-import '../Widgets/Button.dart';
-import '../Widgets/auth/AuthTextInput.dart';
-import '../Widgets/auth/ClickableAuthText.dart';
+import '../Widgets/button.dart';
+import '../Widgets/auth/auth_text_input.dart';
+import '../Widgets/auth/clickable_auth_text.dart';
 
-class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({super.key});
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class RegisterScreen extends StatelessWidget {
               color: Color(0xff181719),
               child: SizedBox(
                 width: 300,
-                height: 650,
+                height: 600,
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: ListView(
@@ -39,7 +39,7 @@ class RegisterScreen extends StatelessWidget {
                       Column(
                         children: [
                           Text(
-                            "Register",
+                            "Log in",
                             style: TextStyle(
                               fontSize: 42,
                               color: Color(0xFFFDFEFE),
@@ -50,10 +50,12 @@ class RegisterScreen extends StatelessWidget {
                             text: "Enter your email",
                             hint: 'Email',
                           ),
-                          SizedBox(height: 18),
-                          AuthTextInput(
-                            text: "Enter your name",
-                            hint: 'Name',
+                          ClickableAuthText(
+                            message: "You don't have an account?",
+                            linkText: "Click here",
+                            actionText: "to register",
+                            onPress: () =>
+                                Navigator.of(context).pushNamed('/register'),
                           ),
                           SizedBox(height: 18),
                           AuthTextInput(
@@ -61,24 +63,17 @@ class RegisterScreen extends StatelessWidget {
                             hint: 'Password',
                             obscureText: true,
                           ),
-                          SizedBox(height: 18),
-                          AuthTextInput(
-                            text: "Confirm your password",
-                            hint: 'Confirm password',
-                            obscureText: true,
-                          ),
                           ClickableAuthText(
-                            message: "You have an account?",
+                            message: "You don't remember?",
                             linkText: "Click here",
-                            actionText: "to login",
+                            actionText: "to reset it",
                             onPress: () =>
-                                Navigator.of(context).pushNamed('/login')
-                            ,
+                                Navigator.of(context).pushNamed('/login'),
                           ),
                           SizedBox(height: 18),
-                          Button(text: "Register"),
+                          Button(text: "Log in"),
                           SizedBox(height: 18),
-                          AuthViaTwitch(authMode: AuthMode.register),
+                          AuthViaTwitch(authMode: AuthMode.login),
                         ],
                       ),
                     ],

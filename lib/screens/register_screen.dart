@@ -1,14 +1,14 @@
-import 'package:community_with_legends_mobile/Widgets/auth/AuthAppBar.dart';
-import 'package:community_with_legends_mobile/Widgets/BackgroundImage.dart';
-import 'package:community_with_legends_mobile/Widgets/auth/AuthViaTwitch.dart';
+import 'package:community_with_legends_mobile/Widgets/auth/auth_app_bar.dart';
+import 'package:community_with_legends_mobile/Widgets/background_image.dart';
+import 'package:community_with_legends_mobile/Widgets/auth/auth_via_twitch.dart';
 import 'package:flutter/material.dart';
 
-import '../Widgets/Button.dart';
-import '../Widgets/auth/AuthTextInput.dart';
-import '../Widgets/auth/ClickableAuthText.dart';
+import '../Widgets/button.dart';
+import '../Widgets/auth/auth_text_input.dart';
+import '../Widgets/auth/clickable_auth_text.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class LoginScreen extends StatelessWidget {
               color: Color(0xff181719),
               child: SizedBox(
                 width: 300,
-                height: 600,
+                height: 670,
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: ListView(
@@ -39,7 +39,7 @@ class LoginScreen extends StatelessWidget {
                       Column(
                         children: [
                           Text(
-                            "Log in",
+                            "Register",
                             style: TextStyle(
                               fontSize: 42,
                               color: Color(0xFFFDFEFE),
@@ -50,12 +50,10 @@ class LoginScreen extends StatelessWidget {
                             text: "Enter your email",
                             hint: 'Email',
                           ),
-                          ClickableAuthText(
-                            message: "You don't have an account?",
-                            linkText: "Click here",
-                            actionText: "to register",
-                            onPress: () =>
-                                Navigator.of(context).pushNamed('/register'),
+                          SizedBox(height: 18),
+                          AuthTextInput(
+                            text: "Enter your name",
+                            hint: 'Name',
                           ),
                           SizedBox(height: 18),
                           AuthTextInput(
@@ -63,17 +61,24 @@ class LoginScreen extends StatelessWidget {
                             hint: 'Password',
                             obscureText: true,
                           ),
+                          SizedBox(height: 18),
+                          AuthTextInput(
+                            text: "Confirm your password",
+                            hint: 'Confirm password',
+                            obscureText: true,
+                          ),
                           ClickableAuthText(
-                            message: "You don't remember?",
+                            message: "You have an account?",
                             linkText: "Click here",
-                            actionText: "to reset it",
+                            actionText: "to login",
                             onPress: () =>
-                                Navigator.of(context).pushNamed('/login'),
+                                Navigator.of(context).pushNamed('/login')
+                            ,
                           ),
                           SizedBox(height: 18),
-                          Button(text: "Log in"),
+                          Button(text: "Register"),
                           SizedBox(height: 18),
-                          AuthViaTwitch(authMode: AuthMode.login),
+                          AuthViaTwitch(authMode: AuthMode.register),
                         ],
                       ),
                     ],

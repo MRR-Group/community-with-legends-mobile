@@ -14,7 +14,7 @@ class BackgroundImage extends StatelessWidget {
       child: Stack(
         children: [
           Image(
-            image: AssetImage('lib/Assets/Images/background.png'),
+            image: AssetImage('lib/assets/Images/background.png'),
             height: double.infinity,
             fit: BoxFit.fitHeight,
             alignment: Alignment.centerRight,

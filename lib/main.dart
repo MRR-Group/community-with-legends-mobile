@@ -1,8 +1,8 @@
-import 'package:community_with_legends_mobile/Screens/login_screen.dart';
+import 'package:community_with_legends_mobile/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'Screens/register_screen.dart';
+import 'screens/register_screen.dart';
 
 void main() {
   runApp(const MyApp());
