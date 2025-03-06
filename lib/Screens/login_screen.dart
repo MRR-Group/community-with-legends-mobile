@@ -7,8 +7,8 @@ import '../Widgets/Button.dart';
 import '../Widgets/auth/AuthTextInput.dart';
 import '../Widgets/auth/ClickableAuthText.dart';
 
-class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({super.key});
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class RegisterScreen extends StatelessWidget {
               color: Color(0xff181719),
               child: SizedBox(
                 width: 300,
-                height: 650,
+                height: 600,
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: ListView(
@@ -39,56 +39,41 @@ class RegisterScreen extends StatelessWidget {
                       Column(
                         children: [
                           Text(
-                            "Register",
+                            "Log in",
                             style: TextStyle(
                               fontSize: 42,
                               color: Color(0xFFFDFEFE),
                             ),
                           ),
-
                           SizedBox(height: 18),
-
                           AuthTextInput(
                             text: "Enter your email",
                             hint: 'Email',
                           ),
-
-                          SizedBox(height: 18),
-
-                          AuthTextInput(
-                            text: "Enter your name",
-                            hint: 'Name',
+                          ClickableAuthText(
+                            message: "You don't have an account?",
+                            linkText: "Click here",
+                            actionText: "to register",
+                            onPress: () =>
+                                Navigator.of(context).pushNamed('/register'),
                           ),
-
                           SizedBox(height: 18),
-
                           AuthTextInput(
                             text: "Enter your password",
                             hint: 'Password',
                             obscureText: true,
                           ),
-
-                          SizedBox(height: 18),
-
-                          AuthTextInput(
-                            text: "Confirm your password",
-                            hint: 'Confirm password',
-                            obscureText: true,
-                          ),
                           ClickableAuthText(
-                            message: "You have an account?",
+                            message: "You don't remember?",
                             linkText: "Click here",
-                            actionText: "to login",
-                            onPress: () {
-                              print("Pressed 'click here to login'");
-                            },
+                            actionText: "to reset it",
+                            onPress: () =>
+                                Navigator.of(context).pushNamed('/login'),
                           ),
-
                           SizedBox(height: 18),
-                          Button(text: "Register"),
+                          Button(text: "Log in"),
                           SizedBox(height: 18),
-
-                          AuthViaTwitch(authMode: AuthMode.register),
+                          AuthViaTwitch(authMode: AuthMode.login),
                         ],
                       ),
                     ],
