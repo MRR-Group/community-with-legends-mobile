@@ -7,8 +7,20 @@ import '../Widgets/button.dart';
 import '../Widgets/auth/auth_text_input.dart';
 import '../Widgets/auth/clickable_auth_text.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
+
+  @override
+  State<RegisterScreen> createState() {
+    return _RegisterScreenState();
+  }
+}
+class _RegisterScreenState extends State<RegisterScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -36,50 +48,57 @@ class RegisterScreen extends StatelessWidget {
                   child: ListView(
                     physics: ScrollPhysics(parent: PageScrollPhysics()),
                     children: [
-                      Column(
-                        children: [
-                          Text(
-                            "Register",
-                            style: TextStyle(
-                              fontSize: 42,
-                              color: Color(0xFFFDFEFE),
+                      Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            Text(
+                              "Register",
+                              style: TextStyle(
+                                fontSize: 42,
+                                color: Color(0xFFFDFEFE),
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 18),
-                          AuthTextInput(
-                            text: "Enter your email",
-                            hint: 'Email',
-                          ),
-                          SizedBox(height: 18),
-                          AuthTextInput(
-                            text: "Enter your name",
-                            hint: 'Name',
-                          ),
-                          SizedBox(height: 18),
-                          AuthTextInput(
-                            text: "Enter your password",
-                            hint: 'Password',
-                            obscureText: true,
-                          ),
-                          SizedBox(height: 18),
-                          AuthTextInput(
-                            text: "Confirm your password",
-                            hint: 'Confirm password',
-                            obscureText: true,
-                          ),
-                          ClickableAuthText(
-                            message: "You have an account?",
-                            linkText: "Click here",
-                            actionText: "to login",
-                            onPress: () =>
-                                Navigator.of(context).pushNamed('/login')
-                            ,
-                          ),
-                          SizedBox(height: 18),
-                          Button(text: "Register", onPressed: () => {print("Wcisnieto przycisk register")},),
-                          SizedBox(height: 18),
-                          AuthViaTwitch(authMode: AuthMode.register),
-                        ],
+                            SizedBox(height: 18),
+                            AuthTextInput(
+                              text: "Enter your email",
+                              hint: 'Email',
+                              controller: _emailController,
+                            ),
+                            SizedBox(height: 18),
+                            AuthTextInput(
+                              text: "Enter your name",
+                              hint: 'Name',
+                              controller: _nameController,
+                            ),
+                            SizedBox(height: 18),
+                            AuthTextInput(
+                              text: "Enter your password",
+                              hint: 'Password',
+                              obscureText: true,
+                              controller: _passwordController,
+                            ),
+                            SizedBox(height: 18),
+                            AuthTextInput(
+                              text: "Confirm your password",
+                              hint: 'Confirm password',
+                              obscureText: true,
+                              controller: _confirmPasswordController,
+                            ),
+                            ClickableAuthText(
+                              message: "You have an account?",
+                              linkText: "Click here",
+                              actionText: "to login",
+                              onPress: () =>
+                                  Navigator.of(context).pushNamed('/login')
+                              ,
+                            ),
+                            SizedBox(height: 18),
+                            Button(text: "Register", onPressed: () => {print("Wcisnieto przycisk register")},),
+                            SizedBox(height: 18),
+                            AuthViaTwitch(authMode: AuthMode.register),
+                          ],
+                        ),
                       ),
                     ],
                   ),

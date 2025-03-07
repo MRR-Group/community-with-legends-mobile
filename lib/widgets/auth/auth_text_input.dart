@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
 class AuthTextInput extends StatelessWidget {
-  const AuthTextInput({super.key, required this.hint, required this.text, this.obscureText = false});
+  const AuthTextInput({super.key, required this.hint, required this.text, this.obscureText = false, required this.controller});
 
   final String hint;
   final String text;
   final bool obscureText;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       style: TextStyle(color: Color(0xFFB9B9BA)),
       obscureText: obscureText,
       decoration: InputDecoration(
