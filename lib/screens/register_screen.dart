@@ -76,7 +76,7 @@ class RegisterScreen extends StatelessWidget {
                             ,
                           ),
                           SizedBox(height: 18),
-                          Button(text: "Register"),
+                          Button(text: "Register", onPressed: () => {print("Wcisnieto przycisk register")},),
                           SizedBox(height: 18),
                           AuthViaTwitch(authMode: AuthMode.register),
                         ],
