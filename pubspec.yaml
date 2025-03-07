@@ -41,6 +41,7 @@ dependencies:
       ref: main
   flutter_svg_provider: ^1.0.7
   http: ^1.3.0
+  flutter_dotenv: ^5.2.1
 
 dev_dependencies:
   flutter_test:
