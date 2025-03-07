@@ -27,7 +27,7 @@ class AuthViaTwitch extends StatelessWidget {
             ),
           ),
           SizedBox(height: 18),
-          Image(image: Svg('lib/assets/images/twitch.svg')),
+          Image(image: Svg('assets/images/twitch.svg')),
         ],
       );
   }

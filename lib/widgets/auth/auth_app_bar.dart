@@ -7,7 +7,7 @@ class AuthAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       //title: Image(image: Svg('lib/assets/images/twitch.svg')),
-      title: Image.asset("lib/assets/images/logo.png"),
+      title: Image.asset("assets/images/logo.png"),
       centerTitle: true,
       backgroundColor: Color(0xFF181719),
       leading: Padding(padding: EdgeInsets.only(bottom: 300)),
