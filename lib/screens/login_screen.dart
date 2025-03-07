@@ -20,6 +20,17 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool _isLoading = false;
+
+  _login() {
+    if (_formKey.currentState!.validate()) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Login in progress")));
+      setState(() {
+        _isLoading = true;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,17 +93,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                 message: "You don't remember?",
                                 linkText: "Click here",
                                 actionText: "to reset it",
-                                onPress: () =>
-                                {
-                                  print(
-                                      "Wcisnieto przycisk zapomniałeś hasła")
-                                }),
+                                onPress: () => {
+                                      print(
+                                          "Wcisnieto przycisk zapomniałeś hasła")
+                                    }),
                             SizedBox(height: 18),
-                            Button(text: "Log in",
-                                onPressed: () =>
-                                {
-                                  print("Wcisnieto przycisk log in")
-                                }),
+                            Button(
+                                text: "Log in",
+                                onPressed: _login,
+                                isLoading: _isLoading),
                             SizedBox(height: 18),
                             AuthViaTwitch(authMode: AuthMode.login),
                           ],
