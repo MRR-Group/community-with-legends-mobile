@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:community_with_legends_mobile/Widgets/auth/auth_app_bar.dart';
 import 'package:community_with_legends_mobile/Widgets/background_image.dart';
 import 'package:community_with_legends_mobile/Widgets/auth/auth_via_twitch.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../Widgets/button.dart';
 import '../Widgets/auth/auth_text_input.dart';
@@ -21,14 +25,35 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
+  final String _apiURL = dotenv.env['API_URL']!;
 
-  _login() {
+  _login() async {
     if (_formKey.currentState!.validate()) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("Login in progress")));
       setState(() {
         _isLoading = true;
       });
+
+      var url = Uri.parse('$_apiURL/api/auth/login');
+
+      Map<String, String> body = {
+        'email': _emailController.text,
+        'password': _passwordController.text,
+      };
+      Map<String, String> headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      };
+
+      var response = await http.post(
+        url,
+        headers: headers,
+        body: jsonEncode(body),
+      );
+
+      print(response.body);
+      print(response.statusCode);
     }
   }
 
