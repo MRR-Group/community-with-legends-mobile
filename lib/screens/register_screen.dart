@@ -6,7 +6,6 @@ import 'package:community_with_legends_mobile/Widgets/auth/auth_via_twitch.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Widgets/button.dart';
 import '../Widgets/auth/auth_text_input.dart';
