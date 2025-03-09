@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:community_with_legends_mobile/Widgets/auth/auth_app_bar.dart';
 import 'package:community_with_legends_mobile/Widgets/background_image.dart';
 import 'package:community_with_legends_mobile/Widgets/auth/auth_via_twitch.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Widgets/button.dart';
 import '../Widgets/auth/auth_text_input.dart';
@@ -15,12 +20,90 @@ class RegisterScreen extends StatefulWidget {
     return _RegisterScreenState();
   }
 }
+
 class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+  bool _isLoading = false;
+  final String _apiURL = dotenv.env['API_URL']!;
+
+  _register() async {
+    if (_formKey.currentState!.validate()) {
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Registration in progress")));
+
+      setState(() {
+        _isLoading = true;
+      });
+
+
+      if (_confirmPasswordController.text != _passwordController.text) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Registration failed: passwords are not the same")));
+
+        setState(() {
+          _isLoading = false;
+        });
+
+        return;
+      }
+
+      var url = Uri.parse('$_apiURL/api/auth/register');
+
+      Map<String, String> body = {
+        'email': _emailController.text,
+        'name': _nameController.text,
+        'password': _passwordController.text,
+      };
+      Map<String, String> headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      };
+      http.Response response;
+      try {
+        response = await http.post(
+          url,
+          headers: headers,
+          body: jsonEncode(body),
+        );
+        var responseBody = jsonDecode(response.body);
+
+        if (response.statusCode == 200) {
+          if (mounted) {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text("Registration completed successfully")));
+              Navigator.of(context).pushNamed('/login');
+          }
+        } else {
+          String message = responseBody['message'];
+
+          if (mounted) {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text("Registration failed: $message")));
+          }
+        }
+      } catch (error) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(
+                  "An unexpected error occurred. Please try again later")));
+        }
+      }
+
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,11 +173,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               linkText: "Click here",
                               actionText: "to login",
                               onPress: () =>
-                                  Navigator.of(context).pushNamed('/login')
-                              ,
+                                  Navigator.of(context).pushNamed('/login'),
                             ),
                             SizedBox(height: 18),
-                            Button(text: "Register", onPressed: () => {print("Wcisnieto przycisk register")},),
+                            Button(
+                              text: "Register",
+                              onPressed: _register,
+                              isLoading: _isLoading,
+                            ),
                             SizedBox(height: 18),
                             AuthViaTwitch(authMode: AuthMode.register),
                           ],
