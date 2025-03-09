@@ -6,6 +6,7 @@ import 'package:community_with_legends_mobile/Widgets/auth/auth_via_twitch.dart'
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Widgets/button.dart';
 import '../Widgets/auth/auth_text_input.dart';
@@ -29,8 +30,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   _login() async {
     if (_formKey.currentState!.validate()) {
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("Login in progress")));
+
       setState(() {
         _isLoading = true;
       });
@@ -45,15 +48,46 @@ class _LoginScreenState extends State<LoginScreen> {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       };
+      http.Response response;
+      try {
+        response = await http.post(
+          url,
+          headers: headers,
+          body: jsonEncode(body),
+        );
+        var responseBody = jsonDecode(response.body);
 
-      var response = await http.post(
-        url,
-        headers: headers,
-        body: jsonEncode(body),
-      );
+        if (response.statusCode == 200) {
+          String token = responseBody['token'];
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          await prefs.setString('auth_token', token);
 
-      print(response.body);
-      print(response.statusCode);
+          if (mounted) {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text("Logged in")));
+          }
+        } else {
+          String message = responseBody['message'];
+
+          if (mounted) {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text("Login failed: $message")));
+          }
+        }
+      } catch (error) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(
+                  "An unexpected error occurred. Please try again later")));
+        }
+      }
+
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 
