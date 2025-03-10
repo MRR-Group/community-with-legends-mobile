@@ -124,7 +124,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               color: Color(0xff181719),
               child: SizedBox(
                 width: 300,
-                height: 670,
+                height: 800,
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: ListView(

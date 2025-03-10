@@ -111,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
               color: Color(0xff181719),
               child: SizedBox(
                 width: 300,
-                height: 600,
+                height: 670,
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: ListView(
