@@ -11,7 +11,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../Widgets/button.dart';
 import '../Widgets/auth/auth_text_input.dart';
 import '../Widgets/auth/clickable_auth_text.dart';
-import '../config/colors.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
