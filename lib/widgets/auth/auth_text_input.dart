@@ -34,7 +34,7 @@ class AuthTextInput extends StatelessWidget {
           decoration: InputDecoration(
             constraints: const BoxConstraints(maxHeight: 40, minHeight: 40),
             errorStyle: TextStyle(
-
+              height: 0.01
             ),
             contentPadding: const EdgeInsets.all(12),
             hintText: hint,
@@ -47,7 +47,10 @@ class AuthTextInput extends StatelessWidget {
           ),
           validator: (String? value) {
             if (value == null || value.isEmpty) {
-              return 'Please enter some text';
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text("Make sure you fill in all fields")));
+              return '';
             }
             return null;
           },
