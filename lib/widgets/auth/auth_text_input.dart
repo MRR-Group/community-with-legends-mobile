@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AuthTextInput extends StatelessWidget {
-  const AuthTextInput({super.key, required this.hint, required this.text, this.obscureText = false, required this.controller});
+  const AuthTextInput(
+      {super.key,
+        required this.hint,
+        required this.text,
+        this.obscureText = false,
+        required this.controller});
 
   final String hint;
   final String text;
@@ -10,35 +15,44 @@ class AuthTextInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      style: TextStyle(color: Color(0xFFB9B9BA)),
-      obscureText: obscureText,
-      decoration: InputDecoration(
-        constraints: const BoxConstraints(maxHeight: 40),
-        contentPadding: const EdgeInsets.all(12),
-        hintText: hint,
-        fillColor: const Color(0xFF212023),
-        filled: true,
-        label: Text(
-          text,
-          style: TextStyle(
-            fontSize: 18,
-            color: Colors.white,
-          ),
+    return Column(
+      children: [
+        Row(
+          children: [
+            Text(
+              text,
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
+            Spacer()
+          ],
         ),
-        border: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(8),
+        SizedBox(height: 8),
+        TextFormField(
+          controller: controller,
+          style: TextStyle(color: Color(0xFFB9B9BA)),
+          obscureText: obscureText,
+          decoration: InputDecoration(
+            constraints: const BoxConstraints(maxHeight: 40, minHeight: 40),
+            errorStyle: TextStyle(
+
+            ),
+            contentPadding: const EdgeInsets.all(12),
+            hintText: hint,
+            fillColor: const Color(0xFF212023),
+            filled: true,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide.none,
+            ),
           ),
+          validator: (String? value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter some text';
+            }
+            return null;
+          },
         ),
-      ),
-      validator: (String? value) {
-        if (value == null || value.isEmpty) {
-          return 'Please enter some text';
-        }
-        return null;
-      },
+      ],
     );
   }
 }
