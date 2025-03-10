@@ -126,7 +126,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 width: 300,
                 height: 800,
                 child: Padding(
-                  padding: const EdgeInsets.all(18.0),
+                  padding: const EdgeInsets.only(left: 18, right: 18, top: 18),
                   child: ListView(
                     physics: ScrollPhysics(parent: PageScrollPhysics()),
                     children: [
