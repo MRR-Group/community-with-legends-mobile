@@ -15,14 +15,12 @@ class AuthViaTwitch extends StatelessWidget {
           Text(
              "OR",
             style: TextStyle(
-              color: Colors.white,
               fontSize: 28,
             ),
           ),
           Text(
             authMode == AuthMode.login ? "Log in via" : "Register via",
             style: TextStyle(
-              color: Colors.white,
               fontSize: 28,
             ),
           ),

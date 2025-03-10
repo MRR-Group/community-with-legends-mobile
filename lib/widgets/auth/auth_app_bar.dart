@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../config/colors.dart';
+
 class AuthAppBar extends StatelessWidget implements PreferredSizeWidget {
   const AuthAppBar({super.key});
 
@@ -8,7 +10,6 @@ class AuthAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       title: Image.asset("assets/images/logo.png"),
       centerTitle: true,
-      backgroundColor: Color(0xFF181719),
       leading: Padding(padding: EdgeInsets.only(bottom: 300)),
     );
   }

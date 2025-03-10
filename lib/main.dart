@@ -1,8 +1,8 @@
 import 'package:community_with_legends_mobile/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:google_fonts/google_fonts.dart';
 
+import 'config/theme.dart';
 import 'screens/register_screen.dart';
 
 Future<void> main() async {
@@ -18,11 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          fontFamily: GoogleFonts.getFont('Jaro').fontFamily,
-
-      ),
+      theme: theme,
 
       home: RegisterScreen(),
 

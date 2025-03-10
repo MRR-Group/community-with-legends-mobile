@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../config/colors.dart';
+
 class ClickableAuthText extends StatelessWidget {
   const ClickableAuthText({super.key, required this.message, required this.linkText, required this.actionText, required this.onPress});
   final String message;
@@ -13,7 +15,7 @@ class ClickableAuthText extends StatelessWidget {
       children: [
         Text(
           message,
-          style: TextStyle(color: Colors.white, fontSize: 10),
+          style: TextStyle(fontSize: 10),
         ),
         Spacer(),
         TextButton(
@@ -22,11 +24,11 @@ class ClickableAuthText extends StatelessWidget {
             children: [
               Text(
                 linkText,
-                style: TextStyle(color: Colors.purple, fontSize: 10),
+                style: TextStyle(color: primaryColor, fontSize: 10),
               ),
               Text(
                 actionText,
-                style: TextStyle(color: Colors.white, fontSize: 10),
+                style: TextStyle(fontSize: 10),
               ),
             ],
           ),

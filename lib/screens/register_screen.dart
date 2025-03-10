@@ -10,6 +10,7 @@ import 'package:http/http.dart' as http;
 import '../Widgets/button.dart';
 import '../Widgets/auth/auth_text_input.dart';
 import '../Widgets/auth/clickable_auth_text.dart';
+import '../config/colors.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -116,12 +117,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
             heightFactor: 100,
             widthFactor: 100,
             child: Card(
-              margin: EdgeInsets.all(20),
-              shape: RoundedRectangleBorder(
-                side: BorderSide(color: Color(0xFFA4C1C9), width: 2),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              color: Color(0xff181719),
               child: SizedBox(
                 width: 300,
                 height: 800,
@@ -138,7 +133,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               "Register",
                               style: TextStyle(
                                 fontSize: 42,
-                                color: Color(0xFFFDFEFE),
                               ),
                             ),
                             SizedBox(height: 18),

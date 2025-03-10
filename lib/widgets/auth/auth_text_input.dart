@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../config/colors.dart';
+
 class AuthTextInput extends StatelessWidget {
   const AuthTextInput(
       {super.key,
@@ -21,7 +23,7 @@ class AuthTextInput extends StatelessWidget {
           children: [
             Text(
               text,
-              style: TextStyle(color: Colors.white, fontSize: 18),
+              style: TextStyle(fontSize: 18),
             ),
             Spacer()
           ],
@@ -29,7 +31,6 @@ class AuthTextInput extends StatelessWidget {
         SizedBox(height: 8),
         TextFormField(
           controller: controller,
-          style: TextStyle(color: Color(0xFFB9B9BA)),
           obscureText: obscureText,
           decoration: InputDecoration(
             constraints: const BoxConstraints(maxHeight: 40, minHeight: 40),
@@ -38,7 +39,7 @@ class AuthTextInput extends StatelessWidget {
             ),
             contentPadding: const EdgeInsets.all(12),
             hintText: hint,
-            fillColor: const Color(0xFF212023),
+            fillColor: backgroundLightColor,
             filled: true,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),

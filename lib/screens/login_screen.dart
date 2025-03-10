@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../Widgets/button.dart';
 import '../Widgets/auth/auth_text_input.dart';
 import '../Widgets/auth/clickable_auth_text.dart';
+import '../config/colors.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -103,12 +104,6 @@ class _LoginScreenState extends State<LoginScreen> {
             heightFactor: 100,
             widthFactor: 100,
             child: Card(
-              margin: EdgeInsets.all(20),
-              shape: RoundedRectangleBorder(
-                side: BorderSide(color: Color(0xFFA4C1C9), width: 2),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              color: Color(0xff181719),
               child: SizedBox(
                 width: 300,
                 height: 670,
@@ -125,7 +120,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               "Log in",
                               style: TextStyle(
                                 fontSize: 42,
-                                color: Color(0xFFFDFEFE),
                               ),
                             ),
                             SizedBox(height: 18),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../config/colors.dart';
 import 'loading_animation.dart';
 
 class Button extends StatelessWidget {
@@ -26,12 +27,7 @@ class Button extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          gradient: LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-            stops: [0.0, 0.5, 1.0],
-            colors: [Color(0xFF9C44FF), Color(0xFF8418FF), Color(0xFF8E2CFE)],
-          ),
+          gradient: primaryGradient,
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 28),
@@ -42,7 +38,7 @@ class Button extends StatelessWidget {
                 )
               : Text(text,
                   style:
-                      TextStyle(color: Colors.white, fontSize: fontSize ?? 18)),
+                      TextStyle(fontSize: fontSize ?? 18)),
         ),
       ),
     );
