@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../Widgets/button.dart';
 import '../Widgets/auth/auth_text_input.dart';
 import '../Widgets/auth/clickable_auth_text.dart';
+import '../config/colors.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -100,66 +101,71 @@ class _LoginScreenState extends State<LoginScreen> {
         children: [
           BackgroundImage(bottomMargin: 0),
           Center(
-            heightFactor: 100,
-            widthFactor: 100,
-            child: Card(
-              child: SizedBox(
-                width: 300,
-                height: 670,
-                child: Padding(
-                  padding: const EdgeInsets.all(18.0),
-                  child: ListView(
-                    physics: ScrollPhysics(parent: PageScrollPhysics()),
-                    children: [
-                      Form(
-                        key: _formKey,
-                        child: Column(
-                          children: [
-                            Text(
-                              "Log in",
-                              style: TextStyle(
-                                fontSize: 42,
+            child: Container(
+              padding: EdgeInsets.all(2),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                gradient: secondaryGradient,
+              ),
+              child: Card(
+                child: SizedBox(
+                  width: 300,
+                  height: 670,
+                  child: Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: ListView(
+                      physics: ScrollPhysics(parent: PageScrollPhysics()),
+                      children: [
+                        Form(
+                          key: _formKey,
+                          child: Column(
+                            children: [
+                              Text(
+                                "Log in",
+                                style: TextStyle(
+                                  fontSize: 42,
+                                ),
                               ),
-                            ),
-                            SizedBox(height: 18),
-                            AuthTextInput(
-                              text: "Enter your email",
-                              hint: 'Email',
-                              controller: _emailController,
-                            ),
-                            ClickableAuthText(
-                              message: "You don't have an account?",
-                              linkText: "Click here",
-                              actionText: "to register",
-                              onPress: () =>
-                                  Navigator.of(context).pushNamed('/register'),
-                            ),
-                            SizedBox(height: 18),
-                            AuthTextInput(
-                              text: "Enter your password",
-                              hint: 'Password',
-                              obscureText: true,
-                              controller: _passwordController,
-                            ),
-                            ClickableAuthText(
-                                message: "You don't remember?",
+                              SizedBox(height: 18),
+                              AuthTextInput(
+                                text: "Enter your email",
+                                hint: 'Email',
+                                controller: _emailController,
+                              ),
+                              ClickableAuthText(
+                                message: "You don't have an account?",
                                 linkText: "Click here",
-                                actionText: "to reset it",
-                                onPress: () => {
-                                      print(
-                                          "Wcisnieto przycisk zapomniałeś hasła")
-                                    }),
-                            SizedBox(height: 18),
-                            Button(
-                                text: "Log in",
-                                onPressed: _login,
-                                isLoading: _isLoading),
-                            SizedBox(height: 18),
-                            AuthViaTwitch(authMode: AuthMode.login),
-                          ],
+                                actionText: "to register",
+                                onPress: () => Navigator.of(context)
+                                    .pushNamed('/register'),
+                              ),
+                              SizedBox(height: 18),
+                              AuthTextInput(
+                                text: "Enter your password",
+                                hint: 'Password',
+                                obscureText: true,
+                                controller: _passwordController,
+                              ),
+                              ClickableAuthText(
+                                  message: "You don't remember?",
+                                  linkText: "Click here",
+                                  actionText: "to reset it",
+                                  onPress: () => {
+                                        print(
+                                            "Wcisnieto przycisk zapomniałeś hasła")
+                                      }),
+                              SizedBox(height: 18),
+                              Button(
+                                  text: "Log in",
+                                  onPressed: _login,
+                                  isLoading: _isLoading),
+                              SizedBox(height: 18),
+                              AuthViaTwitch(authMode: AuthMode.login),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
