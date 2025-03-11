@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../config/colors.dart';
+import '../alert.dart';
 
 class AuthTextInput extends StatelessWidget {
   const AuthTextInput(
@@ -48,9 +49,7 @@ class AuthTextInput extends StatelessWidget {
           ),
           validator: (String? value) {
             if (value == null || value.isEmpty) {
-              ScaffoldMessenger.of(context).hideCurrentSnackBar();
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(SnackBar(content: Text("Make sure you fill in all fields")));
+              Alert.of(context).show(text: "Make sure you fill in all fields");
               return '';
             }
             return null;

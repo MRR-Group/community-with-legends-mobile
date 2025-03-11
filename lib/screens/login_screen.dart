@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../Widgets/button.dart';
 import '../Widgets/auth/auth_text_input.dart';
 import '../Widgets/auth/clickable_auth_text.dart';
+import '../Widgets/alert.dart';
 import '../config/colors.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -31,64 +32,58 @@ class _LoginScreenState extends State<LoginScreen> {
 
   _login() async {
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Login in progress")));
+      {
+        Alert.of(context).show(text: "Login in progress");
 
-      setState(() {
-        _isLoading = true;
-      });
+        setState(() {
+          _isLoading = true;
+        });
 
-      var url = Uri.parse('$_apiURL/api/auth/login');
+        var url = Uri.parse('$_apiURL/api/auth/login');
 
-      Map<String, String> body = {
-        'email': _emailController.text,
-        'password': _passwordController.text,
-      };
-      Map<String, String> headers = {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      };
-      http.Response response;
-      try {
-        response = await http.post(
-          url,
-          headers: headers,
-          body: jsonEncode(body),
-        );
-        var responseBody = jsonDecode(response.body);
+        Map<String, String> body = {
+          'email': _emailController.text,
+          'password': _passwordController.text,
+        };
+        Map<String, String> headers = {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        };
+        http.Response response;
+        try {
+          response = await http.post(
+            url,
+            headers: headers,
+            body: jsonEncode(body),
+          );
+          var responseBody = jsonDecode(response.body);
 
-        if (response.statusCode == 200) {
-          String token = responseBody['token'];
-          SharedPreferences prefs = await SharedPreferences.getInstance();
-          await prefs.setString('auth_token', token);
+          if (response.statusCode == 200) {
+            String token = responseBody['token'];
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            await prefs.setString('auth_token', token);
 
-          if (mounted) {
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text("Logged in")));
+            if (mounted) {
+              Alert.of(context).show(text: "Logged in");
+            }
+          } else {
+            String message = responseBody['message'];
+
+            if (mounted) {
+              Alert.of(context).show(text:"Login failed: $message");
+            }
           }
-        } else {
-          String message = responseBody['message'];
-
+        } catch (error) {
           if (mounted) {
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text("Login failed: $message")));
+            Alert.of(context)
+                .show(text: "An unexpected error occurred. Please try again later");
           }
         }
-      } catch (error) {
-        if (mounted) {
-          ScaffoldMessenger.of(context).hideCurrentSnackBar();
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(
-                  "An unexpected error occurred. Please try again later")));
-        }
+
+        setState(() {
+          _isLoading = false;
+        });
       }
-
-      setState(() {
-        _isLoading = false;
-      });
     }
   }
 

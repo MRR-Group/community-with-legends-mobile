@@ -11,6 +11,7 @@ import 'package:http/http.dart' as http;
 import '../Widgets/button.dart';
 import '../Widgets/auth/auth_text_input.dart';
 import '../Widgets/auth/clickable_auth_text.dart';
+import '../Widgets/alert.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -33,18 +34,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   _register() async {
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Registration in progress")));
+      Alert.of(context).show(text: "Registration in progress");
 
       setState(() {
         _isLoading = true;
       });
 
       if (_confirmPasswordController.text != _passwordController.text) {
-        ScaffoldMessenger.of(context).hideCurrentSnackBar();
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text("Registration failed: passwords are not the same")));
+        Alert.of(context).show(text: "Registration failed: passwords are not the same");
 
         setState(() {
           _isLoading = false;
@@ -75,26 +72,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
         if (response.statusCode == 200) {
           if (mounted) {
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text("Registration completed successfully")));
+            Alert.of(context).show(text: "Registration completed successfully");
             Navigator.of(context).pushNamed('/login');
           }
         } else {
           String message = responseBody['message'];
 
           if (mounted) {
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text("Registration failed: $message")));
+            Alert.of(context).show(text: "Registration failed: $message");
           }
         }
       } catch (error) {
         if (mounted) {
-          ScaffoldMessenger.of(context).hideCurrentSnackBar();
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(
-                  "An unexpected error occurred. Please try again later")));
+          Alert.of(context).show(text: "An unexpected error occurred. Please try again later");
         }
       }
 

@@ -42,17 +42,21 @@ ThemeData theme = ThemeData(
       }),
     ),
   ),
-
   appBarTheme: const AppBarTheme(
     backgroundColor: backgroundColor,
   ),
   cardTheme: CardTheme(
+    margin: EdgeInsets.all(0),
     color: backgroundColor,
-    margin: const EdgeInsets.all(20),
     shape: RoundedRectangleBorder(
-      side: const BorderSide(color: secondaryColor, width: 2),
       borderRadius: BorderRadius.circular(8),
     ),
+  ),
+  snackBarTheme: SnackBarThemeData(
+    insetPadding: EdgeInsets.all(0),
+    backgroundColor: Colors.transparent,
+    elevation: 0,
+
   ),
 
 );
