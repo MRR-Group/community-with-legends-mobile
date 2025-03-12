@@ -1,9 +1,7 @@
 import 'package:community_with_legends_mobile/src/features/auth/presentation/controllers/register_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../shared/presentation/widgets/button.dart';
-import '../controllers/login_controller.dart';
 import 'auth_text_input.dart';
 import 'auth_via_twitch.dart';
 import 'clickable_auth_text.dart';
