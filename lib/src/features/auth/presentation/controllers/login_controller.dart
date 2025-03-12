@@ -24,7 +24,7 @@ class LoginController with ChangeNotifier {
       }
     }catch (error){
       if(context.mounted){
-        Alert.of(context).show(text: "Login failed: $error");
+        Alert.of(context).show(text: "$error");
       }
     }
 
