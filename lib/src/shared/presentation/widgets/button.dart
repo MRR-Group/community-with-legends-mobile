@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../config/colors.dart';
+import '../../../../config/colors.dart';
 import 'loading_animation.dart';
 
 class Button extends StatelessWidget {

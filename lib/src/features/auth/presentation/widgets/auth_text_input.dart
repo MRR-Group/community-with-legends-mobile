@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../config/colors.dart';
-import '../alert.dart';
+import '../../../../../config/colors.dart';
+import '../../../../shared/presentation/widgets/alert.dart';
 
 class AuthTextInput extends StatelessWidget {
   const AuthTextInput(

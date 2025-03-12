@@ -1,18 +1,19 @@
 import 'dart:convert';
 
-import 'package:community_with_legends_mobile/Widgets/auth/auth_app_bar.dart';
-import 'package:community_with_legends_mobile/Widgets/background_image.dart';
-import 'package:community_with_legends_mobile/Widgets/auth/auth_via_twitch.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../Widgets/button.dart';
-import '../Widgets/auth/auth_text_input.dart';
-import '../Widgets/auth/clickable_auth_text.dart';
-import '../Widgets/alert.dart';
-import '../config/colors.dart';
+import '../../../../../config/colors.dart';
+import '../widgets/auth_app_bar.dart';
+import '../widgets/auth_text_input.dart';
+import '../widgets/auth_via_twitch.dart';
+import '../widgets/clickable_auth_text.dart';
+import '../../../../shared/presentation/widgets/alert.dart';
+import '../../../../shared/presentation/widgets/background_image.dart';
+import '../../../../shared/presentation/widgets/button.dart';
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

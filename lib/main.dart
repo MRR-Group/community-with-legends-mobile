@@ -1,9 +1,8 @@
-import 'package:community_with_legends_mobile/screens/login_screen.dart';
+import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/login_screen.dart';
+import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-
 import 'config/theme.dart';
-import 'screens/register_screen.dart';
 
 Future<void> main() async {
   await dotenv.load();

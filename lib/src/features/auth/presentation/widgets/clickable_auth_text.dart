@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../config/colors.dart';
+import '../../../../../config/colors.dart';
 
 class ClickableAuthText extends StatelessWidget {
   const ClickableAuthText({super.key, required this.message, required this.linkText, required this.actionText, required this.onPress});
