@@ -16,4 +16,14 @@ class AuthRepositoryImpl implements AuthRepository{
       throw ErrorDescription(response['message'] ?? 'Login failed');
     }
   }
+
+  @override
+  Future<String> register(String email, String name, String password) async {
+    final response = await api.register(email, name, password);
+    if(response.containsValue('success')){
+      return response['message'];
+    }else{
+      throw ErrorDescription(response['message'] ?? 'Registration failed');
+    }
+  }
 }
