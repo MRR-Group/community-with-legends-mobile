@@ -7,11 +7,24 @@ class AuthApi {
   AuthApi(this.apiUrl);
 
   Future<Map<String, dynamic>> login(String email, String password) async {
+
+
+
     final url = Uri.parse('$apiUrl/api/auth/login');
+
+    Map<String, String> body = {
+      'email': email,
+      'password': password,
+    };
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    };
+
     final response = await http.post(
       url,
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({'email': email, 'password': password}),
+      headers: headers,
+      body: jsonEncode(body),
     );
 
     return jsonDecode(response.body);
