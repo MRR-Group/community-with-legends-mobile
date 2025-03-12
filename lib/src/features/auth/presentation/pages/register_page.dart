@@ -31,7 +31,7 @@ class RegisterPage extends StatelessWidget {
               child: Card(
                 child: SizedBox(
                   width: 300,
-                  height: 670,
+                  height: 800,
                   child: Padding(
                     padding: const EdgeInsets.all(18.0),
                     child: ListView(
