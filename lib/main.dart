@@ -6,6 +6,7 @@ import 'package:community_with_legends_mobile/src/features/auth/presentation/con
 import 'package:community_with_legends_mobile/src/features/auth/presentation/controllers/register_controller.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/login_page.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/register_page.dart';
+import 'package:community_with_legends_mobile/src/features/feed/presentation/pages/feed_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
@@ -43,10 +44,11 @@ class MyApp extends StatelessWidget {
         title: 'Community with Legends',
         debugShowCheckedModeBanner: false,
         theme: theme,
-        initialRoute: '/login',
+        initialRoute: '/feed',
         routes: {
           '/login': (context) => LoginPage(),
           '/register': (context) => RegisterPage(),
+          '/feed': (context) => FeedPage(),
         },
       ),
     );
