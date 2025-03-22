@@ -1,5 +1,6 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/widgets/feed_menu.dart';
+import 'package:community_with_legends_mobile/src/features/feed/presentation/widgets/post_widget.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_bottom_app_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +34,18 @@ class FeedPage extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 24),
                 child: FeedMenu(),
               ),
-              CreatePostForm(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CreatePostForm(),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: PostWidget(),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: PostWidget(),
+              ),
             ],
           ),
         ],
