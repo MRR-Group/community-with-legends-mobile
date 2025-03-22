@@ -1,5 +1,6 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/widgets/feed_menu.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_bottom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../shared/presentation/widgets/background_image.dart';
@@ -14,9 +15,10 @@ class FeedPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: DefaultAppBar(),
+      bottomNavigationBar: DefaultBottomAppBar(),
       body: Stack(
         children: [
-          BackgroundImage(bottomMargin: 50),
+          BackgroundImage(bottomMargin: 0),
           ListView(
             children: [
               Padding(
