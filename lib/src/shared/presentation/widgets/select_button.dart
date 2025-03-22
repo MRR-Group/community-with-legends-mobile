@@ -1,7 +1,6 @@
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:flutter/material.dart';
 import '../../../../config/colors.dart';
-import 'loading_animation.dart';
 
 class SelectButton extends StatelessWidget {
   const SelectButton({
