@@ -1,3 +1,4 @@
+import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:flutter/material.dart';
 
 class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -6,8 +7,13 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Image.asset("assets/images/logo.png"),
-      leading: Padding(padding: EdgeInsets.only(bottom: 300)),
+      title: Padding(
+        padding: const EdgeInsets.only(bottom: 12),
+        child: Image.asset("assets/images/logo.png"),
+      ),
+      shape: Border(
+        bottom: BorderSide(color: textColor),
+      ),
     );
   }
 
