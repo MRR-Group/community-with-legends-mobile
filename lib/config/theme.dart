@@ -56,7 +56,15 @@ ThemeData theme = ThemeData(
     insetPadding: EdgeInsets.all(0),
     backgroundColor: Colors.transparent,
     elevation: 0,
-
   ),
-
+  inputDecorationTheme: InputDecorationTheme(
+    filled: true,
+    fillColor: backgroundLightColor,
+    hintStyle: TextStyle(color: textDisabledColor),
+    labelStyle: TextStyle(color: textDisabledColor),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8),
+      borderSide: BorderSide.none,
+    ),
+  ),
 );
