@@ -20,11 +20,11 @@ class LoginController with ChangeNotifier {
       await prefs.setString('auth_token', token);
 
       if(context.mounted){
-        Alert.of(context).show(text: "Logged in successfully");
+        Alert.of(context).show(text: 'Logged in successfully');
       }
     }catch (error){
       if(context.mounted){
-        Alert.of(context).show(text: "$error");
+        Alert.of(context).show(text: '$error');
       }
     }
 

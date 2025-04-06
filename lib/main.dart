@@ -1,3 +1,4 @@
+import 'package:community_with_legends_mobile/config/theme.dart';
 import 'package:community_with_legends_mobile/src/features/auth/data/data_sources/auth_api.dart';
 import 'package:community_with_legends_mobile/src/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/login_usecase.dart';
@@ -9,7 +10,6 @@ import 'package:community_with_legends_mobile/src/features/auth/presentation/pag
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
-import 'config/theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

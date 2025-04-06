@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class LoadingAnimation extends StatelessWidget {
   const LoadingAnimation(
-      {super.key, required this.width, required this.height});
+      {super.key, required this.width, required this.height,});
 
   final double width;
   final double height;
@@ -15,11 +15,11 @@ class LoadingAnimation extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          CircularProgressIndicator(
+          const CircularProgressIndicator(
             strokeWidth: 3,
           ),
           Image.asset(
-            "assets/images/loading.gif",
+            'assets/images/loading.gif',
             width: width,
             height: height,
           ),

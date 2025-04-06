@@ -6,9 +6,9 @@ class AuthAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Image.asset("assets/images/logo.png"),
+      title: Image.asset('assets/images/logo.png'),
       centerTitle: true,
-      leading: Padding(padding: EdgeInsets.only(bottom: 300)),
+      leading: const Padding(padding: EdgeInsets.only(bottom: 300)),
     );
   }
 

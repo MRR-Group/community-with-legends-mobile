@@ -1,6 +1,6 @@
+import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/register_usecase.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:flutter/material.dart';
-import '../../domain/usecases/register_usecase.dart';
 
 class RegisterController with ChangeNotifier {
   final RegisterUseCase registerUseCase;
@@ -17,11 +17,11 @@ class RegisterController with ChangeNotifier {
       await registerUseCase.execute(email, name, password);
 
       if(context.mounted){
-        Alert.of(context).show(text: "Registration completed successfully. Now you can log in");
+        Alert.of(context).show(text: 'Registration completed successfully. Now you can log in');
       }
     }catch (error){
       if(context.mounted){
-        Alert.of(context).show(text: "$error");
+        Alert.of(context).show(text: '$error');
       }
     }
 

@@ -12,20 +12,20 @@ class AuthViaTwitch extends StatelessWidget {
     return
       Column(
         children: [
-          Text(
-             "OR",
+          const Text(
+             'OR',
             style: TextStyle(
               fontSize: 28,
             ),
           ),
           Text(
-            authMode == AuthMode.login ? "Log in via" : "Register via",
-            style: TextStyle(
+            authMode == AuthMode.login ? 'Log in via' : 'Register via',
+            style: const TextStyle(
               fontSize: 28,
             ),
           ),
-          SizedBox(height: 18),
-          Image(image: Svg('assets/images/twitch.svg')),
+          const SizedBox(height: 18),
+          const Image(image: Svg('assets/images/twitch.svg')),
         ],
       );
   }

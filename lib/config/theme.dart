@@ -1,7 +1,6 @@
+import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'colors.dart';
 
 ThemeData theme = ThemeData(
   colorScheme: ColorScheme.fromSeed(seedColor: primaryColor),
@@ -46,13 +45,13 @@ ThemeData theme = ThemeData(
     backgroundColor: backgroundColor,
   ),
   cardTheme: CardTheme(
-    margin: EdgeInsets.all(0),
+    margin: const EdgeInsets.all(0),
     color: backgroundColor,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8),
     ),
   ),
-  snackBarTheme: SnackBarThemeData(
+  snackBarTheme: const SnackBarThemeData(
     insetPadding: EdgeInsets.all(0),
     backgroundColor: Colors.transparent,
     elevation: 0,

@@ -1,9 +1,8 @@
+import 'package:community_with_legends_mobile/config/colors.dart';
+import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/auth_app_bar.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/login_form.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/widgets/background_image.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../../config/colors.dart';
-import '../../../../shared/presentation/widgets/background_image.dart';
-import '../widgets/auth_app_bar.dart';
 
 class LoginPage extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
@@ -16,13 +15,13 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      appBar: AuthAppBar(),
+      appBar: const AuthAppBar(),
       body: Stack(
         children: [
-          BackgroundImage(bottomMargin: 0),
+          const BackgroundImage(bottomMargin: 0),
           Center(
             child: Container(
-              padding: EdgeInsets.all(2),
+              padding: const EdgeInsets.all(2),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 gradient: secondaryGradient,
@@ -34,13 +33,13 @@ class LoginPage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(18.0),
                     child: ListView(
-                      physics: ScrollPhysics(parent: PageScrollPhysics()),
+                      physics: const ScrollPhysics(parent: PageScrollPhysics()),
                       children: [
                         LoginForm(
                           emailController: emailController,
                           passwordController: passwordController,
                           formKey: formKey,
-                        )
+                        ),
                       ],
                     ),
                   ),

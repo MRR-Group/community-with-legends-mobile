@@ -1,5 +1,5 @@
+import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:flutter/material.dart';
-import '../../../../config/colors.dart';
 
 class Alert {
   BuildContext context;
@@ -13,33 +13,32 @@ class Alert {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Container(
-          margin: EdgeInsets.all(0),
-          padding: EdgeInsets.all(1),
+          margin: const EdgeInsets.all(0),
+          padding: const EdgeInsets.all(1),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            gradient: LinearGradient(
+            gradient: const LinearGradient(
               colors: [Colors.blue, Colors.purple],
             ),
             border: Border.all(
-              width: 1.0,
               color: Colors.transparent,
             ),
           ),
           child: Container(
-            margin: EdgeInsets.all(0),
-            padding: EdgeInsets.all(16),
+            margin: const EdgeInsets.all(0),
+            padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8), color: backgroundColor),
+                borderRadius: BorderRadius.circular(8), color: backgroundColor,),
             child: Expanded(
               child: Text(
                 text,
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white, overflow: TextOverflow.visible),
+                style: const TextStyle(color: Colors.white, overflow: TextOverflow.visible),
               ),
             ),
           ),
         ),
-        duration: Duration(seconds: 5),
+        duration: const Duration(seconds: 5),
       ),
     );
   }

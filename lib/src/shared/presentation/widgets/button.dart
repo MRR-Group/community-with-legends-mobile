@@ -1,6 +1,6 @@
+import 'package:community_with_legends_mobile/config/colors.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/widgets/loading_animation.dart';
 import 'package:flutter/material.dart';
-import '../../../../config/colors.dart';
-import 'loading_animation.dart';
 
 class Button extends StatelessWidget {
   const Button(
@@ -8,7 +8,7 @@ class Button extends StatelessWidget {
       required this.text,
       this.fontSize,
       required this.onPressed,
-      this.isLoading = false});
+      this.isLoading = false,});
 
   final String text;
   final double? fontSize;
@@ -22,7 +22,7 @@ class Button extends StatelessWidget {
       style: ElevatedButton.styleFrom(
           padding: EdgeInsets.zero,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          backgroundColor: Colors.transparent),
+          backgroundColor: Colors.transparent,),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
@@ -31,13 +31,13 @@ class Button extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 28),
           child: isLoading
-              ? LoadingAnimation(
+              ? const LoadingAnimation(
                   height: 26,
                   width: 43.6,
                 )
               : Text(text,
                   style:
-                      TextStyle(fontSize: fontSize ?? 18)),
+                      TextStyle(fontSize: fontSize ?? 18),),
         ),
       ),
     );
