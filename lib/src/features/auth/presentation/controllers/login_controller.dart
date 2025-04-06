@@ -10,20 +10,21 @@ class LoginController with ChangeNotifier {
 
   LoginController(this.loginUseCase);
 
-  Future<void> login(BuildContext context, String email, String password) async {
+  Future<void> login(
+      BuildContext context, String email, String password) async {
     _isLoading = true;
     notifyListeners();
 
-    try{
+    try {
       final token = await loginUseCase.execute(email, password);
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('auth_token', token);
 
-      if(context.mounted){
+      if (context.mounted) {
         Alert.of(context).show(text: 'Logged in successfully');
       }
-    }catch (error){
-      if(context.mounted){
+    } catch (error) {
+      if (context.mounted) {
         Alert.of(context).show(text: '$error');
       }
     }

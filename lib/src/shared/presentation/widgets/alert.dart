@@ -28,12 +28,15 @@ class Alert {
             margin: const EdgeInsets.all(0),
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8), color: backgroundColor,),
+              borderRadius: BorderRadius.circular(8),
+              color: backgroundColor,
+            ),
             child: Expanded(
               child: Text(
                 text,
                 textAlign: TextAlign.center,
-                style: const TextStyle(color: Colors.white, overflow: TextOverflow.visible),
+                style: const TextStyle(
+                    color: Colors.white, overflow: TextOverflow.visible),
               ),
             ),
           ),

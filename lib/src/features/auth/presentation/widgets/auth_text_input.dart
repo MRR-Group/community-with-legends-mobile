@@ -3,12 +3,13 @@ import 'package:community_with_legends_mobile/src/shared/presentation/widgets/al
 import 'package:flutter/material.dart';
 
 class AuthTextInput extends StatelessWidget {
-  const AuthTextInput(
-      {super.key,
-        required this.hint,
-        required this.text,
-        this.obscureText = false,
-        required this.controller,});
+  const AuthTextInput({
+    super.key,
+    required this.hint,
+    required this.text,
+    this.obscureText = false,
+    required this.controller,
+  });
 
   final String hint;
   final String text;

@@ -55,7 +55,5 @@ ThemeData theme = ThemeData(
     insetPadding: EdgeInsets.all(0),
     backgroundColor: Colors.transparent,
     elevation: 0,
-
   ),
-
 );

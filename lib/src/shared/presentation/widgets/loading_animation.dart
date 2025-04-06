@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 class LoadingAnimation extends StatelessWidget {
-  const LoadingAnimation(
-      {super.key, required this.width, required this.height,});
+  const LoadingAnimation({
+    super.key,
+    required this.width,
+    required this.height,
+  });
 
   final double width;
   final double height;

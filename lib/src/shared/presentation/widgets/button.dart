@@ -3,12 +3,13 @@ import 'package:community_with_legends_mobile/src/shared/presentation/widgets/lo
 import 'package:flutter/material.dart';
 
 class Button extends StatelessWidget {
-  const Button(
-      {super.key,
-      required this.text,
-      this.fontSize,
-      required this.onPressed,
-      this.isLoading = false,});
+  const Button({
+    super.key,
+    required this.text,
+    this.fontSize,
+    required this.onPressed,
+    this.isLoading = false,
+  });
 
   final String text;
   final double? fontSize;
@@ -20,9 +21,10 @@ class Button extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.zero,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          backgroundColor: Colors.transparent,),
+        padding: EdgeInsets.zero,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        backgroundColor: Colors.transparent,
+      ),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
@@ -35,9 +37,10 @@ class Button extends StatelessWidget {
                   height: 26,
                   width: 43.6,
                 )
-              : Text(text,
-                  style:
-                      TextStyle(fontSize: fontSize ?? 18),),
+              : Text(
+                  text,
+                  style: TextStyle(fontSize: fontSize ?? 18),
+                ),
         ),
       ),
     );

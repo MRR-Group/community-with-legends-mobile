@@ -13,13 +13,14 @@ class RegisterForm extends StatelessWidget {
   final TextEditingController passwordController;
   final TextEditingController confirmPasswordController;
 
-  const RegisterForm(
-      {super.key,
-      required this.emailController,
-      required this.nameController,
-      required this.passwordController,
-      required this.confirmPasswordController,
-      required this.formKey,});
+  const RegisterForm({
+    super.key,
+    required this.emailController,
+    required this.nameController,
+    required this.passwordController,
+    required this.confirmPasswordController,
+    required this.formKey,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +74,12 @@ class RegisterForm extends StatelessWidget {
             onPressed: () {
               if (!controller.isLoading) {
                 controller.register(
-                    context, emailController.text, nameController.text, passwordController.text, confirmPasswordController.text,);
+                  context,
+                  emailController.text,
+                  nameController.text,
+                  passwordController.text,
+                  confirmPasswordController.text,
+                );
               }
             },
             isLoading: controller.isLoading,

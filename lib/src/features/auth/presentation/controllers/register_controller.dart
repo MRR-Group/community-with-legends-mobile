@@ -9,18 +9,20 @@ class RegisterController with ChangeNotifier {
 
   RegisterController(this.registerUseCase);
 
-  Future<void> register(BuildContext context, String email, String name, String password, String confirmPassword) async {
+  Future<void> register(BuildContext context, String email, String name,
+      String password, String confirmPassword) async {
     _isLoading = true;
     notifyListeners();
 
-    try{
+    try {
       await registerUseCase.execute(email, name, password);
 
-      if(context.mounted){
-        Alert.of(context).show(text: 'Registration completed successfully. Now you can log in');
+      if (context.mounted) {
+        Alert.of(context).show(
+            text: 'Registration completed successfully. Now you can log in');
       }
-    }catch (error){
-      if(context.mounted){
+    } catch (error) {
+      if (context.mounted) {
         Alert.of(context).show(text: '$error');
       }
     }

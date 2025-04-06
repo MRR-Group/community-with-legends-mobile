@@ -42,9 +42,7 @@ class LoginForm extends StatelessWidget {
             message: "You don't have an account?",
             linkText: 'Click here',
             actionText: 'to register',
-            onPress: () =>
-                Navigator.of(context)
-                    .pushNamed('/register'),
+            onPress: () => Navigator.of(context).pushNamed('/register'),
           ),
           const SizedBox(height: 18),
           AuthTextInput(
@@ -54,23 +52,27 @@ class LoginForm extends StatelessWidget {
             controller: passwordController,
           ),
           ClickableAuthText(
-              message: "You don't remember?",
-              linkText: 'Click here',
-              actionText: 'to reset it',
-              onPress: () =>
-              {
-                print('Wcisnieto przycisk zapomniałeś hasła'),
-              },),
+            message: "You don't remember?",
+            linkText: 'Click here',
+            actionText: 'to reset it',
+            onPress: () => {
+              print('Wcisnieto przycisk zapomniałeś hasła'),
+            },
+          ),
           const SizedBox(height: 18),
           Button(
-              text: 'Log in',
-              onPressed: () {
-                if (!controller.isLoading) {
-                  controller.login(
-                      context, emailController.text, passwordController.text,);
-                }
-              },
-              isLoading: controller.isLoading,),
+            text: 'Log in',
+            onPressed: () {
+              if (!controller.isLoading) {
+                controller.login(
+                  context,
+                  emailController.text,
+                  passwordController.text,
+                );
+              }
+            },
+            isLoading: controller.isLoading,
+          ),
           const SizedBox(height: 18),
           const AuthViaTwitch(authMode: AuthMode.login),
         ],
