@@ -13,7 +13,7 @@ class Alert {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Container(
-          margin: const EdgeInsets.all(0),
+          margin: EdgeInsets.zero,
           padding: const EdgeInsets.all(1),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
@@ -25,7 +25,7 @@ class Alert {
             ),
           ),
           child: Container(
-            margin: const EdgeInsets.all(0),
+            margin: EdgeInsets.zero,
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
@@ -36,7 +36,9 @@ class Alert {
                 text,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                    color: Colors.white, overflow: TextOverflow.visible),
+                  color: Colors.white,
+                  overflow: TextOverflow.visible,
+                ),
               ),
             ),
           ),

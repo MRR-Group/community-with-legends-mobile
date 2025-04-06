@@ -11,7 +11,10 @@ class LoginController with ChangeNotifier {
   LoginController(this.loginUseCase);
 
   Future<void> login(
-      BuildContext context, String email, String password) async {
+    BuildContext context,
+    String email,
+    String password,
+  ) async {
     _isLoading = true;
     notifyListeners();
 

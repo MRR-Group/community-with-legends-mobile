@@ -2,12 +2,13 @@ import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:flutter/material.dart';
 
 class ClickableAuthText extends StatelessWidget {
-  const ClickableAuthText(
-      {super.key,
-      required this.message,
-      required this.linkText,
-      required this.actionText,
-      required this.onPress});
+  const ClickableAuthText({
+    super.key,
+    required this.message,
+    required this.linkText,
+    required this.actionText,
+    required this.onPress,
+  });
   final String message;
   final String linkText;
   final String actionText;

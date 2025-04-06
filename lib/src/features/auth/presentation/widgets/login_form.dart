@@ -55,9 +55,7 @@ class LoginForm extends StatelessWidget {
             message: "You don't remember?",
             linkText: 'Click here',
             actionText: 'to reset it',
-            onPress: () => {
-              print('Wcisnieto przycisk zapomniałeś hasła'),
-            },
+            onPress: () => {},
           ),
           const SizedBox(height: 18),
           Button(

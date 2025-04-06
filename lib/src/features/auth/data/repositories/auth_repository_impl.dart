@@ -1,6 +1,6 @@
+import 'package:community_with_legends_mobile/src/core/errors/exceptions.dart';
 import 'package:community_with_legends_mobile/src/features/auth/data/data_sources/auth_api.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/repositories/auth_repository.dart';
-import 'package:flutter/cupertino.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthApi api;
@@ -13,7 +13,7 @@ class AuthRepositoryImpl implements AuthRepository {
     if (response.containsKey('token')) {
       return response['token'];
     } else {
-      throw ErrorDescription(response['message'] ?? 'Login failed');
+      throw AuthException(response['message'] ?? 'Login failed');
     }
   }
 
@@ -23,7 +23,7 @@ class AuthRepositoryImpl implements AuthRepository {
     if (response.containsValue('success')) {
       return response['message'];
     } else {
-      throw ErrorDescription(response['message'] ?? 'Registration failed');
+      throw AuthException(response['message'] ?? 'Registration failed');
     }
   }
 }
