@@ -30,40 +30,34 @@ class DefaultBottomAppBar extends StatelessWidget
             ),
           ),
           Spacer(),
-          Container(
-            child: Column(
-              children: [
-                Icon(
-                  Icons.favorite_border_outlined,
-                  color: textColor,
-                ),
-                Text("Following")
-              ],
-            ),
+          Column(
+            children: [
+              Icon(
+                Icons.favorite_border_outlined,
+                color: textColor,
+              ),
+              Text("Following")
+            ],
           ),
           Spacer(),
-          Container(
-            child: Column(
-              children: [
-                Icon(
-                  Icons.notifications_none_outlined,
-                  color: textColor,
-                ),
-                Text("Notification")
-              ],
-            ),
+          Column(
+            children: [
+              Icon(
+                Icons.notifications_none_outlined,
+                color: textColor,
+              ),
+              Text("Notification")
+            ],
           ),
           Spacer(),
-          Container(
-            child: Column(
-              children: [
-                Icon(
-                  Icons.person_outline,
-                  color: textColor,
-                ),
-                Text("Profile")
-              ],
-            ),
+          Column(
+            children: [
+              Icon(
+                Icons.person_outline,
+                color: textColor,
+              ),
+              Text("Profile")
+            ],
           ),
         ],
       ),
