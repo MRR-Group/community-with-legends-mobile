@@ -26,12 +26,23 @@ class FeedApi {
     return jsonDecode(response.body);
   }
 
-  Future<Map<String, dynamic>> getPosts(
-      String email,
-      String password,
-      ) async {
-    final Map<String, String> body = {};
+  Future<Map<String, dynamic>> _feedGetRequest({
+    required String urlPath,
+  }) async {
+    final url = Uri.parse('$apiUrl/$urlPath');
 
-    return _feedPostRequest(body: body, urlPath: 'api/posts');
+    final response = await http.get(
+      url,
+      headers: headers,
+    );
+
+    return jsonDecode(response.body);
+  }
+
+  Future<Map<String, dynamic>> getPosts() async {
+
+    return _feedGetRequest(
+      urlPath: 'api/posts',
+    );
   }
 }
