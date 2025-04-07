@@ -1,7 +1,6 @@
+import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../../config/colors.dart';
 
 class PostWidget extends StatelessWidget {
   const PostWidget({super.key});
@@ -12,8 +11,8 @@ class PostWidget extends StatelessWidget {
       children: [
         Center(
           child: Container(
-            padding: EdgeInsets.all(2),
-            margin: EdgeInsets.only(bottom: 20),
+            padding: const EdgeInsets.all(2),
+            margin: const EdgeInsets.only(bottom: 20),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4),
               gradient: secondaryGradient,
@@ -32,27 +31,27 @@ class PostWidget extends StatelessWidget {
                       Row(
                         children: [
                           Image.asset(
-                            "assets/images/loading.gif",
+                            'assets/images/loading.gif',
                             height: 52,
                           ),
-                          Column(
+                          const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Zoro",
+                                'Zoro',
                                 style: TextStyle(
                                   fontSize: 20,
                                 ),
                               ),
                               Text(
-                                "Swordsman VR",
+                                'Swordsman VR',
                                 style: TextStyle(
                                   color: primaryColor,
                                   fontSize: 12,
                                 ),
                               ),
                               Text(
-                                "3 days ago",
+                                '3 days ago',
                                 style: TextStyle(
                                   color: textDisabledColor,
                                   fontSize: 8,
@@ -62,21 +61,24 @@ class PostWidget extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Text(
+                      const Text(
                         "I don't know. I'm not sure why myself. But if I were to take even one  step back, I believe that all those important oaths, promises and many  other deals 'til now, will all go to waste and I'll never be able to  return before you, ever again.",
                       ),
                       Padding(
-                        padding: EdgeInsets.all(12),
+                        padding: const EdgeInsets.all(12),
                         child: Row(
                           children: [
                             Button(
-                              text: "x 10",
+                              text: '👍 x 10',
                               fontSize: 10,
                               onPressed: () {},
+                              horizontalPadding: 8,
                             ),
-                            SizedBox(width: 20,),
+                            const SizedBox(
+                              width: 20,
+                            ),
                             Button(
-                              text: "Add reactions",
+                              text: 'Add reactions',
                               fontSize: 10,
                               onPressed: () {},
                             ),
@@ -94,7 +96,7 @@ class PostWidget extends StatelessWidget {
           right: 75,
           bottom: 0,
           child: Button(
-            text: "Reply",
+            text: 'Reply',
             fontSize: 10,
             onPressed: () {},
           ),

@@ -6,13 +6,17 @@ class Button extends StatelessWidget {
   const Button({
     super.key,
     required this.text,
-    this.fontSize,
     required this.onPressed,
+    this.verticalPadding = 4,
+    this.horizontalPadding = 28,
+    this.fontSize,
     this.isLoading = false,
   });
 
   final String text;
   final double? fontSize;
+  final double verticalPadding;
+  final double horizontalPadding;
   final VoidCallback onPressed;
   final bool isLoading;
 
@@ -24,6 +28,7 @@ class Button extends StatelessWidget {
         padding: EdgeInsets.zero,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         backgroundColor: Colors.transparent,
+        shadowColor: Colors.transparent,
       ),
       child: Container(
         decoration: BoxDecoration(
@@ -31,7 +36,7 @@ class Button extends StatelessWidget {
           gradient: primaryGradient,
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 28),
+          padding: EdgeInsets.symmetric(vertical: verticalPadding, horizontal: horizontalPadding),
           child: isLoading
               ? const LoadingAnimation(
                   height: 26,
