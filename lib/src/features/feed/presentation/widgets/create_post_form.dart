@@ -1,8 +1,7 @@
+import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/select_button.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../../config/colors.dart';
 
 class CreatePostForm extends StatelessWidget {
   const CreatePostForm({super.key});
@@ -11,7 +10,7 @@ class CreatePostForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        padding: EdgeInsets.all(2),
+        padding: const EdgeInsets.all(2),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(4),
           gradient: secondaryGradient,
@@ -27,15 +26,15 @@ class CreatePostForm extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Create a post",
+                      const Text(
+                        'Create a post',
                         style: TextStyle(fontSize: 32),
                       ),
                       TextFormField(
                         maxLines: 4,
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.all(12),
-                          hintText: "Join the conversation",
+                          hintText: 'Join the conversation',
                           fillColor: backgroundLightColor,
                           filled: true,
                           border: OutlineInputBorder(
@@ -49,10 +48,10 @@ class CreatePostForm extends StatelessWidget {
                         child: TextFormField(
                           decoration: InputDecoration(
                             contentPadding: const EdgeInsets.all(12),
-                            hintText: "Select a game",
+                            hintText: 'Select a game',
                             fillColor: backgroundLightColor,
                             filled: true,
-                            suffixIcon: Icon(Icons.search),
+                            suffixIcon: const Icon(Icons.search),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(4),
                               borderSide: BorderSide.none,
@@ -60,22 +59,22 @@ class CreatePostForm extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Text(
-                        "Tags",
+                      const Text(
+                        'Tags',
                         style: TextStyle(fontSize: 24),
                       ),
                       Row(
                         children: [
                           Button(
-                            text: "Clutch",
+                            text: 'Clutch',
                             fontSize: 12,
                             onPressed: () {},
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 8,
                           ),
                           Button(
-                            text: "Glitch",
+                            text: 'Glitch',
                             fontSize: 12,
                             onPressed: () {},
                           ),
@@ -86,10 +85,10 @@ class CreatePostForm extends StatelessWidget {
                         child: TextFormField(
                           decoration: InputDecoration(
                             contentPadding: const EdgeInsets.all(12),
-                            hintText: "Add tag",
+                            hintText: 'Add tag',
                             fillColor: backgroundLightColor,
                             filled: true,
-                            suffixIcon: Icon(Icons.add),
+                            suffixIcon: const Icon(Icons.add),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(4),
                               borderSide: BorderSide.none,
@@ -97,22 +96,22 @@ class CreatePostForm extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Text(
-                        "Assets",
+                      const Text(
+                        'Assets',
                         style: TextStyle(fontSize: 24),
                       ),
                       Row(
                         children: [
                           SelectButton(
-                            text: "Image",
+                            text: 'Image',
                             fontSize: 16,
                             onPressed: () {},
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 8,
                           ),
                           SelectButton(
-                            text: "Video",
+                            text: 'Video',
                             fontSize: 16,
                             onPressed: () {},
                             isSelected: true,
@@ -124,10 +123,10 @@ class CreatePostForm extends StatelessWidget {
                         child: TextFormField(
                           decoration: InputDecoration(
                             contentPadding: const EdgeInsets.all(12),
-                            hintText: "Link to image",
+                            hintText: 'Link to image',
                             fillColor: backgroundLightColor,
                             filled: true,
-                            suffixIcon: Icon(Icons.add),
+                            suffixIcon: const Icon(Icons.add),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(4),
                               borderSide: BorderSide.none,
@@ -140,13 +139,13 @@ class CreatePostForm extends StatelessWidget {
                         child: Row(
                           children: [
                             Button(
-                              text: "Post",
+                              text: 'Post',
                               fontSize: 24,
                               onPressed: () {},
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Button(
-                              text: "Cancel",
+                              text: 'Cancel',
                               fontSize: 24,
                               onPressed: () {},
                             ),
@@ -155,7 +154,7 @@ class CreatePostForm extends StatelessWidget {
                       ),
                     ],
                   ),
-                )),
+                ),),
           ),
         ),
       ),

@@ -1,6 +1,6 @@
+import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:flutter/material.dart';
-import '../../../../config/colors.dart';
 
 class SelectButton extends StatelessWidget {
   const SelectButton({
@@ -23,12 +23,12 @@ class SelectButton extends StatelessWidget {
         : ElevatedButton(
             onPressed: onPressed,
             style: ElevatedButton.styleFrom(
-              side: BorderSide(color: primaryColor, width: 2),
+              side: const BorderSide(color: primaryColor, width: 2),
               padding: EdgeInsets.zero,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8)),
+                  borderRadius: BorderRadius.circular(8),),
               backgroundColor: backgroundColor,
-              foregroundColor: textDisabledColor
+              foregroundColor: textDisabledColor,
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 28),

@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/login': (context) => LoginPage(),
           '/register': (context) => RegisterPage(),
-          '/feed': (context) => FeedPage(),
+          '/feed': (context) => const FeedPage(),
         },
       ),
     );

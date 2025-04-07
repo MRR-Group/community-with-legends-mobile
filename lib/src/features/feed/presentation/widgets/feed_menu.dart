@@ -1,7 +1,6 @@
 
+import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../../config/colors.dart';
 
 class FeedMenu extends StatelessWidget {
   const FeedMenu({super.key});
@@ -10,34 +9,34 @@ class FeedMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Spacer(),
+        const Spacer(),
         Container(
           padding: EdgeInsets.zero,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(
+              borderRadius: const BorderRadius.all(
                 Radius.circular(4),
               ),
-              border: Border.all(color: textColor)),
+              border: Border.all(color: textColor),),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
-                padding: EdgeInsets.all(8),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.all(8),
+                decoration: const BoxDecoration(
                     border: Border(right: BorderSide(color: textColor)),
-                    color: primaryColor),
-                child: Text("Trending"),
+                    color: primaryColor,),
+                child: const Text('Trending'),
               ),
               Container(
-                padding: EdgeInsets.all(8),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.all(8),
+                decoration: const BoxDecoration(
                   border: Border(right: BorderSide(color: textColor)),
                 ),
-                child: Text("Recent"),
+                child: const Text('Recent'),
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 8),
-                child: Icon(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: const Icon(
                   Icons.filter_alt_outlined,
                   color: textColor,
                   size: 24,
@@ -46,7 +45,7 @@ class FeedMenu extends StatelessWidget {
             ],
           ),
         ),
-        Spacer(),
+        const Spacer(),
       ],
     );
   }

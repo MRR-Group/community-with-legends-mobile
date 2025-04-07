@@ -10,53 +10,53 @@ class DefaultBottomAppBar extends StatelessWidget
     return BottomAppBar(
       color: backgroundColor,
       height: 55,
-      padding: EdgeInsets.only(left: 24, right: 24, top: 10),
+      padding: const EdgeInsets.only(left: 24, right: 24, top: 10),
       child: Row(
         children: [
           Container(
-            child: Column(
+            child: const Column(
               children: [
                 Icon(
                   Icons.public,
                   color: primaryColor,
                 ),
                 Text(
-                  "Feed",
+                  'Feed',
                   style: TextStyle(
                     color: primaryColor,
                   ),
-                )
+                ),
               ],
             ),
           ),
-          Spacer(),
-          Column(
+          const Spacer(),
+          const Column(
             children: [
               Icon(
                 Icons.favorite_border_outlined,
                 color: textColor,
               ),
-              Text("Following")
+              Text('Following'),
             ],
           ),
-          Spacer(),
-          Column(
+          const Spacer(),
+          const Column(
             children: [
               Icon(
                 Icons.notifications_none_outlined,
                 color: textColor,
               ),
-              Text("Notification")
+              Text('Notification'),
             ],
           ),
-          Spacer(),
-          Column(
+          const Spacer(),
+          const Column(
             children: [
               Icon(
                 Icons.person_outline,
                 color: textColor,
               ),
-              Text("Profile")
+              Text('Profile'),
             ],
           ),
         ],

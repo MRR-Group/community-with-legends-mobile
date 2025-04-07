@@ -9,9 +9,9 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       title: Padding(
         padding: const EdgeInsets.only(bottom: 12),
-        child: Image.asset("assets/images/logo.png"),
+        child: Image.asset('assets/images/logo.png'),
       ),
-      shape: Border(
+      shape: const Border(
         bottom: BorderSide(color: textColor),
       ),
     );
