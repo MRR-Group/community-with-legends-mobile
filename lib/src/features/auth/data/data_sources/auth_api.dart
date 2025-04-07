@@ -30,7 +30,7 @@ class AuthApi {
     String email,
     String password,
   ) async {
-    Map<String, String> body = {
+    final Map<String, String> body = {
       'email': email,
       'password': password,
     };
@@ -43,7 +43,7 @@ class AuthApi {
     String name,
     String password,
   ) async {
-    Map<String, String> body = {
+    final Map<String, String> body = {
       'email': email,
       'name': name,
       'password': password,

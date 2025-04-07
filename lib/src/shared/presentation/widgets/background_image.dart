@@ -13,14 +13,14 @@ class BackgroundImage extends StatelessWidget {
       margin: EdgeInsets.only(bottom: bottomMargin),
       child: Stack(
         children: [
-          Image(
+          const Image(
             image: AssetImage('assets/images/background.png'),
             height: double.infinity,
             fit: BoxFit.fitHeight,
             alignment: Alignment.centerRight,
           ),
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -45,5 +45,4 @@ class BackgroundImage extends StatelessWidget {
       ),
     );
   }
-
 }

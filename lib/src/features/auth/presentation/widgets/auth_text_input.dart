@@ -1,14 +1,15 @@
+import 'package:community_with_legends_mobile/config/colors.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:flutter/material.dart';
-import '../../../../../config/colors.dart';
-import '../../../../shared/presentation/widgets/alert.dart';
 
 class AuthTextInput extends StatelessWidget {
-  const AuthTextInput(
-      {super.key,
-        required this.hint,
-        required this.text,
-        this.obscureText = false,
-        required this.controller});
+  const AuthTextInput({
+    super.key,
+    required this.hint,
+    required this.text,
+    this.obscureText = false,
+    required this.controller,
+  });
 
   final String hint;
   final String text;
@@ -23,19 +24,19 @@ class AuthTextInput extends StatelessWidget {
           children: [
             Text(
               text,
-              style: TextStyle(fontSize: 18),
+              style: const TextStyle(fontSize: 18),
             ),
-            Spacer()
+            const Spacer(),
           ],
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         TextFormField(
           controller: controller,
           obscureText: obscureText,
           decoration: InputDecoration(
             constraints: const BoxConstraints(maxHeight: 40, minHeight: 40),
-            errorStyle: TextStyle(
-              height: 0.01
+            errorStyle: const TextStyle(
+              height: 0.01,
             ),
             contentPadding: const EdgeInsets.all(12),
             hintText: hint,
@@ -48,7 +49,7 @@ class AuthTextInput extends StatelessWidget {
           ),
           validator: (String? value) {
             if (value == null || value.isEmpty) {
-              Alert.of(context).show(text: "Make sure you fill in all fields");
+              Alert.of(context).show(text: 'Make sure you fill in all fields');
               return '';
             }
             return null;

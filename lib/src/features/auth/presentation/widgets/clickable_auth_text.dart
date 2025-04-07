@@ -1,8 +1,14 @@
+import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:flutter/material.dart';
-import '../../../../../config/colors.dart';
 
 class ClickableAuthText extends StatelessWidget {
-  const ClickableAuthText({super.key, required this.message, required this.linkText, required this.actionText, required this.onPress});
+  const ClickableAuthText({
+    super.key,
+    required this.message,
+    required this.linkText,
+    required this.actionText,
+    required this.onPress,
+  });
   final String message;
   final String linkText;
   final String actionText;
@@ -14,20 +20,20 @@ class ClickableAuthText extends StatelessWidget {
       children: [
         Text(
           message,
-          style: TextStyle(fontSize: 10),
+          style: const TextStyle(fontSize: 10),
         ),
-        Spacer(),
+        const Spacer(),
         TextButton(
           onPressed: onPress,
           child: Column(
             children: [
               Text(
                 linkText,
-                style: TextStyle(color: primaryColor, fontSize: 10),
+                style: const TextStyle(color: primaryColor, fontSize: 10),
               ),
               Text(
                 actionText,
-                style: TextStyle(fontSize: 10),
+                style: const TextStyle(fontSize: 10),
               ),
             ],
           ),

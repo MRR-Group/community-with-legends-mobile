@@ -1,0 +1,24 @@
+version: 2
+
+updates:
+  - package-ecosystem: pub
+    directory: "/"
+    schedule:
+      interval: monthly
+      time: "06:30"
+      timezone: "Europe/Warsaw"
+    commit-message:
+      prefix: "- (php) "
+    target-branch: main
+    open-pull-requests-limit: 1
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+      time: "06:30"
+      timezone: "Europe/Warsaw"
+    commit-message:
+      prefix: "- (github actions) "
+    target-branch: main
+    open-pull-requests-limit: 1

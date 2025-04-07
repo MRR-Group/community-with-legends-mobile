@@ -1,11 +1,10 @@
+import 'package:community_with_legends_mobile/src/features/auth/presentation/controllers/login_controller.dart';
+import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/auth_text_input.dart';
+import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/auth_via_twitch.dart';
+import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/clickable_auth_text.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../../../../shared/presentation/widgets/button.dart';
-import '../controllers/login_controller.dart';
-import 'auth_text_input.dart';
-import 'auth_via_twitch.dart';
-import 'clickable_auth_text.dart';
 
 class LoginForm extends StatelessWidget {
   final GlobalKey<FormState> formKey;
@@ -16,7 +15,7 @@ class LoginForm extends StatelessWidget {
     super.key,
     required this.emailController,
     required this.passwordController,
-    required this.formKey
+    required this.formKey,
   });
 
   @override
@@ -27,53 +26,53 @@ class LoginForm extends StatelessWidget {
       key: formKey,
       child: Column(
         children: [
-          Text(
-            "Log in",
+          const Text(
+            'Log in',
             style: TextStyle(
               fontSize: 42,
             ),
           ),
-          SizedBox(height: 18),
+          const SizedBox(height: 18),
           AuthTextInput(
-            text: "Enter your email",
+            text: 'Enter your email',
             hint: 'Email',
             controller: emailController,
           ),
           ClickableAuthText(
             message: "You don't have an account?",
-            linkText: "Click here",
-            actionText: "to register",
-            onPress: () =>
-                Navigator.of(context)
-                    .pushNamed('/register'),
+            linkText: 'Click here',
+            actionText: 'to register',
+            onPress: () => Navigator.of(context).pushNamed('/register'),
           ),
-          SizedBox(height: 18),
+          const SizedBox(height: 18),
           AuthTextInput(
-            text: "Enter your password",
+            text: 'Enter your password',
             hint: 'Password',
             obscureText: true,
             controller: passwordController,
           ),
           ClickableAuthText(
-              message: "You don't remember?",
-              linkText: "Click here",
-              actionText: "to reset it",
-              onPress: () =>
-              {
-                print("Wcisnieto przycisk zapomniałeś hasła")
-              }),
-          SizedBox(height: 18),
+            message: "You don't remember?",
+            linkText: 'Click here',
+            actionText: 'to reset it',
+            onPress: () => {},
+          ),
+          const SizedBox(height: 18),
           Button(
-              text: "Log in",
-              onPressed: () {
-                if (!controller.isLoading) {
-                  controller.login(
-                      context, emailController.text, passwordController.text);
-                }
-              },
-              isLoading: controller.isLoading),
-          SizedBox(height: 18),
-          AuthViaTwitch(authMode: AuthMode.login),
+            text: 'Log in',
+            onPressed: () {
+              if (!controller.isLoading) {
+                controller.login(
+                  context,
+                  emailController.text,
+                  passwordController.text,
+                );
+              }
+            },
+            isLoading: controller.isLoading,
+          ),
+          const SizedBox(height: 18),
+          const AuthViaTwitch(authMode: AuthMode.login),
         ],
       ),
     );
