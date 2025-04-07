@@ -23,4 +23,18 @@ class Post {
     this.game,
     this.tag,
   });
+
+  factory Post.fromJson(Map<String, dynamic> json) {
+    return Post(
+      id: json['id'],
+      userId: json['user_id'],
+      gameId: json['game_id'],
+      tagId: json['tag_id'],
+      content: json['content'],
+      createdAt: json['created_at'],
+      updatedAt: json['updated_at'],
+      game: Game.fromJson(json),
+      tag: Tag.fromJson(json),
+    );
+  }
 }
