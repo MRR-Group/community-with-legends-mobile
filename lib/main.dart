@@ -7,6 +7,10 @@ import 'package:community_with_legends_mobile/src/features/auth/presentation/con
 import 'package:community_with_legends_mobile/src/features/auth/presentation/controllers/register_controller.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/login_page.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/register_page.dart';
+import 'package:community_with_legends_mobile/src/features/feed/data/data_sources/feed_api.dart';
+import 'package:community_with_legends_mobile/src/features/feed/data/repositories/feed_repository_impl.dart';
+import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_posts_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/feed_controller.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/pages/feed_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -30,6 +34,10 @@ class MyApp extends StatelessWidget {
     final loginController = LoginController(loginUseCase);
     final registerUseCase = RegisterUseCase(repository);
     final registerController = RegisterController(registerUseCase);
+    final feedApi = FeedApi(dotenv.env['API_URL']!);
+    final feedRepository = FeedRepositoryImpl(feedApi);
+    final getPostsUseCase = GetPostsUseCase(feedRepository);
+    final feedController = FeedController(getPostsUseCase);
 
     return MultiProvider(
       providers: [
@@ -38,6 +46,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<RegisterController>(
           create: (_) => registerController,
+        ),
+        ChangeNotifierProvider<FeedController>(
+          create: (_) => feedController,
         ),
       ],
       child: MaterialApp(

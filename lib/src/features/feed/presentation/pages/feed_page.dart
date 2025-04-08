@@ -1,6 +1,6 @@
 import 'package:community_with_legends_mobile/src/features/feed/presentation/widgets/create_post_form.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/widgets/feed_menu.dart';
-import 'package:community_with_legends_mobile/src/features/feed/presentation/widgets/post_widget.dart';
+import 'package:community_with_legends_mobile/src/features/feed/presentation/widgets/posts_view.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/background_image.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_app_bar.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_bottom_app_bar.dart';
@@ -11,39 +11,38 @@ class FeedPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.transparent,
-      appBar: const DefaultAppBar(),
-      bottomNavigationBar: const DefaultBottomAppBar(),
+      appBar: DefaultAppBar(),
+      bottomNavigationBar: DefaultBottomAppBar(),
       body: Stack(
         children: [
-          const BackgroundImage(bottomMargin: 0),
-          ListView(
-            children: const [
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'Discover',
-                  style: TextStyle(fontSize: 42),
-                  textAlign: TextAlign.center,
+          BackgroundImage(bottomMargin: 0),
+          CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    'Discover',
+                    style: TextStyle(fontSize: 42),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(bottom: 24),
-                child: FeedMenu(),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 24),
+                  child: FeedMenu(),
+                ),
               ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: CreatePostForm(),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: CreatePostForm(),
+                ),
               ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: PostWidget(),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: PostWidget(),
-              ),
+              PostsView(),
             ],
           ),
         ],

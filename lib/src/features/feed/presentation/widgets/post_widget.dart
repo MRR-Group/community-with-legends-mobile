@@ -1,9 +1,11 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
+import 'package:community_with_legends_mobile/src/features/feed/domain/models/post_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:flutter/material.dart';
 
 class PostWidget extends StatelessWidget {
-  const PostWidget({super.key});
+  const PostWidget({super.key,required this.post});
+  final Post post;
 
   @override
   Widget build(BuildContext context) {
@@ -34,25 +36,25 @@ class PostWidget extends StatelessWidget {
                             'assets/images/loading.gif',
                             height: 52,
                           ),
-                          const Column(
+                          Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Zoro',
-                                style: TextStyle(
+                                post.user.name,
+                                style: const TextStyle(
                                   fontSize: 20,
                                 ),
                               ),
                               Text(
-                                'Swordsman VR',
-                                style: TextStyle(
+                                post.game?.name ?? '',
+                                style: const TextStyle(
                                   color: primaryColor,
                                   fontSize: 12,
                                 ),
                               ),
                               Text(
-                                '3 days ago',
-                                style: TextStyle(
+                                post.createdAt,
+                                style: const TextStyle(
                                   color: textDisabledColor,
                                   fontSize: 8,
                                 ),
@@ -61,15 +63,13 @@ class PostWidget extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const Text(
-                        "I don't know. I'm not sure why myself. But if I were to take even one  step back, I believe that all those important oaths, promises and many  other deals 'til now, will all go to waste and I'll never be able to  return before you, ever again.",
-                      ),
+                      Text(post.content),
                       Padding(
                         padding: const EdgeInsets.all(12),
                         child: Row(
                           children: [
                             Button(
-                              text: '👍 x 10',
+                              text: '👍 x 0',
                               fontSize: 10,
                               onPressed: () {},
                               horizontalPadding: 8,

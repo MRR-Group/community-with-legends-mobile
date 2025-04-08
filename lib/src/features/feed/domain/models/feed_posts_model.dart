@@ -36,14 +36,14 @@ class FeedPosts {
     return FeedPosts(
       currentPage: json['current_page'],
       posts: (json['data'] as List<dynamic>)
-          .map((linkJson) => Post.fromJson(json))
+          .map((linkJson) => Post.fromJson(linkJson))
           .toList(),
       firstPageUrl: json['first_page_url'],
       from: json['from'],
       lastPage: json['last_page'],
       lastPageUrl: json['last_page_url'],
       links: (json['links'] as List<dynamic>)
-          .map((linkJson) => FeedLink.fromJson(json))
+          .map((linkJson) => FeedLink.fromJson(linkJson))
           .toList(),
       nextPageUrl: json['next_page_url'],
       path: json['path'],

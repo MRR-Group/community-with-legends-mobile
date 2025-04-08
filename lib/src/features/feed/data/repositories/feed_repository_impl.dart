@@ -1,8 +1,7 @@
-import 'dart:convert';
-
 import 'package:community_with_legends_mobile/src/features/feed/data/data_sources/feed_api.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/feed_posts_model.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/repositories/feed_repository.dart';
+import 'package:flutter/cupertino.dart';
 
 class FeedRepositoryImpl implements FeedRepository {
   final FeedApi api;
@@ -12,7 +11,16 @@ class FeedRepositoryImpl implements FeedRepository {
   @override
   Future<FeedPosts> getPosts() async {
       final response = await api.getPosts();
-      return FeedPosts.fromJson(response);
+
+      try {
+        final result = FeedPosts.fromJson(response);
+        return result;
+      } catch (e, stackTrace) {
+        debugPrint('Błąd w FeedPosts.fromJson: $e');
+        debugPrint('Stacktrace: $stackTrace');
+        debugPrint('JSON: $response.');
+        rethrow;
+      }
 
   }
 }
