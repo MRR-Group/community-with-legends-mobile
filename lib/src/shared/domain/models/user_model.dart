@@ -16,4 +16,16 @@ class User {
     required this.createdAt,
     required this.updatedAt,
   });
+
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      id: json['id'],
+      name: json['name'],
+      email: json['email'],
+      password: json['password'],
+      emailVerifiedAt: json['email_verified_at'],
+      createdAt: json['created_at'],
+      updatedAt: json['updated_at'],
+    );
+  }
 }
