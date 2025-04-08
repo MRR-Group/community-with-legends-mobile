@@ -31,14 +31,13 @@ class Alert {
               borderRadius: BorderRadius.circular(8),
               color: backgroundColor,
             ),
-            child: Expanded(
-              child: Text(
-                text,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.white,
-                  overflow: TextOverflow.visible,
-                ),
+            width: double.infinity,
+            child: Text(
+              text,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Colors.white,
+                overflow: TextOverflow.visible,
               ),
             ),
           ),
