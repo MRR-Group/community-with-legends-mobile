@@ -15,19 +15,26 @@ import 'package:community_with_legends_mobile/src/features/feed/presentation/pag
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load();
 
-  runApp(const MyApp());
+  final prefs = await SharedPreferences.getInstance();
+  final hasAuthToken = prefs.getString('auth_token') != null;
+
+  runApp(MyApp(hasAuthToken: hasAuthToken,));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool hasAuthToken;
+
+  const MyApp({super.key, required this.hasAuthToken});
+
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,) {
     final api = AuthApi(dotenv.env['API_URL']!);
     final repository = AuthRepositoryImpl(api);
     final loginUseCase = LoginUseCase(repository);
@@ -55,7 +62,7 @@ class MyApp extends StatelessWidget {
         title: 'Community with Legends',
         debugShowCheckedModeBanner: false,
         theme: theme,
-        initialRoute: '/feed',
+        initialRoute: hasAuthToken ? '/feed' : '/login',
         routes: {
           '/login': (context) => LoginPage(),
           '/register': (context) => RegisterPage(),
