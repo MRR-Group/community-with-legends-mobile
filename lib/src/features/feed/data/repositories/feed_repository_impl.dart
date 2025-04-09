@@ -24,4 +24,3 @@ class FeedRepositoryImpl implements FeedRepository {
 
   }
 }
-

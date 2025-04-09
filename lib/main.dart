@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
         title: 'Community with Legends',
         debugShowCheckedModeBanner: false,
         theme: theme,
-        initialRoute: '/feed',
+        initialRoute: '/login',
         routes: {
           '/login': (context) => LoginPage(),
           '/register': (context) => RegisterPage(),
