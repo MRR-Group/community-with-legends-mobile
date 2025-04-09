@@ -17,7 +17,7 @@ class _PostsViewState extends State<PostsView> {
   void initState() {
     super.initState();
     final feedController = Provider.of<FeedController>(context, listen: false);
-    feedController.loadPosts();
+    feedController.loadPosts(context);
   }
 
   @override

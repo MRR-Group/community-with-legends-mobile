@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:community_with_legends_mobile/src/core/errors/exceptions.dart';
+import 'package:community_with_legends_mobile/src/core/errors/exceptions/unauthenticated_exception.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,6 +12,10 @@ class FeedApi {
   Future<Map<String, String>> _getHeaders() async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('auth_token');
+
+    if(token == null){
+      throw UnauthenticatedException();
+    }
 
     return {
       'Content-Type': 'application/json',
@@ -45,7 +50,7 @@ class FeedApi {
     );
 
     if (response.statusCode == 401) {
-      throw AuthException('Unauthenticated');
+      throw UnauthenticatedException();
     } else if (response.statusCode != 200) {
       throw AuthException('Something went wrong');
     }

@@ -1,3 +1,4 @@
+import 'package:community_with_legends_mobile/src/core/errors/exceptions/unauthenticated_exception.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/feed_posts_model.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_posts_usecase.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class FeedController extends ChangeNotifier{
   String?  _error;
   String? get error => _error;
 
-  Future<void> loadPosts() async {
+  Future<void> loadPosts(BuildContext context) async {
     _isLoading = true;
     await Future.delayed(Duration.zero);
     notifyListeners();
@@ -24,7 +25,9 @@ class FeedController extends ChangeNotifier{
     try{
       _feedPosts = await getPosts.execute();
     }catch(e){
-      debugPrint(e.toString());
+      if(e is UnauthenticatedException){
+        Navigator.pushReplacementNamed(context, '/login');
+      }
       _error = e.toString();
     }finally{
       _isLoading = false;

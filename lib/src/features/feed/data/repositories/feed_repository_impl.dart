@@ -15,10 +15,7 @@ class FeedRepositoryImpl implements FeedRepository {
       try {
         final result = FeedPosts.fromJson(response);
         return result;
-      } catch (e, stackTrace) {
-        debugPrint('Błąd w FeedPosts.fromJson: $e');
-        debugPrint('Stacktrace: $stackTrace');
-        debugPrint('JSON: $response.');
+      } catch (e) {
         rethrow;
       }
 
