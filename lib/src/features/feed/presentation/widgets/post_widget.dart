@@ -2,6 +2,7 @@ import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/post_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:flutter/material.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class PostWidget extends StatelessWidget {
   const PostWidget({super.key,required this.post});
@@ -53,7 +54,7 @@ class PostWidget extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                post.createdAt,
+                                timeago.format(post.createdAt),
                                 style: const TextStyle(
                                   color: textDisabledColor,
                                   fontSize: 8,

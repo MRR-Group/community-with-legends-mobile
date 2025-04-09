@@ -8,8 +8,8 @@ class Post {
   final int? gameId;
   final int? tagId;
   final String content;
-  final String createdAt;
-  final String updatedAt;
+  final DateTime createdAt;
+  final DateTime updatedAt;
   final User user;
   final Game? game;
   final Tag? tag;
@@ -34,8 +34,8 @@ class Post {
       gameId: json['game_id'],
       tagId: json['tag_id'],
       content: json['content'],
-      createdAt: json['created_at'],
-      updatedAt: json['updated_at'],
+      createdAt: DateTime.parse(json['created_at']),
+      updatedAt: DateTime.parse(json['updated_at']),
       game: Game.fromJson(json['game']),
       tag: Tag.fromJson(json['tag']),
       user: User.fromJson(json['user']),

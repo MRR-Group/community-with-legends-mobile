@@ -2,9 +2,9 @@ class User {
   final int id;
   final String name;
   final String email;
-  final String emailVerifiedAt;
-  final String createdAt;
-  final String updatedAt;
+  final DateTime emailVerifiedAt;
+  final DateTime createdAt;
+  final DateTime updatedAt;
 
   User({
     required this.id,
@@ -20,9 +20,9 @@ class User {
       id: json['id'],
       name: json['name'],
       email: json['email'],
-      emailVerifiedAt: json['email_verified_at'],
-      createdAt: json['created_at'],
-      updatedAt: json['updated_at'],
+      emailVerifiedAt: DateTime.parse(json['email_verified_at']),
+      createdAt: DateTime.parse(json['created_at']),
+      updatedAt: DateTime.parse(json['updated_at']),
     );
   }
 }
