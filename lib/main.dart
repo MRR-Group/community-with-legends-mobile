@@ -1,4 +1,5 @@
 import 'package:community_with_legends_mobile/config/theme.dart';
+import 'package:community_with_legends_mobile/src/core/app_setup.dart';
 import 'package:community_with_legends_mobile/src/features/auth/data/data_sources/auth_api.dart';
 import 'package:community_with_legends_mobile/src/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/login_usecase.dart';
@@ -63,11 +64,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: theme,
         initialRoute: hasAuthToken ? '/feed' : '/login',
-        routes: {
-          '/login': (context) => LoginPage(),
-          '/register': (context) => RegisterPage(),
-          '/feed': (context) => const FeedPage(),
-        },
+        routes: AppSetup.routes,
       ),
     );
   }
