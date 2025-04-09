@@ -7,30 +7,28 @@ class DefaultBottomAppBar extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    return BottomAppBar(
+    return const BottomAppBar(
       color: backgroundColor,
       height: 55,
-      padding: const EdgeInsets.only(left: 24, right: 24, top: 10),
+      padding: EdgeInsets.only(left: 24, right: 24, top: 10),
       child: Row(
         children: [
-          Container(
-            child: const Column(
-              children: [
-                Icon(
-                  Icons.public,
+          Column(
+            children: [
+              Icon(
+                Icons.public,
+                color: primaryColor,
+              ),
+              Text(
+                'Feed',
+                style: TextStyle(
                   color: primaryColor,
                 ),
-                Text(
-                  'Feed',
-                  style: TextStyle(
-                    color: primaryColor,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-          const Spacer(),
-          const Column(
+          Spacer(),
+          Column(
             children: [
               Icon(
                 Icons.favorite_border_outlined,
@@ -39,8 +37,8 @@ class DefaultBottomAppBar extends StatelessWidget
               Text('Following'),
             ],
           ),
-          const Spacer(),
-          const Column(
+          Spacer(),
+          Column(
             children: [
               Icon(
                 Icons.notifications_none_outlined,
@@ -49,8 +47,8 @@ class DefaultBottomAppBar extends StatelessWidget
               Text('Notification'),
             ],
           ),
-          const Spacer(),
-          const Column(
+          Spacer(),
+          Column(
             children: [
               Icon(
                 Icons.person_outline,
