@@ -2,6 +2,11 @@ import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:flutter/material.dart';
 
 class ClickableAuthText extends StatelessWidget {
+  final String message;
+  final String linkText;
+  final String actionText;
+  final VoidCallback onPress;
+  
   const ClickableAuthText({
     super.key,
     required this.message,
@@ -9,10 +14,6 @@ class ClickableAuthText extends StatelessWidget {
     required this.actionText,
     required this.onPress,
   });
-  final String message;
-  final String linkText;
-  final String actionText;
-  final VoidCallback onPress;
 
   @override
   Widget build(BuildContext context) {
