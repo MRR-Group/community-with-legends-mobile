@@ -36,7 +36,7 @@ class Button extends StatelessWidget {
           gradient: primaryGradient,
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: verticalPadding, horizontal: horizontalPadding),
+          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 28),
           child: isLoading
               ? const LoadingAnimation(
                   height: 26,
