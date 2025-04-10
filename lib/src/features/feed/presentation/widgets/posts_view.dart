@@ -16,8 +16,12 @@ class _PostsViewState extends State<PostsView> {
   @override
   void initState() {
     super.initState();
-    final feedController = Provider.of<FeedController>(context, listen: false);
-    feedController.loadPosts(context);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final feedController =
+          Provider.of<FeedController>(context, listen: false);
+      await feedController.loadPosts(context);
+    });
   }
 
   @override
@@ -25,7 +29,8 @@ class _PostsViewState extends State<PostsView> {
     final feedController = Provider.of<FeedController>(context);
 
     if (feedController.isLoading) {
-      return const SliverToBoxAdapter(child: LoadingAnimation(width: 200, height: 200));
+      return const SliverToBoxAdapter(
+          child: LoadingAnimation(width: 200, height: 200));
     }
 
     if (feedController.error != null) {
@@ -38,13 +43,13 @@ class _PostsViewState extends State<PostsView> {
     final posts = feedController.feedPosts?.posts ?? [];
 
     return SliverList(
-        delegate: SliverChildBuilderDelegate(
-          (context, index) {
-            final post = posts[index];
-            return PostWidget(post: post);
-          },
-          childCount: posts.length,
-        ),
+      delegate: SliverChildBuilderDelegate(
+        (context, index) {
+          final post = posts[index];
+          return PostWidget(post: post);
+        },
+        childCount: posts.length,
+      ),
     );
   }
 }

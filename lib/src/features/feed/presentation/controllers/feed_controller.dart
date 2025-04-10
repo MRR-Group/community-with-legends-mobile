@@ -18,6 +18,8 @@ class FeedController extends ChangeNotifier{
   String? get error => _error;
 
   Future<void> loadPosts(BuildContext context) async {
+    _error = null;
+    _feedPosts = null;
     _isLoading = true;
     await Future.delayed(Duration.zero);
     notifyListeners();
