@@ -29,7 +29,7 @@ class CreatePostForm extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(2),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(4),
+          borderRadius: BorderRadius.circular(10),
           gradient: secondaryGradient,
         ),
         child: Card(
