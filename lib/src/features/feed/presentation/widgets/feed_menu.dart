@@ -1,4 +1,3 @@
-
 import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -13,18 +12,24 @@ class FeedMenu extends StatelessWidget {
         Container(
           padding: EdgeInsets.zero,
           decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(
-                Radius.circular(4),
-              ),
-              border: Border.all(color: textColor),),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(4),
+            ),
+            border: Border.all(color: textColor),
+          ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: const BoxDecoration(
-                    border: Border(right: BorderSide(color: textColor)),
-                    color: primaryColor,),
+                  border: Border(right: BorderSide(color: textColor)),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(2),
+                    bottomLeft: Radius.circular(2),
+                  ),
+                  color: primaryColor,
+                ),
                 child: const Text('Trending'),
               ),
               Container(
