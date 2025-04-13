@@ -26,15 +26,19 @@ class SelectButton extends StatelessWidget {
               side: const BorderSide(color: primaryColor, width: 2),
               padding: EdgeInsets.zero,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),),
+                borderRadius: BorderRadius.circular(8),
+              ),
               backgroundColor: backgroundColor,
               foregroundColor: textDisabledColor,
+              visualDensity: VisualDensity.compact,
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 28),
               child: Text(
                 text,
-                style: TextStyle(fontSize: fontSize),
+                style: TextStyle(
+                  fontSize: fontSize,
+                ),
               ),
             ),
           );
