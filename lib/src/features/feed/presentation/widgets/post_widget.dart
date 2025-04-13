@@ -17,7 +17,7 @@ class PostWidget extends StatelessWidget {
             padding: const EdgeInsets.all(2),
             margin: const EdgeInsets.only(bottom: 20),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(4),
+              borderRadius: BorderRadius.circular(10),
               gradient: secondaryGradient,
             ),
             child: Card(
