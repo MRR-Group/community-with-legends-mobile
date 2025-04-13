@@ -7,20 +7,26 @@ import 'package:community_with_legends_mobile/src/shared/presentation/widgets/de
 import 'package:flutter/material.dart';
 
 class FeedPage extends StatelessWidget {
-  const FeedPage({super.key});
+  final formKey = GlobalKey<FormState>();
+  final TextEditingController contentController = TextEditingController();
+  final TextEditingController gameController = TextEditingController();
+  final TextEditingController tagController = TextEditingController();
+  final TextEditingController assetController = TextEditingController();
+
+  FeedPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.transparent,
-      appBar: DefaultAppBar(),
-      bottomNavigationBar: DefaultBottomAppBar(),
+      appBar: const DefaultAppBar(),
+      bottomNavigationBar: const DefaultBottomAppBar(),
       body: Stack(
         children: [
-          BackgroundImage(bottomMargin: 0),
+          const BackgroundImage(bottomMargin: 0),
           CustomScrollView(
             slivers: [
-              SliverToBoxAdapter(
+              const SliverToBoxAdapter(
                 child: Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text(
@@ -30,7 +36,7 @@ class FeedPage extends StatelessWidget {
                   ),
                 ),
               ),
-              SliverToBoxAdapter(
+              const SliverToBoxAdapter(
                 child: Padding(
                   padding: EdgeInsets.only(bottom: 24),
                   child: FeedMenu(),
@@ -38,11 +44,17 @@ class FeedPage extends StatelessWidget {
               ),
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: CreatePostForm(),
+                  padding: const EdgeInsets.all(8.0),
+                  child: CreatePostForm(
+                    formKey: formKey,
+                    contentController: contentController,
+                    assetController: assetController,
+                    gameController: gameController,
+                    tagController: tagController,
+                  ),
                 ),
               ),
-              PostsView(),
+              const PostsView(),
             ],
           ),
         ],

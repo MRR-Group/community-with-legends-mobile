@@ -1,20 +1,28 @@
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/unauthenticated_exception.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/feed_posts_model.dart';
+import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/create_post_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_posts_usecase.dart';
 import 'package:flutter/material.dart';
 
-class FeedController extends ChangeNotifier{
+class FeedController extends ChangeNotifier {
   final GetPostsUseCase getPosts;
+  final CreatePostUseCase createPost;
 
-  FeedController(this.getPosts);
+  FeedController(this.getPosts, this.createPost);
 
   bool _isLoading = false;
+
   bool get isLoading => _isLoading;
+  bool _isCreatingPost = false;
+
+  bool get isCreatingPost => _isCreatingPost;
 
   FeedPosts? _feedPosts;
+
   FeedPosts? get feedPosts => _feedPosts;
 
-  String?  _error;
+  String? _error;
+
   String? get error => _error;
 
   Future<void> loadPosts(BuildContext context) async {
@@ -24,16 +32,35 @@ class FeedController extends ChangeNotifier{
     await Future.delayed(Duration.zero);
     notifyListeners();
 
-    try{
+    try {
       _feedPosts = await getPosts.execute();
-    }catch(e){
-      if(e is UnauthenticatedException){
-        Navigator.pushReplacementNamed(context, '/login');
-      }
-      _error = e.toString();
-    }finally{
+    } on UnauthenticatedException catch (_) {
+      Navigator.pushReplacementNamed(context, '/login');
+    } finally {
       _isLoading = false;
       notifyListeners();
+    }
+  }
+
+  Future<void> submitPost({
+    required BuildContext context,
+    required String content,
+    int? gameId,
+    List<int>? tagIds,
+  }) async {
+    _error = null;
+    _isCreatingPost = true;
+    notifyListeners();
+
+    try {
+      await createPost.execute(content: content);
+    } on UnauthenticatedException catch (_) {
+      Navigator.pushReplacementNamed(context, '/login');
+    } finally {
+      _isCreatingPost = false;
+      notifyListeners();
+
+      loadPosts(context);
     }
   }
 }

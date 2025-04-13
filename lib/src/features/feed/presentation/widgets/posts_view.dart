@@ -30,7 +30,8 @@ class _PostsViewState extends State<PostsView> {
 
     if (feedController.isLoading) {
       return const SliverToBoxAdapter(
-          child: LoadingAnimation(width: 200, height: 200));
+        child: LoadingAnimation(width: 200, height: 200),
+      );
     }
 
     if (feedController.error != null) {

@@ -13,7 +13,7 @@ class FeedApi {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('auth_token');
 
-    if(token == null){
+    if (token == null) {
       throw UnauthenticatedException();
     }
 
@@ -25,7 +25,7 @@ class FeedApi {
   }
 
   Future<Map<String, dynamic>> _feedPostRequest({
-    required Map<String, String> body,
+    required Map<String, dynamic> body,
     required String urlPath,
   }) async {
     final url = Uri.parse('$apiUrl/$urlPath');
@@ -35,6 +35,12 @@ class FeedApi {
       headers: await _getHeaders(),
       body: jsonEncode(body),
     );
+
+    if (response.statusCode == 401) {
+      throw UnauthenticatedException();
+    } else if (response.statusCode != 201) {
+      throw AuthException('Something went wrong');
+    }
 
     return jsonDecode(response.body);
   }
@@ -61,6 +67,21 @@ class FeedApi {
   Future<Map<String, dynamic>> getPosts() async {
     return _feedGetRequest(
       urlPath: 'api/posts',
+    );
+  }
+
+  Future<Map<String, dynamic>> createPost({
+    required String content,
+    int? gameId,
+    List<int>? tagIds,
+  }) {
+    return _feedPostRequest(
+      urlPath: 'api/posts',
+      body: {
+        'content': content,
+        'game_id': gameId ?? '',
+        'tagIds': tagIds ?? [],
+      },
     );
   }
 }

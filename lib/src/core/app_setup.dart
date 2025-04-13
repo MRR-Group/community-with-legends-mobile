@@ -8,6 +8,7 @@ import 'package:community_with_legends_mobile/src/features/auth/presentation/pag
 import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/register_page.dart';
 import 'package:community_with_legends_mobile/src/features/feed/data/data_sources/feed_api.dart';
 import 'package:community_with_legends_mobile/src/features/feed/data/repositories/feed_repository_impl.dart';
+import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/create_post_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_posts_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/feed_controller.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/pages/feed_page.dart';
@@ -31,7 +32,7 @@ class AppSetup{
   final Map<String, WidgetBuilder> routes = {
     '/login': (context) => LoginPage(),
     '/register': (context) => RegisterPage(),
-    '/feed': (context) => const FeedPage(),
+    '/feed': (context) => FeedPage(),
   };
 
   LoginController createLoginController(){
@@ -52,7 +53,8 @@ class AppSetup{
     final feedApi = FeedApi(apiUrl);
     final feedRepository = FeedRepositoryImpl(feedApi);
     final getPostsUseCase = GetPostsUseCase(feedRepository);
-    return FeedController(getPostsUseCase);
+    final createPostUseCase = CreatePostUseCase(feedRepository);
+    return FeedController(getPostsUseCase, createPostUseCase);
   }
 
   List<SingleChildWidget> getProviders(){

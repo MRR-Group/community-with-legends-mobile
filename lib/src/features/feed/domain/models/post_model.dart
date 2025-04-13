@@ -36,8 +36,8 @@ class Post {
       content: json['content'],
       createdAt: DateTime.parse(json['created_at']),
       updatedAt: DateTime.parse(json['updated_at']),
-      game: Game.fromJson(json['game']),
-      tag: Tag.fromJson(json['tag']),
+      game: json['game'] == null ? null : Game.fromJson(json['game']),
+      tag: json['tag'] == null ? null : Tag.fromJson(json['tag']),
       user: User.fromJson(json['user']),
     );
   }
