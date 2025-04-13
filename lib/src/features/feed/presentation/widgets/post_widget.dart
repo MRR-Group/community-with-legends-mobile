@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class PostWidget extends StatelessWidget {
-  const PostWidget({super.key,required this.post});
+  const PostWidget({super.key, required this.post});
+
   final Post post;
 
   @override
@@ -46,13 +47,14 @@ class PostWidget extends StatelessWidget {
                                   fontSize: 20,
                                 ),
                               ),
-                              Text(
-                                post.game?.name ?? '',
-                                style: const TextStyle(
-                                  color: primaryColor,
-                                  fontSize: 12,
+                              if (post.game != null)
+                                Text(
+                                  post.game!.name,
+                                  style: const TextStyle(
+                                    color: primaryColor,
+                                    fontSize: 12,
+                                  ),
                                 ),
-                              ),
                               Text(
                                 timeago.format(post.createdAt),
                                 style: const TextStyle(
