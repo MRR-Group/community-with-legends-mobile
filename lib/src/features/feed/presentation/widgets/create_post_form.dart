@@ -1,11 +1,12 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
+import 'package:community_with_legends_mobile/src/features/feed/domain/models/asset_types.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/feed_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
-import 'package:community_with_legends_mobile/src/shared/presentation/widgets/select_button.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/widgets/toggle_button_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class CreatePostForm extends StatelessWidget {
+class CreatePostForm extends StatefulWidget {
   final GlobalKey<FormState> formKey;
   final TextEditingController contentController;
   final TextEditingController gameController;
@@ -20,6 +21,13 @@ class CreatePostForm extends StatelessWidget {
     required this.tagController,
     required this.assetController,
   });
+
+  @override
+  State<StatefulWidget> createState() => _CreatePostFormState();
+}
+
+class _CreatePostFormState extends State<CreatePostForm> {
+  AssetType selectedAssetType = AssetType.image;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +47,7 @@ class CreatePostForm extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 18),
               child: Form(
-                key: formKey,
+                key: widget.formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -48,7 +56,7 @@ class CreatePostForm extends StatelessWidget {
                       style: TextStyle(fontSize: 32),
                     ),
                     TextFormField(
-                      controller: contentController,
+                      controller: widget.contentController,
                       maxLines: 4,
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(12),
@@ -64,7 +72,7 @@ class CreatePostForm extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: TextFormField(
-                        controller: gameController,
+                        controller: widget.gameController,
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.all(12),
                           hintText: 'Select a game',
@@ -102,7 +110,7 @@ class CreatePostForm extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: TextFormField(
-                        controller: tagController,
+                        controller: widget.tagController,
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.all(12),
                           hintText: 'Add tag',
@@ -120,31 +128,28 @@ class CreatePostForm extends StatelessWidget {
                       'Assets',
                       style: TextStyle(fontSize: 24),
                     ),
-                    Row(
-                      children: [
-                        SelectButton(
-                          text: 'Image',
-                          fontSize: 16,
-                          onPressed: () {},
-                        ),
-                        const SizedBox(
-                          width: 8,
-                        ),
-                        SelectButton(
-                          text: 'Video',
-                          fontSize: 16,
-                          onPressed: () {},
-                          isSelected: true,
-                        ),
-                      ],
+                    ToggleButtonFormField(
+                      initialValue: AssetType.image.displayName,
+                      buttons: {
+                        'Image': () {
+                          setState(() {
+                            selectedAssetType = AssetType.image;
+                          });
+                        },
+                        'Video': () {
+                          setState(() {
+                            selectedAssetType = AssetType.video;
+                          });
+                        },
+                      },
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: TextFormField(
-                        controller: assetController,
+                        controller: widget.assetController,
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.all(12),
-                          hintText: 'Link to image',
+                          hintText: 'Link to ${selectedAssetType.displayName}',
                           fillColor: backgroundLightColor,
                           filled: true,
                           suffixIcon: const Icon(Icons.add),
@@ -163,10 +168,16 @@ class CreatePostForm extends StatelessWidget {
                             text: 'Post',
                             fontSize: 24,
                             onPressed: () {
-                              controller.submitPost(
-                                context: context,
-                                content: contentController.text,
-                              );
+                              if (widget.formKey.currentState!.validate()) {
+                                widget.formKey.currentState!.save();
+                                controller.submitPost(
+                                  context: context,
+                                  content: widget.contentController.text,
+                                );
+                              } else {
+                                print('couldnt validate form');
+                              }
+                              return;
                             },
                           ),
                           const Spacer(),
@@ -174,7 +185,7 @@ class CreatePostForm extends StatelessWidget {
                             text: 'Cancel',
                             fontSize: 24,
                             onPressed: () {
-                              formKey.currentState?.reset();
+                              widget.formKey.currentState?.reset();
                             },
                           ),
                         ],
