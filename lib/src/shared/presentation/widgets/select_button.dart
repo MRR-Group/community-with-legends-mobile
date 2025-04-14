@@ -19,8 +19,7 @@ class SelectButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return isSelected
-        ? Button(text: text, fontSize: fontSize, onPressed: onPressed)
-        : ElevatedButton(
+        ? ElevatedButton(
             onPressed: onPressed,
             style: ElevatedButton.styleFrom(
               side: const BorderSide(color: primaryColor, width: 2),
@@ -41,6 +40,7 @@ class SelectButton extends StatelessWidget {
                 ),
               ),
             ),
-          );
+          )
+        : Button(text: text, fontSize: fontSize, onPressed: onPressed);
   }
 }
