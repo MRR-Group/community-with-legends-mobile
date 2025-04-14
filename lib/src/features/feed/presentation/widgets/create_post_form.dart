@@ -3,6 +3,7 @@ import 'package:community_with_legends_mobile/src/features/feed/domain/models/as
 import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/feed_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/toggle_button_form_field.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -92,17 +93,21 @@ class _CreatePostFormState extends State<CreatePostForm> {
                     ),
                     Row(
                       children: [
-                        Button(
-                          text: 'Clutch',
+                        Button.iconRight(
+                          text: 'Clutch moment',
                           fontSize: 12,
+                          icon: const Icon(CupertinoIcons.clear_thick, color: textColor),
+                          horizontalPadding: 12,
                           onPressed: () {},
                         ),
                         const SizedBox(
                           width: 8,
                         ),
-                        Button(
+                        Button.iconRight(
                           text: 'Glitch',
                           fontSize: 12,
+                          icon: const Icon(CupertinoIcons.clear_thick, color: textColor,),
+                          horizontalPadding: 12,
                           onPressed: () {},
                         ),
                       ],
