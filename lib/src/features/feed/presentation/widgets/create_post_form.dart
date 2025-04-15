@@ -1,6 +1,7 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/asset_types.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/feed_controller.dart';
+import 'package:community_with_legends_mobile/src/features/feed/presentation/widgets/dropdown_game_search_widget.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/toggle_button_form_field.dart';
 import 'package:flutter/cupertino.dart';
@@ -70,22 +71,9 @@ class _CreatePostFormState extends State<CreatePostForm> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: TextFormField(
-                        controller: widget.gameController,
-                        decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.all(12),
-                          hintText: 'Select a game',
-                          fillColor: backgroundLightColor,
-                          filled: true,
-                          suffixIcon: const Icon(Icons.search),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(4),
-                            borderSide: BorderSide.none,
-                          ),
-                        ),
-                      ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8),
+                      child: DropdownGameSearch(),
                     ),
                     const Text(
                       'Tags',
@@ -96,7 +84,8 @@ class _CreatePostFormState extends State<CreatePostForm> {
                         Button.iconRight(
                           text: 'Clutch moment',
                           fontSize: 12,
-                          icon: const Icon(CupertinoIcons.clear_thick, color: textColor),
+                          icon: const Icon(CupertinoIcons.clear_thick,
+                              color: textColor),
                           horizontalPadding: 12,
                           onPressed: () {},
                         ),
@@ -106,7 +95,10 @@ class _CreatePostFormState extends State<CreatePostForm> {
                         Button.iconRight(
                           text: 'Glitch',
                           fontSize: 12,
-                          icon: const Icon(CupertinoIcons.clear_thick, color: textColor,),
+                          icon: const Icon(
+                            CupertinoIcons.clear_thick,
+                            color: textColor,
+                          ),
                           horizontalPadding: 12,
                           onPressed: () {},
                         ),
