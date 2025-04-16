@@ -45,7 +45,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
         child: Card(
           child: SizedBox(
             width: 300,
-            height: 610,
+            height: 620,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 18),
               child: Form(
@@ -121,19 +121,21 @@ class _CreatePostFormState extends State<CreatePostForm> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: TextFormField(
-                        controller: widget.tagController,
-                        decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.all(12),
-                          hintText: 'Add tag',
-                          fillColor: backgroundLightColor,
-                          filled: true,
-                          suffixIcon: const Icon(Icons.add),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(4),
-                            borderSide: BorderSide.none,
-                          ),
-                        ),
+                      child: DefaultDropdownSearch(
+                        overrideSelectedItemTitle: true,
+                        selectedItemTitle: 'Add tag',
+                        showSearchBox: true,
+                        searchBoxHint: 'Search tag...',
+                        items: (filter, infiniteScrollProps) async {
+                          return [
+                            'Clutch moment',
+                            'Funny moment',
+                            'Glitch',
+                          ];
+                        },
+                        onChanged: (value) {
+                          print('Wybrano: $value');
+                        },
                       ),
                     ),
                     const Text(
