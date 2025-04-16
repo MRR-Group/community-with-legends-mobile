@@ -73,16 +73,20 @@ class _CreatePostFormState extends State<CreatePostForm> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: DefaultDropdownSearch(
+                      child: DefaultDropdownSearch<String>(
                         selectedItem: 'Select game',
                         showSearchBox: true,
                         searchBoxHint: 'Search game...',
                         items: (filter, infiniteScrollProps) async {
-                          return controller.loadFilteredGames(context: context, filter: filter);
+                          return controller.loadFilteredGames(
+                            context: context,
+                            filter: filter,
+                          );
                         },
                         onChanged: (value) {
                           print('Wybrano: $value');
                         },
+                        keyToString: (key) => key!,
                       ),
                     ),
                     const Text(
@@ -118,7 +122,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: DefaultDropdownSearch(
+                      child: DefaultDropdownSearch<String>(
                         overrideSelectedItemTitle: true,
                         selectedItemTitle: 'Add tag',
                         showSearchBox: true,
@@ -133,6 +137,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                         onChanged: (value) {
                           print('Wybrano: $value');
                         },
+                        keyToString: (key) => key!,
                       ),
                     ),
                     const Text(
@@ -185,7 +190,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                                   context: context,
                                   content: widget.contentController.text,
                                   assetId: selectedAssetType.id,
-                                  assetLink: widget.assetController.text
+                                  assetLink: widget.assetController.text,
                                 );
                               } else {
                                 print('couldnt validate form');

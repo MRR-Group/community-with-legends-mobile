@@ -84,7 +84,7 @@ class FeedApi {
         'game_id': gameId ?? '',
         'tagIds': tagIds ?? [],
         'asset_type_id': assetId,
-        'asset_link': assetLink
+        'asset_link': assetLink,
       },
     );
   }

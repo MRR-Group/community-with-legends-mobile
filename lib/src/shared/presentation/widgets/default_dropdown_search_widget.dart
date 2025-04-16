@@ -4,29 +4,33 @@ import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 
-class DefaultDropdownSearch extends StatelessWidget {
+class DefaultDropdownSearch<T> extends StatelessWidget {
   const DefaultDropdownSearch({
     super.key,
     required this.items,
-    this.selectedItem = '',
+    this.selectedItem,
     required this.showSearchBox,
     required this.searchBoxHint,
     this.onChanged,
     this.overrideSelectedItemTitle = false,
     this.selectedItemTitle = '',
+    required this.keyToString,
   });
 
-  final FutureOr<List<String>> Function(String, LoadProps?)? items;
-  final String selectedItem;
+  final FutureOr<List<T>> Function(String, LoadProps?)? items;
+  final T? selectedItem;
   final bool showSearchBox;
   final String searchBoxHint;
-  final void Function(String?)? onChanged;
+  final void Function(T?)? onChanged;
   final bool overrideSelectedItemTitle;
   final String selectedItemTitle;
+  final String Function(T?) keyToString;
+
+
 
   @override
   Widget build(BuildContext context) {
-    return DropdownSearch<String>(
+    return DropdownSearch<T>(
       selectedItem: selectedItem,
       items: items,
       decoratorProps: DropDownDecoratorProps(
@@ -52,7 +56,7 @@ class DefaultDropdownSearch extends StatelessWidget {
       dropdownBuilder: (context, selectedItem) {
         return ListTile(
           title: Text(
-            overrideSelectedItemTitle ? selectedItemTitle : selectedItem!,
+            overrideSelectedItemTitle ? selectedItemTitle : keyToString(selectedItem),
             style: const TextStyle(
               color: textDisabledColor,
               fontSize: 15,
@@ -77,7 +81,7 @@ class DefaultDropdownSearch extends StatelessWidget {
               horizontal: 12,
             ),
             title: Text(
-              item,
+              keyToString(item),
               style: const TextStyle(
                 color: textColor,
                 fontSize: 15,
