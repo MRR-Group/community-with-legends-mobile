@@ -1,8 +1,8 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/asset_types.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/feed_controller.dart';
-import 'package:community_with_legends_mobile/src/features/feed/presentation/widgets/dropdown_game_search_widget.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_dropdown_search_widget.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/toggle_button_form_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -71,9 +71,24 @@ class _CreatePostFormState extends State<CreatePostForm> {
                         ),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8),
-                      child: DropdownGameSearch(),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: DefaultDropdownSearch(
+                        selectedItem: 'Select game',
+                        showSearchBox: true,
+                        searchBoxHint: 'Search game...',
+                        items: (filter, infiniteScrollProps) async {
+                          return [
+                            'League of Legends',
+                            'R.E.P.O',
+                            'Counter Strike 2',
+                            'Supermarket Together',
+                          ];
+                        },
+                        onChanged: (value) {
+                          print('Wybrano: $value');
+                        },
+                      ),
                     ),
                     const Text(
                       'Tags',

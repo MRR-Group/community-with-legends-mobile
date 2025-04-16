@@ -1,22 +1,34 @@
+import 'dart:async';
+
 import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 
-class DropdownGameSearch extends StatelessWidget {
-  const DropdownGameSearch({super.key});
+class DefaultDropdownSearch extends StatelessWidget {
+  const DefaultDropdownSearch({
+    super.key,
+    required this.items,
+    this.selectedItem = '',
+    required this.showSearchBox,
+    required this.searchBoxHint,
+    this.onChanged,
+    this.overrideSelectedItemTitle = false,
+    this.selectedItemTitle = '',
+  });
+
+  final FutureOr<List<String>> Function(String, LoadProps?)? items;
+  final String selectedItem;
+  final bool showSearchBox;
+  final String searchBoxHint;
+  final void Function(String?)? onChanged;
+  final bool overrideSelectedItemTitle;
+  final String selectedItemTitle;
 
   @override
   Widget build(BuildContext context) {
     return DropdownSearch<String>(
-      selectedItem: 'Select game',
-      items: (filter, infiniteScrollProps) async {
-        return [
-          'League of Legends',
-          'R.E.P.O',
-          'Counter Strike 2',
-          'Supermarket Together',
-        ];
-      },
+      selectedItem: selectedItem,
+      items: items,
       decoratorProps: DropDownDecoratorProps(
         decoration: InputDecoration(
           contentPadding: EdgeInsets.zero,
@@ -26,7 +38,8 @@ class DropdownGameSearch extends StatelessWidget {
           ),
           focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: primaryColor),
-            borderRadius: BorderRadius.only(topLeft: Radius.circular(4), topRight: Radius.circular(4)),
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(4), topRight: Radius.circular(4)),
           ),
           enabledBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: Colors.transparent),
@@ -37,7 +50,7 @@ class DropdownGameSearch extends StatelessWidget {
       dropdownBuilder: (context, selectedItem) {
         return ListTile(
           title: Text(
-            selectedItem!,
+            overrideSelectedItemTitle ? selectedItemTitle : selectedItem!,
             style: const TextStyle(
               color: textDisabledColor,
               fontSize: 15,
@@ -46,13 +59,13 @@ class DropdownGameSearch extends StatelessWidget {
         );
       },
       popupProps: PopupProps.menu(
-        showSearchBox: true,
-        searchFieldProps: const TextFieldProps(
+        showSearchBox: showSearchBox,
+        searchFieldProps: TextFieldProps(
           decoration: InputDecoration(
-            hintText: 'Search game...',
+            hintText: searchBoxHint,
             fillColor: backgroundLightColor,
             filled: true,
-            border: OutlineInputBorder()
+            border: const OutlineInputBorder(),
           ),
         ),
         itemBuilder: (context, item, isDisabled, isSelected) {
@@ -76,7 +89,10 @@ class DropdownGameSearch extends StatelessWidget {
         containerBuilder: (ctx, popupWidget) {
           return Container(
             decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(4), bottomRight: Radius.circular(4)),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(4),
+                bottomRight: Radius.circular(4),
+              ),
               gradient: primaryGradient,
             ),
             padding: const EdgeInsets.all(1),
@@ -87,8 +103,11 @@ class DropdownGameSearch extends StatelessWidget {
                 Flexible(
                   child: Container(
                     decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(4), bottomRight: Radius.circular(4)),
-                      color: backgroundLightColor
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(4),
+                        bottomRight: Radius.circular(4),
+                      ),
+                      color: backgroundLightColor,
                     ),
                     child: popupWidget,
                   ),
@@ -98,9 +117,7 @@ class DropdownGameSearch extends StatelessWidget {
           );
         },
       ),
-      onChanged: (value) {
-        print('Wybrano: $value');
-      },
+      onChanged: onChanged,
     );
   }
 }
