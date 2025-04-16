@@ -72,6 +72,7 @@ class Button extends StatelessWidget {
             : Padding(
                 padding: EdgeInsets.symmetric(vertical: verticalPadding, horizontal: horizontalPadding),
                 child: Row(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     if (icon != null && !iconRight) ...[
                       icon!,
