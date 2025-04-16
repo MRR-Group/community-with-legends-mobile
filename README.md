@@ -41,6 +41,17 @@ The mobile app supports a wide range of user and moderator functionalities, incl
 - **Language**: Dart  
 - **API**: REST API (Laravel PHP backend)
 
+
+---
+
+## 🔗 Other Versions
+
+This project is part of a multi-platform system. You can find the other components here:
+
+- 🌐 [Web App](https://github.com/MRR-Group/community-with-legends-web)
+- 🖥️ [Desktop App](https://github.com/MRR-Group/community-with-legends-desktop)
+- 🔌 [REST API](https://github.com/MRR-Group/community-with-legends-api)
+
 ---
 
 ## 📦 Getting Started
