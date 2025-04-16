@@ -21,12 +21,12 @@ class FeedRepositoryImpl implements FeedRepository {
   }
 
   @override
-  Future<List<String>> getFilteredGames(String filter) async {
+  Future<List<Game>> getFilteredGames(String filter) async {
     final response = await api.getFilteredGames(filter);
 
     try {
       final result = (response['data'] as List<dynamic>)
-          .map((gamesData) => Game.fromJson(gamesData).name)
+          .map((gamesData) => Game.fromJson(gamesData))
           .toList();
 
       return result;

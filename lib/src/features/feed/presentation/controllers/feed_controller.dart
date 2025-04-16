@@ -5,6 +5,7 @@ import 'package:community_with_legends_mobile/src/features/feed/domain/models/fe
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/create_post_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_filtered_games_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_posts_usecase.dart';
+import 'package:community_with_legends_mobile/src/shared/domain/models/game_model.dart';
 import 'package:flutter/material.dart';
 
 class FeedController extends ChangeNotifier {
@@ -76,7 +77,7 @@ class FeedController extends ChangeNotifier {
     }
   }
 
-  FutureOr<List<String>> loadFilteredGames({
+  FutureOr<List<Game>> loadFilteredGames({
     required BuildContext context,
     required String filter,
   }) async {
@@ -85,7 +86,7 @@ class FeedController extends ChangeNotifier {
       return await getFilteredGames.execute(filter);
     } on UnauthenticatedException catch (_) {
       Navigator.pushReplacementNamed(context, '/login');
-      return [''];
+      return [];
     }
   }
 }

@@ -13,8 +13,9 @@ class DefaultDropdownSearch<T> extends StatelessWidget {
     required this.searchBoxHint,
     this.onChanged,
     this.overrideSelectedItemTitle = false,
-    this.selectedItemTitle = '',
+    this.listTitle = '',
     required this.keyToString,
+    this.compareFn,
   });
 
   final FutureOr<List<T>> Function(String, LoadProps?)? items;
@@ -23,16 +24,16 @@ class DefaultDropdownSearch<T> extends StatelessWidget {
   final String searchBoxHint;
   final void Function(T?)? onChanged;
   final bool overrideSelectedItemTitle;
-  final String selectedItemTitle;
+  final String listTitle;
   final String Function(T?) keyToString;
-
-
+  final bool Function(T, T)? compareFn;
 
   @override
   Widget build(BuildContext context) {
     return DropdownSearch<T>(
       selectedItem: selectedItem,
       items: items,
+      compareFn: compareFn,
       decoratorProps: DropDownDecoratorProps(
         decoration: InputDecoration(
           contentPadding: EdgeInsets.zero,
@@ -56,7 +57,9 @@ class DefaultDropdownSearch<T> extends StatelessWidget {
       dropdownBuilder: (context, selectedItem) {
         return ListTile(
           title: Text(
-            overrideSelectedItemTitle ? selectedItemTitle : keyToString(selectedItem),
+            overrideSelectedItemTitle || keyToString(selectedItem).isEmpty
+                ? listTitle
+                : keyToString(selectedItem),
             style: const TextStyle(
               color: textDisabledColor,
               fontSize: 15,

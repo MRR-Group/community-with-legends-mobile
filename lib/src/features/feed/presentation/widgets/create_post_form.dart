@@ -1,6 +1,7 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/asset_types.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/feed_controller.dart';
+import 'package:community_with_legends_mobile/src/shared/domain/models/game_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_dropdown_search_widget.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/toggle_button_form_field.dart';
@@ -30,6 +31,7 @@ class CreatePostForm extends StatefulWidget {
 
 class _CreatePostFormState extends State<CreatePostForm> {
   AssetType selectedAssetType = AssetType.image;
+  Game? selectedGame;
 
   @override
   Widget build(BuildContext context) {
@@ -73,10 +75,11 @@ class _CreatePostFormState extends State<CreatePostForm> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: DefaultDropdownSearch<String>(
-                        selectedItem: 'Select game',
+                      child: DefaultDropdownSearch<Game>(
                         showSearchBox: true,
                         searchBoxHint: 'Search game...',
+                        listTitle: 'Add game',
+                        compareFn: (item1, item2) => item1.name == item2.name,
                         items: (filter, infiniteScrollProps) async {
                           return controller.loadFilteredGames(
                             context: context,
@@ -85,8 +88,9 @@ class _CreatePostFormState extends State<CreatePostForm> {
                         },
                         onChanged: (value) {
                           print('Wybrano: $value');
+                          selectedGame = value;
                         },
-                        keyToString: (key) => key!,
+                        keyToString: (key) => key?.name ?? '',
                       ),
                     ),
                     const Text(
@@ -124,7 +128,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: DefaultDropdownSearch<String>(
                         overrideSelectedItemTitle: true,
-                        selectedItemTitle: 'Add tag',
+                        listTitle: 'Add tag',
                         showSearchBox: true,
                         searchBoxHint: 'Search tag...',
                         items: (filter, infiniteScrollProps) async {
@@ -189,6 +193,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                                 controller.submitPost(
                                   context: context,
                                   content: widget.contentController.text,
+                                  gameId: selectedGame?.id,
                                   assetId: selectedAssetType.id,
                                   assetLink: widget.assetController.text,
                                 );
