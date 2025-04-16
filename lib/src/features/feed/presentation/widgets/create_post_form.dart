@@ -184,6 +184,8 @@ class _CreatePostFormState extends State<CreatePostForm> {
                                 controller.submitPost(
                                   context: context,
                                   content: widget.contentController.text,
+                                  assetId: selectedAssetType.id,
+                                  assetLink: widget.assetController.text
                                 );
                               } else {
                                 print('couldnt validate form');

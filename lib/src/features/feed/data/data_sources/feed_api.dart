@@ -74,6 +74,8 @@ class FeedApi {
     required String content,
     int? gameId,
     List<int>? tagIds,
+    int? assetId,
+    String? assetLink,
   }) {
     return _feedPostRequest(
       urlPath: 'api/posts',
@@ -81,6 +83,8 @@ class FeedApi {
         'content': content,
         'game_id': gameId ?? '',
         'tagIds': tagIds ?? [],
+        'asset_type_id': assetId,
+        'asset_link': assetLink
       },
     );
   }

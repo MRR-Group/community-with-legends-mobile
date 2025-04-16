@@ -51,13 +51,21 @@ class FeedController extends ChangeNotifier {
     required String content,
     int? gameId,
     List<int>? tagIds,
+    int? assetId,
+    String? assetLink,
   }) async {
     _error = null;
     _isCreatingPost = true;
     notifyListeners();
 
     try {
-      await createPost.execute(content: content);
+      await createPost.execute(
+        content: content,
+        gameId: gameId,
+        tagIds: tagIds,
+        assetId: assetId,
+        assetLink: assetLink,
+      );
     } on UnauthenticatedException catch (_) {
       Navigator.pushReplacementNamed(context, '/login');
     } finally {

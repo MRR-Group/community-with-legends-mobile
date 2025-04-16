@@ -8,5 +8,7 @@ abstract class FeedRepository {
     required String content,
     int? gameId,
     List<int>? tagIds,
+    int? assetId,
+    String? assetLink,
   });
 }

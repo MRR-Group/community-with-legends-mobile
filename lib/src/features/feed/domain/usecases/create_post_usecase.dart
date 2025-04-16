@@ -1,6 +1,6 @@
 import 'package:community_with_legends_mobile/src/features/feed/domain/repositories/feed_repository.dart';
 
-class CreatePostUseCase{
+class CreatePostUseCase {
   final FeedRepository feedRepository;
 
   CreatePostUseCase(this.feedRepository);
@@ -9,7 +9,15 @@ class CreatePostUseCase{
     required String content,
     int? gameId,
     List<int>? tagIds,
-  })async {
-    await feedRepository.createPost(content: content, gameId: gameId, tagIds: tagIds);
+    int? assetId,
+    String? assetLink,
+  }) async {
+    await feedRepository.createPost(
+      content: content,
+      gameId: gameId,
+      tagIds: tagIds,
+      assetId: assetId,
+      assetLink: assetLink,
+    );
   }
 }

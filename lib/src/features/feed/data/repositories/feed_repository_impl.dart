@@ -40,7 +40,15 @@ class FeedRepositoryImpl implements FeedRepository {
     required String content,
     int? gameId,
     List<int>? tagIds,
+    int? assetId,
+    String? assetLink,
   }) async {
-    await api.createPost(content: content, gameId: gameId, tagIds: tagIds);
+    await api.createPost(
+      content: content,
+      gameId: gameId,
+      tagIds: tagIds,
+      assetId: assetId,
+      assetLink: assetLink,
+    );
   }
 }

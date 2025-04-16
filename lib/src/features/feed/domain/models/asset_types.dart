@@ -9,4 +9,12 @@ extension AssetTypeExtension on AssetType{
         return 'Video';
     }
   }
+  int get id {
+    switch (this) {
+      case AssetType.image:
+        return 1;
+      case AssetType.video:
+        return 2;
+    }
+  }
 }
