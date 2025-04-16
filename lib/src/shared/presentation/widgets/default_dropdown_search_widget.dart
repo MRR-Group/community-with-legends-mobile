@@ -39,7 +39,9 @@ class DefaultDropdownSearch extends StatelessWidget {
           focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: primaryColor),
             borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(4), topRight: Radius.circular(4)),
+              topLeft: Radius.circular(4),
+              topRight: Radius.circular(4),
+            ),
           ),
           enabledBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: Colors.transparent),

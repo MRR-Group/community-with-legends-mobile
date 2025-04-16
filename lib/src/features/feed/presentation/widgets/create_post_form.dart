@@ -99,8 +99,10 @@ class _CreatePostFormState extends State<CreatePostForm> {
                         Button.iconRight(
                           text: 'Clutch moment',
                           fontSize: 12,
-                          icon: const Icon(CupertinoIcons.clear_thick,
-                              color: textColor),
+                          icon: const Icon(
+                            CupertinoIcons.clear_thick,
+                            color: textColor,
+                          ),
                           horizontalPadding: 12,
                           onPressed: () {},
                         ),
