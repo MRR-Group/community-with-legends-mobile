@@ -78,12 +78,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                         showSearchBox: true,
                         searchBoxHint: 'Search game...',
                         items: (filter, infiniteScrollProps) async {
-                          return [
-                            'League of Legends',
-                            'R.E.P.O',
-                            'Counter Strike 2',
-                            'Supermarket Together',
-                          ];
+                          return controller.loadFilteredGames(context: context, filter: filter);
                         },
                         onChanged: (value) {
                           print('Wybrano: $value');

@@ -1,14 +1,18 @@
+import 'dart:async';
+
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/unauthenticated_exception.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/feed_posts_model.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/create_post_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_filtered_games_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_posts_usecase.dart';
 import 'package:flutter/material.dart';
 
 class FeedController extends ChangeNotifier {
   final GetPostsUseCase getPosts;
   final CreatePostUseCase createPost;
+  final GetFilteredGamesUseCase getFilteredGames;
 
-  FeedController(this.getPosts, this.createPost);
+  FeedController(this.getPosts, this.createPost, this.getFilteredGames);
 
   bool _isLoading = false;
 
@@ -61,6 +65,19 @@ class FeedController extends ChangeNotifier {
       notifyListeners();
 
       loadPosts(context);
+    }
+  }
+
+  FutureOr<List<String>> loadFilteredGames({
+    required BuildContext context,
+    required String filter,
+  }) async {
+    _error = null;
+    try {
+      return await getFilteredGames.execute(filter);
+    } on UnauthenticatedException catch (_) {
+      Navigator.pushReplacementNamed(context, '/login');
+      return [''];
     }
   }
 }

@@ -9,6 +9,7 @@ import 'package:community_with_legends_mobile/src/features/auth/presentation/pag
 import 'package:community_with_legends_mobile/src/features/feed/data/data_sources/feed_api.dart';
 import 'package:community_with_legends_mobile/src/features/feed/data/repositories/feed_repository_impl.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/create_post_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_filtered_games_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_posts_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/feed_controller.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/pages/feed_page.dart';
@@ -54,7 +55,8 @@ class AppSetup{
     final feedRepository = FeedRepositoryImpl(feedApi);
     final getPostsUseCase = GetPostsUseCase(feedRepository);
     final createPostUseCase = CreatePostUseCase(feedRepository);
-    return FeedController(getPostsUseCase, createPostUseCase);
+    final getFilteredGamesUseCase = GetFilteredGamesUseCase(feedRepository);
+    return FeedController(getPostsUseCase, createPostUseCase, getFilteredGamesUseCase);
   }
 
   List<SingleChildWidget> getProviders(){

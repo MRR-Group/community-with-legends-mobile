@@ -84,4 +84,10 @@ class FeedApi {
       },
     );
   }
+
+  Future<Map<String, dynamic>> getFilteredGames(String filter) {
+    return _feedGetRequest(
+      urlPath: 'api/games/search?filter=$filter',
+    );
+  }
 }
