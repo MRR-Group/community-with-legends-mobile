@@ -1,5 +1,6 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/asset_types.dart';
+import 'package:community_with_legends_mobile/src/features/feed/domain/models/tag_model.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/feed_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/game_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
@@ -80,6 +81,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                         searchBoxHint: 'Search game...',
                         listTitle: 'Add game',
                         compareFn: (item1, item2) => item1.name == item2.name,
+                        filterFn: (_, __) => true,
                         items: (filter, infiniteScrollProps) async {
                           return controller.loadFilteredGames(
                             context: context,
@@ -90,7 +92,10 @@ class _CreatePostFormState extends State<CreatePostForm> {
                           print('Wybrano: $value');
                           selectedGame = value;
                         },
-                        keyToString: (key) => key?.name ?? '',
+                        keyToString: (key) {
+                          print("keyToString: $key");
+                          return key?.name ?? '';
+                        },
                       ),
                     ),
                     const Text(
@@ -126,22 +131,25 @@ class _CreatePostFormState extends State<CreatePostForm> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: DefaultDropdownSearch<String>(
+                      child: DefaultDropdownSearch<Tag>(
                         overrideSelectedItemTitle: true,
                         listTitle: 'Add tag',
                         showSearchBox: true,
                         searchBoxHint: 'Search tag...',
+                        compareFn: (item1, item2) => item1.id == item2.id,
+                        filterFn: (_, __) => true,
+                        keyToString: (key) => key?.name ?? '',
                         items: (filter, infiniteScrollProps) async {
-                          return [
-                            'Clutch moment',
-                            'Funny moment',
-                            'Glitch',
-                          ];
+                          final tags = await controller.loadTags(
+                            context: context,
+                            filter: filter,
+                          );
+                          print(tags);
+                          return tags;
                         },
                         onChanged: (value) {
                           print('Wybrano: $value');
                         },
-                        keyToString: (key) => key!,
                       ),
                     ),
                     const Text(

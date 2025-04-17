@@ -16,6 +16,7 @@ class DefaultDropdownSearch<T> extends StatelessWidget {
     this.listTitle = '',
     required this.keyToString,
     this.compareFn,
+    this.filterFn,
   });
 
   final FutureOr<List<T>> Function(String, LoadProps?)? items;
@@ -27,6 +28,7 @@ class DefaultDropdownSearch<T> extends StatelessWidget {
   final String listTitle;
   final String Function(T?) keyToString;
   final bool Function(T, T)? compareFn;
+  final bool Function(T, String)? filterFn;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class DefaultDropdownSearch<T> extends StatelessWidget {
       selectedItem: selectedItem,
       items: items,
       compareFn: compareFn,
+      filterFn: filterFn,
       decoratorProps: DropDownDecoratorProps(
         decoration: InputDecoration(
           contentPadding: EdgeInsets.zero,

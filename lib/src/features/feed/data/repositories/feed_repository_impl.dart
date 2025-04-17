@@ -1,7 +1,9 @@
 import 'package:community_with_legends_mobile/src/features/feed/data/data_sources/feed_api.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/feed_posts_model.dart';
+import 'package:community_with_legends_mobile/src/features/feed/domain/models/tag_model.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/repositories/feed_repository.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/game_model.dart';
+import 'package:flutter/widgets.dart';
 
 class FeedRepositoryImpl implements FeedRepository {
   final FeedApi api;
@@ -27,6 +29,22 @@ class FeedRepositoryImpl implements FeedRepository {
     try {
       final result = (response['data'] as List<dynamic>)
           .map((gamesData) => Game.fromJson(gamesData))
+          .toList();
+
+      return result;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<Tag>> getTags(String filter) async {
+    final response = await api.getTags(filter);
+    debugPrint(response.toString());
+
+    try {
+      final result = (response['data'] as List<dynamic>)
+          .map((tags) => Tag.fromJson(tags))
           .toList();
 
       return result;

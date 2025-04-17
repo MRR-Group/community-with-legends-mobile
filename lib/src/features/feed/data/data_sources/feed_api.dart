@@ -94,4 +94,10 @@ class FeedApi {
       urlPath: 'api/games/search?filter=$filter',
     );
   }
+
+  Future<Map<String, dynamic>> getTags(String filter) {
+    return _feedGetRequest(
+      urlPath: 'api/tags/search?filter=$filter',
+    );
+  }
 }

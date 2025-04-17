@@ -11,6 +11,7 @@ import 'package:community_with_legends_mobile/src/features/feed/data/repositorie
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/create_post_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_filtered_games_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_posts_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_tags_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/feed_controller.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/pages/feed_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,8 +19,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
-
-class AppSetup{
+class AppSetup {
   static final AppSetup _instance = AppSetup._internal();
 
   factory AppSetup() {
@@ -36,30 +36,36 @@ class AppSetup{
     '/feed': (context) => FeedPage(),
   };
 
-  LoginController createLoginController(){
+  LoginController createLoginController() {
     final api = AuthApi(apiUrl);
     final repository = AuthRepositoryImpl(api);
     final loginUseCase = LoginUseCase(repository);
     return LoginController(loginUseCase);
   }
 
-  RegisterController createRegisterController(){
+  RegisterController createRegisterController() {
     final api = AuthApi(apiUrl);
     final repository = AuthRepositoryImpl(api);
     final registerUseCase = RegisterUseCase(repository);
     return RegisterController(registerUseCase);
   }
 
-  FeedController createFeedController(){
+  FeedController createFeedController() {
     final feedApi = FeedApi(apiUrl);
     final feedRepository = FeedRepositoryImpl(feedApi);
     final getPostsUseCase = GetPostsUseCase(feedRepository);
     final createPostUseCase = CreatePostUseCase(feedRepository);
     final getFilteredGamesUseCase = GetFilteredGamesUseCase(feedRepository);
-    return FeedController(getPostsUseCase, createPostUseCase, getFilteredGamesUseCase);
+    final getTagsUseCase = GetTagsUseCase(feedRepository);
+    return FeedController(
+      getPostsUseCase,
+      createPostUseCase,
+      getFilteredGamesUseCase,
+      getTagsUseCase,
+    );
   }
 
-  List<SingleChildWidget> getProviders(){
+  List<SingleChildWidget> getProviders() {
     return [
       ChangeNotifierProvider<LoginController>(
         create: (_) => createLoginController(),
@@ -72,5 +78,4 @@ class AppSetup{
       ),
     ];
   }
-
 }
