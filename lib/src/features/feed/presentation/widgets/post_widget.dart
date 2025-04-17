@@ -1,6 +1,7 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/post_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -98,9 +99,11 @@ class PostWidget extends StatelessWidget {
         Positioned(
           right: 75,
           bottom: 0,
-          child: Button(
+          child: Button.iconLeft(
+            icon: const Icon(CupertinoIcons.chat_bubble_text_fill, color: textColor,),
+            horizontalPadding: 12,
             text: 'Reply',
-            fontSize: 10,
+            fontSize: 16,
             onPressed: () {},
           ),
         ),
