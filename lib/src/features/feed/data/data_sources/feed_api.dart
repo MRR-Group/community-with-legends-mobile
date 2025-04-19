@@ -25,7 +25,7 @@ class FeedApi {
   }
 
   Future<Map<String, dynamic>> _feedPostRequest({
-    required Map<String, dynamic> body,
+    Map<String, dynamic> body = const {},
     required String urlPath,
   }) async {
     final url = Uri.parse('$apiUrl/$urlPath');
@@ -99,5 +99,9 @@ class FeedApi {
     return _feedGetRequest(
       urlPath: 'api/tags/search?filter=$filter',
     );
+  }
+
+  Future<void> togglePostReaction(int postId) async {
+    _feedPostRequest(urlPath: 'api/posts/$postId/reactions');
   }
 }

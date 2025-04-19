@@ -8,10 +8,12 @@ import 'package:community_with_legends_mobile/src/features/auth/presentation/pag
 import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/register_page.dart';
 import 'package:community_with_legends_mobile/src/features/feed/data/data_sources/feed_api.dart';
 import 'package:community_with_legends_mobile/src/features/feed/data/repositories/feed_repository_impl.dart';
+import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/add_reaction_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/create_post_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_filtered_games_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_posts_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_tags_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/remove_reaction_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/feed_controller.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/pages/feed_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -40,6 +42,7 @@ class AppSetup {
     final api = AuthApi(apiUrl);
     final repository = AuthRepositoryImpl(api);
     final loginUseCase = LoginUseCase(repository);
+
     return LoginController(loginUseCase);
   }
 
@@ -47,6 +50,7 @@ class AppSetup {
     final api = AuthApi(apiUrl);
     final repository = AuthRepositoryImpl(api);
     final registerUseCase = RegisterUseCase(repository);
+
     return RegisterController(registerUseCase);
   }
 
@@ -57,11 +61,17 @@ class AppSetup {
     final createPostUseCase = CreatePostUseCase(feedRepository);
     final getFilteredGamesUseCase = GetFilteredGamesUseCase(feedRepository);
     final getTagsUseCase = GetTagsUseCase(feedRepository);
+    final addReactionToPost = AddReactionToPostUsecase(feedRepository);
+    final removeReactionFromPost =
+        RemoveReactionFromPostUsecase(feedRepository);
+
     return FeedController(
       getPostsUseCase,
       createPostUseCase,
       getFilteredGamesUseCase,
       getTagsUseCase,
+      addReactionToPost,
+      removeReactionFromPost,
     );
   }
 

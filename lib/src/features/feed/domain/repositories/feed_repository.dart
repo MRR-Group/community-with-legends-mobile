@@ -6,6 +6,8 @@ abstract class FeedRepository {
   Future<FeedPosts> getPosts();
   Future<List<Game>> getFilteredGames(String filter);
   Future<List<Tag>> getTags(String filter);
+  Future<void> addReactionToPost(int postId);
+  Future<void> removeReactionFromPost(int postId);
 
   Future<void> createPost({
     required String content,
@@ -14,4 +16,5 @@ abstract class FeedRepository {
     int? assetId,
     String? assetLink,
   });
+
 }

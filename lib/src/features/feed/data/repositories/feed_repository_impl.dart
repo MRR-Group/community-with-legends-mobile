@@ -67,4 +67,14 @@ class FeedRepositoryImpl implements FeedRepository {
       assetLink: assetLink,
     );
   }
+
+  @override
+  Future<void> addReactionToPost(int postId) async{
+    await api.togglePostReaction(postId);
+  }
+
+  @override
+  Future<void> removeReactionFromPost(int postId) async{
+    await api.togglePostReaction(postId);
+  }
 }

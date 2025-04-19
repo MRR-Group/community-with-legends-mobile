@@ -3,11 +3,14 @@ import 'dart:async';
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/unauthenticated_exception.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/asset_types.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/feed_posts_model.dart';
+import 'package:community_with_legends_mobile/src/features/feed/domain/models/post_model.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/tag_model.dart';
+import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/add_reaction_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/create_post_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_filtered_games_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_posts_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_tags_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/remove_reaction_usecase.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/game_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +20,8 @@ class FeedController extends ChangeNotifier {
   final CreatePostUseCase createPost;
   final GetFilteredGamesUseCase getFilteredGames;
   final GetTagsUseCase getTags;
+  final AddReactionToPostUsecase addReactionToPost;
+  final RemoveReactionFromPostUsecase removeReactionFromPost;
 
   FeedPosts? _feedPosts;
 
@@ -46,6 +51,8 @@ class FeedController extends ChangeNotifier {
     this.createPost,
     this.getFilteredGames,
     this.getTags,
+    this.addReactionToPost,
+    this.removeReactionFromPost,
   );
 
   Future<void> submitPost({
@@ -151,5 +158,16 @@ class FeedController extends ChangeNotifier {
     formKey?.currentState?.reset();
 
     notifyListeners();
+  }
+
+  Future<void> addReaction(BuildContext context, Post post) async {
+    try {
+      await addReactionToPost.execute(post.id);
+      post.reactionsCount++;
+    } on UnauthenticatedException catch (_) {
+      Navigator.pushReplacementNamed(context, '/login');
+    }finally {
+      notifyListeners();
+    }
   }
 }
