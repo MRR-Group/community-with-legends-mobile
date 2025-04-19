@@ -1,5 +1,6 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/post_model.dart';
+import 'package:community_with_legends_mobile/src/features/feed/presentation/widgets/post_tags.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -67,6 +68,8 @@ class PostWidget extends StatelessWidget {
                           ),
                         ],
                       ),
+                      if (post.tags != null && post.tags!.isNotEmpty)
+                        PostTags(tags: post.tags!),
                       Text(post.content),
                       Padding(
                         padding: const EdgeInsets.all(12),

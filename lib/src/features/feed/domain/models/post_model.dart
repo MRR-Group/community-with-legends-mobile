@@ -12,7 +12,7 @@ class Post {
   final DateTime updatedAt;
   final User user;
   final Game? game;
-  final Tag? tag;
+  final List<Tag>? tags;
 
   Post({
     required this.id,
@@ -24,7 +24,7 @@ class Post {
     required this.updatedAt,
     required this.user,
     this.game,
-    this.tag,
+    this.tags,
   });
 
   factory Post.fromJson(Map<String, dynamic> json) {
@@ -32,12 +32,13 @@ class Post {
       id: json['id'] ?? -1,
       userId: json['user_id'],
       gameId: json['game_id'],
-      tagId: json['tag_id'],
       content: json['content'],
       createdAt: DateTime.parse(json['created_at']),
       updatedAt: DateTime.parse(json['updated_at']),
       game: json['game'] == null ? null : Game.fromJson(json['game']),
-      tag: json['tag'] == null ? null : Tag.fromJson(json['tag']),
+      tags: (json['tags'] as List<dynamic>)
+          .map((tagJson) => Tag.fromJson(tagJson))
+          .toList(),
       user: User.fromJson(json['user']),
     );
   }
