@@ -76,6 +76,12 @@ class _CreatePostFormState extends State<CreatePostForm> {
                           controller.postContent = content;
                         }
                       },
+                      validator: (content) {
+                        if(content == null || content.isEmpty){
+                          return 'Content is required';
+                        }
+                        return null;
+                      },
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
@@ -182,10 +188,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                                   assetLink: widget.assetController.text,
                                   tagIds: controller.selectedTags.map((tag) => tag.id).toList(),
                                 );
-                              } else {
-                                print('couldnt validate form');
                               }
-                              return;
                             },
                           ),
                           const Spacer(),
