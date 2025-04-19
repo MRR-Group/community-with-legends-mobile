@@ -31,9 +31,6 @@ class CreatePostForm extends StatefulWidget {
 }
 
 class _CreatePostFormState extends State<CreatePostForm> {
-  AssetType selectedAssetType = AssetType.image;
-  Game? selectedGame;
-
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<FeedController>(context);
@@ -72,12 +69,12 @@ class _CreatePostFormState extends State<CreatePostForm> {
                         ),
                       ),
                       onSaved: (content) {
-                        if(content != null){
+                        if (content != null) {
                           controller.postContent = content;
                         }
                       },
                       validator: (content) {
-                        if(content == null || content.isEmpty){
+                        if (content == null || content.isEmpty) {
                           return 'Content is required';
                         }
                         return null;
@@ -98,7 +95,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                           );
                         },
                         onChanged: (value) {
-                          selectedGame = value;
+                          controller.selectedGame = value;
                         },
                         keyToString: (key) {
                           return key?.name ?? '';
@@ -143,12 +140,12 @@ class _CreatePostFormState extends State<CreatePostForm> {
                       buttons: {
                         'Image': () {
                           setState(() {
-                            selectedAssetType = AssetType.image;
+                            controller.selectedAssetType = AssetType.image;
                           });
                         },
                         'Video': () {
                           setState(() {
-                            selectedAssetType = AssetType.video;
+                            controller.selectedAssetType = AssetType.video;
                           });
                         },
                       },
@@ -156,10 +153,10 @@ class _CreatePostFormState extends State<CreatePostForm> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: TextFormField(
-                        controller: widget.assetController,
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.all(12),
-                          hintText: 'Link to ${selectedAssetType.displayName}',
+                          hintText:
+                              'Link to ${controller.selectedAssetType.displayName}',
                           fillColor: backgroundLightColor,
                           filled: true,
                           suffixIcon: const Icon(Icons.add),
@@ -168,6 +165,9 @@ class _CreatePostFormState extends State<CreatePostForm> {
                             borderSide: BorderSide.none,
                           ),
                         ),
+                        onSaved: (assetLink) {
+                          controller.assetLink = assetLink;
+                        },
                       ),
                     ),
                     Padding(
@@ -177,28 +177,15 @@ class _CreatePostFormState extends State<CreatePostForm> {
                           Button(
                             text: 'Post',
                             fontSize: 24,
-                            onPressed: () {
-                              if (widget.formKey.currentState!.validate()) {
-                                widget.formKey.currentState!.save();
-                                controller.submitPost(
-                                  context: context,
-                                  content: controller.postContent!,
-                                  gameId: selectedGame?.id,
-                                  assetId: selectedAssetType.id,
-                                  assetLink: widget.assetController.text,
-                                  tagIds: controller.selectedTags.map((tag) => tag.id).toList(),
-                                );
-                              }
-                            },
+                            onPressed: _submitForm(controller),
                           ),
                           const Spacer(),
                           Button(
                             text: 'Cancel',
                             fontSize: 24,
                             onPressed: () {
-                              controller.clearTags();
                               widget.formKey.currentState?.reset();
-                              selectedGame = null;
+                              controller.clearForm();
                             },
                           ),
                         ],
@@ -212,5 +199,21 @@ class _CreatePostFormState extends State<CreatePostForm> {
         ),
       ),
     );
+  }
+
+  Function() _submitForm(FeedController controller) {
+    return () {
+      if (widget.formKey.currentState!.validate()) {
+        widget.formKey.currentState!.save();
+        controller.submitPost(
+          context: context,
+          content: controller.postContent!,
+          gameId: controller.selectedGame?.id,
+          assetId: controller.selectedAssetType.id,
+          assetLink: controller.assetLink,
+          tagIds: controller.selectedTagIds,
+        );
+      }
+    };
   }
 }

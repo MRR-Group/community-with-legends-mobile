@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/unauthenticated_exception.dart';
+import 'package:community_with_legends_mobile/src/features/feed/domain/models/asset_types.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/feed_posts_model.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/tag_model.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/create_post_usecase.dart';
@@ -16,47 +17,34 @@ class FeedController extends ChangeNotifier {
   final GetFilteredGamesUseCase getFilteredGames;
   final GetTagsUseCase getTags;
 
+  FeedPosts? _feedPosts;
+
+  bool _isCreatingPost = false;
+  bool _isLoading = false;
+  String? _error;
+
+  String? postContent;
+  Game? selectedGame;
+  List<Tag> selectedTags = [];
+  AssetType selectedAssetType = AssetType.image;
+  String? assetLink;
+
+  FeedPosts? get feedPosts => _feedPosts;
+
+  bool get isCreatingPost => _isCreatingPost;
+
+  bool get isLoading => _isLoading;
+
+  String? get error => _error;
+
+  List<int> get selectedTagIds => selectedTags.map((tag) => tag.id).toList();
+
   FeedController(
     this.getPosts,
     this.createPost,
     this.getFilteredGames,
     this.getTags,
   );
-
-  bool _isLoading = false;
-
-  bool get isLoading => _isLoading;
-  bool _isCreatingPost = false;
-
-  bool get isCreatingPost => _isCreatingPost;
-
-  FeedPosts? _feedPosts;
-
-  FeedPosts? get feedPosts => _feedPosts;
-
-  String? _error;
-
-  String? get error => _error;
-
-  List<Tag> selectedTags = [];
-  String? postContent;
-
-  Future<void> loadPosts(BuildContext context) async {
-    _error = null;
-    _feedPosts = null;
-    _isLoading = true;
-    await Future.delayed(Duration.zero);
-    notifyListeners();
-
-    try {
-      _feedPosts = await getPosts.execute();
-    } on UnauthenticatedException catch (_) {
-      Navigator.pushReplacementNamed(context, '/login');
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
 
   Future<void> submitPost({
     required BuildContext context,
@@ -68,6 +56,7 @@ class FeedController extends ChangeNotifier {
   }) async {
     _error = null;
     _isCreatingPost = true;
+
     notifyListeners();
 
     try {
@@ -82,9 +71,27 @@ class FeedController extends ChangeNotifier {
       Navigator.pushReplacementNamed(context, '/login');
     } finally {
       _isCreatingPost = false;
-      notifyListeners();
 
+      notifyListeners();
       loadPosts(context);
+    }
+  }
+
+  Future<void> loadPosts(BuildContext context) async {
+    _error = null;
+    _feedPosts = null;
+    _isLoading = true;
+
+    await Future.delayed(Duration.zero);
+    notifyListeners();
+
+    try {
+      _feedPosts = await getPosts.execute();
+    } on UnauthenticatedException catch (_) {
+      Navigator.pushReplacementNamed(context, '/login');
+    } finally {
+      _isLoading = false;
+      notifyListeners();
     }
   }
 
@@ -93,6 +100,7 @@ class FeedController extends ChangeNotifier {
     required String filter,
   }) async {
     _error = null;
+
     try {
       return await getFilteredGames.execute(filter);
     } on UnauthenticatedException catch (_) {
@@ -106,6 +114,7 @@ class FeedController extends ChangeNotifier {
     required String filter,
   }) async {
     _error = null;
+
     try {
       return await getTags.execute(filter);
     } on UnauthenticatedException catch (_) {
@@ -127,5 +136,14 @@ class FeedController extends ChangeNotifier {
   void clearTags() {
     selectedTags.clear();
     notifyListeners();
+  }
+
+  void clearForm() {
+    postContent = null;
+    selectedGame = null;
+    selectedAssetType = AssetType.image;
+    assetLink = null;
+
+    clearTags();
   }
 }

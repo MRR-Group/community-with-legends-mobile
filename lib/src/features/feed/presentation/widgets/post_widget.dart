@@ -100,7 +100,10 @@ class PostWidget extends StatelessWidget {
           right: 75,
           bottom: 0,
           child: Button.iconLeft(
-            icon: const Icon(CupertinoIcons.chat_bubble_text_fill, color: textColor,),
+            icon: const Icon(
+              CupertinoIcons.chat_bubble_text_fill,
+              color: textColor,
+            ),
             horizontalPadding: 12,
             text: 'Reply',
             fontSize: 16,

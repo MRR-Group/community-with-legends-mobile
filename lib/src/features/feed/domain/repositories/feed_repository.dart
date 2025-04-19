@@ -14,5 +14,4 @@ abstract class FeedRepository {
     int? assetId,
     String? assetLink,
   });
-
 }
