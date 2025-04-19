@@ -16,7 +16,12 @@ class FeedController extends ChangeNotifier {
   final GetFilteredGamesUseCase getFilteredGames;
   final GetTagsUseCase getTags;
 
-  FeedController(this.getPosts, this.createPost, this.getFilteredGames, this.getTags);
+  FeedController(
+    this.getPosts,
+    this.createPost,
+    this.getFilteredGames,
+    this.getTags,
+  );
 
   bool _isLoading = false;
 
@@ -32,6 +37,9 @@ class FeedController extends ChangeNotifier {
   String? _error;
 
   String? get error => _error;
+
+  List<Tag> selectedTags = [];
+  String? postContent;
 
   Future<void> loadPosts(BuildContext context) async {
     _error = null;
@@ -94,15 +102,30 @@ class FeedController extends ChangeNotifier {
   }
 
   FutureOr<List<Tag>> loadTags({
-    required BuildContext context, required String filter,
+    required BuildContext context,
+    required String filter,
   }) async {
     _error = null;
-    print('loadingtags');
     try {
       return await getTags.execute(filter);
     } on UnauthenticatedException catch (_) {
       Navigator.pushReplacementNamed(context, '/login');
       return [];
     }
+  }
+
+  void addTag(Tag tag) {
+    selectedTags.add(tag);
+    notifyListeners();
+  }
+
+  void removeTag(Tag tag) {
+    selectedTags.remove(tag);
+    notifyListeners();
+  }
+
+  void clearTags() {
+    selectedTags.clear();
+    notifyListeners();
   }
 }

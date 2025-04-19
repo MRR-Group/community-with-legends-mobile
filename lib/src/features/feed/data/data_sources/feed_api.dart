@@ -82,7 +82,7 @@ class FeedApi {
       body: {
         'content': content,
         'game_id': gameId ?? '',
-        'tagIds': tagIds ?? [],
+        'tag_ids': tagIds ?? [],
         'asset_type_id': assetId,
         'asset_link': assetLink,
       },

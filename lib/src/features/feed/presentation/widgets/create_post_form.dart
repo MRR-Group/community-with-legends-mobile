@@ -2,11 +2,11 @@ import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/asset_types.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/tag_model.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/feed_controller.dart';
+import 'package:community_with_legends_mobile/src/features/feed/presentation/widgets/selected_tags.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/game_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_dropdown_search_widget.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/toggle_button_form_field.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -48,7 +48,6 @@ class _CreatePostFormState extends State<CreatePostForm> {
         child: Card(
           child: SizedBox(
             width: 300,
-            height: 620,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 18),
               child: Form(
@@ -61,7 +60,6 @@ class _CreatePostFormState extends State<CreatePostForm> {
                       style: TextStyle(fontSize: 32),
                     ),
                     TextFormField(
-                      controller: widget.contentController,
                       maxLines: 4,
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(12),
@@ -73,6 +71,11 @@ class _CreatePostFormState extends State<CreatePostForm> {
                           borderSide: BorderSide.none,
                         ),
                       ),
+                      onSaved: (content) {
+                        if(content != null){
+                          controller.postContent = content;
+                        }
+                      },
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
@@ -89,11 +92,9 @@ class _CreatePostFormState extends State<CreatePostForm> {
                           );
                         },
                         onChanged: (value) {
-                          print('Wybrano: $value');
                           selectedGame = value;
                         },
                         keyToString: (key) {
-                          print("keyToString: $key");
                           return key?.name ?? '';
                         },
                       ),
@@ -102,33 +103,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                       'Tags',
                       style: TextStyle(fontSize: 24),
                     ),
-                    Row(
-                      children: [
-                        Button.iconRight(
-                          text: 'Clutch moment',
-                          fontSize: 12,
-                          icon: const Icon(
-                            CupertinoIcons.clear_thick,
-                            color: textColor,
-                          ),
-                          horizontalPadding: 12,
-                          onPressed: () {},
-                        ),
-                        const SizedBox(
-                          width: 8,
-                        ),
-                        Button.iconRight(
-                          text: 'Glitch',
-                          fontSize: 12,
-                          icon: const Icon(
-                            CupertinoIcons.clear_thick,
-                            color: textColor,
-                          ),
-                          horizontalPadding: 12,
-                          onPressed: () {},
-                        ),
-                      ],
-                    ),
+                    const SelectedTags(),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: DefaultDropdownSearch<Tag>(
@@ -144,11 +119,12 @@ class _CreatePostFormState extends State<CreatePostForm> {
                             context: context,
                             filter: filter,
                           );
-                          print(tags);
                           return tags;
                         },
-                        onChanged: (value) {
-                          print('Wybrano: $value');
+                        onChanged: (tag) {
+                          if (tag != null) {
+                            controller.addTag(tag);
+                          }
                         },
                       ),
                     ),
@@ -200,10 +176,11 @@ class _CreatePostFormState extends State<CreatePostForm> {
                                 widget.formKey.currentState!.save();
                                 controller.submitPost(
                                   context: context,
-                                  content: widget.contentController.text,
+                                  content: controller.postContent!,
                                   gameId: selectedGame?.id,
                                   assetId: selectedAssetType.id,
                                   assetLink: widget.assetController.text,
+                                  tagIds: controller.selectedTags.map((tag) => tag.id).toList(),
                                 );
                               } else {
                                 print('couldnt validate form');
@@ -216,7 +193,9 @@ class _CreatePostFormState extends State<CreatePostForm> {
                             text: 'Cancel',
                             fontSize: 24,
                             onPressed: () {
+                              controller.clearTags();
                               widget.formKey.currentState?.reset();
+                              selectedGame = null;
                             },
                           ),
                         ],

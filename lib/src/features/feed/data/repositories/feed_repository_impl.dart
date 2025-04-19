@@ -3,7 +3,6 @@ import 'package:community_with_legends_mobile/src/features/feed/domain/models/fe
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/tag_model.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/repositories/feed_repository.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/game_model.dart';
-import 'package:flutter/widgets.dart';
 
 class FeedRepositoryImpl implements FeedRepository {
   final FeedApi api;
@@ -40,7 +39,6 @@ class FeedRepositoryImpl implements FeedRepository {
   @override
   Future<List<Tag>> getTags(String filter) async {
     final response = await api.getTags(filter);
-    debugPrint(response.toString());
 
     try {
       final result = (response['data'] as List<dynamic>)
