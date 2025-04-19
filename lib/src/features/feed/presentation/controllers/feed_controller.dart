@@ -127,9 +127,13 @@ class FeedController extends ChangeNotifier {
     }
   }
 
-  void addTag(Tag tag) {
-    selectedTags.add(tag);
-    notifyListeners();
+  void addTag(Tag newTag) {
+    final alreadySelected = selectedTags.any((tag) => tag.id == newTag.id);
+
+    if (!alreadySelected) {
+      selectedTags.add(newTag);
+      notifyListeners();
+    }
   }
 
   void removeTag(Tag tag) {
