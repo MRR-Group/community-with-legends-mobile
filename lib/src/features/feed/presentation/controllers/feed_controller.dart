@@ -9,6 +9,7 @@ import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_posts_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_tags_usecase.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/game_model.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:flutter/material.dart';
 
 class FeedController extends ChangeNotifier {
@@ -23,6 +24,7 @@ class FeedController extends ChangeNotifier {
   bool _isLoading = false;
   String? _error;
 
+  GlobalKey<FormState>? formKey;
   String? postContent;
   Game? selectedGame;
   List<Tag> selectedTags = [];
@@ -67,12 +69,14 @@ class FeedController extends ChangeNotifier {
         assetId: assetId,
         assetLink: assetLink,
       );
+
+      Alert.of(context).show(text: 'Post has been created');
     } on UnauthenticatedException catch (_) {
       Navigator.pushReplacementNamed(context, '/login');
     } finally {
       _isCreatingPost = false;
 
-      notifyListeners();
+      clearForm();
       loadPosts(context);
     }
   }
@@ -133,17 +137,15 @@ class FeedController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void clearTags() {
-    selectedTags.clear();
-    notifyListeners();
-  }
-
   void clearForm() {
     postContent = null;
     selectedGame = null;
     selectedAssetType = AssetType.image;
     assetLink = null;
 
-    clearTags();
+    selectedTags.clear();
+    formKey?.currentState?.reset();
+
+    notifyListeners();
   }
 }

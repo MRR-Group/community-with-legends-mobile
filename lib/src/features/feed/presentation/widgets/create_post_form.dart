@@ -34,6 +34,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<FeedController>(context);
+    controller.formKey = widget.formKey;
 
     return Center(
       child: Container(
