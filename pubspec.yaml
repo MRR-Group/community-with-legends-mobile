@@ -46,6 +46,7 @@ dependencies:
   provider: ^6.1.2
   timeago: ^3.0.0
   dropdown_search: ^6.0.2
+  flutter_launcher_icons: ^0.14.3
 
 dev_dependencies:
   flutter_test:
