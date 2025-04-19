@@ -8,5 +8,9 @@ class StepDefinition {
 }
 
 Future<void> theAppIsRunning(WidgetTester tester) async {
-  await tester.pumpWidget(MyApp(hasAuthToken: false,));
+  await tester.pumpWidget(
+    MyApp(
+      hasAuthToken: false,
+    ),
+  );
 }

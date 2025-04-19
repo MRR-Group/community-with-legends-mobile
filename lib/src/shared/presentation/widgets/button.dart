@@ -63,14 +63,20 @@ class Button extends StatelessWidget {
         ),
         child: isLoading
             ? Padding(
-                padding: EdgeInsets.symmetric(vertical: verticalPadding, horizontal: horizontalPadding),
+                padding: EdgeInsets.symmetric(
+                  vertical: verticalPadding,
+                  horizontal: horizontalPadding,
+                ),
                 child: const LoadingAnimation(
                   height: 26,
                   width: 43.6,
                 ),
               )
             : Padding(
-                padding: EdgeInsets.symmetric(vertical: verticalPadding, horizontal: horizontalPadding),
+                padding: EdgeInsets.symmetric(
+                  vertical: verticalPadding,
+                  horizontal: horizontalPadding,
+                ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [

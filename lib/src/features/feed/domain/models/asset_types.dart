@@ -1,6 +1,6 @@
 enum AssetType { image, video }
 
-extension AssetTypeExtension on AssetType{
+extension AssetTypeExtension on AssetType {
   String get displayName {
     switch (this) {
       case AssetType.image:
@@ -9,6 +9,7 @@ extension AssetTypeExtension on AssetType{
         return 'Video';
     }
   }
+
   int get id {
     switch (this) {
       case AssetType.image:

@@ -12,7 +12,11 @@ Future<void> main() async {
   final prefs = await SharedPreferences.getInstance();
   final hasAuthToken = prefs.getString('auth_token') != null;
 
-  runApp(MyApp(hasAuthToken: hasAuthToken,));
+  runApp(
+    MyApp(
+      hasAuthToken: hasAuthToken,
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -21,10 +25,10 @@ class MyApp extends StatelessWidget {
 
   MyApp({super.key, required this.hasAuthToken});
 
-
   @override
-  Widget build(BuildContext context,) {
-
+  Widget build(
+    BuildContext context,
+  ) {
     return MultiProvider(
       providers: appSetup.getProviders(),
       child: MaterialApp(
