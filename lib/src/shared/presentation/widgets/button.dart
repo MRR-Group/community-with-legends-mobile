@@ -13,6 +13,7 @@ class Button extends StatelessWidget {
     this.isLoading = false,
     this.icon,
     this.iconRight = false,
+    this.gradient = primaryGradient,
   });
 
   const Button.iconLeft({
@@ -24,6 +25,7 @@ class Button extends StatelessWidget {
     this.fontSize,
     this.isLoading = false,
     required this.icon,
+    this.gradient = primaryGradient,
   }) : iconRight = false;
 
   const Button.iconRight({
@@ -35,6 +37,7 @@ class Button extends StatelessWidget {
     this.fontSize,
     this.isLoading = false,
     required this.icon,
+    this.gradient = primaryGradient,
   }) : iconRight = true;
 
   final String text;
@@ -45,6 +48,7 @@ class Button extends StatelessWidget {
   final bool isLoading;
   final Widget? icon;
   final bool iconRight;
+  final Gradient gradient;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +63,7 @@ class Button extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          gradient: primaryGradient,
+          gradient: gradient,
         ),
         child: isLoading
             ? Padding(

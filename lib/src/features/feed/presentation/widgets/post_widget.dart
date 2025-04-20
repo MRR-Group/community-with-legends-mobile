@@ -91,18 +91,18 @@ class _PostWidgetState extends State<PostWidget> {
                             Button(
                               text: '👍 x ${widget.post.reactionsCount}',
                               fontSize: 10,
+                              gradient: widget.post.userReacted ? secondaryGradient : primaryGradient,
                               onPressed: () async {
-                                await controller.addReaction(context, widget.post);
+                                if(widget.post.userReacted){
+                                  controller.removeReaction(context, widget.post);
+                                }else{
+                                  controller.addReaction(context, widget.post);
+                                }
                               },
                               horizontalPadding: 8,
                             ),
                             const SizedBox(
                               width: 20,
-                            ),
-                            Button(
-                              text: 'Add reactions',
-                              fontSize: 10,
-                              onPressed: () {},
                             ),
                           ],
                         ),

@@ -163,7 +163,22 @@ class FeedController extends ChangeNotifier {
   Future<void> addReaction(BuildContext context, Post post) async {
     try {
       await addReactionToPost.execute(post.id);
+
       post.reactionsCount++;
+      post.userReacted = true;
+    } on UnauthenticatedException catch (_) {
+      Navigator.pushReplacementNamed(context, '/login');
+    }finally {
+      notifyListeners();
+    }
+  }
+
+  Future<void> removeReaction(BuildContext context, Post post) async {
+    try {
+      await removeReactionFromPost.execute(post.id);
+
+      post.reactionsCount--;
+      post.userReacted = false;
     } on UnauthenticatedException catch (_) {
       Navigator.pushReplacementNamed(context, '/login');
     }finally {

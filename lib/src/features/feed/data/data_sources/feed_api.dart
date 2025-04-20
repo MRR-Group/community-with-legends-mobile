@@ -45,6 +45,26 @@ class FeedApi {
     return jsonDecode(response.body);
   }
 
+  Future<Map<String, dynamic>> _feedDeleteRequest({
+    Map<String, dynamic> body = const {},
+    required String urlPath,
+  }) async {
+    final url = Uri.parse('$apiUrl/$urlPath');
+
+    final response = await http.delete(
+      url,
+      headers: await _getHeaders(),
+    );
+
+    if (response.statusCode == 401) {
+      throw UnauthenticatedException();
+    } else if (response.statusCode != 200) {
+      throw AuthException('Something went wrong');
+    }
+
+    return jsonDecode(response.body);
+  }
+
   Future<Map<String, dynamic>> _feedGetRequest({
     required String urlPath,
   }) async {
@@ -101,7 +121,11 @@ class FeedApi {
     );
   }
 
-  Future<void> togglePostReaction(int postId) async {
+  Future<void> addPostReaction(int postId) async {
     _feedPostRequest(urlPath: 'api/posts/$postId/reactions');
+  }
+
+  Future<void> removePostReaction(int postId) async {
+    _feedDeleteRequest(urlPath: 'api/posts/$postId/reactions');
   }
 }

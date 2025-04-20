@@ -11,6 +11,7 @@ class Post {
   final DateTime createdAt;
   final DateTime updatedAt;
   late int reactionsCount;
+  late bool userReacted;
   final User user;
   final Game? game;
   final List<Tag>? tags;
@@ -24,6 +25,7 @@ class Post {
     required this.createdAt,
     required this.updatedAt,
     required this.reactionsCount,
+    required this.userReacted,
     required this.user,
     this.game,
     this.tags,
@@ -38,6 +40,7 @@ class Post {
       createdAt: DateTime.parse(json['created_at']),
       updatedAt: DateTime.parse(json['updated_at']),
       reactionsCount: json['reactions_count'],
+      userReacted: json['user_reacted'],
       game: json['game'] == null ? null : Game.fromJson(json['game']),
       tags: (json['tags'] as List<dynamic>)
           .map((tagJson) => Tag.fromJson(tagJson))
