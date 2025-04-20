@@ -1,4 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:convert';
+
+import 'package:community_with_legends_mobile/src/features/app_update/domain/models/version_response_model.dart';
 import 'package:http/http.dart' as http;
 
 class UpdateDatasource {
@@ -6,8 +8,10 @@ class UpdateDatasource {
 
   UpdateDatasource(this._apiUrl);
 
-  Future<void> getLatestVersion() async {
+  Future<VersionResponse> getLatestVersion() async {
     final url = Uri.parse(_apiUrl);
     final response = await http.get(url);
+
+    return VersionResponse.fromJson(jsonDecode(response.body));
   }
 }

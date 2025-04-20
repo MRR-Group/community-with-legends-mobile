@@ -1,4 +1,5 @@
 import 'package:community_with_legends_mobile/src/features/app_update/data/data_sources/update_datasource.dart';
+import 'package:community_with_legends_mobile/src/features/app_update/domain/models/version_response_model.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/domain/repositories/update_repository.dart';
 
 class UpdateRepositoryImpl extends UpdateRepository {
@@ -7,11 +8,12 @@ class UpdateRepositoryImpl extends UpdateRepository {
   UpdateRepositoryImpl(this.updateDatasource);
 
   @override
-  Future<void> checkForUpdate() async {
+  Future<VersionResponse> checkForUpdate() async {
     try{
-      final latestVersion = updateDatasource.getLatestVersion();
+      return updateDatasource.getLatestVersion();
     }catch (e){
       print('Unexpected error $e');
+      rethrow;
     }
   }
 }

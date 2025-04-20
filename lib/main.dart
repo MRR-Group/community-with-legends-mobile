@@ -1,5 +1,6 @@
 import 'package:community_with_legends_mobile/config/theme.dart';
 import 'package:community_with_legends_mobile/src/core/app_setup.dart';
+import 'package:community_with_legends_mobile/src/core/presentation/app_initializer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
@@ -31,12 +32,9 @@ class MyApp extends StatelessWidget {
   ) {
     return MultiProvider(
       providers: appSetup.getProviders(),
-      child: MaterialApp(
-        title: 'Community with Legends',
-        debugShowCheckedModeBanner: false,
-        theme: theme,
-        initialRoute: hasAuthToken ? '/feed' : '/login',
-        routes: appSetup.routes,
+      child: AppInitializer(
+        appSetup: appSetup,
+        hasAuthToken: hasAuthToken,
       ),
     );
   }

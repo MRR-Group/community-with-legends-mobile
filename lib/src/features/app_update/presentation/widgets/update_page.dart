@@ -1,4 +1,5 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
+import 'package:community_with_legends_mobile/src/features/app_update/domain/models/version_asset_model.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/presentation/controllers/update_controller.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/auth_app_bar.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/background_image.dart';
@@ -7,7 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class UpdatePage extends StatelessWidget {
-  const UpdatePage({super.key});
+  final VersionAsset? versionAsset;
+
+  const UpdatePage({super.key, required this.versionAsset});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +49,7 @@ class UpdatePage extends StatelessWidget {
                           const Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              '[+] new page \n'
+                              '[+] new page \n',
                             ),
                           ),
                           Row(

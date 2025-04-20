@@ -36,15 +36,34 @@ class AppSetup {
   AppSetup._internal();
 
   String get apiUrl => dotenv.env['API_URL']!;
-  String get checkUpdate => dotenv.env['CHECK_UPDATE']!;
+
+  String get updateChecking => dotenv.env['CHECK_UPDATE']!;
+
   String get updateUrl => dotenv.env['UPDATE_URL']!;
+
+  bool _updateAvailable = false;
+
+  bool get updateAvailable => _updateAvailable;
 
   final Map<String, WidgetBuilder> routes = {
     '/login': (context) => LoginPage(),
     '/register': (context) => RegisterPage(),
     '/feed': (context) => FeedPage(),
-    '/update': (context) => UpdatePage(),
+    '/update': (context) => const UpdatePage(versionAsset: null),
   };
+
+  Future<void> checkUpdate() async {
+    final updateController = createUpdateController();
+    final availableUpdate = await updateController.updateAvailable();
+    print("checking for update");
+    if (availableUpdate != null) {
+      print('update available');
+      routes['/update'] =
+          (context) => UpdatePage(versionAsset: availableUpdate);
+
+      _updateAvailable = true;
+    }
+  }
 
   LoginController createLoginController() {
     final api = AuthApi(apiUrl);
@@ -82,7 +101,6 @@ class AppSetup {
       removeReactionFromPost,
     );
   }
-
 
   UpdateController createUpdateController() {
     final datasource = UpdateDatasource(updateUrl);
