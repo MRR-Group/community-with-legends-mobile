@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-class PostWidget extends StatefulWidget{
+class PostWidget extends StatefulWidget {
   final Post post;
 
   const PostWidget({super.key, required this.post});
@@ -17,11 +17,9 @@ class PostWidget extends StatefulWidget{
   State<StatefulWidget> createState() {
     return _PostWidgetState();
   }
-
 }
 
 class _PostWidgetState extends State<PostWidget> {
-
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<FeedController>(context);
@@ -81,31 +79,28 @@ class _PostWidgetState extends State<PostWidget> {
                           ),
                         ],
                       ),
-                      if (widget.post.tags != null && widget.post.tags!.isNotEmpty)
+                      if (widget.post.tags != null &&
+                          widget.post.tags!.isNotEmpty)
                         PostTags(tags: widget.post.tags!),
                       Text(widget.post.content),
-                      Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: Row(
-                          children: [
-                            Button(
-                              text: '👍 x ${widget.post.reactionsCount}',
-                              fontSize: 10,
-                              gradient: widget.post.userReacted ? secondaryGradient : primaryGradient,
-                              onPressed: () async {
-                                if(widget.post.userReacted){
-                                  controller.removeReaction(context, widget.post);
-                                }else{
-                                  controller.addReaction(context, widget.post);
-                                }
-                              },
-                              horizontalPadding: 8,
-                            ),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                          ],
-                        ),
+                      Row(
+                        children: [
+                          Button(
+                            text: '👍 x ${widget.post.reactionsCount}',
+                            fontSize: 10,
+                            gradient: widget.post.userReacted
+                                ? secondaryGradient
+                                : primaryGradient,
+                            onPressed: () async {
+                              if (widget.post.userReacted) {
+                                controller.removeReaction(context, widget.post);
+                              } else {
+                                controller.addReaction(context, widget.post);
+                              }
+                            },
+                            horizontalPadding: 8,
+                          ),
+                        ],
                       ),
                     ],
                   ),

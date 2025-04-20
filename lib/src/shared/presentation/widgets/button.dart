@@ -59,6 +59,7 @@ class Button extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
+        minimumSize: Size.zero,
       ),
       child: Container(
         decoration: BoxDecoration(

@@ -28,7 +28,6 @@ class FeedMenu extends StatelessWidget {
                     topLeft: Radius.circular(2),
                     bottomLeft: Radius.circular(2),
                   ),
-                  color: primaryColor,
                 ),
                 child: const Text('Trending'),
               ),
@@ -36,6 +35,7 @@ class FeedMenu extends StatelessWidget {
                 padding: const EdgeInsets.all(8),
                 decoration: const BoxDecoration(
                   border: Border(right: BorderSide(color: textColor)),
+                  color: primaryColor,
                 ),
                 child: const Text('Recent'),
               ),
