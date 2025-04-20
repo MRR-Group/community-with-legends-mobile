@@ -1,20 +1,18 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
-import 'package:community_with_legends_mobile/src/features/app_update/domain/models/version_asset_model.dart';
-import 'package:community_with_legends_mobile/src/features/app_update/presentation/controllers/update_controller.dart';
+import 'package:community_with_legends_mobile/src/features/app_update/domain/models/version_response_model.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/auth_app_bar.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/background_image.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class UpdatePage extends StatelessWidget {
-  final VersionAsset? versionAsset;
+  final VersionResponse? versionResponse;
 
-  const UpdatePage({super.key, required this.versionAsset});
+  const UpdatePage({super.key, required this.versionResponse});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<UpdateController>(context);
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: const AuthAppBar(),
@@ -46,10 +44,17 @@ class UpdatePage extends StatelessWidget {
                             ),
                             textAlign: TextAlign.center,
                           ),
-                          const Align(
+                          Text(
+                            versionResponse?.name ?? '',
+                            style: const TextStyle(
+                              fontSize: 26,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              '[+] new page \n',
+                              versionResponse?.description ?? '',
                             ),
                           ),
                           Row(
@@ -58,9 +63,25 @@ class UpdatePage extends StatelessWidget {
                             children: [
                               Button(
                                 text: "Update",
-                                onPressed: () {},
+                                onPressed: () {
+                                  launchUrl(
+                                    Uri.parse(
+                                      versionResponse
+                                              ?.versionAssets[0].downloadUrl ??
+                                          '',
+                                    ),
+                                  );
+                                },
                               ),
-                              Button(text: "Next time", onPressed: () {}),
+                              Button(
+                                text: "Next time",
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    '/feed',
+                                  );
+                                },
+                              ),
                             ],
                           ),
                         ],

@@ -49,7 +49,7 @@ class AppSetup {
     '/login': (context) => LoginPage(),
     '/register': (context) => RegisterPage(),
     '/feed': (context) => FeedPage(),
-    '/update': (context) => const UpdatePage(versionAsset: null),
+    '/update': (context) => const UpdatePage(versionResponse: null),
   };
 
   Future<void> checkUpdate() async {
@@ -59,7 +59,7 @@ class AppSetup {
     if (availableUpdate != null) {
       print('update available');
       routes['/update'] =
-          (context) => UpdatePage(versionAsset: availableUpdate);
+          (context) => UpdatePage(versionResponse: availableUpdate);
 
       _updateAvailable = true;
     }

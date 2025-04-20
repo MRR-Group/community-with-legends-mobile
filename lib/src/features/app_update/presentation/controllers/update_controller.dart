@@ -1,4 +1,3 @@
-import 'package:community_with_legends_mobile/src/features/app_update/domain/models/version_asset_model.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/domain/models/version_response_model.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/domain/usecases/check_update_usecase.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,13 +8,13 @@ class UpdateController extends ChangeNotifier{
 
   UpdateController(this.checkUpdateUsecase);
 
-  Future<VersionAsset?> updateAvailable() async{
+  Future<VersionResponse?> updateAvailable() async{
     final packageInfo = await PackageInfo.fromPlatform();
     final currentVersion = 'v${packageInfo.version}';
     final latestVersion = await checkUpdateUsecase.execute();
 
     if(_isNewer(remote: latestVersion.name, local: currentVersion)){
-      return latestVersion.versionAssets[0];
+      return latestVersion;
     }
 
     return null;
