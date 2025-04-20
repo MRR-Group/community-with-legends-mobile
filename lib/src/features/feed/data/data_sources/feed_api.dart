@@ -46,7 +46,6 @@ class FeedApi {
   }
 
   Future<Map<String, dynamic>> _feedDeleteRequest({
-    Map<String, dynamic> body = const {},
     required String urlPath,
   }) async {
     final url = Uri.parse('$apiUrl/$urlPath');
