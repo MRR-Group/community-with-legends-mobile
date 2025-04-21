@@ -31,7 +31,6 @@ class Alert {
               borderRadius: BorderRadius.circular(8),
               color: backgroundColor,
             ),
-            child: Expanded(
               child: Text(
                 text,
                 textAlign: TextAlign.center,
@@ -40,7 +39,6 @@ class Alert {
                   overflow: TextOverflow.visible,
                 ),
               ),
-            ),
           ),
         ),
         duration: const Duration(seconds: 5),
