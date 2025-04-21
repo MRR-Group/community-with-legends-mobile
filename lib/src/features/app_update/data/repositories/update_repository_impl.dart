@@ -1,3 +1,4 @@
+import 'package:community_with_legends_mobile/src/core/errors/exceptions/check_update_exception.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/data/data_sources/update_datasource.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/domain/models/version_asset_model.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/domain/models/version_info_model.dart';
@@ -10,23 +11,18 @@ class UpdateRepositoryImpl extends UpdateRepository {
 
   @override
   Future<VersionInfo> checkForUpdate() async {
-    try {
-      final response = await updateDatasource.getLatestVersion();
-      return VersionInfo(
-        name: response.name,
-        publishedAt: response.publishedAt,
-        downloadUrl: getDownloadUrl(response.versionAssets),
-        description: response.description,
-      );
-    } catch (e) {
-      print('Unexpected error $e');
-      rethrow;
-    }
+    final response = await updateDatasource.getLatestVersion();
+    return VersionInfo(
+      name: response.name,
+      publishedAt: response.publishedAt,
+      downloadUrl: getDownloadUrl(response.versionAssets),
+      description: response.description,
+    );
   }
 
-  String getDownloadUrl(List<VersionAsset> assets){
-    for(final asset in assets){
-      if(asset.name.contains('.apk')){
+  String getDownloadUrl(List<VersionAsset> assets) {
+    for (final asset in assets) {
+      if (asset.name.contains('.apk')) {
         return asset.downloadUrl;
       }
     }

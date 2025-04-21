@@ -1,3 +1,4 @@
+import 'package:community_with_legends_mobile/src/core/errors/exceptions/check_update_exception.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/data/data_sources/update_datasource.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/data/repositories/update_repository_impl.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/domain/usecases/check_update_usecase.dart';
@@ -52,12 +53,12 @@ class AppSetup {
     '/update': (context) => const UpdatePage(versionInfo: null),
   };
 
-  Future<void> checkUpdate() async {
+  Future<void> checkUpdate(BuildContext context) async {
     final updateController = createUpdateController();
     final availableUpdate = await updateController.updateAvailable();
+
     if (availableUpdate != null) {
-      routes['/update'] =
-          (context) => UpdatePage(versionInfo: availableUpdate);
+      routes['/update'] = (context) => UpdatePage(versionInfo: availableUpdate);
 
       _updateAvailable = true;
     }

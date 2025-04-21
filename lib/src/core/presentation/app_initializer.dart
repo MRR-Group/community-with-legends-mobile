@@ -1,5 +1,7 @@
 import 'package:community_with_legends_mobile/config/theme.dart';
 import 'package:community_with_legends_mobile/src/core/app_setup.dart';
+import 'package:community_with_legends_mobile/src/core/errors/exceptions/check_update_exception.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:flutter/material.dart';
 
 class AppInitializer extends StatefulWidget {
@@ -17,8 +19,10 @@ class AppInitializer extends StatefulWidget {
 }
 
 class _AppInitializerState extends State<AppInitializer> {
+  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
   bool _initialized = false;
   String initialRoute = '/feed';
+  String? _error;
 
   String getRoute() {
     if (widget.appSetup.updateAvailable) {
@@ -37,7 +41,12 @@ class _AppInitializerState extends State<AppInitializer> {
   }
 
   Future<void> _initAsync() async {
-    await widget.appSetup.checkUpdate();
+    try {
+      await widget.appSetup.checkUpdate(context);
+    } on CheckUpdateException catch (e) {
+      _error = e.toString();
+    }
+
     setState(() {
       initialRoute = getRoute();
       _initialized = true;
@@ -46,18 +55,28 @@ class _AppInitializerState extends State<AppInitializer> {
 
   @override
   Widget build(BuildContext context) {
-    if (!_initialized) {
-      return const MaterialApp(
-        home: Scaffold(
-          body: Center(child: CircularProgressIndicator()),
-        ),
-      );
-    }
-    return MaterialApp(
+    final app = MaterialApp(
+      navigatorKey: _navigatorKey,
       title: 'Community with Legends',
       debugShowCheckedModeBanner: false,
       theme: theme,
-      home: widget.appSetup.routes[initialRoute]!(context),
+      routes: widget.appSetup.routes,
+      home: _initialized
+          ? widget.appSetup.routes[initialRoute]!(context)
+          : const Scaffold(
+              body: Center(child: CircularProgressIndicator()),
+            ),
     );
+
+    if (_initialized && _error != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        final scaffoldContext = _navigatorKey.currentContext;
+        if (scaffoldContext != null) {
+          Alert.of(scaffoldContext).show(text: _error!);
+        }
+      });
+    }
+
+    return app;
   }
 }
