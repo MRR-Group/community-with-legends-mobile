@@ -30,6 +30,7 @@ class ClickableAuthText extends StatelessWidget {
         TextButton(
           onPressed: onPress,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
                 linkText,
