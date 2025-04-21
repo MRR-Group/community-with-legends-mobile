@@ -10,18 +10,34 @@ class UpdateController extends ChangeNotifier {
 
   Future<VersionInfo?> updateAvailable() async {
     final packageInfo = await PackageInfo.fromPlatform();
-    final currentVersion = 'v${packageInfo.version}';
+    final currentVersion = packageInfo.version;
 
     final latestVersion = await checkUpdateUsecase.execute();
 
-    if (_isNewer(remote: latestVersion.name, local: currentVersion)) {
+    if (_isNewerVersion(remote: latestVersion.name, local: currentVersion)) {
       return latestVersion;
     }
 
     return null;
   }
 
-  bool _isNewer({required String remote, required String local}) {
-    return remote.compareTo(local) > 0;
+  bool _isNewerVersion({required String remote, required String local}) {
+    String normalize(String version) => version.replaceFirst('v', '');
+    List<int> parse(String version) =>
+        normalize(version).split('.').map(int.parse).toList();
+
+    final remoteParts = parse(remote);
+    final localParts = parse(local);
+
+    for (int i = 0; i < remoteParts.length; i++) {
+      if (remoteParts[i] > localParts[i]) {
+        return true;
+      }
+      if (remoteParts[i] < localParts[i]) {
+        return false;
+      }
+    }
+
+    return false;
   }
 }
