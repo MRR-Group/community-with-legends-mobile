@@ -62,6 +62,7 @@ class ResetPasswordController with ChangeNotifier {
         Alert.of(context).show(
           text: 'Success! You can now log in with your new password',
         );
+
         Navigator.of(context).pushNamed('/login');
       }
     } catch (error) {
