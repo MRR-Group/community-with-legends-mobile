@@ -1,4 +1,5 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
+import 'package:community_with_legends_mobile/src/features/app_update/domain/models/version_info_model.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/domain/models/version_response_model.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/auth_app_bar.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/background_image.dart';
@@ -7,9 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UpdatePage extends StatelessWidget {
-  final VersionResponse? versionResponse;
+  final VersionInfo? versionInfo;
 
-  const UpdatePage({super.key, required this.versionResponse});
+  const UpdatePage({super.key, required this.versionInfo});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +46,7 @@ class UpdatePage extends StatelessWidget {
                             textAlign: TextAlign.center,
                           ),
                           Text(
-                            versionResponse?.name ?? '',
+                            versionInfo?.name ?? '',
                             style: const TextStyle(
                               fontSize: 26,
                             ),
@@ -54,7 +55,7 @@ class UpdatePage extends StatelessWidget {
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              versionResponse?.description ?? '',
+                              versionInfo?.description ?? '',
                             ),
                           ),
                           Row(
@@ -66,15 +67,13 @@ class UpdatePage extends StatelessWidget {
                                 onPressed: () {
                                   launchUrl(
                                     Uri.parse(
-                                      versionResponse
-                                              ?.versionAssets[0].downloadUrl ??
-                                          '',
+                                      versionInfo?.downloadUrl ?? '',
                                     ),
                                   );
                                 },
                               ),
                               Button(
-                                text: "Next time",
+                                text: 'Next time',
                                 onPressed: () {
                                   Navigator.pushNamed(
                                     context,
