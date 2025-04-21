@@ -51,4 +51,12 @@ class AuthApi {
 
     return _authPostRequest(body: body, urlPath: 'api/auth/register');
   }
+
+  void sendResetToken(String email) {
+    final Map<String, String> body = {
+      'email': email,
+    };
+
+    _authPostRequest(body: body, urlPath: 'api/auth/forgot-password');
+  }
 }

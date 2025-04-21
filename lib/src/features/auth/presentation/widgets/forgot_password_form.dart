@@ -1,36 +1,34 @@
-import 'package:community_with_legends_mobile/src/features/auth/presentation/controllers/login_controller.dart';
+import 'package:community_with_legends_mobile/src/features/auth/presentation/controllers/reset_password_controller.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/auth_text_input.dart';
-import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/auth_via_twitch.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/clickable_auth_text.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class LoginForm extends StatelessWidget {
+class ForgotPasswordForm extends StatelessWidget {
   final GlobalKey<FormState> formKey;
   final TextEditingController emailController;
-  final TextEditingController passwordController;
 
-  const LoginForm({
+  const ForgotPasswordForm({
     super.key,
-    required this.emailController,
-    required this.passwordController,
     required this.formKey,
+    required this.emailController,
   });
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<LoginController>(context);
+    final controller = Provider.of<ResetPasswordController>(context);
 
     return Form(
       key: formKey,
       child: Column(
         children: [
           const Text(
-            'Log in',
+            'Forgot your password?',
             style: TextStyle(
               fontSize: 42,
             ),
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 18),
           AuthTextInput(
@@ -38,41 +36,33 @@ class LoginForm extends StatelessWidget {
             hint: 'Email',
             controller: emailController,
           ),
+          const SizedBox(height: 18),
           ClickableAuthText(
-            message: "You don't have an account?",
+            message: 'You already have a reset token?',
             linkText: 'Click here',
-            actionText: 'to register',
-            onPress: () => Navigator.of(context).pushNamed('/register'),
+            actionText: 'to reset password',
+            onPress: () => Navigator.of(context).pushNamed('/reset-password'),
           ),
           const SizedBox(height: 18),
-          AuthTextInput(
-            text: 'Enter your password',
-            hint: 'Password',
-            obscureText: true,
-            controller: passwordController,
-          ),
           ClickableAuthText(
-            message: "You don't remember?",
+            message: 'Did you remember your password?',
             linkText: 'Click here',
-            actionText: 'to reset it',
-            onPress: () => Navigator.of(context).pushNamed('/forgot-password'),
+            actionText: 'to log in',
+            onPress: () => Navigator.of(context).pushNamed('/login'),
           ),
           const SizedBox(height: 18),
           Button(
-            text: 'Log in',
+            text: 'Send code',
             onPressed: () {
               if (!controller.isLoading) {
-                controller.login(
+                controller.sendResetTokenEmail(
                   context,
                   emailController.text,
-                  passwordController.text,
                 );
               }
             },
             isLoading: controller.isLoading,
           ),
-          const SizedBox(height: 18),
-          const AuthViaTwitch(authMode: AuthMode.login),
         ],
       ),
     );
