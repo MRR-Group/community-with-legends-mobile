@@ -55,9 +55,7 @@ class AppSetup {
   Future<void> checkUpdate() async {
     final updateController = createUpdateController();
     final availableUpdate = await updateController.updateAvailable();
-    print("checking for update");
     if (availableUpdate != null) {
-      print('update available');
       routes['/update'] =
           (context) => UpdatePage(versionInfo: availableUpdate);
 

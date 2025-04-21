@@ -1,4 +1,3 @@
-import 'package:community_with_legends_mobile/config/theme.dart';
 import 'package:community_with_legends_mobile/src/core/app_setup.dart';
 import 'package:community_with_legends_mobile/src/core/presentation/app_initializer.dart';
 import 'package:flutter/material.dart';

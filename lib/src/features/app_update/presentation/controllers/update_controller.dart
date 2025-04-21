@@ -1,5 +1,4 @@
 import 'package:community_with_legends_mobile/src/features/app_update/domain/models/version_info_model.dart';
-import 'package:community_with_legends_mobile/src/features/app_update/domain/models/version_response_model.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/domain/usecases/check_update_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:package_info_plus/package_info_plus.dart';

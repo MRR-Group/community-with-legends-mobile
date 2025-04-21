@@ -1,6 +1,5 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/domain/models/version_info_model.dart';
-import 'package:community_with_legends_mobile/src/features/app_update/domain/models/version_response_model.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/auth_app_bar.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/background_image.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
@@ -63,7 +62,7 @@ class UpdatePage extends StatelessWidget {
                             spacing: 16,
                             children: [
                               Button(
-                                text: "Update",
+                                text: 'Update',
                                 onPressed: () {
                                   launchUrl(
                                     Uri.parse(

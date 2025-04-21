@@ -1,9 +1,6 @@
 import 'package:community_with_legends_mobile/config/theme.dart';
 import 'package:community_with_legends_mobile/src/core/app_setup.dart';
-import 'package:community_with_legends_mobile/src/features/app_update/presentation/controllers/update_controller.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class AppInitializer extends StatefulWidget {
   final AppSetup appSetup;
@@ -25,14 +22,11 @@ class _AppInitializerState extends State<AppInitializer> {
 
   String getRoute() {
     if (widget.appSetup.updateAvailable) {
-      print(1);
       return '/update';
     } else if (widget.hasAuthToken) {
-      print(2);
       return '/feed';
     }
 
-    print(3);
     return '/login';
   }
 
