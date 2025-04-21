@@ -1,3 +1,8 @@
+import 'package:community_with_legends_mobile/src/features/app_update/data/data_sources/update_datasource.dart';
+import 'package:community_with_legends_mobile/src/features/app_update/data/repositories/update_repository_impl.dart';
+import 'package:community_with_legends_mobile/src/features/app_update/domain/usecases/check_update_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/app_update/presentation/controllers/update_controller.dart';
+import 'package:community_with_legends_mobile/src/features/app_update/presentation/widgets/update_page.dart';
 import 'package:community_with_legends_mobile/src/features/auth/data/data_sources/auth_api.dart';
 import 'package:community_with_legends_mobile/src/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/login_usecase.dart';
@@ -32,11 +37,31 @@ class AppSetup {
 
   String get apiUrl => dotenv.env['API_URL']!;
 
+  String get updateChecking => dotenv.env['CHECK_UPDATE']!;
+
+  String get updateUrl => dotenv.env['UPDATE_URL']!;
+
+  bool _updateAvailable = false;
+
+  bool get updateAvailable => _updateAvailable;
+
   final Map<String, WidgetBuilder> routes = {
     '/login': (context) => LoginPage(),
     '/register': (context) => RegisterPage(),
     '/feed': (context) => FeedPage(),
+    '/update': (context) => const UpdatePage(versionInfo: null),
   };
+
+  Future<void> checkUpdate(BuildContext context) async {
+    final updateController = createUpdateController();
+    final availableUpdate = await updateController.updateAvailable();
+
+    if (availableUpdate != null) {
+      routes['/update'] = (context) => UpdatePage(versionInfo: availableUpdate);
+
+      _updateAvailable = true;
+    }
+  }
 
   LoginController createLoginController() {
     final api = AuthApi(apiUrl);
@@ -75,6 +100,14 @@ class AppSetup {
     );
   }
 
+  UpdateController createUpdateController() {
+    final datasource = UpdateDatasource(updateUrl);
+    final repository = UpdateRepositoryImpl(datasource);
+    final checkUpdateUsecase = CheckUpdateUsecase(repository);
+
+    return UpdateController(checkUpdateUsecase);
+  }
+
   List<SingleChildWidget> getProviders() {
     return [
       ChangeNotifierProvider<LoginController>(
@@ -85,6 +118,9 @@ class AppSetup {
       ),
       ChangeNotifierProvider<FeedController>(
         create: (_) => createFeedController(),
+      ),
+      ChangeNotifierProvider<UpdateController>(
+        create: (_) => createUpdateController(),
       ),
     ];
   }

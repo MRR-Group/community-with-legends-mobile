@@ -6,7 +6,7 @@ class Alert {
 
   Alert.of(this.context);
 
-  void show({required String text, bool hideCurrent = true}) {
+  void show({required String text, bool hideCurrent = false}) {
     if (hideCurrent) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
     }
