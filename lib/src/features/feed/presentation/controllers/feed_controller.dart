@@ -78,8 +78,9 @@ class FeedController extends ChangeNotifier {
       );
 
       Alert.of(context).show(text: 'Post has been created');
-    } on UnauthenticatedException catch (_) {
+    } on UnauthenticatedException catch (e) {
       Navigator.pushReplacementNamed(context, '/login');
+      Alert.of(context).show(text: e.toString());
     } finally {
       _isCreatingPost = false;
 
@@ -98,8 +99,9 @@ class FeedController extends ChangeNotifier {
 
     try {
       _feedPosts = await getPosts.execute();
-    } on UnauthenticatedException catch (_) {
+    } on UnauthenticatedException catch (e) {
       Navigator.pushReplacementNamed(context, '/login');
+      Alert.of(context).show(text: e.toString());
     } finally {
       _isLoading = false;
       notifyListeners();
@@ -114,8 +116,9 @@ class FeedController extends ChangeNotifier {
 
     try {
       return await getFilteredGames.execute(filter);
-    } on UnauthenticatedException catch (_) {
+    } on UnauthenticatedException catch (e) {
       Navigator.pushReplacementNamed(context, '/login');
+      Alert.of(context).show(text: e.toString());
       return [];
     }
   }
@@ -128,8 +131,9 @@ class FeedController extends ChangeNotifier {
 
     try {
       return await getTags.execute(filter);
-    } on UnauthenticatedException catch (_) {
+    } on UnauthenticatedException catch (e) {
       Navigator.pushReplacementNamed(context, '/login');
+      Alert.of(context).show(text: e.toString());
       return [];
     }
   }
@@ -166,8 +170,9 @@ class FeedController extends ChangeNotifier {
 
       post.reactionsCount++;
       post.userReacted = true;
-    } on UnauthenticatedException catch (_) {
+    } on UnauthenticatedException catch (e) {
       Navigator.pushReplacementNamed(context, '/login');
+      Alert.of(context).show(text: e.toString());
     }finally {
       notifyListeners();
     }
@@ -179,8 +184,9 @@ class FeedController extends ChangeNotifier {
 
       post.reactionsCount--;
       post.userReacted = false;
-    } on UnauthenticatedException catch (_) {
+    } on UnauthenticatedException catch (e) {
       Navigator.pushReplacementNamed(context, '/login');
+      Alert.of(context).show(text: e.toString());
     }finally {
       notifyListeners();
     }

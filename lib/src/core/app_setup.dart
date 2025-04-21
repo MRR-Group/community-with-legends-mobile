@@ -1,4 +1,3 @@
-import 'package:community_with_legends_mobile/src/core/errors/exceptions/check_update_exception.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/data/data_sources/update_datasource.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/data/repositories/update_repository_impl.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/domain/usecases/check_update_usecase.dart';
