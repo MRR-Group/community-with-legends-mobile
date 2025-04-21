@@ -7,6 +7,9 @@ import 'package:flutter/material.dart';
 class ResetPasswordPage extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController tokenController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController passwordConfirmationController = TextEditingController();
 
   ResetPasswordPage({super.key});
 
@@ -34,9 +37,9 @@ class ResetPasswordPage extends StatelessWidget {
                       child: ResetPasswordForm(
                         formKey: formKey,
                         emailController: emailController,
-                        tokenController: emailController,
-                        passwordController: emailController,
-                        passwordConfirmationController: emailController,
+                        tokenController: tokenController,
+                        passwordController: passwordController,
+                        passwordConfirmationController: passwordConfirmationController,
                       ),
                     ),
                   ),
