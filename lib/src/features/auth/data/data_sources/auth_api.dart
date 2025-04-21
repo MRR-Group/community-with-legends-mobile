@@ -59,4 +59,19 @@ class AuthApi {
 
     _authPostRequest(body: body, urlPath: 'api/auth/forgot-password');
   }
+
+  void resetPassword({
+    required String email,
+    required String token,
+    required String password,
+    required String passwordConfirmation,
+  }) {
+    final Map<String, String> body = {
+      'email': email,
+      'token': token,
+      'password': password,
+      'password_confirmation': passwordConfirmation,
+    };
+
+    _authPostRequest(body: body, urlPath: 'api/auth/forgot-password');}
 }
