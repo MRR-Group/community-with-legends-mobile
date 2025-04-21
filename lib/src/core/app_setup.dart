@@ -7,10 +7,15 @@ import 'package:community_with_legends_mobile/src/features/auth/data/data_source
 import 'package:community_with_legends_mobile/src/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/login_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/register_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/reset_password_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/send_reset_token_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/controllers/login_controller.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/controllers/register_controller.dart';
+import 'package:community_with_legends_mobile/src/features/auth/presentation/controllers/reset_password_controller.dart';
+import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/forgot_password_page.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/login_page.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/register_page.dart';
+import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/reset_password_page.dart';
 import 'package:community_with_legends_mobile/src/features/feed/data/data_sources/feed_api.dart';
 import 'package:community_with_legends_mobile/src/features/feed/data/repositories/feed_repository_impl.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/add_reaction_usecase.dart';
@@ -49,6 +54,8 @@ class AppSetup {
     '/login': (context) => LoginPage(),
     '/register': (context) => RegisterPage(),
     '/feed': (context) => FeedPage(),
+    '/forgot-password': (context) => ForgotPasswordPage(),
+    '/reset-password': (context) => ResetPasswordPage(),
     '/update': (context) => const UpdatePage(versionInfo: null),
   };
 
@@ -77,6 +84,15 @@ class AppSetup {
     final registerUseCase = RegisterUseCase(repository);
 
     return RegisterController(registerUseCase);
+  }
+
+  ResetPasswordController createPasswordResetController() {
+    final api = AuthApi(apiUrl);
+    final repository = AuthRepositoryImpl(api);
+    final sendResetTokenUsecase = SendResetTokenUsecase(repository);
+    final resetPasswordUsecase = ResetPasswordUsecase(repository);
+
+    return ResetPasswordController(sendResetTokenUsecase, resetPasswordUsecase);
   }
 
   FeedController createFeedController() {
@@ -121,6 +137,9 @@ class AppSetup {
       ),
       ChangeNotifierProvider<UpdateController>(
         create: (_) => createUpdateController(),
+      ),
+      ChangeNotifierProvider<ResetPasswordController>(
+        create: (_) => createPasswordResetController(),
       ),
     ];
   }
