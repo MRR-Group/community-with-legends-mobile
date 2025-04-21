@@ -28,4 +28,24 @@ class AuthRepositoryImpl implements AuthRepository {
       throw AuthException(response['message'] ?? 'Registration failed');
     }
   }
+
+  @override
+  Future<void> sendResetToken(String email) async {
+    api.sendResetToken(email);
+  }
+
+  @override
+  void resetPassword({
+    required String email,
+    required String token,
+    required String password,
+    required String passwordConfirmation,
+  }) {
+    api.resetPassword(
+      email: email,
+      token: token,
+      password: password,
+      passwordConfirmation: passwordConfirmation,
+    );
+  }
 }
