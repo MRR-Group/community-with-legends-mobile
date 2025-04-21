@@ -9,7 +9,7 @@ jobs:
   test-and-analyze:
     name: Test & analyze Flutter codebase
     if: github.event.pull_request.draft == false
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v4
