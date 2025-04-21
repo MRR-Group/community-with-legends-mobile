@@ -19,9 +19,12 @@ class ClickableAuthText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
-          message,
-          style: const TextStyle(fontSize: 10),
+        SizedBox(
+          width: 120,
+          child: Text(
+            message,
+            style: const TextStyle(fontSize: 10),
+          ),
         ),
         const Spacer(),
         TextButton(
