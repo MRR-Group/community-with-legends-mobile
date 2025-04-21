@@ -24,9 +24,11 @@ class ResetPasswordController with ChangeNotifier {
 
       if (context.mounted) {
         Alert.of(context).show(
-            text:
-                'If the email is correct, a token to reset your password will be sent to it');
-        Navigator.of(context).pushNamed('/forgot-password');
+          text:
+          'If the email is correct, a token to reset your password will be sent to it',
+        );
+
+        Navigator.of(context).pushNamed('/reset-password');
       }
     } catch (error) {
       if (context.mounted) {

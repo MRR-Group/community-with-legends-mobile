@@ -73,5 +73,5 @@ class AuthApi {
       'password_confirmation': passwordConfirmation,
     };
 
-    _authPostRequest(body: body, urlPath: 'api/auth/forgot-password');}
+    _authPostRequest(body: body, urlPath: 'api/auth/reset-password');}
 }

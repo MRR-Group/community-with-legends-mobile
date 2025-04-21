@@ -65,7 +65,7 @@ class ResetPasswordForm extends StatelessWidget {
             message: "You don't have a reset token?",
             linkText: 'Click here',
             actionText: 'to get one',
-            onPress: () => Navigator.of(context).pushNamed('/register'),
+            onPress: () => Navigator.of(context).pushNamed('/forgot-password'),
           ),
           const SizedBox(height: 18),
           ClickableAuthText(
