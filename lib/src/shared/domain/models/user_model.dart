@@ -2,7 +2,7 @@ class User {
   final int id;
   final String name;
   final String email;
-  final DateTime emailVerifiedAt;
+  final DateTime? emailVerifiedAt;
   final DateTime createdAt;
   final DateTime updatedAt;
 
@@ -20,7 +20,7 @@ class User {
       id: json['id'],
       name: json['name'],
       email: json['email'],
-      emailVerifiedAt: DateTime.parse(json['email_verified_at']),
+      emailVerifiedAt: DateTime.tryParse(json['email_verified_at'] ?? ''),
       createdAt: DateTime.parse(json['created_at']),
       updatedAt: DateTime.parse(json['updated_at']),
     );
