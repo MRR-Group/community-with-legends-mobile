@@ -1,6 +1,6 @@
 import 'dart:async';
+import 'dart:io';
 
-import 'package:community_with_legends_mobile/src/core/errors/exceptions/unauthenticated_exception.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/asset_types.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/feed_posts_model.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/post_model.dart';
@@ -78,7 +78,7 @@ class FeedController extends ChangeNotifier {
       );
 
       Alert.of(context).show(text: 'Post has been created');
-    } on UnauthenticatedException catch (e) {
+    } on HttpException catch (e) {
       Navigator.pushReplacementNamed(context, '/login');
       Alert.of(context).show(text: e.toString());
     } finally {
@@ -99,7 +99,7 @@ class FeedController extends ChangeNotifier {
 
     try {
       _feedPosts = await getPosts.execute();
-    } on UnauthenticatedException catch (e) {
+    } on HttpException catch (e) {
       Navigator.pushReplacementNamed(context, '/login');
       Alert.of(context).show(text: e.toString());
     } finally {
@@ -116,7 +116,7 @@ class FeedController extends ChangeNotifier {
 
     try {
       return await getFilteredGames.execute(filter);
-    } on UnauthenticatedException catch (e) {
+    } on HttpException catch (e) {
       Navigator.pushReplacementNamed(context, '/login');
       Alert.of(context).show(text: e.toString());
       return [];
@@ -131,7 +131,7 @@ class FeedController extends ChangeNotifier {
 
     try {
       return await getTags.execute(filter);
-    } on UnauthenticatedException catch (e) {
+    } on HttpException catch (e) {
       Navigator.pushReplacementNamed(context, '/login');
       Alert.of(context).show(text: e.toString());
       return [];
@@ -170,7 +170,7 @@ class FeedController extends ChangeNotifier {
 
       post.reactionsCount++;
       post.userReacted = true;
-    } on UnauthenticatedException catch (e) {
+    } on HttpException catch (e) {
       Navigator.pushReplacementNamed(context, '/login');
       Alert.of(context).show(text: e.toString());
     }finally {
@@ -184,7 +184,7 @@ class FeedController extends ChangeNotifier {
 
       post.reactionsCount--;
       post.userReacted = false;
-    } on UnauthenticatedException catch (e) {
+    } on HttpException catch (e) {
       Navigator.pushReplacementNamed(context, '/login');
       Alert.of(context).show(text: e.toString());
     }finally {

@@ -3,7 +3,7 @@ import 'package:community_with_legends_mobile/src/features/app_update/data/repos
 import 'package:community_with_legends_mobile/src/features/app_update/domain/usecases/check_update_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/presentation/controllers/update_controller.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/presentation/widgets/update_page.dart';
-import 'package:community_with_legends_mobile/src/features/auth/data/data_sources/auth_api.dart';
+import 'package:community_with_legends_mobile/src/features/auth/data/data_sources/auth_data_source.dart';
 import 'package:community_with_legends_mobile/src/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/login_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/register_usecase.dart';
@@ -16,7 +16,7 @@ import 'package:community_with_legends_mobile/src/features/auth/presentation/pag
 import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/login_page.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/register_page.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/reset_password_page.dart';
-import 'package:community_with_legends_mobile/src/features/feed/data/data_sources/feed_api.dart';
+import 'package:community_with_legends_mobile/src/features/feed/data/data_sources/feed_data_source.dart';
 import 'package:community_with_legends_mobile/src/features/feed/data/repositories/feed_repository_impl.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/add_reaction_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/create_post_usecase.dart';
@@ -71,7 +71,7 @@ class AppSetup {
   }
 
   LoginController createLoginController() {
-    final api = AuthApi(apiUrl);
+    final api = AuthDataSource(baseUrl: apiUrl);
     final repository = AuthRepositoryImpl(api);
     final loginUseCase = LoginUseCase(repository);
 
@@ -79,7 +79,7 @@ class AppSetup {
   }
 
   RegisterController createRegisterController() {
-    final api = AuthApi(apiUrl);
+    final api = AuthDataSource(baseUrl: apiUrl);
     final repository = AuthRepositoryImpl(api);
     final registerUseCase = RegisterUseCase(repository);
 
@@ -87,7 +87,7 @@ class AppSetup {
   }
 
   ResetPasswordController createPasswordResetController() {
-    final api = AuthApi(apiUrl);
+    final api = AuthDataSource(baseUrl: apiUrl);
     final repository = AuthRepositoryImpl(api);
     final sendResetTokenUsecase = SendResetTokenUsecase(repository);
     final resetPasswordUsecase = ResetPasswordUsecase(repository);
@@ -96,7 +96,7 @@ class AppSetup {
   }
 
   FeedController createFeedController() {
-    final feedApi = FeedApi(apiUrl);
+    final feedApi = FeedDataSource(baseUrl: apiUrl);
     final feedRepository = FeedRepositoryImpl(feedApi);
     final getPostsUseCase = GetPostsUseCase(feedRepository);
     final createPostUseCase = CreatePostUseCase(feedRepository);

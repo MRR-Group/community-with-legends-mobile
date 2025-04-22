@@ -1,9 +1,9 @@
 import 'package:community_with_legends_mobile/src/core/errors/exceptions.dart';
-import 'package:community_with_legends_mobile/src/features/auth/data/data_sources/auth_api.dart';
+import 'package:community_with_legends_mobile/src/features/auth/data/data_sources/auth_data_source.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  final AuthApi api;
+  final AuthDataSource api;
 
   AuthRepositoryImpl(this.api);
 

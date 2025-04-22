@@ -1,30 +1,7 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:community_with_legends_mobile/src/shared/data/data_sources/http_client.dart';
 
-class AuthApi {
-  final String apiUrl;
-
-  AuthApi(this.apiUrl);
-
-  Map<String, String> headers = {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-  };
-
-  Future<Map<String, dynamic>> _authPostRequest({
-    required Map<String, String> body,
-    required String urlPath,
-  }) async {
-    final url = Uri.parse('$apiUrl/$urlPath');
-
-    final response = await http.post(
-      url,
-      headers: headers,
-      body: jsonEncode(body),
-    );
-
-    return jsonDecode(response.body);
-  }
+class AuthDataSource extends HttpClient {
+  AuthDataSource({required super.baseUrl});
 
   Future<Map<String, dynamic>> login(
     String email,
@@ -35,7 +12,10 @@ class AuthApi {
       'password': password,
     };
 
-    return _authPostRequest(body: body, urlPath: 'api/auth/login');
+    return postRequest(
+      urlPath: 'api/auth/login',
+      body: body,
+    );
   }
 
   Future<Map<String, dynamic>> register(
@@ -49,7 +29,10 @@ class AuthApi {
       'password': password,
     };
 
-    return _authPostRequest(body: body, urlPath: 'api/auth/register');
+    return postRequest(
+      urlPath: 'api/auth/register',
+      body: body,
+    );
   }
 
   void sendResetToken(String email) {
@@ -57,7 +40,10 @@ class AuthApi {
       'email': email,
     };
 
-    _authPostRequest(body: body, urlPath: 'api/auth/forgot-password');
+    postRequest(
+      urlPath: 'api/auth/forgot-password',
+      body: body,
+    );
   }
 
   void resetPassword({
@@ -73,5 +59,9 @@ class AuthApi {
       'password_confirmation': passwordConfirmation,
     };
 
-    _authPostRequest(body: body, urlPath: 'api/auth/reset-password');}
+    postRequest(
+      urlPath: 'api/auth/reset-password',
+      body: body,
+    );
+  }
 }
