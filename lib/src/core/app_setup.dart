@@ -16,7 +16,7 @@ import 'package:community_with_legends_mobile/src/features/auth/presentation/pag
 import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/login_page.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/register_page.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/reset_password_page.dart';
-import 'package:community_with_legends_mobile/src/features/feed/data/data_sources/feed_api.dart';
+import 'package:community_with_legends_mobile/src/features/feed/data/data_sources/feed_data_source.dart';
 import 'package:community_with_legends_mobile/src/features/feed/data/repositories/feed_repository_impl.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/add_reaction_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/create_post_usecase.dart';
@@ -96,7 +96,7 @@ class AppSetup {
   }
 
   FeedController createFeedController() {
-    final feedApi = FeedApi(apiUrl);
+    final feedApi = FeedDataSource(baseUrl: apiUrl);
     final feedRepository = FeedRepositoryImpl(feedApi);
     final getPostsUseCase = GetPostsUseCase(feedRepository);
     final createPostUseCase = CreatePostUseCase(feedRepository);
