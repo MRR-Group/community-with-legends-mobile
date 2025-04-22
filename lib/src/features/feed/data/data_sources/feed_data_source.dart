@@ -1,4 +1,4 @@
-import 'package:community_with_legends_mobile/src/shared/data/data_sources/http_client.dart';
+import 'package:community_with_legends_mobile/src/core/data/network/http_client.dart';
 
 class FeedDataSource extends HttpClient {
   FeedDataSource({required super.baseUrl});
