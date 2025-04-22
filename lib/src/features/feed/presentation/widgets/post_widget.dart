@@ -51,31 +51,34 @@ class _PostWidgetState extends State<PostWidget> {
                             'assets/images/loading.gif',
                             height: 52,
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                widget.post.user.name,
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                ),
-                              ),
-                              if (widget.post.game != null)
+                          Flexible(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
                                 Text(
-                                  widget.post.game!.name,
+                                  widget.post.user.name,
+                                  style: const TextStyle(fontSize: 20),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                ),
+                                if (widget.post.game != null)
+                                  Text(
+                                    widget.post.game!.name,
+                                    style: const TextStyle(
+                                      color: primaryColor,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                Text(
+                                  timeago.format(widget.post.createdAt),
                                   style: const TextStyle(
-                                    color: primaryColor,
-                                    fontSize: 12,
+                                    color: textDisabledColor,
+                                    fontSize: 8,
                                   ),
                                 ),
-                              Text(
-                                timeago.format(widget.post.createdAt),
-                                style: const TextStyle(
-                                  color: textDisabledColor,
-                                  fontSize: 8,
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ],
                       ),
