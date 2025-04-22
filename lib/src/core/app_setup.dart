@@ -3,7 +3,7 @@ import 'package:community_with_legends_mobile/src/features/app_update/data/repos
 import 'package:community_with_legends_mobile/src/features/app_update/domain/usecases/check_update_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/presentation/controllers/update_controller.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/presentation/widgets/update_page.dart';
-import 'package:community_with_legends_mobile/src/features/auth/data/data_sources/auth_api.dart';
+import 'package:community_with_legends_mobile/src/features/auth/data/data_sources/auth_data_source.dart';
 import 'package:community_with_legends_mobile/src/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/login_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/register_usecase.dart';
@@ -71,7 +71,7 @@ class AppSetup {
   }
 
   LoginController createLoginController() {
-    final api = AuthApi(apiUrl);
+    final api = AuthDataSource(baseUrl: apiUrl);
     final repository = AuthRepositoryImpl(api);
     final loginUseCase = LoginUseCase(repository);
 
@@ -79,7 +79,7 @@ class AppSetup {
   }
 
   RegisterController createRegisterController() {
-    final api = AuthApi(apiUrl);
+    final api = AuthDataSource(baseUrl: apiUrl);
     final repository = AuthRepositoryImpl(api);
     final registerUseCase = RegisterUseCase(repository);
 
@@ -87,7 +87,7 @@ class AppSetup {
   }
 
   ResetPasswordController createPasswordResetController() {
-    final api = AuthApi(apiUrl);
+    final api = AuthDataSource(baseUrl: apiUrl);
     final repository = AuthRepositoryImpl(api);
     final sendResetTokenUsecase = SendResetTokenUsecase(repository);
     final resetPasswordUsecase = ResetPasswordUsecase(repository);
