@@ -2,6 +2,7 @@ import 'package:community_with_legends_mobile/src/features/feed/presentation/wid
 import 'package:community_with_legends_mobile/src/features/post_details/presentation/controllers/post_details_controller.dart';
 import 'package:community_with_legends_mobile/src/features/post_details/presentation/widgets/create_comment_form.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/background_image.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/widgets/comment_widget.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_app_bar.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_bottom_app_bar.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/loading_animation.dart';
@@ -75,6 +76,19 @@ class _PostDetailsPageState extends State<PostDetailsPage> {
                     formKey: formKey,
                     contentController: contentController,
                   ),
+                ),
+              ),
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    final comment =
+                        postDetailsController.post!.comments?[index];
+                    return Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: CommentWidget(comment: comment!),
+                    );
+                  },
+                  childCount: postDetailsController.post!.comments?.length,
                 ),
               ),
             ],
