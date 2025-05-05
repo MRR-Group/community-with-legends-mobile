@@ -64,7 +64,7 @@ class _PostDetailsPageState extends State<PostDetailsPage> {
             slivers: [
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(top: 24, bottom: 8),
                   child: PostWidget(post: postDetailsController.post!),
                 ),
               ),
