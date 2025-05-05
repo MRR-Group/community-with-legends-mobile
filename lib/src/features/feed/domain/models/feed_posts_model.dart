@@ -1,5 +1,5 @@
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/feed_link_model.dart';
-import 'package:community_with_legends_mobile/src/features/feed/domain/models/post_model.dart';
+import 'package:community_with_legends_mobile/src/shared/domain/models/post_model.dart';
 
 class FeedPosts {
   final int currentPage;

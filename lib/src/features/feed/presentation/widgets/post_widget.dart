@@ -1,7 +1,8 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
-import 'package:community_with_legends_mobile/src/features/feed/domain/models/post_model.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/feed_controller.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/widgets/post_tags.dart';
+import 'package:community_with_legends_mobile/src/features/post_details/presentation/pages/post_details_page.dart';
+import 'package:community_with_legends_mobile/src/shared/domain/models/post_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -123,7 +124,13 @@ class _PostWidgetState extends State<PostWidget> {
             horizontalPadding: 12,
             text: 'Reply',
             fontSize: 16,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => PostDetailsPage(postId: widget.post.id),
+                ),
+              );
+            },
           ),
         ),
       ],

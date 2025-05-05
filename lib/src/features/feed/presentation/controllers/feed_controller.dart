@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/asset_types.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/feed_posts_model.dart';
-import 'package:community_with_legends_mobile/src/features/feed/domain/models/post_model.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/tag_model.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/add_reaction_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/create_post_usecase.dart';
@@ -12,6 +11,7 @@ import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_tags_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/remove_reaction_usecase.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/game_model.dart';
+import 'package:community_with_legends_mobile/src/shared/domain/models/post_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:flutter/material.dart';
 

@@ -2,7 +2,7 @@ import 'package:community_with_legends_mobile/src/features/feed/domain/models/ta
 import 'package:community_with_legends_mobile/src/shared/domain/models/game_model.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
 
-class Post {
+class DetailedPost {
   final int id;
   final int userId;
   final int? gameId;
@@ -16,7 +16,7 @@ class Post {
   final Game? game;
   final List<Tag>? tags;
 
-  Post({
+  DetailedPost({
     required this.id,
     required this.userId,
     this.gameId,
@@ -31,8 +31,8 @@ class Post {
     this.tags,
   });
 
-  factory Post.fromJson(Map<String, dynamic> json) {
-    return Post(
+  factory DetailedPost.fromJson(Map<String, dynamic> json) {
+    return DetailedPost(
       id: json['id'] ?? -1,
       userId: json['user_id'],
       gameId: json['game_id'],
