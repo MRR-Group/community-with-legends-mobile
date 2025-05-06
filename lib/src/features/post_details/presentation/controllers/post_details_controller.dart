@@ -64,8 +64,7 @@ class PostDetailsController extends ChangeNotifier {
       );
 
       Alert.of(context).show(text: 'Comment has been created');
-    } on HttpException catch (e) {
-      Navigator.pushReplacementNamed(context, '/login');
+    } catch (e) {
       Alert.of(context).show(text: e.toString());
     } finally {
       _isCreatingComment = false;
