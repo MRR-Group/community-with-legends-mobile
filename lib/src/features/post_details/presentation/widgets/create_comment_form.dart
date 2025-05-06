@@ -1,6 +1,5 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
-import 'package:community_with_legends_mobile/src/features/feed/domain/models/asset_types.dart';
-import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/feed_controller.dart';
+import 'package:community_with_legends_mobile/src/features/post_details/presentation/controllers/post_details_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +21,7 @@ class CreateCommentForm extends StatefulWidget {
 class _CreatePostFormState extends State<CreateCommentForm> {
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<FeedController>(context);
+    final controller = Provider.of<PostDetailsController>(context);
     controller.formKey = widget.formKey;
 
     return Center(
@@ -60,7 +59,7 @@ class _CreatePostFormState extends State<CreateCommentForm> {
                       ),
                       onSaved: (content) {
                         if (content != null) {
-                          controller.postContent = content;
+                          controller.commentContent = content;
                         }
                       },
                       validator: (content) {
@@ -101,17 +100,13 @@ class _CreatePostFormState extends State<CreateCommentForm> {
     );
   }
 
-  Function() _submitForm(FeedController controller) {
+  Function() _submitForm(PostDetailsController controller) {
     return () {
       if (widget.formKey.currentState!.validate()) {
         widget.formKey.currentState!.save();
-        controller.submitPost(
+        controller.submitComment(
           context: context,
-          content: controller.postContent!,
-          gameId: controller.selectedGame?.id,
-          assetId: controller.selectedAssetType.id,
-          assetLink: controller.assetLink,
-          tagIds: controller.selectedTagIds,
+          content: controller.commentContent!,
         );
       }
     };

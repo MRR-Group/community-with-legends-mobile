@@ -19,4 +19,9 @@ class PostDetailsRepositoryImpl implements PostDetailsRepository{
       rethrow;
     }
   }
+
+  @override
+  Future<void> createComment(int postId, String content) async {
+    api.createComment(postId, content);
+  }
 }

@@ -2,4 +2,5 @@ import 'package:community_with_legends_mobile/src/shared/domain/models/post_mode
 
 abstract class PostDetailsRepository {
   Future<Post> getPost(int postId);
+  Future<void> createComment(int postId, String content);
 }
