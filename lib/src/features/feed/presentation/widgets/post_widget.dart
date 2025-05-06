@@ -11,8 +11,13 @@ import 'package:timeago/timeago.dart' as timeago;
 
 class PostWidget extends StatefulWidget {
   final Post post;
+  final bool disableReplyButton;
 
-  const PostWidget({super.key, required this.post});
+  const PostWidget({
+    super.key,
+    required this.post,
+    this.disableReplyButton = false,
+  });
 
   @override
   State<StatefulWidget> createState() {
@@ -113,26 +118,27 @@ class _PostWidgetState extends State<PostWidget> {
             ),
           ),
         ),
-        Positioned(
-          right: 75,
-          bottom: 0,
-          child: Button.iconLeft(
-            icon: const Icon(
-              CupertinoIcons.chat_bubble_text_fill,
-              color: textColor,
+        if (!widget.disableReplyButton)
+          Positioned(
+            right: 75,
+            bottom: 0,
+            child: Button.iconLeft(
+              icon: const Icon(
+                CupertinoIcons.chat_bubble_text_fill,
+                color: textColor,
+              ),
+              horizontalPadding: 12,
+              text: 'Reply',
+              fontSize: 16,
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => PostDetailsPage(postId: widget.post.id),
+                  ),
+                );
+              },
             ),
-            horizontalPadding: 12,
-            text: 'Reply',
-            fontSize: 16,
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (_) => PostDetailsPage(postId: widget.post.id),
-                ),
-              );
-            },
           ),
-        ),
       ],
     );
   }
