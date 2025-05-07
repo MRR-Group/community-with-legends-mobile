@@ -42,8 +42,12 @@ class HttpClient {
 
   Future<Map<String, dynamic>> getRequest({
     required String urlPath,
+    Map<String, String>? queryParams,
   }) async {
-    final url = Uri.parse('$baseUrl/$urlPath');
+    final url = Uri.parse(baseUrl).replace(
+      path: urlPath,
+      queryParameters: queryParams,
+    );
 
     return _handleRequest(
       _httpClient.get(

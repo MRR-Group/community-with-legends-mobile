@@ -22,6 +22,30 @@ class FeedRepositoryImpl implements FeedRepository {
   }
 
   @override
+  Future<FeedPosts> getTrendingPosts() async {
+    final response = await api.getTrendingPosts();
+
+    try {
+      final result = FeedPosts.fromJson(response);
+      return result;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<FeedPosts> getFilteredPosts(int? tagId, int? gameId) async {
+    final response = await api.getFilteredPosts(tagId, gameId);
+
+    try {
+      final result = FeedPosts.fromJson(response);
+      return result;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
   Future<List<Game>> getFilteredGames(String filter) async {
     final response = await api.getFilteredGames(filter);
 
