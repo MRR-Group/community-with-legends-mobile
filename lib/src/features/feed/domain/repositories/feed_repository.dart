@@ -4,6 +4,7 @@ import 'package:community_with_legends_mobile/src/shared/domain/models/game_mode
 
 abstract class FeedRepository {
   Future<FeedPosts> getPosts();
+  Future<FeedPosts> getTrendingPosts();
   Future<FeedPosts> getFilteredPosts(int? tagId, int? gameId);
   Future<List<Game>> getFilteredGames(String filter);
   Future<List<Tag>> getTags(String filter);
@@ -17,5 +18,6 @@ abstract class FeedRepository {
     int? assetId,
     String? assetLink,
   });
+
 
 }

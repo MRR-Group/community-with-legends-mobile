@@ -9,6 +9,12 @@ class FeedDataSource extends HttpClient {
     );
   }
 
+  Future<Map<String, dynamic>> getTrendingPosts() async {
+    return getRequest(
+      urlPath: 'api/posts/trending',
+    );
+  }
+
   Future<Map<String, dynamic>> getFilteredPosts(int? tagId, int? gameId) async {
     return getRequest(
       urlPath: 'api/posts/filter',

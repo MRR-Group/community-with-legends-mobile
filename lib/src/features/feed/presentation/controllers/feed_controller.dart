@@ -10,6 +10,7 @@ import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_filtered_posts_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_posts_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_tags_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_trending_posts_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/remove_reaction_usecase.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/game_model.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/post_model.dart';
@@ -18,6 +19,7 @@ import 'package:flutter/material.dart';
 
 class FeedController extends ChangeNotifier {
   final GetPostsUseCase getPosts;
+  final GetTrendingPostsUsecase getTrendingPosts;
   final GetFilteredPostsUseCase getFilteredPosts;
   final CreatePostUseCase createPost;
   final GetFilteredGamesUseCase getFilteredGames;
@@ -53,6 +55,7 @@ class FeedController extends ChangeNotifier {
 
   FeedController(
     this.getPosts,
+    this.getTrendingPosts,
     this.getFilteredPosts,
     this.createPost,
     this.getFilteredGames,
@@ -114,6 +117,25 @@ class FeedController extends ChangeNotifier {
     }
   }
 
+  Future<void> loadTrendingPosts(BuildContext context) async {
+    _error = null;
+    _feedPosts = null;
+    _isLoading = true;
+
+    await Future.delayed(Duration.zero);
+    notifyListeners();
+
+    try {
+      _feedPosts = await getTrendingPosts.execute();
+    } on HttpException catch (e) {
+      Navigator.pushReplacementNamed(context, '/login');
+      Alert.of(context).show(text: e.toString());
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
   Future<void> loadFilteredPosts(BuildContext context) async {
     _error = null;
     _feedPosts = null;
@@ -123,7 +145,8 @@ class FeedController extends ChangeNotifier {
     notifyListeners();
 
     try {
-      _feedPosts = await getFilteredPosts.execute(tagFilter?.id, gameFilter?.id);
+      _feedPosts =
+          await getFilteredPosts.execute(tagFilter?.id, gameFilter?.id);
     } on HttpException catch (e) {
       Navigator.pushReplacementNamed(context, '/login');
       Alert.of(context).show(text: e.toString());
