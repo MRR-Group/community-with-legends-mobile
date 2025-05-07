@@ -21,6 +21,7 @@ import 'package:community_with_legends_mobile/src/features/feed/data/repositorie
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/add_reaction_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/create_post_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_filtered_games_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_filtered_posts_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_posts_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_tags_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/remove_reaction_usecase.dart';
@@ -104,6 +105,7 @@ class AppSetup {
     final feedApi = FeedDataSource(baseUrl: apiUrl);
     final feedRepository = FeedRepositoryImpl(feedApi);
     final getPostsUseCase = GetPostsUseCase(feedRepository);
+    final getFilteredPostsUseCase = GetFilteredPostsUseCase(feedRepository);
     final createPostUseCase = CreatePostUseCase(feedRepository);
     final getFilteredGamesUseCase = GetFilteredGamesUseCase(feedRepository);
     final getTagsUseCase = GetTagsUseCase(feedRepository);
@@ -113,6 +115,7 @@ class AppSetup {
 
     return FeedController(
       getPostsUseCase,
+      getFilteredPostsUseCase,
       createPostUseCase,
       getFilteredGamesUseCase,
       getTagsUseCase,

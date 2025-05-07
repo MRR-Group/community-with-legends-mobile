@@ -9,6 +9,16 @@ class FeedDataSource extends HttpClient {
     );
   }
 
+  Future<Map<String, dynamic>> getFilteredPosts(int? tagId, int? gameId) async {
+    return getRequest(
+      urlPath: 'api/posts/filter',
+      queryParams: {
+        if (tagId != null) 'tag': tagId.toString(),
+        if (tagId != null) 'game': gameId.toString(),
+      },
+    );
+  }
+
   Future<Map<String, dynamic>> createPost({
     required String content,
     int? gameId,
@@ -30,13 +40,15 @@ class FeedDataSource extends HttpClient {
 
   Future<Map<String, dynamic>> getFilteredGames(String filter) {
     return getRequest(
-      urlPath: 'api/games/search?filter=$filter',
+      urlPath: 'api/games/search',
+      queryParams: {'filter': filter},
     );
   }
 
   Future<Map<String, dynamic>> getTags(String filter) {
     return getRequest(
-      urlPath: 'api/tags/search?filter=$filter',
+      urlPath: 'api/tags/search',
+      queryParams: {'filter': filter},
     );
   }
 

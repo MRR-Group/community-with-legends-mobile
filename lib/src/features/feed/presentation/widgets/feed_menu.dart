@@ -107,8 +107,7 @@ class _FeedMenuState extends State<FeedMenu> {
                           return tags;
                         },
                         onChanged: (tag) {
-                          if (tag != null) {
-                          }
+                          controller.tagFilter = tag;
                         },
                       ),
                     ),
@@ -129,7 +128,8 @@ class _FeedMenuState extends State<FeedMenu> {
                             filter: filter,
                           );
                         },
-                        onChanged: (value) {
+                        onChanged: (game) {
+                          controller.gameFilter = game;
                         },
                         keyToString: (key) {
                           return key?.name ?? '';
@@ -140,7 +140,9 @@ class _FeedMenuState extends State<FeedMenu> {
                   Button(
                     text: 'Search',
                     fontSize: 16,
-                    onPressed: (){},
+                    onPressed: (){
+                      controller.loadFilteredPosts(context);
+                    },
                   ),
                 ],
               ),
