@@ -26,6 +26,11 @@ import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/remove_reaction_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/feed_controller.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/pages/feed_page.dart';
+import 'package:community_with_legends_mobile/src/features/post_details/data/data_sources/post_details_datasource.dart';
+import 'package:community_with_legends_mobile/src/features/post_details/data/repositories/post_details_repository_impl.dart';
+import 'package:community_with_legends_mobile/src/features/post_details/domain/usecases/create_comment_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/post_details/domain/usecases/get_post_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/post_details/presentation/controllers/post_details_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
@@ -115,6 +120,14 @@ class AppSetup {
       removeReactionFromPost,
     );
   }
+  PostDetailsController createPostDetailsController() {
+    final api = PostDetailsDatasource(baseUrl: apiUrl);
+    final repository = PostDetailsRepositoryImpl(api);
+    final getPostUsecase = GetPostUsecase(repository);
+    final createCommentUsecase = CreateCommentUsecase(repository);
+
+    return PostDetailsController(getPostUsecase, createCommentUsecase);
+  }
 
   UpdateController createUpdateController() {
     final datasource = UpdateDatasource(updateUrl);
@@ -140,6 +153,9 @@ class AppSetup {
       ),
       ChangeNotifierProvider<ResetPasswordController>(
         create: (_) => createPasswordResetController(),
+      ),
+      ChangeNotifierProvider<PostDetailsController>(
+        create: (_) => createPostDetailsController(),
       ),
     ];
   }
