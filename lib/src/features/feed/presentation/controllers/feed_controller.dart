@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/asset_types.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/feed_posts_model.dart';
+import 'package:community_with_legends_mobile/src/features/feed/domain/models/post_tab.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/tag_model.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/add_reaction_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/create_post_usecase.dart';
@@ -39,9 +40,11 @@ class FeedController extends ChangeNotifier {
   List<Tag> selectedTags = [];
   AssetType selectedAssetType = AssetType.image;
   String? assetLink;
-
   Tag? tagFilter;
   Game? gameFilter;
+  PostTab _selectedPostTab = PostTab.recent;
+
+  PostTab get selectedPostTab => _selectedPostTab;
 
   FeedPosts? get feedPosts => _feedPosts;
 
@@ -237,6 +240,22 @@ class FeedController extends ChangeNotifier {
       Alert.of(context).show(text: e.toString());
     } finally {
       notifyListeners();
+    }
+  }
+
+  void selectPostTab(BuildContext context, PostTab postTab){
+    switch(postTab){
+      case PostTab.trending:
+        _selectedPostTab = PostTab.trending;
+        loadTrendingPosts(context);
+        break;
+      case PostTab.recent:
+        _selectedPostTab = PostTab.recent;
+        loadPosts(context);
+        break;
+      case PostTab.filtered:
+        _selectedPostTab = PostTab.filtered;
+        break;
     }
   }
 }
