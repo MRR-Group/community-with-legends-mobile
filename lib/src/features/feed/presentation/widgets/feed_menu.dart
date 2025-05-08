@@ -50,7 +50,9 @@ class _FeedMenuState extends State<FeedMenu> {
                     child: Container(
                       height: 40,
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 8),
+                        horizontal: 12,
+                        vertical: 8,
+                      ),
                       decoration: BoxDecoration(
                         border:
                             const Border(right: BorderSide(color: textColor)),
@@ -73,7 +75,9 @@ class _FeedMenuState extends State<FeedMenu> {
                     child: Container(
                       height: 40,
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 8),
+                        horizontal: 12,
+                        vertical: 8,
+                      ),
                       decoration: BoxDecoration(
                         border:
                             const Border(right: BorderSide(color: textColor)),
@@ -94,10 +98,13 @@ class _FeedMenuState extends State<FeedMenu> {
                       child: Container(
                         height: 40,
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 12, vertical: 8),
+                          horizontal: 12,
+                          vertical: 8,
+                        ),
                         decoration: BoxDecoration(
                           borderRadius: const BorderRadius.only(
-                              topRight: Radius.circular(2)),
+                            topRight: Radius.circular(2),
+                          ),
                           color: controller.selectedPostTab == PostTab.filtered
                               ? primaryColor
                               : backgroundColor,
