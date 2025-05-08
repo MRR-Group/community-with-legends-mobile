@@ -111,6 +111,12 @@ class FeedController extends ChangeNotifier {
 
     try {
       _feedPosts = await getPosts.execute();
+
+      if (_feedPosts?.posts != null && _feedPosts!.posts.isNotEmpty) {
+        Alert.of(context).show(text: 'Posts loaded successfully.');
+      } else {
+        Alert.of(context).show(text: 'No posts available.');
+      }
     } on HttpException catch (e) {
       Navigator.pushReplacementNamed(context, '/login');
       Alert.of(context).show(text: e.toString());
@@ -130,6 +136,12 @@ class FeedController extends ChangeNotifier {
 
     try {
       _feedPosts = await getTrendingPosts.execute();
+
+      if (_feedPosts?.posts != null && _feedPosts!.posts.isNotEmpty) {
+        Alert.of(context).show(text: 'Posts loaded successfully.');
+      } else {
+        Alert.of(context).show(text: 'No posts available.');
+      }
     } on HttpException catch (e) {
       Navigator.pushReplacementNamed(context, '/login');
       Alert.of(context).show(text: e.toString());
@@ -150,6 +162,12 @@ class FeedController extends ChangeNotifier {
     try {
       _feedPosts =
           await getFilteredPosts.execute(tagFilter?.id, gameFilter?.id);
+
+      if (_feedPosts?.posts != null && _feedPosts!.posts.isNotEmpty) {
+        Alert.of(context).show(text: 'Posts loaded successfully.');
+      } else {
+        Alert.of(context).show(text: 'No posts available.');
+      }
     } on HttpException catch (e) {
       Navigator.pushReplacementNamed(context, '/login');
       Alert.of(context).show(text: e.toString());
@@ -243,8 +261,8 @@ class FeedController extends ChangeNotifier {
     }
   }
 
-  void selectPostTab(BuildContext context, PostTab postTab){
-    switch(postTab){
+  void selectPostTab(BuildContext context, PostTab postTab) {
+    switch (postTab) {
       case PostTab.trending:
         _selectedPostTab = PostTab.trending;
         loadTrendingPosts(context);
