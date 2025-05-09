@@ -26,7 +26,11 @@ import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_tags_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_trending_posts_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/remove_reaction_usecase.dart';
-import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/feed_controller.dart';
+import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/games_controller.dart';
+import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/post_tab_controller.dart';
+import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/posts_controller.dart';
+import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/reactions_controller.dart';
+import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/tags_controller.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/pages/feed_page.dart';
 import 'package:community_with_legends_mobile/src/features/post_details/data/data_sources/post_details_datasource.dart';
 import 'package:community_with_legends_mobile/src/features/post_details/data/repositories/post_details_repository_impl.dart';
@@ -102,30 +106,60 @@ class AppSetup {
     return ResetPasswordController(sendResetTokenUsecase, resetPasswordUsecase);
   }
 
-  FeedController createFeedController() {
+  GamesController createGamesController() {
+    final feedApi = FeedDataSource(baseUrl: apiUrl);
+    final feedRepository = FeedRepositoryImpl(feedApi);
+    final getFilteredGamesUseCase = GetFilteredGamesUseCase(feedRepository);
+
+    return GamesController(
+      getFilteredGamesUseCase,
+    );
+  }
+
+  PostTabController createPostTabController(PostsController postsController) {
+    return PostTabController(postsController);
+  }
+
+  PostsController createPostsController() {
     final feedApi = FeedDataSource(baseUrl: apiUrl);
     final feedRepository = FeedRepositoryImpl(feedApi);
     final getPostsUseCase = GetPostsUseCase(feedRepository);
     final getTrendingPosts = GetTrendingPostsUsecase(feedRepository);
     final getFilteredPostsUseCase = GetFilteredPostsUseCase(feedRepository);
     final createPostUseCase = CreatePostUseCase(feedRepository);
-    final getFilteredGamesUseCase = GetFilteredGamesUseCase(feedRepository);
-    final getTagsUseCase = GetTagsUseCase(feedRepository);
-    final addReactionToPost = AddReactionToPostUsecase(feedRepository);
-    final removeReactionFromPost =
-        RemoveReactionFromPostUsecase(feedRepository);
 
-    return FeedController(
-      getPostsUseCase,
-      getTrendingPosts,
-      getFilteredPostsUseCase,
-      createPostUseCase,
-      getFilteredGamesUseCase,
-      getTagsUseCase,
-      addReactionToPost,
-      removeReactionFromPost,
+    return PostsController(
+      tagsController: createTagsController(),
+      createPost: createPostUseCase,
+      getPosts: getPostsUseCase,
+      getFilteredPosts: getFilteredPostsUseCase,
+      getTrendingPosts: getTrendingPosts,
     );
   }
+
+  ReactionsController createReactionsController() {
+    final feedApi = FeedDataSource(baseUrl: apiUrl);
+    final feedRepository = FeedRepositoryImpl(feedApi);
+    final addReactionToPostUsecase = AddReactionToPostUsecase(feedRepository);
+    final removeReactionFromPostUsecase =
+    RemoveReactionFromPostUsecase(feedRepository);
+
+    return ReactionsController(
+      addReactionToPost: addReactionToPostUsecase,
+      removeReactionFromPost: removeReactionFromPostUsecase,
+    );
+  }
+
+  TagsController createTagsController() {
+    final feedApi = FeedDataSource(baseUrl: apiUrl);
+    final feedRepository = FeedRepositoryImpl(feedApi);
+    final getTagsUseCase = GetTagsUseCase(feedRepository);
+
+    return TagsController(
+      getTagsUseCase,
+    );
+  }
+
   PostDetailsController createPostDetailsController() {
     final api = PostDetailsDatasource(baseUrl: apiUrl);
     final repository = PostDetailsRepositoryImpl(api);
@@ -144,6 +178,7 @@ class AppSetup {
   }
 
   List<SingleChildWidget> getProviders() {
+    final postsController = createPostsController();
     return [
       ChangeNotifierProvider<LoginController>(
         create: (_) => createLoginController(),
@@ -151,8 +186,20 @@ class AppSetup {
       ChangeNotifierProvider<RegisterController>(
         create: (_) => createRegisterController(),
       ),
-      ChangeNotifierProvider<FeedController>(
-        create: (_) => createFeedController(),
+      ChangeNotifierProvider<GamesController>(
+        create: (_) => createGamesController(),
+      ),
+      ChangeNotifierProvider<PostTabController>(
+        create: (_) => PostTabController(postsController),
+      ),
+      ChangeNotifierProvider<PostsController>(
+        create: (_) => postsController,
+      ),
+      ChangeNotifierProvider<ReactionsController>(
+        create: (_) => createReactionsController(),
+      ),
+      ChangeNotifierProvider<TagsController>(
+        create: (_) => createTagsController(),
       ),
       ChangeNotifierProvider<UpdateController>(
         create: (_) => createUpdateController(),

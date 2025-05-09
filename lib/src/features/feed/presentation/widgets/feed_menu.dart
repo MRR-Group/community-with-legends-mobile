@@ -1,7 +1,10 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/post_tab.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/tag_model.dart';
-import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/feed_controller.dart';
+import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/games_controller.dart';
+import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/post_tab_controller.dart';
+import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/posts_controller.dart';
+import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/tags_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/game_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_dropdown_search_widget.dart';
@@ -18,7 +21,10 @@ class FeedMenu extends StatefulWidget {
 class _FeedMenuState extends State<FeedMenu> {
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<FeedController>(context);
+    final postsController = Provider.of<PostsController>(context);
+    final postTabController = Provider.of<PostTabController>(context);
+    final tagsController = Provider.of<TagsController>(context);
+    final gamesController = Provider.of<GamesController>(context);
 
     return Row(
       children: [
@@ -33,9 +39,6 @@ class _FeedMenuState extends State<FeedMenu> {
                   topLeft: Radius.circular(4),
                   topRight: Radius.circular(4),
                 ),
-                /*borderRadius: const BorderRadius.all(
-                  Radius.circular(4),
-                ),*/
                 border: Border.all(color: textColor),
               ),
               child: Row(
@@ -44,7 +47,7 @@ class _FeedMenuState extends State<FeedMenu> {
                   InkWell(
                     onTap: () {
                       setState(() {
-                        controller.selectPostTab(context, PostTab.trending);
+                        postTabController.selectPostTab(context, PostTab.trending);
                       });
                     },
                     child: Container(
@@ -59,7 +62,7 @@ class _FeedMenuState extends State<FeedMenu> {
                         borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(2),
                         ),
-                        color: controller.selectedPostTab == PostTab.trending
+                        color: postTabController.selectedPostTab == PostTab.trending
                             ? primaryColor
                             : backgroundColor,
                       ),
@@ -69,7 +72,7 @@ class _FeedMenuState extends State<FeedMenu> {
                   InkWell(
                     onTap: () {
                       setState(() {
-                        controller.selectPostTab(context, PostTab.recent);
+                        postTabController.selectPostTab(context, PostTab.recent);
                       });
                     },
                     child: Container(
@@ -81,7 +84,7 @@ class _FeedMenuState extends State<FeedMenu> {
                       decoration: BoxDecoration(
                         border:
                             const Border(right: BorderSide(color: textColor)),
-                        color: controller.selectedPostTab == PostTab.recent
+                        color: postTabController.selectedPostTab == PostTab.recent
                             ? primaryColor
                             : backgroundColor,
                       ),
@@ -92,7 +95,7 @@ class _FeedMenuState extends State<FeedMenu> {
                     child: InkWell(
                       onTap: () {
                         setState(() {
-                          controller.selectPostTab(context, PostTab.filtered);
+                          postTabController.selectPostTab(context, PostTab.filtered);
                         });
                       },
                       child: Container(
@@ -105,7 +108,7 @@ class _FeedMenuState extends State<FeedMenu> {
                           borderRadius: const BorderRadius.only(
                             topRight: Radius.circular(2),
                           ),
-                          color: controller.selectedPostTab == PostTab.filtered
+                          color: postTabController.selectedPostTab == PostTab.filtered
                               ? primaryColor
                               : backgroundColor,
                         ),
@@ -120,7 +123,7 @@ class _FeedMenuState extends State<FeedMenu> {
                 ],
               ),
             ),
-            if (controller.selectedPostTab == PostTab.filtered)
+            if (postTabController.selectedPostTab == PostTab.filtered)
               Container(
                 padding: const EdgeInsets.all(8),
                 width: 200,
@@ -150,14 +153,14 @@ class _FeedMenuState extends State<FeedMenu> {
                           filterFn: (_, __) => true,
                           keyToString: (key) => key?.name ?? '',
                           items: (filter, infiniteScrollProps) async {
-                            final tags = await controller.loadTags(
+                            final tags = await tagsController.loadTags(
                               context: context,
                               filter: filter,
                             );
                             return tags;
                           },
                           onChanged: (tag) {
-                            controller.tagFilter = tag;
+                            postsController.tagFilter = tag;
                           },
                         ),
                       ),
@@ -173,13 +176,13 @@ class _FeedMenuState extends State<FeedMenu> {
                           compareFn: (item1, item2) => item1.name == item2.name,
                           filterFn: (_, __) => true,
                           items: (filter, infiniteScrollProps) async {
-                            return controller.loadFilteredGames(
+                            return gamesController.loadFilteredGames(
                               context: context,
                               filter: filter,
                             );
                           },
                           onChanged: (game) {
-                            controller.gameFilter = game;
+                            postsController.gameFilter = game;
                           },
                           keyToString: (key) {
                             return key?.name ?? '';
@@ -191,7 +194,7 @@ class _FeedMenuState extends State<FeedMenu> {
                       text: 'Search',
                       fontSize: 16,
                       onPressed: () {
-                        controller.loadFilteredPosts(context);
+                        postsController.loadFilteredPosts(context);
                       },
                     ),
                   ],

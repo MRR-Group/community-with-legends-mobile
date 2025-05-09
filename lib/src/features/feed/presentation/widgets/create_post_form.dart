@@ -1,7 +1,9 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/asset_types.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/tag_model.dart';
-import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/feed_controller.dart';
+import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/games_controller.dart';
+import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/posts_controller.dart';
+import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/tags_controller.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/widgets/selected_tags.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/game_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
@@ -33,8 +35,10 @@ class CreatePostForm extends StatefulWidget {
 class _CreatePostFormState extends State<CreatePostForm> {
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<FeedController>(context);
-    controller.formKey = widget.formKey;
+    final postController = Provider.of<PostsController>(context);
+    final gamesController = Provider.of<GamesController>(context);
+    final tagsController = Provider.of<TagsController>(context);
+    postController.formKey = widget.formKey;
 
     return Center(
       child: Container(
@@ -71,7 +75,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                       ),
                       onSaved: (content) {
                         if (content != null) {
-                          controller.postContent = content;
+                          postController.postContent = content;
                         }
                       },
                       validator: (content) {
@@ -90,13 +94,13 @@ class _CreatePostFormState extends State<CreatePostForm> {
                         compareFn: (item1, item2) => item1.name == item2.name,
                         filterFn: (_, __) => true,
                         items: (filter, infiniteScrollProps) async {
-                          return controller.loadFilteredGames(
+                          return gamesController.loadFilteredGames(
                             context: context,
                             filter: filter,
                           );
                         },
                         onChanged: (value) {
-                          controller.selectedGame = value;
+                          postController.selectedGame = value;
                         },
                         keyToString: (key) {
                           return key?.name ?? '';
@@ -119,7 +123,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                         filterFn: (_, __) => true,
                         keyToString: (key) => key?.name ?? '',
                         items: (filter, infiniteScrollProps) async {
-                          final tags = await controller.loadTags(
+                          final tags = await tagsController.loadTags(
                             context: context,
                             filter: filter,
                           );
@@ -127,7 +131,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                         },
                         onChanged: (tag) {
                           if (tag != null) {
-                            controller.addTag(tag);
+                            tagsController.addTag(tag);
                           }
                         },
                       ),
@@ -141,12 +145,12 @@ class _CreatePostFormState extends State<CreatePostForm> {
                       buttons: {
                         'Image': () {
                           setState(() {
-                            controller.selectedAssetType = AssetType.image;
+                            postController.selectedAssetType = AssetType.image;
                           });
                         },
                         'Video': () {
                           setState(() {
-                            controller.selectedAssetType = AssetType.video;
+                            postController.selectedAssetType = AssetType.video;
                           });
                         },
                       },
@@ -157,7 +161,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.all(12),
                           hintText:
-                              'Link to ${controller.selectedAssetType.displayName}',
+                              'Link to ${postController.selectedAssetType.displayName}',
                           fillColor: backgroundLightColor,
                           filled: true,
                           suffixIcon: const Icon(Icons.add),
@@ -167,7 +171,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                           ),
                         ),
                         onSaved: (assetLink) {
-                          controller.assetLink = assetLink;
+                          postController.assetLink = assetLink;
                         },
                       ),
                     ),
@@ -178,7 +182,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                           Button(
                             text: 'Post',
                             fontSize: 24,
-                            onPressed: _submitForm(controller),
+                            onPressed: _submitForm(postController),
                           ),
                           const Spacer(),
                           Button(
@@ -186,7 +190,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                             fontSize: 24,
                             onPressed: () {
                               widget.formKey.currentState?.reset();
-                              controller.clearForm();
+                              postController.clearForm();
                             },
                           ),
                         ],
@@ -202,17 +206,12 @@ class _CreatePostFormState extends State<CreatePostForm> {
     );
   }
 
-  Function() _submitForm(FeedController controller) {
+  Function() _submitForm(PostsController postController) {
     return () {
       if (widget.formKey.currentState!.validate()) {
         widget.formKey.currentState!.save();
-        controller.submitPost(
+        postController.submitPost(
           context: context,
-          content: controller.postContent!,
-          gameId: controller.selectedGame?.id,
-          assetId: controller.selectedAssetType.id,
-          assetLink: controller.assetLink,
-          tagIds: controller.selectedTagIds,
         );
       }
     };

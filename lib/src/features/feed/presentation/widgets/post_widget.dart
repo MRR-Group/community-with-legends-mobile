@@ -1,5 +1,5 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
-import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/feed_controller.dart';
+import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/reactions_controller.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/widgets/post_tags.dart';
 import 'package:community_with_legends_mobile/src/features/post_details/presentation/pages/post_details_page.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/post_model.dart';
@@ -28,7 +28,7 @@ class PostWidget extends StatefulWidget {
 class _PostWidgetState extends State<PostWidget> {
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<FeedController>(context);
+    final reactionsController = Provider.of<ReactionsController>(context);
 
     return Stack(
       children: [
@@ -102,9 +102,9 @@ class _PostWidgetState extends State<PostWidget> {
                                 : primaryGradient,
                             onPressed: () async {
                               if (widget.post.userReacted) {
-                                controller.removeReaction(context, widget.post);
+                                reactionsController.removeReaction(context, widget.post);
                               } else {
-                                controller.addReaction(context, widget.post);
+                                reactionsController.addReaction(context, widget.post);
                               }
                             },
                             horizontalPadding: 8,

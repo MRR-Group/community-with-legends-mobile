@@ -1,5 +1,5 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
-import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/feed_controller.dart';
+import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/tags_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
@@ -16,12 +16,12 @@ class SelectedTags extends StatefulWidget {
 class _SelectedTagsState extends State<SelectedTags> {
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<FeedController>(context);
+    final tagsController = Provider.of<TagsController>(context);
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: controller.selectedTags.map((tag) {
+        children: tagsController.selectedTags.map((tag) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Button.iconRight(
@@ -33,7 +33,7 @@ class _SelectedTagsState extends State<SelectedTags> {
               ),
               horizontalPadding: 12,
               onPressed: () {
-                controller.removeTag(tag);
+                tagsController.removeTag(tag);
               },
             ),
           );

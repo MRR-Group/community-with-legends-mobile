@@ -1,6 +1,5 @@
-import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/feed_controller.dart';
+import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/posts_controller.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/widgets/post_widget.dart';
-import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/loading_animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
@@ -18,30 +17,23 @@ class _PostsViewState extends State<PostsView> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final feedController =
-          Provider.of<FeedController>(context, listen: false);
-      await feedController.loadPosts(context);
+      final postsController =
+          Provider.of<PostsController>(context, listen: false);
+      await postsController.loadPosts(context);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final feedController = Provider.of<FeedController>(context);
+    final postsController = Provider.of<PostsController>(context);
 
-    if (feedController.isLoading) {
+    if (postsController.isLoading) {
       return const SliverToBoxAdapter(
         child: LoadingAnimation(width: 200, height: 200),
       );
     }
 
-    if (feedController.error != null) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        Alert.of(context).show(text: feedController.error!);
-      });
-      return const SliverToBoxAdapter(child: SizedBox.shrink());
-    }
-
-    final posts = feedController.feedPosts?.posts ?? [];
+    final posts = postsController.feedPosts?.posts ?? [];
 
     return SliverList(
       delegate: SliverChildBuilderDelegate(
