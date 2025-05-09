@@ -11,6 +11,7 @@ class UpdateRepositoryImpl extends UpdateRepository {
   @override
   Future<VersionInfo> checkForUpdate() async {
     final response = await updateDatasource.getLatestVersion();
+
     return VersionInfo(
       name: response.name,
       publishedAt: response.publishedAt,
@@ -25,6 +26,7 @@ class UpdateRepositoryImpl extends UpdateRepository {
         return asset.downloadUrl;
       }
     }
+
     return '';
   }
 }

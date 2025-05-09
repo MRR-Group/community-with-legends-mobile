@@ -84,6 +84,7 @@ class AppSetup {
   LoginController createLoginController() {
     final api = AuthDataSource(baseUrl: apiUrl);
     final repository = AuthRepositoryImpl(api);
+
     final loginUseCase = LoginUseCase(repository);
 
     return LoginController(loginUseCase);
@@ -92,6 +93,7 @@ class AppSetup {
   RegisterController createRegisterController() {
     final api = AuthDataSource(baseUrl: apiUrl);
     final repository = AuthRepositoryImpl(api);
+
     final registerUseCase = RegisterUseCase(repository);
 
     return RegisterController(registerUseCase);
@@ -100,6 +102,7 @@ class AppSetup {
   ResetPasswordController createPasswordResetController() {
     final api = AuthDataSource(baseUrl: apiUrl);
     final repository = AuthRepositoryImpl(api);
+
     final sendResetTokenUsecase = SendResetTokenUsecase(repository);
     final resetPasswordUsecase = ResetPasswordUsecase(repository);
 
@@ -109,6 +112,7 @@ class AppSetup {
   GamesController createGamesController() {
     final feedApi = FeedDataSource(baseUrl: apiUrl);
     final feedRepository = FeedRepositoryImpl(feedApi);
+
     final getFilteredGamesUseCase = GetFilteredGamesUseCase(feedRepository);
 
     return GamesController(
@@ -123,6 +127,7 @@ class AppSetup {
   PostsController createPostsController() {
     final feedApi = FeedDataSource(baseUrl: apiUrl);
     final feedRepository = FeedRepositoryImpl(feedApi);
+
     final getPostsUseCase = GetPostsUseCase(feedRepository);
     final getTrendingPosts = GetTrendingPostsUsecase(feedRepository);
     final getFilteredPostsUseCase = GetFilteredPostsUseCase(feedRepository);
@@ -140,6 +145,7 @@ class AppSetup {
   ReactionsController createReactionsController() {
     final feedApi = FeedDataSource(baseUrl: apiUrl);
     final feedRepository = FeedRepositoryImpl(feedApi);
+
     final addReactionToPostUsecase = AddReactionToPostUsecase(feedRepository);
     final removeReactionFromPostUsecase =
     RemoveReactionFromPostUsecase(feedRepository);
@@ -153,6 +159,7 @@ class AppSetup {
   TagsController createTagsController() {
     final feedApi = FeedDataSource(baseUrl: apiUrl);
     final feedRepository = FeedRepositoryImpl(feedApi);
+
     final getTagsUseCase = GetTagsUseCase(feedRepository);
 
     return TagsController(
@@ -163,6 +170,7 @@ class AppSetup {
   PostDetailsController createPostDetailsController() {
     final api = PostDetailsDatasource(baseUrl: apiUrl);
     final repository = PostDetailsRepositoryImpl(api);
+
     final getPostUsecase = GetPostUsecase(repository);
     final createCommentUsecase = CreateCommentUsecase(repository);
 
@@ -172,6 +180,7 @@ class AppSetup {
   UpdateController createUpdateController() {
     final datasource = UpdateDatasource(updateUrl);
     final repository = UpdateRepositoryImpl(datasource);
+
     final checkUpdateUsecase = CheckUpdateUsecase(repository);
 
     return UpdateController(checkUpdateUsecase);

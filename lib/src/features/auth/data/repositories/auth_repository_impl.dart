@@ -1,4 +1,4 @@
-import 'package:community_with_legends_mobile/src/core/errors/exceptions.dart';
+import 'package:community_with_legends_mobile/src/core/errors/exceptions/auth_exception.dart';
 import 'package:community_with_legends_mobile/src/features/auth/data/data_sources/auth_data_source.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/repositories/auth_repository.dart';
 

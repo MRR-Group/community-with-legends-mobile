@@ -44,7 +44,7 @@ ThemeData theme = ThemeData(
   appBarTheme: const AppBarTheme(
     backgroundColor: backgroundColor,
     iconTheme: IconThemeData(
-      color: textColor, //change your color here
+      color: textColor,
     ),
   ),
   cardTheme: CardTheme(

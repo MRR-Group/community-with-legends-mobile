@@ -38,6 +38,7 @@ class TagsController extends ChangeNotifier {
     } on HttpException catch (e) {
       Navigator.pushReplacementNamed(context, '/login');
       Alert.of(context).show(text: e.toString());
+
       return [];
     }
   }

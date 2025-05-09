@@ -14,6 +14,7 @@ class PostDetailsRepositoryImpl implements PostDetailsRepository{
 
     try {
       final result = Post.fromJson(response);
+
       return result;
     } catch (e) {
       rethrow;
