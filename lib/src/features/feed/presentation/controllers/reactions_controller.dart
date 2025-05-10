@@ -21,7 +21,6 @@ class ReactionsController extends ChangeNotifier {
       post.reactionsCount++;
       post.userReacted = true;
     } on HttpException catch (e) {
-      Navigator.pushReplacementNamed(context, '/login');
       Alert.of(context).show(text: e.toString());
     } finally {
       notifyListeners();
@@ -35,7 +34,6 @@ class ReactionsController extends ChangeNotifier {
       post.reactionsCount--;
       post.userReacted = false;
     } on HttpException catch (e) {
-      Navigator.pushReplacementNamed(context, '/login');
       Alert.of(context).show(text: e.toString());
     } finally {
       notifyListeners();

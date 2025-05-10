@@ -60,7 +60,6 @@ class PostsController extends ChangeNotifier {
         Alert.of(context).show(text: 'No posts available.');
       }
     } on HttpException catch (e) {
-      Navigator.pushReplacementNamed(context, '/login');
       Alert.of(context).show(text: e.toString());
     } finally {
       _isLoading = false;
@@ -84,7 +83,6 @@ class PostsController extends ChangeNotifier {
         Alert.of(context).show(text: 'No posts available.');
       }
     } on HttpException catch (e) {
-      Navigator.pushReplacementNamed(context, '/login');
       Alert.of(context).show(text: e.toString());
     } finally {
       _isLoading = false;
@@ -109,7 +107,6 @@ class PostsController extends ChangeNotifier {
         Alert.of(context).show(text: 'No posts available.');
       }
     } on HttpException catch (e) {
-      Navigator.pushReplacementNamed(context, '/login');
       Alert.of(context).show(text: e.toString());
     } finally {
       _isLoading = false;
@@ -135,7 +132,6 @@ class PostsController extends ChangeNotifier {
 
       Alert.of(context).show(text: 'Post has been created');
     } on HttpException catch (e) {
-      Navigator.pushReplacementNamed(context, '/login');
       Alert.of(context).show(text: e.toString());
     } finally {
       _isCreatingPost = false;

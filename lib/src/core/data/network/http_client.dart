@@ -86,71 +86,11 @@ class HttpClient {
   Future<Map<String, dynamic>> _handleHttpResponse(
     http.Response response,
   ) async {
-    switch (response.statusCode) {
-      case 200:
-      case 201:
-      case 202:
+    final statusCode = response.statusCode;
+    if (statusCode >= 200 && statusCode < 300) {
         return _handleSuccessResponse(response);
-      case 400:
-        throw HttpException(
-          message:
-              'There was an issue with your request. Please check your data and try again.',
-          statusCode: response.statusCode,
-        );
-      case 401:
-        throw HttpException(
-          message: 'Authentication failed. Please sign in to continue.',
-          statusCode: response.statusCode,
-        );
-      case 403:
-        throw HttpException(
-          message: 'You do not have permission to perform this action.',
-          statusCode: response.statusCode,
-        );
-      case 404:
-        throw HttpException(
-          message:
-              'The page or resource you are looking for could not be found.',
-          statusCode: response.statusCode,
-        );
-      case 408:
-        throw HttpException(
-          message: 'The request timed out. Please try again.',
-          statusCode: response.statusCode,
-        );
-      case 409:
-        throw HttpException(
-          message:
-              'There was a conflict with your request. Please check the data and try again.',
-          statusCode: response.statusCode,
-        );
-      case 500:
-        throw HttpException(
-          message: 'An error occurred on the server. Please try again later.',
-          statusCode: response.statusCode,
-        );
-      case 502:
-        throw HttpException(
-          message: 'There was a problem with the connection. Please try again.',
-          statusCode: response.statusCode,
-        );
-      case 503:
-        throw HttpException(
-          message:
-              'The service is currently unavailable. Please try again later.',
-          statusCode: response.statusCode,
-        );
-      case 504:
-        throw HttpException(
-          message:
-              'There was a problem with the connection. Please try again later.',
-          statusCode: response.statusCode,
-        );
-      default:
-        throw HttpException(
-          message: 'An unexpected error occurred. Please try again later.',
-          statusCode: response.statusCode,
-        );
+    }else{
+      throw HttpException.fromStatusCode(statusCode: statusCode);
     }
   }
 

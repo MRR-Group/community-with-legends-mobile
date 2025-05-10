@@ -19,7 +19,6 @@ class GamesController extends ChangeNotifier{
     try {
       return await getFilteredGames.execute(filter);
     } on HttpException catch (e) {
-      Navigator.pushReplacementNamed(context, '/login');
       Alert.of(context).show(text: e.toString());
 
       return [];

@@ -37,7 +37,6 @@ class PostDetailsController extends ChangeNotifier {
     try {
       _post = await getPost.execute(postId);
     } on HttpException catch (e) {
-      Navigator.pushReplacementNamed(context, '/login');
       Alert.of(context).show(text: e.toString());
     } finally {
       _isLoading = false;
