@@ -25,6 +25,7 @@ class LoginController with ChangeNotifier {
 
       if (context.mounted) {
         Alert.of(context).show(text: 'Logged in successfully');
+        Navigator.pushReplacementNamed(context, '/feed');
       }
     } catch (error) {
       if (context.mounted) {

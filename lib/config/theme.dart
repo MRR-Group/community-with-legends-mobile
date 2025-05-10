@@ -43,6 +43,9 @@ ThemeData theme = ThemeData(
   ),
   appBarTheme: const AppBarTheme(
     backgroundColor: backgroundColor,
+    iconTheme: IconThemeData(
+      color: textColor,
+    ),
   ),
   cardTheme: CardTheme(
     margin: EdgeInsets.zero,
@@ -55,5 +58,15 @@ ThemeData theme = ThemeData(
     insetPadding: EdgeInsets.zero,
     backgroundColor: Colors.transparent,
     elevation: 0,
+  ),
+  inputDecorationTheme: InputDecorationTheme(
+    filled: true,
+    fillColor: backgroundLightColor,
+    hintStyle: const TextStyle(color: textDisabledColor),
+    labelStyle: const TextStyle(color: textDisabledColor),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8),
+      borderSide: BorderSide.none,
+    ),
   ),
 );

@@ -6,7 +6,7 @@ class Alert {
 
   Alert.of(this.context);
 
-  void show({required String text, bool hideCurrent = true}) {
+  void show({required String text, bool hideCurrent = false}) {
     if (hideCurrent) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
     }
@@ -31,14 +31,12 @@ class Alert {
               borderRadius: BorderRadius.circular(8),
               color: backgroundColor,
             ),
-            child: Expanded(
-              child: Text(
-                text,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.white,
-                  overflow: TextOverflow.visible,
-                ),
+            child: Text(
+              text,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Colors.white,
+                overflow: TextOverflow.visible,
               ),
             ),
           ),
