@@ -31,8 +31,11 @@ class AuthViaTwitch extends StatelessWidget {
             image: Svg('assets/images/twitch.svg'),
           ),
           onTap: () => {
-            launchUrl(Uri.parse(
-                'https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=y0ovshk37zeusj60u8vzv176tojtm5&redirect_uri=https://napalonaemi.pl/api/twitch/auth/login&scope=user%3Aread%3Aemail')),
+            launchUrl(
+              Uri.parse(
+                'https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=y0ovshk37zeusj60u8vzv176tojtm5&redirect_uri=https://napalonaemi.pl/api/twitch/auth/login&scope=user%3Aread%3Aemail',
+              ),
+            ),
           },
         ),
       ],
