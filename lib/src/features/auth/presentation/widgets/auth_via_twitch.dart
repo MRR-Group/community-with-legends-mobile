@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 enum AuthMode { login, register }
 
 class AuthViaTwitch extends StatelessWidget {
   const AuthViaTwitch({super.key, required this.authMode});
+
   final AuthMode authMode;
 
   @override
@@ -24,7 +26,15 @@ class AuthViaTwitch extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 18),
-        const Image(image: Svg('assets/images/twitch.svg')),
+        InkWell(
+          child: const Image(
+            image: Svg('assets/images/twitch.svg'),
+          ),
+          onTap: () => {
+            launchUrl(Uri.parse(
+                'https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=y0ovshk37zeusj60u8vzv176tojtm5&redirect_uri=https://napalonaemi.pl/api/twitch/auth/login&scope=user%3Aread%3Aemail')),
+          },
+        ),
       ],
     );
   }
