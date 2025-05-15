@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:community_with_legends_mobile/config/theme.dart';
 import 'package:community_with_legends_mobile/src/core/app_setup.dart';
 import 'package:community_with_legends_mobile/src/core/deep_links/twitch_login_deep_link.dart';
@@ -37,8 +36,6 @@ class _AppInitializerState extends State<AppInitializer> {
 
     return '/login';
   }
-
-
 
   @override
   void initState() {

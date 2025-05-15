@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 enum AuthMode { login, register }
 
 class AuthViaTwitch extends StatelessWidget {
-  const AuthViaTwitch({super.key, required this.authMode});
-
   final AuthMode authMode;
+  final String _twitchLoginUrl = dotenv.env['TWITCH_LOGIN_URL'] ?? '';
+  final String _twitchRegisterUrl = dotenv.env['TWITCH_REGISTER_URL'] ?? '';
+
+  String get _authText =>
+      authMode == AuthMode.login ? 'Log in via' : 'Register via';
+
+  String get _authLink =>
+      authMode == AuthMode.login ? _twitchLoginUrl : _twitchRegisterUrl;
+
+  AuthViaTwitch({super.key, required this.authMode});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +29,7 @@ class AuthViaTwitch extends StatelessWidget {
           ),
         ),
         Text(
-          authMode == AuthMode.login ? 'Log in via' : 'Register via',
+          _authText,
           style: const TextStyle(
             fontSize: 28,
           ),
@@ -33,7 +42,7 @@ class AuthViaTwitch extends StatelessWidget {
           onTap: () => {
             launchUrl(
               Uri.parse(
-                'https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=y0ovshk37zeusj60u8vzv176tojtm5&redirect_uri=https://napalonaemi.pl/api/twitch/auth/login&scope=user%3Aread%3Aemail',
+                _authLink,
               ),
             ),
           },
