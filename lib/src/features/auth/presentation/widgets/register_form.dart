@@ -85,7 +85,7 @@ class RegisterForm extends StatelessWidget {
             isLoading: controller.isLoading,
           ),
           const SizedBox(height: 18),
-          const AuthViaTwitch(authMode: AuthMode.register),
+          AuthViaTwitch(authMode: AuthMode.register),
         ],
       ),
     );

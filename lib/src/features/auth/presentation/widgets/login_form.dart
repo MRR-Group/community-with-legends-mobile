@@ -72,7 +72,7 @@ class LoginForm extends StatelessWidget {
             isLoading: controller.isLoading,
           ),
           const SizedBox(height: 18),
-          const AuthViaTwitch(authMode: AuthMode.login),
+          AuthViaTwitch(authMode: AuthMode.login),
         ],
       ),
     );
