@@ -2,7 +2,7 @@ import 'package:community_with_legends_mobile/src/features/app_update/data/data_
 import 'package:community_with_legends_mobile/src/features/app_update/data/repositories/update_repository_impl.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/domain/usecases/check_update_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/presentation/controllers/update_controller.dart';
-import 'package:community_with_legends_mobile/src/features/app_update/presentation/widgets/update_page.dart';
+import 'package:community_with_legends_mobile/src/features/app_update/presentation/pages/update_page.dart';
 import 'package:community_with_legends_mobile/src/features/auth/data/data_sources/auth_data_source.dart';
 import 'package:community_with_legends_mobile/src/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/login_usecase.dart';
