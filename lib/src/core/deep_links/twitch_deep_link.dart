@@ -1,18 +1,19 @@
 import 'dart:async';
 
+import 'package:app_links/app_links.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:uni_links3/uni_links.dart';
 
 class TwitchDeepLink {
   static const _loginCallback = 'logincallback';
   static const _messageCallback = 'messagecallback';
+  final appLinks = AppLinks();
 
   Future<void> registerTwitchCallback(
     GlobalKey<NavigatorState> navigatorKey,
   ) async {
-    uriLinkStream.listen(
+    appLinks.uriLinkStream.listen(
       (Uri? uri) async {
         if (uri == null) {
           return;
