@@ -4,6 +4,7 @@ import 'package:community_with_legends_mobile/src/features/feed/presentation/wid
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/background_image.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_app_bar.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_bottom_app_bar.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_drawer.dart';
 import 'package:flutter/material.dart';
 
 class FeedPage extends StatelessWidget {
@@ -21,6 +22,7 @@ class FeedPage extends StatelessWidget {
       backgroundColor: Colors.transparent,
       appBar: const DefaultAppBar(),
       bottomNavigationBar: const DefaultBottomAppBar(),
+      endDrawer: const DefaultDrawer(),
       body: Stack(
         children: [
           const BackgroundImage(bottomMargin: 0),
