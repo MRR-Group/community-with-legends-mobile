@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:community_with_legends_mobile/config/theme.dart';
 import 'package:community_with_legends_mobile/src/core/app_setup.dart';
-import 'package:community_with_legends_mobile/src/core/deep_links/twitch_login_deep_link.dart';
+import 'package:community_with_legends_mobile/src/core/deep_links/twitch_deep_link.dart';
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/check_update_exception.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +25,7 @@ class _AppInitializerState extends State<AppInitializer> {
   bool _initialized = false;
   String initialRoute = '/feed';
   String? _error;
-  final twitchLoginDeepLink = TwitchLoginDeepLink();
+  final twitchDeepLink = TwitchDeepLink();
 
   String getRoute() {
     if (widget.appSetup.updateAvailable) {
@@ -41,7 +41,7 @@ class _AppInitializerState extends State<AppInitializer> {
   void initState() {
     super.initState();
     _initAsync();
-    twitchLoginDeepLink.registerLoginCallback(_navigatorKey);
+    twitchDeepLink.registerTwitchCallback(_navigatorKey);
   }
 
   Future<void> _initAsync() async {

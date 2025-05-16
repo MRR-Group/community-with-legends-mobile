@@ -5,11 +5,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uni_links3/uni_links.dart';
 
-class TwitchLoginDeepLink {
+class TwitchDeepLink {
   static const _loginCallback = 'logincallback';
   static const _messageCallback = 'messagecallback';
 
-  Future<void> registerLoginCallback(
+  Future<void> registerTwitchCallback(
     GlobalKey<NavigatorState> navigatorKey,
   ) async {
     uriLinkStream.listen(
