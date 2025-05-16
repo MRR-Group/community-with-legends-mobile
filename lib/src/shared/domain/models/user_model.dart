@@ -4,7 +4,6 @@ class User {
   final String email;
   final DateTime? emailVerifiedAt;
   final DateTime createdAt;
-  final DateTime updatedAt;
 
   User({
     required this.id,
@@ -12,7 +11,6 @@ class User {
     required this.email,
     required this.emailVerifiedAt,
     required this.createdAt,
-    required this.updatedAt,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -22,7 +20,6 @@ class User {
       email: json['email'],
       emailVerifiedAt: DateTime.tryParse(json['email_verified_at'] ?? ''),
       createdAt: DateTime.parse(json['created_at']),
-      updatedAt: DateTime.parse(json['updated_at']),
     );
   }
 }
