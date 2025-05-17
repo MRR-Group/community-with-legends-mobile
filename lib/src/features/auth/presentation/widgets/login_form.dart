@@ -73,6 +73,14 @@ class LoginForm extends StatelessWidget {
           ),
           const SizedBox(height: 18),
           AuthViaTwitch(authMode: AuthMode.login),
+          const SizedBox(height: 18),
+          Button(
+            text: 'View as guest',
+            onPressed: () {
+              Navigator.pushNamed(context, '/feed');
+            },
+            isLoading: controller.isLoading,
+          ),
         ],
       ),
     );
