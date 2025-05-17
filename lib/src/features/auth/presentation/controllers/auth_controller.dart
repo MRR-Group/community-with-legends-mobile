@@ -28,7 +28,7 @@ class AuthController with ChangeNotifier {
 
   Future<bool> get isLoggedIn async {
     final prefs = await SharedPreferences.getInstance();
-    final token = prefs.get('auth_token');
+    final token = prefs.getString('auth_token');
 
     return token != null;
   }
