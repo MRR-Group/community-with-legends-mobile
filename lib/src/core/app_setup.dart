@@ -6,12 +6,11 @@ import 'package:community_with_legends_mobile/src/features/app_update/presentati
 import 'package:community_with_legends_mobile/src/features/auth/data/data_sources/auth_data_source.dart';
 import 'package:community_with_legends_mobile/src/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/login_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/logout_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/register_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/reset_password_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/send_reset_token_usecase.dart';
-import 'package:community_with_legends_mobile/src/features/auth/presentation/controllers/login_controller.dart';
-import 'package:community_with_legends_mobile/src/features/auth/presentation/controllers/register_controller.dart';
-import 'package:community_with_legends_mobile/src/features/auth/presentation/controllers/reset_password_controller.dart';
+import 'package:community_with_legends_mobile/src/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/forgot_password_page.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/login_page.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/register_page.dart';
@@ -81,32 +80,23 @@ class AppSetup {
     }
   }
 
-  LoginController createLoginController() {
+  AuthController createAuthController() {
     final api = AuthDataSource(baseUrl: apiUrl);
     final repository = AuthRepositoryImpl(api);
 
+    final logoutUseCase = LogoutUseCase(repository);
     final loginUseCase = LoginUseCase(repository);
-
-    return LoginController(loginUseCase);
-  }
-
-  RegisterController createRegisterController() {
-    final api = AuthDataSource(baseUrl: apiUrl);
-    final repository = AuthRepositoryImpl(api);
-
     final registerUseCase = RegisterUseCase(repository);
-
-    return RegisterController(registerUseCase);
-  }
-
-  ResetPasswordController createPasswordResetController() {
-    final api = AuthDataSource(baseUrl: apiUrl);
-    final repository = AuthRepositoryImpl(api);
-
-    final sendResetTokenUsecase = SendResetTokenUsecase(repository);
     final resetPasswordUsecase = ResetPasswordUsecase(repository);
+    final sendResetTokenUsecase = SendResetTokenUsecase(repository);
 
-    return ResetPasswordController(sendResetTokenUsecase, resetPasswordUsecase);
+    return AuthController(
+      loginUseCase: loginUseCase,
+      logoutUseCase: logoutUseCase,
+      registerUseCase: registerUseCase,
+      resetPasswordUsecase: resetPasswordUsecase,
+      sendResetTokenUsecase: sendResetTokenUsecase,
+    );
   }
 
   GamesController createGamesController() {
@@ -148,7 +138,7 @@ class AppSetup {
 
     final addReactionToPostUsecase = AddReactionToPostUsecase(feedRepository);
     final removeReactionFromPostUsecase =
-    RemoveReactionFromPostUsecase(feedRepository);
+        RemoveReactionFromPostUsecase(feedRepository);
 
     return ReactionsController(
       addReactionToPost: addReactionToPostUsecase,
@@ -189,14 +179,11 @@ class AppSetup {
   List<SingleChildWidget> getProviders() {
     final postsController = createPostsController();
     return [
-      ChangeNotifierProvider<LoginController>(
-        create: (_) => createLoginController(),
-      ),
-      ChangeNotifierProvider<RegisterController>(
-        create: (_) => createRegisterController(),
-      ),
       ChangeNotifierProvider<GamesController>(
         create: (_) => createGamesController(),
+      ),
+      ChangeNotifierProvider<AuthController>(
+        create: (_) => createAuthController(),
       ),
       ChangeNotifierProvider<PostTabController>(
         create: (_) => PostTabController(postsController),
@@ -212,9 +199,6 @@ class AppSetup {
       ),
       ChangeNotifierProvider<UpdateController>(
         create: (_) => createUpdateController(),
-      ),
-      ChangeNotifierProvider<ResetPasswordController>(
-        create: (_) => createPasswordResetController(),
       ),
       ChangeNotifierProvider<PostDetailsController>(
         create: (_) => createPostDetailsController(),

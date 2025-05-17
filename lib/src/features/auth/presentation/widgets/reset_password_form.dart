@@ -1,4 +1,4 @@
-import 'package:community_with_legends_mobile/src/features/auth/presentation/controllers/reset_password_controller.dart';
+import 'package:community_with_legends_mobile/src/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/auth_text_input.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/clickable_auth_text.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
@@ -23,7 +23,7 @@ class ResetPasswordForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<ResetPasswordController>(context);
+    final controller = Provider.of<AuthController>(context);
 
     return Form(
       key: formKey,

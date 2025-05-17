@@ -1,4 +1,4 @@
-import 'package:community_with_legends_mobile/src/features/auth/presentation/controllers/login_controller.dart';
+import 'package:community_with_legends_mobile/src/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/auth_text_input.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/auth_via_twitch.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/clickable_auth_text.dart';
@@ -20,7 +20,7 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<LoginController>(context);
+    final controller = Provider.of<AuthController>(context);
 
     return Form(
       key: formKey,

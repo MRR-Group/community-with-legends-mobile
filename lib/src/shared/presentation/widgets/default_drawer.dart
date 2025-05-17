@@ -1,6 +1,8 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
-import 'package:community_with_legends_mobile/src/shared/presentation/widgets/select_button.dart';
+import 'package:community_with_legends_mobile/src/features/auth/presentation/controllers/auth_controller.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/widgets/auth_button.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DefaultDrawer extends StatelessWidget {
   const DefaultDrawer({
@@ -34,8 +36,10 @@ class DefaultDrawer extends StatelessWidget {
                     borderRadius: const BorderRadius.all(Radius.circular(16)),
                     border: Border.all(color: backgroundLightColor),
                   ),
-                  margin:
-                      const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                  margin: const EdgeInsets.symmetric(
+                    vertical: 4,
+                    horizontal: 16,
+                  ),
                   child: ListTile(
                     title: const Text('Item 1'),
                     textColor: textColor,
@@ -92,13 +96,8 @@ class DefaultDrawer extends StatelessWidget {
                 top: BorderSide(color: textDisabledColor),
               ),
             ),
-            child: Align(
-              child: SelectButton(
-                text: 'Login',
-                onPressed: () {},
-                isSelected: true,
-                fontSize: 24,
-              ),
+            child: const Align(
+              child: AuthButton(),
             ),
           ),
         ],

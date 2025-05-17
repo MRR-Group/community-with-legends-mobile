@@ -9,6 +9,7 @@ class AuthAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Image.asset('assets/images/logo.png'),
       centerTitle: true,
       leading: const Padding(padding: EdgeInsets.only(bottom: 300)),
+      actions: const [Text('data')],
     );
   }
 
