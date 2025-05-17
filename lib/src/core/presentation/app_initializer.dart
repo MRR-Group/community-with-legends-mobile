@@ -5,6 +5,7 @@ import 'package:community_with_legends_mobile/src/core/deep_links/twitch_deep_li
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/check_update_exception.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 class AppInitializer extends StatefulWidget {
   final AppSetup appSetup;
@@ -65,6 +66,15 @@ class _AppInitializerState extends State<AppInitializer> {
       debugShowCheckedModeBanner: false,
       theme: theme,
       routes: widget.appSetup.routes,
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en'),
+        Locale('pl'),
+      ],
       home: _initialized
           ? widget.appSetup.routes[initialRoute]!(context)
           : const Scaffold(
