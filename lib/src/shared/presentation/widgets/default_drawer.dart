@@ -1,8 +1,6 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
-import 'package:community_with_legends_mobile/src/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/auth_button.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class DefaultDrawer extends StatelessWidget {
   const DefaultDrawer({
