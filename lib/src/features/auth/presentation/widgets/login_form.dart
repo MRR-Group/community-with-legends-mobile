@@ -4,8 +4,8 @@ import 'package:community_with_legends_mobile/src/features/auth/presentation/wid
 import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/clickable_auth_text.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class LoginForm extends StatelessWidget {
   final GlobalKey<FormState> formKey;
@@ -22,45 +22,46 @@ class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<AuthController>(context);
+    final localizations = AppLocalizations.of(context)!;
 
     return Form(
       key: formKey,
       child: Column(
         children: [
           Text(
-            AppLocalizations.of(context)!.loginTitle,
+            localizations.loginTitle,
             style: const TextStyle(
               fontSize: 42,
             ),
           ),
           const SizedBox(height: 18),
           AuthTextInput(
-            text: 'Enter your email',
-            hint: 'Email',
+            text: localizations.loginEmailHint,
+            hint: localizations.email,
             controller: emailController,
           ),
           ClickableAuthText(
-            message: "You don't have an account?",
-            linkText: 'Click here',
-            actionText: 'to register',
+            message: localizations.loginNoAccount,
+            linkText: localizations.loginClickHere,
+            actionText: localizations.loginRegisterCta,
             onPress: () => Navigator.of(context).pushNamed('/register'),
           ),
           const SizedBox(height: 18),
           AuthTextInput(
-            text: 'Enter your password',
-            hint: 'Password',
+            text: localizations.loginPasswordHint,
+            hint: localizations.password,
             obscureText: true,
             controller: passwordController,
           ),
           ClickableAuthText(
-            message: "You don't remember?",
-            linkText: 'Click here',
-            actionText: 'to reset it',
+            message: localizations.loginDontRemember,
+            linkText: localizations.loginClickHere,
+            actionText: localizations.loginResetPasswordCta,
             onPress: () => Navigator.of(context).pushNamed('/forgot-password'),
           ),
           const SizedBox(height: 18),
           Button(
-            text: 'Log in',
+            text: localizations.loginButton,
             onPressed: () {
               if (!controller.isLoading) {
                 controller.login(
@@ -76,7 +77,7 @@ class LoginForm extends StatelessWidget {
           AuthViaTwitch(authMode: AuthMode.login),
           const SizedBox(height: 18),
           Button(
-            text: 'View as guest',
+            text: localizations.loginViewAsGuest,
             onPressed: () {
               Navigator.pushNamed(context, '/feed');
             },

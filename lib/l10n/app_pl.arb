@@ -1,3 +1,22 @@
 {
-  "loginTitle": "Logowanie"
+  "@@locale": "pl",
+
+  "email": "Email",
+  "password": "Hasło",
+
+  "loginTitle": "Zaloguj się",
+  "loginButton": "Zaloguj się",
+  "loginEmailHint": "Wprowadź swój adres e-mail",
+  "loginPasswordHint": "Wprowadź swoje hasło",
+  "loginOr": "Lub",
+  "loginLoginVia": "Zaloguj się przez",
+  "loginViewAsGuest": "Kontynuuj jako gość",
+
+  "loginClickHere": "Kliknij tutaj",
+  "loginNoAccount": "Nie masz konta?",
+  "loginRegisterCta": "aby się zarejestrować",
+  "loginDontRemember": "Nie pamiętasz?",
+  "loginResetPasswordCta": "aby zresetować hasło",
+
+  "registerVia": "Zarejestruj się przez"
 }

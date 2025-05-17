@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -20,16 +21,18 @@ class AuthViaTwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+
     return Column(
       children: [
-        const Text(
-          'OR',
-          style: TextStyle(
+        Text(
+          localizations.loginOr,
+          style: const TextStyle(
             fontSize: 28,
           ),
         ),
         Text(
-          _authText,
+          authMode == AuthMode.login ? localizations.loginLoginVia : localizations.registerVia,
           style: const TextStyle(
             fontSize: 28,
           ),

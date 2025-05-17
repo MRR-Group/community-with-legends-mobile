@@ -1,3 +1,22 @@
 {
-  "loginTitle": "Login"
+  "@@locale": "en",
+
+  "email": "Email",
+  "password": "Password",
+
+  "loginTitle": "Login",
+  "loginButton": "Log in",
+  "loginEmailHint": "Enter your email",
+  "loginPasswordHint": "Enter your password",
+  "loginOr": "Or",
+  "loginLoginVia": "Log in via",
+  "loginViewAsGuest": "View as guest",
+
+  "loginClickHere": "Click here",
+  "loginNoAccount": "You don't have an account?",
+  "loginRegisterCta": "to register",
+  "loginDontRemember": "You don't remember?",
+  "loginResetPasswordCta": "to reset it",
+
+  "registerVia": "Register via"
 }
