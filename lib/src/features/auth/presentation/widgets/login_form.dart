@@ -5,6 +5,7 @@ import 'package:community_with_legends_mobile/src/features/auth/presentation/wid
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginForm extends StatelessWidget {
   final GlobalKey<FormState> formKey;
@@ -26,9 +27,9 @@ class LoginForm extends StatelessWidget {
       key: formKey,
       child: Column(
         children: [
-          const Text(
-            'Log in',
-            style: TextStyle(
+          Text(
+            AppLocalizations.of(context)!.loginTitle,
+            style: const TextStyle(
               fontSize: 42,
             ),
           ),
