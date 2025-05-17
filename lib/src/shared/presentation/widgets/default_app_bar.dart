@@ -12,7 +12,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: Image.asset('assets/images/logo.png'),
       ),
       shape: const Border(
-        bottom: BorderSide(color: textColor),
+        bottom: BorderSide(color: textDisabledColor),
       ),
     );
   }

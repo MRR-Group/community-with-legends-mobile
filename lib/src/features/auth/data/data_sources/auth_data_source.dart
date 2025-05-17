@@ -64,4 +64,10 @@ class AuthDataSource extends HttpClient {
       body: body,
     );
   }
+
+  void logout() {
+    postRequest(
+      urlPath: 'api/auth/logout',
+    );
+  }
 }

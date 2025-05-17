@@ -48,4 +48,9 @@ class AuthRepositoryImpl implements AuthRepository {
       passwordConfirmation: passwordConfirmation,
     );
   }
+
+  @override
+  Future<void> logout() async {
+    api.logout();
+  }
 }
