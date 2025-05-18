@@ -35,7 +35,7 @@ class _FeedMenuState extends State<FeedMenu> {
         Column(
           children: [
             Container(
-              width: 200,
+              width: 225,
               padding: EdgeInsets.zero,
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.only(
@@ -129,7 +129,7 @@ class _FeedMenuState extends State<FeedMenu> {
             if (postTabController.selectedPostTab == PostTab.filtered)
               Container(
                 padding: const EdgeInsets.all(8),
-                width: 200,
+                width: 225,
                 decoration: const BoxDecoration(
                   color: backgroundColor,
                   border: Border(
