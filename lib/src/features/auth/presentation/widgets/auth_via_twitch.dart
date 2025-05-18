@@ -11,7 +11,7 @@ class AuthViaTwitch extends StatelessWidget {
   final String _twitchLoginUrl = dotenv.env['TWITCH_LOGIN_URL'] ?? '';
   final String _twitchRegisterUrl = dotenv.env['TWITCH_REGISTER_URL'] ?? '';
 
-  String  _authText(localizations) =>
+  String  _authText(AppLocalizations localizations) =>
       authMode == AuthMode.login ? localizations.login_loginVia : localizations.register_registerVia;
 
   String get _authLink =>

@@ -9,7 +9,8 @@ import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/
 import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/tags_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/game_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
-import 'package:flutter/material.dart';import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 class PostsController extends ChangeNotifier {
