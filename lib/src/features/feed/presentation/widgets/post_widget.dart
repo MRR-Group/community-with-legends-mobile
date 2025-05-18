@@ -6,8 +6,10 @@ import 'package:community_with_legends_mobile/src/shared/domain/models/post_mode
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
+
 
 class PostWidget extends StatefulWidget {
   final Post post;
@@ -28,6 +30,7 @@ class PostWidget extends StatefulWidget {
 class _PostWidgetState extends State<PostWidget> {
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     final reactionsController = Provider.of<ReactionsController>(context);
 
     return Stack(
@@ -128,7 +131,7 @@ class _PostWidgetState extends State<PostWidget> {
                 color: textColor,
               ),
               horizontalPadding: 12,
-              text: 'Reply',
+              text: localizations.posts_reply,
               fontSize: 16,
               onPressed: () {
                 Navigator.of(context).push(

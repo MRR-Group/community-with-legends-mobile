@@ -51,5 +51,27 @@
 
   "update_title": "Dostępna aktualizacja",
   "update_updateButton": "Aktualizuj",
-  "update_nextTime": "Następnym razem"
+  "update_nextTime": "Następnym razem",
+
+  "posts_loaded": "Posty zostały załadowane",
+  "posts_noPosts": "Brak postów",
+  "posts_postCreated": "Post został utworzony",
+  "posts_discover": "Odkrywaj",
+  "posts_create": "Utwórz post",
+  "posts_contentHint": "Dołącz do rozmowy",
+  "posts_contentRequired": "Treść jest wymagana",
+  "posts_searchGame": "Szukaj gry...",
+  "posts_game": "Gra",
+  "posts_addGame": "Dodaj grę",
+  "posts_searchTag": "Szukaj tagu...",
+  "posts_tag": "Tag",
+  "posts_addTag": "Dodaj tag",
+  "posts_linkTo": "Link do",
+  "posts_post": "Opublikuj",
+  "posts_cancel": "Anuluj",
+  "posts_trending": "Na czasie",
+  "posts_recent": "Najnowsze",
+  "posts_search": "Szukaj",
+  "posts_reply": "Odpowiedz"
+
 }

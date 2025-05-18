@@ -51,5 +51,27 @@
 
   "update_title": "Update available",
   "update_updateButton": "Update",
-  "update_nextTime": "Next time"
+  "update_nextTime": "Next time",
+
+  "posts_loaded": "Posts loaded successfully",
+  "posts_noPosts": "Posts loaded successfully",
+  "posts_postCreated": "Post has been created",
+  "posts_discover": "Discover",
+  "posts_create": "Create a post",
+  "posts_contentHint": "Join the conversation",
+  "posts_contentRequired": "Content is required",
+  "posts_searchGame": "Search game...",
+  "posts_game": "Game",
+  "posts_addGame": "Add game",
+  "posts_searchTag": "Search tag...",
+  "posts_tag": "Tag",
+  "posts_addTag": "Add tag",
+  "posts_linkTo": "Link to",
+  "posts_post": "Post",
+  "posts_cancel": "Cancel",
+  "posts_trending": "Trending",
+  "posts_recent": "Recent",
+  "posts_search": "Search",
+  "posts_reply": "Reply"
+
 }

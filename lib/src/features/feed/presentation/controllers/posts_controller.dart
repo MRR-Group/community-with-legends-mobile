@@ -9,7 +9,8 @@ import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/
 import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/tags_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/game_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class PostsController extends ChangeNotifier {
   final TagsController tagsController;
@@ -52,12 +53,13 @@ class PostsController extends ChangeNotifier {
     notifyListeners();
 
     try {
+      final localizations = AppLocalizations.of(context)!;
       _feedPosts = await getPosts.execute();
 
       if (_feedPosts?.posts != null && _feedPosts!.posts.isNotEmpty) {
-        Alert.of(context).show(text: 'Posts loaded successfully.');
+        Alert.of(context).show(text: localizations.posts_loaded);
       } else {
-        Alert.of(context).show(text: 'No posts available.');
+        Alert.of(context).show(text: localizations.posts_noPosts);
       }
     } on HttpException catch (e) {
       Alert.of(context).show(text: e.toString());
@@ -68,6 +70,7 @@ class PostsController extends ChangeNotifier {
   }
 
   Future<void> loadTrendingPosts(BuildContext context) async {
+    final localizations = AppLocalizations.of(context)!;
     _feedPosts = null;
     _isLoading = true;
 
@@ -78,9 +81,9 @@ class PostsController extends ChangeNotifier {
       _feedPosts = await getTrendingPosts.execute();
 
       if (_feedPosts?.posts != null && _feedPosts!.posts.isNotEmpty) {
-        Alert.of(context).show(text: 'Posts loaded successfully.');
+        Alert.of(context).show(text: localizations.posts_loaded);
       } else {
-        Alert.of(context).show(text: 'No posts available.');
+        Alert.of(context).show(text: localizations.posts_noPosts);
       }
     } on HttpException catch (e) {
       Alert.of(context).show(text: e.toString());
@@ -91,6 +94,7 @@ class PostsController extends ChangeNotifier {
   }
 
   Future<void> loadFilteredPosts(BuildContext context) async {
+    final localizations = AppLocalizations.of(context)!;
     _feedPosts = null;
     _isLoading = true;
 
@@ -102,9 +106,9 @@ class PostsController extends ChangeNotifier {
           await getFilteredPosts.execute(tagFilter?.id, gameFilter?.id);
 
       if (_feedPosts?.posts != null && _feedPosts!.posts.isNotEmpty) {
-        Alert.of(context).show(text: 'Posts loaded successfully.');
+        Alert.of(context).show(text: localizations.posts_loaded);
       } else {
-        Alert.of(context).show(text: 'No posts available.');
+        Alert.of(context).show(text: localizations.posts_noPosts);
       }
     } on HttpException catch (e) {
       Alert.of(context).show(text: e.toString());
@@ -117,6 +121,7 @@ class PostsController extends ChangeNotifier {
   Future<void> submitPost({
     required BuildContext context,
   }) async {
+    final localizations = AppLocalizations.of(context)!;
     _isCreatingPost = true;
 
     notifyListeners();
@@ -130,7 +135,7 @@ class PostsController extends ChangeNotifier {
         assetLink: assetLink,
       );
 
-      Alert.of(context).show(text: 'Post has been created');
+      Alert.of(context).show(text: localizations.posts_postCreated);
     } on HttpException catch (e) {
       Alert.of(context).show(text: e.toString());
     } finally {

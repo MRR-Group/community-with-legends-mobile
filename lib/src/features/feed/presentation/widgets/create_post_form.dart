@@ -10,7 +10,10 @@ import 'package:community_with_legends_mobile/src/shared/presentation/widgets/bu
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_dropdown_search_widget.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/toggle_button_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+
+
 
 class CreatePostForm extends StatefulWidget {
   final GlobalKey<FormState> formKey;
@@ -35,6 +38,7 @@ class CreatePostForm extends StatefulWidget {
 class _CreatePostFormState extends State<CreatePostForm> {
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     final postController = Provider.of<PostsController>(context);
     final gamesController = Provider.of<GamesController>(context);
     final tagsController = Provider.of<TagsController>(context);
@@ -57,15 +61,15 @@ class _CreatePostFormState extends State<CreatePostForm> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Create a post',
-                      style: TextStyle(fontSize: 32),
+                    Text(
+                      localizations.posts_create,
+                      style: const TextStyle(fontSize: 32),
                     ),
                     TextFormField(
                       maxLines: 4,
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(12),
-                        hintText: 'Join the conversation',
+                        hintText: localizations.posts_contentHint,
                         fillColor: backgroundLightColor,
                         filled: true,
                         border: OutlineInputBorder(
@@ -80,7 +84,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                       },
                       validator: (content) {
                         if (content == null || content.isEmpty) {
-                          return 'Content is required';
+                          return localizations.posts_contentRequired;
                         }
                         return null;
                       },
@@ -89,8 +93,8 @@ class _CreatePostFormState extends State<CreatePostForm> {
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: DefaultDropdownSearch<Game>(
                         showSearchBox: true,
-                        searchBoxHint: 'Search game...',
-                        listTitle: 'Add game',
+                        searchBoxHint: localizations.posts_searchGame,
+                        listTitle: localizations.posts_addGame,
                         compareFn: (item1, item2) => item1.name == item2.name,
                         filterFn: (_, __) => true,
                         items: (filter, infiniteScrollProps) async {
@@ -116,9 +120,9 @@ class _CreatePostFormState extends State<CreatePostForm> {
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: DefaultDropdownSearch<Tag>(
                         overrideSelectedItemTitle: true,
-                        listTitle: 'Add tag',
+                        listTitle: localizations.posts_addTag,
                         showSearchBox: true,
-                        searchBoxHint: 'Search tag...',
+                        searchBoxHint: localizations.posts_searchTag,
                         compareFn: (item1, item2) => item1.id == item2.id,
                         filterFn: (_, __) => true,
                         keyToString: (key) => key?.name ?? '',
@@ -161,7 +165,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.all(12),
                           hintText:
-                              'Link to ${postController.selectedAssetType.displayName}',
+                              '${localizations.posts_linkTo} ${postController.selectedAssetType.displayName}',
                           fillColor: backgroundLightColor,
                           filled: true,
                           suffixIcon: const Icon(Icons.add),
@@ -180,13 +184,13 @@ class _CreatePostFormState extends State<CreatePostForm> {
                       child: Row(
                         children: [
                           Button(
-                            text: 'Post',
+                            text: localizations.posts_post,
                             fontSize: 24,
                             onPressed: _submitForm(postController),
                           ),
                           const Spacer(),
                           Button(
-                            text: 'Cancel',
+                            text: localizations.posts_cancel,
                             fontSize: 24,
                             onPressed: () {
                               widget.formKey.currentState?.reset();

@@ -6,6 +6,8 @@ import 'package:community_with_legends_mobile/src/shared/presentation/widgets/de
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_bottom_app_bar.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class FeedPage extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
@@ -18,6 +20,8 @@ class FeedPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: const DefaultAppBar(),
@@ -28,12 +32,12 @@ class FeedPage extends StatelessWidget {
           const BackgroundImage(bottomMargin: 0),
           CustomScrollView(
             slivers: [
-              const SliverToBoxAdapter(
+              SliverToBoxAdapter(
                 child: Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    'Discover',
-                    style: TextStyle(fontSize: 42),
+                    localizations.posts_discover,
+                    style: const TextStyle(fontSize: 42),
                     textAlign: TextAlign.center,
                   ),
                 ),

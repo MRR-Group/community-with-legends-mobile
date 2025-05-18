@@ -9,7 +9,9 @@ import 'package:community_with_legends_mobile/src/shared/domain/models/game_mode
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_dropdown_search_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+
 
 class FeedMenu extends StatefulWidget {
   const FeedMenu({super.key});
@@ -21,6 +23,7 @@ class FeedMenu extends StatefulWidget {
 class _FeedMenuState extends State<FeedMenu> {
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     final postsController = Provider.of<PostsController>(context);
     final postTabController = Provider.of<PostTabController>(context);
     final tagsController = Provider.of<TagsController>(context);
@@ -66,7 +69,7 @@ class _FeedMenuState extends State<FeedMenu> {
                             ? primaryColor
                             : backgroundColor,
                       ),
-                      child: const Text('Trending'),
+                      child: Text(localizations.posts_trending),
                     ),
                   ),
                   InkWell(
@@ -88,7 +91,7 @@ class _FeedMenuState extends State<FeedMenu> {
                             ? primaryColor
                             : backgroundColor,
                       ),
-                      child: const Text('Recent'),
+                      child: Text(localizations.posts_recent),
                     ),
                   ),
                   Expanded(
@@ -146,9 +149,9 @@ class _FeedMenuState extends State<FeedMenu> {
                       child: SizedBox(
                         width: 150,
                         child: DefaultDropdownSearch<Tag>(
-                          listTitle: 'Tag',
+                          listTitle: localizations.posts_tag,
                           showSearchBox: true,
-                          searchBoxHint: 'Add tag',
+                          searchBoxHint: localizations.posts_addTag,
                           compareFn: (item1, item2) => item1.id == item2.id,
                           filterFn: (_, __) => true,
                           keyToString: (key) => key?.name ?? '',
@@ -171,8 +174,8 @@ class _FeedMenuState extends State<FeedMenu> {
                         width: 150,
                         child: DefaultDropdownSearch<Game>(
                           showSearchBox: true,
-                          searchBoxHint: 'Search game...',
-                          listTitle: 'Game',
+                          searchBoxHint: localizations.posts_searchGame,
+                          listTitle: localizations.posts_game,
                           compareFn: (item1, item2) => item1.name == item2.name,
                           filterFn: (_, __) => true,
                           items: (filter, infiniteScrollProps) async {
@@ -191,7 +194,7 @@ class _FeedMenuState extends State<FeedMenu> {
                       ),
                     ),
                     Button(
-                      text: 'Search',
+                      text: localizations.posts_search,
                       fontSize: 16,
                       onPressed: () {
                         postsController.loadFilteredPosts(context);
