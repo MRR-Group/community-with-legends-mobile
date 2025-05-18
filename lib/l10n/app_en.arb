@@ -47,5 +47,9 @@
   "rp_rememberPassword": "Did you remember Your password?",
   "rp_rememberPasswordCta": "to log in",
   "rp_tokenSent": "If the email is correct, a token to reset your password will be sent to it",
-  "rp_passwordReset": "Success! You can now log in with your new password"
+  "rp_passwordReset": "Success! You can now log in with your new password",
+
+  "update_title": "Update available",
+  "update_updateButton": "Update",
+  "update_nextTime": "Next time"
 }
