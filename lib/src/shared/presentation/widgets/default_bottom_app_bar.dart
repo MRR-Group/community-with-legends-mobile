@@ -1,5 +1,6 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DefaultBottomAppBar extends StatelessWidget
     implements PreferredSizeWidget {
@@ -7,54 +8,56 @@ class DefaultBottomAppBar extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    return const BottomAppBar(
+    final localizations = AppLocalizations.of(context)!;
+
+    return BottomAppBar(
       color: backgroundColor,
       height: 55,
-      padding: EdgeInsets.only(left: 24, right: 24, top: 10),
+      padding: const EdgeInsets.only(left: 24, right: 24, top: 10),
       child: Row(
         children: [
           Column(
             children: [
-              Icon(
+              const Icon(
                 Icons.public,
                 color: primaryColor,
               ),
               Text(
-                'Feed',
-                style: TextStyle(
+                localizations.navbar_feed,
+                style: const TextStyle(
                   color: primaryColor,
                 ),
               ),
             ],
           ),
-          Spacer(),
+          const Spacer(),
           Column(
             children: [
-              Icon(
+              const Icon(
                 Icons.favorite_border_outlined,
                 color: textColor,
               ),
-              Text('Following'),
+              Text(localizations.navbar_following),
             ],
           ),
-          Spacer(),
+          const Spacer(),
           Column(
             children: [
-              Icon(
+              const Icon(
                 Icons.notifications_none_outlined,
                 color: textColor,
               ),
-              Text('Notification'),
+              Text(localizations.navbar_notifications),
             ],
           ),
-          Spacer(),
+          const Spacer(),
           Column(
             children: [
-              Icon(
+              const Icon(
                 Icons.person_outline,
                 color: textColor,
               ),
-              Text('Profile'),
+              Text(localizations.navbar_profile),
             ],
           ),
         ],

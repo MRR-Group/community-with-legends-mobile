@@ -76,7 +76,7 @@ class AuthController with ChangeNotifier {
       if (context.mounted) {
         final localizations = AppLocalizations.of(context)!;
 
-        Alert.of(context).show(text: localizations.login_loggedOut);
+        Alert.of(context).show(text: localizations.logout_loggedOut);
         Navigator.pushReplacementNamed(context, '/feed');
       }
     } catch (error) {

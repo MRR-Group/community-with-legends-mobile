@@ -24,7 +24,9 @@
   "login_dontRemember": "Forgot Your password?",
   "login_resetPasswordCta": "to reset it",
   "login_loggedIn": "Logged in successfully",
-  "login_loggedOut": "Logged out successfully",
+
+  "logout_loggedOut": "Logged out successfully",
+  "logout_button": "Logout",
 
   "register_title": "Register",
   "register_button": "Register",
@@ -74,6 +76,11 @@
   "posts_search": "Search",
   "posts_reply": "Reply",
   "posts_comment": "Create a comment",
-  "posts_commentCreated": "Comment has been created"
+  "posts_commentCreated": "Comment has been created",
+
+  "navbar_feed": "Feed",
+  "navbar_following": "Following",
+  "navbar_notifications": "Notification",
+  "navbar_profile": "Profile"
 
 }

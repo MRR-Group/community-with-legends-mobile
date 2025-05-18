@@ -74,6 +74,11 @@
   "posts_search": "Szukaj",
   "posts_reply": "Odpowiedz",
   "posts_comment": "Dodaj komentarz",
-  "posts_commentCreated": "Komentarz został dodany"
+  "posts_commentCreated": "Komentarz został dodany",
+
+  "navbar_feed": "Aktualności",
+  "navbar_following": "Obserwowani",
+  "navbar_notifications": "Powiadomienia",
+  "navbar_profile": "Profil"
 
 }
