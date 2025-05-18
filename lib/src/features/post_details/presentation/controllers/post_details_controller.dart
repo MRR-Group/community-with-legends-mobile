@@ -6,6 +6,7 @@ import 'package:community_with_legends_mobile/src/features/post_details/domain/u
 import 'package:community_with_legends_mobile/src/shared/domain/models/post_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PostDetailsController extends ChangeNotifier {
   final GetPostUsecase getPost;
@@ -57,12 +58,13 @@ class PostDetailsController extends ChangeNotifier {
     notifyListeners();
 
     try {
+      final localizations = AppLocalizations.of(context)!;
       await createPost.execute(
         postId: post!.id,
         content: content,
       );
 
-      Alert.of(context).show(text: 'Comment has been created');
+      Alert.of(context).show(text: localizations.posts_commentCreated);
     } catch (e) {
       Alert.of(context).show(text: e.toString());
     } finally {

@@ -72,6 +72,8 @@
   "posts_trending": "Trending",
   "posts_recent": "Recent",
   "posts_search": "Search",
-  "posts_reply": "Reply"
+  "posts_reply": "Reply",
+  "posts_comment": "Create a comment",
+  "posts_commentCreated": "Comment has been created"
 
 }

@@ -2,7 +2,9 @@ import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/src/features/post_details/presentation/controllers/post_details_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+
 
 class CreateCommentForm extends StatefulWidget {
   final GlobalKey<FormState> formKey;
@@ -21,6 +23,7 @@ class CreateCommentForm extends StatefulWidget {
 class _CreatePostFormState extends State<CreateCommentForm> {
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     final controller = Provider.of<PostDetailsController>(context);
     controller.formKey = widget.formKey;
 
@@ -41,15 +44,15 @@ class _CreatePostFormState extends State<CreateCommentForm> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Create a comment',
-                      style: TextStyle(fontSize: 32),
+                    Text(
+                      localizations.posts_comment,
+                      style: const TextStyle(fontSize: 32),
                     ),
                     TextFormField(
                       maxLines: 4,
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(12),
-                        hintText: 'Join the conversation',
+                        hintText: localizations.posts_contentHint,
                         fillColor: backgroundLightColor,
                         filled: true,
                         border: OutlineInputBorder(
@@ -64,7 +67,7 @@ class _CreatePostFormState extends State<CreateCommentForm> {
                       },
                       validator: (content) {
                         if (content == null || content.isEmpty) {
-                          return 'Content is required';
+                          return localizations.posts_contentRequired;
                         }
                         return null;
                       },
@@ -74,13 +77,13 @@ class _CreatePostFormState extends State<CreateCommentForm> {
                       child: Row(
                         children: [
                           Button(
-                            text: 'Post',
+                            text: localizations.posts_post,
                             fontSize: 24,
                             onPressed: _submitForm(controller),
                           ),
                           const Spacer(),
                           Button(
-                            text: 'Cancel',
+                            text: localizations.posts_cancel,
                             fontSize: 24,
                             onPressed: () {
                               widget.formKey.currentState?.reset();
