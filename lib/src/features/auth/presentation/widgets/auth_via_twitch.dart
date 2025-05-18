@@ -11,8 +11,8 @@ class AuthViaTwitch extends StatelessWidget {
   final String _twitchLoginUrl = dotenv.env['TWITCH_LOGIN_URL'] ?? '';
   final String _twitchRegisterUrl = dotenv.env['TWITCH_REGISTER_URL'] ?? '';
 
-  String get _authText =>
-      authMode == AuthMode.login ? 'Log in via' : 'Register via';
+  String  _authText(localizations) =>
+      authMode == AuthMode.login ? localizations.login_loginVia : localizations.register_registerVia;
 
   String get _authLink =>
       authMode == AuthMode.login ? _twitchLoginUrl : _twitchRegisterUrl;
@@ -26,13 +26,13 @@ class AuthViaTwitch extends StatelessWidget {
     return Column(
       children: [
         Text(
-          localizations.loginOr,
+          localizations.login_or,
           style: const TextStyle(
             fontSize: 28,
           ),
         ),
         Text(
-          authMode == AuthMode.login ? localizations.loginLoginVia : localizations.registerVia,
+          _authText(localizations),
           style: const TextStyle(
             fontSize: 28,
           ),

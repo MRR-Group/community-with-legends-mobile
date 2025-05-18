@@ -4,6 +4,7 @@ import 'package:community_with_legends_mobile/src/features/auth/presentation/wid
 import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/clickable_auth_text.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 class RegisterForm extends StatelessWidget {
@@ -25,52 +26,53 @@ class RegisterForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<AuthController>(context);
+    final localizations = AppLocalizations.of(context)!;
 
     return Form(
       key: formKey,
       child: Column(
         children: [
-          const Text(
-            'Register',
-            style: TextStyle(
+          Text(
+            localizations.register_title,
+            style: const TextStyle(
               fontSize: 42,
             ),
           ),
           const SizedBox(height: 18),
           AuthTextInput(
-            text: 'Enter your email',
-            hint: 'Email',
+            text: localizations.emailHint,
+            hint: localizations.email,
             controller: emailController,
           ),
           const SizedBox(height: 18),
           AuthTextInput(
-            text: 'Enter your name',
-            hint: 'Name',
+            text: localizations.nameHint,
+            hint: localizations.name,
             controller: nameController,
           ),
           const SizedBox(height: 18),
           AuthTextInput(
-            text: 'Enter your password',
-            hint: 'Password',
+            text: localizations.passwordHint,
+            hint: localizations.password,
             obscureText: true,
             controller: passwordController,
           ),
           const SizedBox(height: 18),
           AuthTextInput(
-            text: 'Confirm your password',
-            hint: 'Confirm password',
+            text: localizations.confirmPasswordHint,
+            hint: localizations.confirmPassword,
             obscureText: true,
             controller: confirmPasswordController,
           ),
           ClickableAuthText(
-            message: 'You have an account?',
-            linkText: 'Click here',
-            actionText: 'to login',
+            message: localizations.register_haveAccount,
+            linkText: localizations.clickHere,
+            actionText: localizations.register_haveAccountCta,
             onPress: () => Navigator.of(context).pushNamed('/login'),
           ),
           const SizedBox(height: 18),
           Button(
-            text: 'Register',
+            text: localizations.register_button,
             onPressed: () {
               if (!controller.isLoading) {
                 controller.register(

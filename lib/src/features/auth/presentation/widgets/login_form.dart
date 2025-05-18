@@ -29,39 +29,39 @@ class LoginForm extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            localizations.loginTitle,
+            localizations.login_title,
             style: const TextStyle(
               fontSize: 42,
             ),
           ),
           const SizedBox(height: 18),
           AuthTextInput(
-            text: localizations.loginEmailHint,
+            text: localizations.emailHint,
             hint: localizations.email,
             controller: emailController,
           ),
           ClickableAuthText(
-            message: localizations.loginNoAccount,
-            linkText: localizations.loginClickHere,
-            actionText: localizations.loginRegisterCta,
+            message: localizations.login_noAccount,
+            linkText: localizations.clickHere,
+            actionText: localizations.login_registerCta,
             onPress: () => Navigator.of(context).pushNamed('/register'),
           ),
           const SizedBox(height: 18),
           AuthTextInput(
-            text: localizations.loginPasswordHint,
+            text: localizations.passwordHint,
             hint: localizations.password,
             obscureText: true,
             controller: passwordController,
           ),
           ClickableAuthText(
-            message: localizations.loginDontRemember,
-            linkText: localizations.loginClickHere,
-            actionText: localizations.loginResetPasswordCta,
+            message: localizations.login_dontRemember,
+            linkText: localizations.clickHere,
+            actionText: localizations.login_resetPasswordCta,
             onPress: () => Navigator.of(context).pushNamed('/forgot-password'),
           ),
           const SizedBox(height: 18),
           Button(
-            text: localizations.loginButton,
+            text: localizations.login_button,
             onPressed: () {
               if (!controller.isLoading) {
                 controller.login(
@@ -77,7 +77,7 @@ class LoginForm extends StatelessWidget {
           AuthViaTwitch(authMode: AuthMode.login),
           const SizedBox(height: 18),
           Button(
-            text: localizations.loginViewAsGuest,
+            text: localizations.login_viewAsGuest,
             onPressed: () {
               Navigator.pushNamed(context, '/feed');
             },

@@ -3,6 +3,7 @@ import 'package:community_with_legends_mobile/src/features/auth/presentation/wid
 import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/clickable_auth_text.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 class ResetPasswordForm extends StatelessWidget {
@@ -24,59 +25,60 @@ class ResetPasswordForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<AuthController>(context);
+    final localizations = AppLocalizations.of(context)!;
 
     return Form(
       key: formKey,
       child: Column(
         children: [
-          const Text(
-            'Reset your password',
-            style: TextStyle(
+          Text(
+            localizations.register_title,
+            style: const TextStyle(
               fontSize: 42,
             ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 18),
           AuthTextInput(
-            text: 'Enter your email',
-            hint: 'Email',
+            text: localizations.emailHint,
+            hint: localizations.email,
             controller: emailController,
           ),
           const SizedBox(height: 18),
           AuthTextInput(
-            text: 'Enter token',
-            hint: 'Token',
+            text: localizations.tokenHint,
+            hint: localizations.token,
             controller: tokenController,
           ),
           const SizedBox(height: 18),
           AuthTextInput(
-            text: 'Enter password',
-            hint: 'Password',
+            text: localizations.password,
+            hint: localizations.passwordHint,
             controller: passwordController,
           ),
           const SizedBox(height: 18),
           AuthTextInput(
-            text: 'Confirm password',
-            hint: 'Password',
+            text: localizations.confirmPassword,
+            hint: localizations.confirmPasswordHint,
             controller: passwordConfirmationController,
           ),
           const SizedBox(height: 18),
           ClickableAuthText(
-            message: "You don't have a reset token?",
-            linkText: 'Click here',
-            actionText: 'to get one',
+            message: localizations.rp_noResetToken,
+            linkText: localizations.clickHere,
+            actionText: localizations.rp_noResetTokenCta,
             onPress: () => Navigator.of(context).pushNamed('/forgot-password'),
           ),
           const SizedBox(height: 18),
           ClickableAuthText(
-            message: 'Did you remember your password?',
-            linkText: 'Click here',
-            actionText: 'to log in',
+            message: localizations.rp_rememberPassword,
+            linkText: localizations.clickHere,
+            actionText: localizations.rp_rememberPasswordCta,
             onPress: () => Navigator.of(context).pushNamed('/login'),
           ),
           const SizedBox(height: 18),
           Button(
-            text: 'Reset password',
+            text: localizations.fp_button,
             onPressed: () {
               if (!controller.isLoading) {
                 controller.resetPassword(
