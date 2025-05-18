@@ -5,7 +5,9 @@ import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/send_reset_token_usecase.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 
 class AuthController with ChangeNotifier {
   final LoginUseCase loginUseCase;
@@ -13,6 +15,7 @@ class AuthController with ChangeNotifier {
   final RegisterUseCase registerUseCase;
   final SendResetTokenUsecase sendResetTokenUsecase;
   final ResetPasswordUsecase resetPasswordUsecase;
+
 
   bool _isLoading = false;
 
@@ -47,7 +50,9 @@ class AuthController with ChangeNotifier {
       await prefs.setString('auth_token', token);
 
       if (context.mounted) {
-        Alert.of(context).show(text: 'Logged in successfully');
+        final localizations = AppLocalizations.of(context)!;
+
+        Alert.of(context).show(text: localizations.login_loggedIn);
         Navigator.pushReplacementNamed(context, '/feed');
       }
     } catch (error) {
@@ -69,7 +74,9 @@ class AuthController with ChangeNotifier {
       await prefs.remove('auth_token');
 
       if (context.mounted) {
-        Alert.of(context).show(text: 'Logged out successfully');
+        final localizations = AppLocalizations.of(context)!;
+
+        Alert.of(context).show(text: localizations.logout_loggedOut);
         Navigator.pushReplacementNamed(context, '/feed');
       }
     } catch (error) {
@@ -93,9 +100,8 @@ class AuthController with ChangeNotifier {
       await registerUseCase.execute(email, name, password);
 
       if (context.mounted) {
-        Alert.of(context).show(
-          text: 'Registration completed successfully. Now you can log in',
-        );
+        final localizations = AppLocalizations.of(context)!;
+        Alert.of(context).show(text: localizations.register_registered);
       }
     } catch (error) {
       if (context.mounted) {
@@ -118,11 +124,9 @@ class AuthController with ChangeNotifier {
       await sendResetTokenUsecase.execute(email);
 
       if (context.mounted) {
-        Alert.of(context).show(
-          text:
-              'If the email is correct, a token to reset your password will be sent to it',
-        );
+        final localizations = AppLocalizations.of(context)!;
 
+        Alert.of(context).show(text: localizations.rp_tokenSent);
         Navigator.of(context).pushNamed('/reset-password');
       }
     } catch (error) {
@@ -154,10 +158,9 @@ class AuthController with ChangeNotifier {
       );
 
       if (context.mounted) {
-        Alert.of(context).show(
-          text: 'Success! You can now log in with your new password',
-        );
+        final localizations = AppLocalizations.of(context)!;
 
+        Alert.of(context).show(text: localizations.rp_passwordReset);
         Navigator.of(context).pushNamed('/login');
       }
     } catch (error) {

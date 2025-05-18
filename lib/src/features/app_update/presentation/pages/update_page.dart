@@ -4,7 +4,9 @@ import 'package:community_with_legends_mobile/src/features/auth/presentation/wid
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/background_image.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 
 class UpdatePage extends StatelessWidget {
   final VersionInfo? versionInfo;
@@ -13,6 +15,8 @@ class UpdatePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: const AuthAppBar(),
@@ -37,9 +41,9 @@ class UpdatePage extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         spacing: 24,
                         children: [
-                          const Text(
-                            'Update available',
-                            style: TextStyle(
+                          Text(
+                            localizations.update_title,
+                            style: const TextStyle(
                               fontSize: 42,
                             ),
                             textAlign: TextAlign.center,
@@ -62,7 +66,7 @@ class UpdatePage extends StatelessWidget {
                             spacing: 16,
                             children: [
                               Button(
-                                text: 'Update',
+                                text: localizations.update_updateButton,
                                 onPressed: () {
                                   launchUrl(
                                     Uri.parse(
@@ -72,7 +76,7 @@ class UpdatePage extends StatelessWidget {
                                 },
                               ),
                               Button(
-                                text: 'Next time',
+                                text: localizations.update_nextTime,
                                 onPressed: () {
                                   Navigator.pushNamed(
                                     context,

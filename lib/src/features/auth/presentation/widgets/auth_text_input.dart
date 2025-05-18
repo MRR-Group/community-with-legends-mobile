@@ -1,6 +1,7 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AuthTextInput extends StatelessWidget {
   const AuthTextInput({
@@ -18,6 +19,7 @@ class AuthTextInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     return Column(
       children: [
         Row(
@@ -49,7 +51,7 @@ class AuthTextInput extends StatelessWidget {
           ),
           validator: (String? value) {
             if (value == null || value.isEmpty) {
-              Alert.of(context).show(text: 'Make sure you fill in all fields');
+              Alert.of(context).show(text: localizations.fieldsNotFilled);
               return '';
             }
             return null;

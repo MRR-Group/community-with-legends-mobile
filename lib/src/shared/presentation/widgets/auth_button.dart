@@ -2,6 +2,7 @@ import 'package:community_with_legends_mobile/src/features/auth/presentation/con
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/loading_animation.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/select_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 class AuthButton extends StatelessWidget {
@@ -11,7 +12,9 @@ class AuthButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     final authController = Provider.of<AuthController>(context);
+
     return FutureBuilder<bool>(
       future: authController.isLoggedIn,
       builder: (context, snapshot) {
@@ -24,7 +27,7 @@ class AuthButton extends StatelessWidget {
 
         if (snapshot.data ?? false) {
           return SelectButton(
-            text: 'Logout',
+            text: localizations.logout_button,
             onPressed: () {
               authController.logout(context);
             },
@@ -33,7 +36,7 @@ class AuthButton extends StatelessWidget {
           );
         } else {
           return SelectButton(
-            text: 'Login',
+            text: localizations.login_button,
             onPressed: () {
               Navigator.pushNamed(context, '/login');
             },
