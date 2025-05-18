@@ -4,10 +4,12 @@ import 'package:community_with_legends_mobile/config/theme.dart';
 import 'package:community_with_legends_mobile/src/core/app_setup.dart';
 import 'package:community_with_legends_mobile/src/core/deep_links/twitch_deep_link.dart';
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/check_update_exception.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/controllers/localization_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 
 class AppInitializer extends StatefulWidget {
   final AppSetup appSetup;
@@ -62,12 +64,16 @@ class _AppInitializerState extends State<AppInitializer> {
 
   @override
   Widget build(BuildContext context) {
+    final localizationController = Provider.of<LocalizationController>(context);
+    localizationController.loadLocale();
+
     final app = MaterialApp(
       navigatorKey: _navigatorKey,
       title: 'Community with Legends',
       debugShowCheckedModeBanner: false,
       theme: theme,
       routes: widget.appSetup.routes,
+      locale: localizationController.locale,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

@@ -1,5 +1,6 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/auth_button.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/widgets/change_language.dart';
 import 'package:flutter/material.dart';
 
 class DefaultDrawer extends StatelessWidget {
@@ -30,58 +31,11 @@ class DefaultDrawer extends StatelessWidget {
               padding: EdgeInsets.zero,
               children: [
                 Container(
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(16)),
-                    border: Border.all(color: backgroundLightColor),
-                  ),
                   margin: const EdgeInsets.symmetric(
                     vertical: 4,
                     horizontal: 16,
                   ),
-                  child: ListTile(
-                    title: const Text('Item 1'),
-                    textColor: textColor,
-                    onTap: () {},
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(16)),
-                    border: Border.all(color: backgroundLightColor),
-                  ),
-                  margin:
-                      const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                  child: ListTile(
-                    title: const Text('Item 2'),
-                    textColor: textColor,
-                    onTap: () {},
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(16)),
-                    border: Border.all(color: backgroundLightColor),
-                  ),
-                  margin:
-                      const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                  child: ListTile(
-                    title: const Text('Item 3'),
-                    textColor: textColor,
-                    onTap: () {},
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(16)),
-                    border: Border.all(color: backgroundLightColor),
-                  ),
-                  margin:
-                      const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                  child: ListTile(
-                    title: const Text('Item 4'),
-                    textColor: textColor,
-                    onTap: () {},
-                  ),
+                  child: const ChangeLanguage(),
                 ),
               ],
             ),

@@ -13,6 +13,7 @@
   "fieldsNotFilled": "Upewnij się, że wszystkie pola są wypełnione",
   "token": "Token",
   "tokenHint": "Wprowadź token",
+  "selectLanguage": "Wybierz język",
 
   "login_title": "Logowanie",
   "login_button": "Zaloguj się",
@@ -67,7 +68,7 @@
   "posts_tag": "Tag",
   "posts_addTag": "Dodaj tag",
   "posts_linkTo": "Link do",
-  "posts_post": "Opublikuj",
+  "posts_post": "Wyślij",
   "posts_cancel": "Anuluj",
   "posts_trending": "Na czasie",
   "posts_recent": "Najnowsze",
