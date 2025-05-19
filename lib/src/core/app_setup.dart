@@ -36,7 +36,9 @@ import 'package:community_with_legends_mobile/src/features/post_details/data/rep
 import 'package:community_with_legends_mobile/src/features/post_details/domain/usecases/create_comment_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/post_details/domain/usecases/get_post_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/post_details/presentation/controllers/post_details_controller.dart';
+import 'package:community_with_legends_mobile/src/features/profile/presentation/pages/profile_page.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/controllers/localization_controller.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/controllers/navbar_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
@@ -67,6 +69,7 @@ class AppSetup {
     '/feed': (context) => FeedPage(),
     '/forgot-password': (context) => ForgotPasswordPage(),
     '/reset-password': (context) => ResetPasswordPage(),
+    '/profile': (context) => const ProfilePage(),
     '/update': (context) => const UpdatePage(versionInfo: null),
   };
 
@@ -181,6 +184,10 @@ class AppSetup {
     return LocalizationController();
   }
 
+  NavbarController createNavbarController() {
+    return NavbarController();
+  }
+
   List<SingleChildWidget> getProviders() {
     final postsController = createPostsController();
     return [
@@ -210,6 +217,9 @@ class AppSetup {
       ),
       ChangeNotifierProvider<LocalizationController>(
         create: (_) => createLocalizationController(),
+      ),
+      ChangeNotifierProvider<NavbarController>(
+        create: (_) => createNavbarController(),
       ),
     ];
   }
