@@ -1,8 +1,11 @@
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/profile_card_widget.dart';
+import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 class UserDetails extends StatelessWidget {
-  const UserDetails({super.key});
+  final User userProfile;
+
+  const UserDetails({super.key, required this.userProfile});
 
   @override
   Widget build(BuildContext context) {
@@ -12,10 +15,10 @@ class UserDetails extends StatelessWidget {
       alignment: Alignment.topCenter,
       child: Stack(
         children: [
-          const ProfileCard(
+           ProfileCard(
             child: SizedBox(
               child: Padding(
-                padding: EdgeInsets.only(top: 100),
+                padding: const EdgeInsets.only(top: 100),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,8 +30,8 @@ class UserDetails extends StatelessWidget {
                         SizedBox(
                           width: double.infinity,
                           child: Text(
-                            'admin',
-                            style: TextStyle(
+                            userProfile.name,
+                            style: const TextStyle(
                               fontSize: 50,
                             ),
                             textAlign: TextAlign.center,
@@ -39,14 +42,14 @@ class UserDetails extends StatelessWidget {
                         SizedBox(
                           width: double.infinity,
                           child: Text(
-                            'admin@cwl.com',
-                            style: TextStyle(fontSize: 30),
+                            userProfile.email,
+                            style: const TextStyle(fontSize: 30),
                             textAlign: TextAlign.center,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                           ),
                         ),
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.all(16.0),
                           child: Row(
                             children: [

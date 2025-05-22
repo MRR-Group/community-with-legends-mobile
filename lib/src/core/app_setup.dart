@@ -36,6 +36,10 @@ import 'package:community_with_legends_mobile/src/features/post_details/data/rep
 import 'package:community_with_legends_mobile/src/features/post_details/domain/usecases/create_comment_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/post_details/domain/usecases/get_post_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/post_details/presentation/controllers/post_details_controller.dart';
+import 'package:community_with_legends_mobile/src/features/profile/data/data_sources/profile_datasource.dart';
+import 'package:community_with_legends_mobile/src/features/profile/data/repositories/profile_repository_impl.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_profile_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/presentation/controllers/profile_controller.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/pages/profile_page.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/controllers/localization_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/controllers/navbar_controller.dart';
@@ -188,8 +192,18 @@ class AppSetup {
     return NavbarController();
   }
 
+  ProfileController createProfileController() {
+    final api = ProfileDatasource(baseUrl: apiUrl);
+    final repository = ProfileRepositoryImpl(api);
+
+    final getUserProfileUsecase = GetUserProfileUsecase(repository);
+
+    return ProfileController(getUserProfileUsecase: getUserProfileUsecase);
+  }
+
   List<SingleChildWidget> getProviders() {
     final postsController = createPostsController();
+
     return [
       ChangeNotifierProvider<GamesController>(
         create: (_) => createGamesController(),
@@ -220,6 +234,9 @@ class AppSetup {
       ),
       ChangeNotifierProvider<NavbarController>(
         create: (_) => createNavbarController(),
+      ),
+      ChangeNotifierProvider<ProfileController>(
+        create: (_) => createProfileController(),
       ),
     ];
   }

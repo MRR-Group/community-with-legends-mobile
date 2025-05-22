@@ -16,7 +16,7 @@ class ProfileCard extends StatelessWidget{
       ),
       child: Card(
         color: backgroundLightColor,
-        child: child
+        child: child,
       ),
     );
   }
