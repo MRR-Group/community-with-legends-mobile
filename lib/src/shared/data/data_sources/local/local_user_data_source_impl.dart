@@ -5,10 +5,16 @@ import 'package:drift/drift.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalUserDataSourceImpl implements UserDataSource {
-  void cacheUser(User user) {
-    final database = db.AppDatabase();
+  final db.AppDatabase localDatabase;
 
-    database.into(database.users).insertOnConflictUpdate(
+  LocalUserDataSourceImpl({
+    required this.localDatabase,
+  });
+
+  void cacheUser(User user) {
+    final usersTable = localDatabase.users;
+
+    localDatabase.into(usersTable).insertOnConflictUpdate(
           db.UsersCompanion.insert(
             id: Value(user.id),
             name: user.name,
@@ -35,10 +41,9 @@ class LocalUserDataSourceImpl implements UserDataSource {
 
   @override
   Future<User> getUserById(int id) async {
-    //TODO  create singleton provider
-    final database = db.AppDatabase();
+    final usersTable = localDatabase.users;
 
-    final user = await (database.select(database.users)
+    final user = await (localDatabase.select(usersTable)
           ..where((u) => u.id.equals(id)))
         .getSingle();
 
@@ -49,7 +54,7 @@ class LocalUserDataSourceImpl implements UserDataSource {
   Future<User> getCurrentUser() async {
     final currentUserId = await _getCurrentUserId();
 
-    if(currentUserId == null){
+    if (currentUserId == null) {
       throw Exception('User not found');
     }
 

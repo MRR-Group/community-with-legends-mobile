@@ -1,3 +1,4 @@
+import 'package:community_with_legends_mobile/database/app_database.dart' as db;
 import 'package:community_with_legends_mobile/src/features/app_update/data/data_sources/update_datasource.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/data/repositories/update_repository_impl.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/domain/usecases/check_update_usecase.dart';
@@ -74,6 +75,8 @@ class AppSetup {
 
   bool get updateAvailable => _updateAvailable;
 
+  db.AppDatabase get localDatabase => db.AppDatabase();
+
   final Map<String, WidgetBuilder> routes = {
     '/login': (context) => LoginPage(),
     '/register': (context) => RegisterPage(),
@@ -98,7 +101,7 @@ class AppSetup {
   AuthController createAuthController() {
     final api = AuthDataSource(baseUrl: apiUrl);
     final remoteUserDataSource = UserDataSourceImpl(baseUrl: apiUrl);
-    final localUserDataSource = LocalUserDataSourceImpl();
+    final localUserDataSource = LocalUserDataSourceImpl(localDatabase: localDatabase);
 
     final repository = AuthRepositoryImpl(api, remoteUserDataSource, localUserDataSource);
 
@@ -204,7 +207,7 @@ class AppSetup {
 
   ProfileController createProfileController() {
     final api = ProfileDatasource(baseUrl: apiUrl);
-    final localUserDatasource = LocalUserDataSourceImpl();
+    final localUserDatasource = LocalUserDataSourceImpl(localDatabase: localDatabase);
     final repository = ProfileRepositoryImpl(api, localUserDatasource);
 
     final getUserProfileUsecase = GetUserProfileUsecase(repository);
