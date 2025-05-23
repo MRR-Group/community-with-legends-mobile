@@ -6,4 +6,8 @@ class ProfileDatasource extends HttpClient{
   Future<Map<String, dynamic>> getUserProfile(int userId){
     return getRequest(urlPath: 'api/users/$userId');
   }
+
+  Future<Map<String, dynamic>> getCurrentUserProfile(){
+    return getRequest(urlPath: 'api/user');
+  }
 }

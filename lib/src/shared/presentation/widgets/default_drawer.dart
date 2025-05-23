@@ -1,7 +1,9 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/auth_button.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/change_language.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/widgets/search_user_dropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DefaultDrawer extends StatelessWidget {
   const DefaultDrawer({
@@ -10,6 +12,8 @@ class DefaultDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+
     return Drawer(
       shape: Border.all(
         color: primaryColor,
@@ -30,6 +34,27 @@ class DefaultDrawer extends StatelessWidget {
             child: ListView(
               padding: EdgeInsets.zero,
               children: [
+                Container(
+                  margin: const EdgeInsets.symmetric(
+                    vertical: 4,
+                    horizontal: 16,
+                  ),
+                  child: const SearchUserDropdown(),
+                ),
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  margin: const EdgeInsets.only(top: 16),
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      top: BorderSide(color: backgroundLightColor),
+                      bottom: BorderSide(color: backgroundLightColor),
+                    ),
+                  ),
+                  child: Align(
+                    child: Text(localizations.settings),
+                  ),
+                ),
                 Container(
                   margin: const EdgeInsets.symmetric(
                     vertical: 4,
