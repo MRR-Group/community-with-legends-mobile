@@ -1,9 +1,9 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
+import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/auth_button.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/change_language.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/search_user_dropdown.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DefaultDrawer extends StatelessWidget {
   const DefaultDrawer({

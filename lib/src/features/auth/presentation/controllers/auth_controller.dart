@@ -1,3 +1,4 @@
+import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/login_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/logout_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/register_usecase.dart';
@@ -5,7 +6,6 @@ import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/send_reset_token_usecase.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 

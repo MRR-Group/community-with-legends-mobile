@@ -1,4 +1,5 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
+import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/controllers/profile_controller.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/user_details_widget.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
@@ -7,7 +8,6 @@ import 'package:community_with_legends_mobile/src/shared/presentation/widgets/de
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_drawer.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/loading_animation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {

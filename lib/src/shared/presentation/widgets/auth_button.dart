@@ -1,8 +1,8 @@
+import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/loading_animation.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/select_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 class AuthButton extends StatelessWidget {

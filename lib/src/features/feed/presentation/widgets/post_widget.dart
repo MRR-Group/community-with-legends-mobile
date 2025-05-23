@@ -1,4 +1,5 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
+import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/reactions_controller.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/widgets/post_tags.dart';
 import 'package:community_with_legends_mobile/src/features/post_details/presentation/pages/post_details_page.dart';
@@ -6,7 +7,6 @@ import 'package:community_with_legends_mobile/src/shared/domain/models/post_mode
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 

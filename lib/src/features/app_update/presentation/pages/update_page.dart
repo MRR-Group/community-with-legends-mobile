@@ -1,10 +1,10 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
+import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/domain/models/version_info_model.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/auth_app_bar.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/background_image.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 

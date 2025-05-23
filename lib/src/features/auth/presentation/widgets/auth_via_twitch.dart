@@ -1,6 +1,6 @@
+import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 

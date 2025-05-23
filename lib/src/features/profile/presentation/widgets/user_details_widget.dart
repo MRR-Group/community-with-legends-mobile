@@ -1,7 +1,7 @@
+import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/profile_card_widget.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class UserDetails extends StatelessWidget {
   final User userProfile;

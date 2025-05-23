@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
 import 'package:community_with_legends_mobile/src/features/post_details/domain/usecases/create_comment_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/post_details/domain/usecases/get_post_usecase.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/post_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PostDetailsController extends ChangeNotifier {
   final GetPostUsecase getPost;
