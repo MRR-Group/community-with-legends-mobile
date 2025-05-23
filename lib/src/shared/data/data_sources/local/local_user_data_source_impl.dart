@@ -27,6 +27,12 @@ class LocalUserDataSourceImpl implements UserDataSource {
     await prefs.setInt('current_user_id', id);
   }
 
+  Future<int?> _getCurrentUserId() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    return prefs.getInt('current_user_id');
+  }
+
   @override
   Future<User> getUserById(int id) async {
     //TODO  create singleton provider
@@ -37,5 +43,16 @@ class LocalUserDataSourceImpl implements UserDataSource {
         .getSingle();
 
     return user as User;
+  }
+
+  @override
+  Future<User> getCurrentUser() async {
+    final currentUserId = await _getCurrentUserId();
+
+    if(currentUserId == null){
+      throw Exception('User not found');
+    }
+
+    return getUserById(currentUserId);
   }
 }

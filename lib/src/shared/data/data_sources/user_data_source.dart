@@ -2,4 +2,5 @@ import 'package:community_with_legends_mobile/src/shared/domain/models/user_mode
 
 abstract class UserDataSource{
   Future<User> getUserById(int id);
+  Future<User> getCurrentUser();
 }

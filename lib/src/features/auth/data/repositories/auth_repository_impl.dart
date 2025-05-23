@@ -1,6 +1,7 @@
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/auth_exception.dart';
 import 'package:community_with_legends_mobile/src/features/auth/data/data_sources/auth_data_source.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/repositories/auth_repository.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthDataSource api;
@@ -12,7 +13,12 @@ class AuthRepositoryImpl implements AuthRepository {
     final response = await api.login(email, password);
 
     if (response.containsKey('token')) {
-      return response['token'];
+      final token = response['token'];
+
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('auth_token', token);
+
+      return token;
     } else {
       throw AuthException(response['message'] ?? 'Login failed');
     }

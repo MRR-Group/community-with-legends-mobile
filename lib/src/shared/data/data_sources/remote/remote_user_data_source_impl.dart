@@ -15,4 +15,12 @@ class UserDataSourceImpl extends HttpClient implements UserDataSource{
     return user;
   }
 
+  @override
+  Future<User> getCurrentUser() async {
+    final response =  await getRequest(urlPath: 'api/user');
+    final user = User.fromJson(response);
+
+    return user;
+  }
+
 }

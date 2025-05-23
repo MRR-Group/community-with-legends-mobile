@@ -45,9 +45,7 @@ class AuthController with ChangeNotifier {
     notifyListeners();
 
     try {
-      final token = await loginUseCase.execute(email, password);
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('auth_token', token);
+      await loginUseCase.execute(email, password);
 
       if (context.mounted) {
         final localizations = AppLocalizations.of(context)!;
