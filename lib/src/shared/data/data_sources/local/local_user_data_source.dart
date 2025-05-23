@@ -1,4 +1,5 @@
-abstract class LocalUserDataSource{
+import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
 
-  Future<Map<String, dynamic>> getUserById(int id);
+abstract class LocalUserDataSource {
+  Future<User> getUserById(int id);
 }
