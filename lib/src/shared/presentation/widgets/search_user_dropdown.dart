@@ -1,7 +1,6 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/pages/profile_page.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
-import 'package:community_with_legends_mobile/src/shared/presentation/controllers/localization_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/controllers/user_search_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_dropdown_search_widget.dart';
 import 'package:flutter/material.dart';
@@ -22,15 +21,15 @@ class SearchUserDropdown extends StatelessWidget {
     return Column(
       children: [
         ListTile(
-          title: const Text('Search user'),
+          title: Text(localizations.su_searchUserProfile),
           textColor: textColor,
           onTap: () {},
         ),
         DefaultDropdownSearch<User>(
           overrideSelectedItemTitle: true,
-          listTitle: 'Search user',
+          listTitle: localizations.su_selectUser,
           showSearchBox: true,
-          searchBoxHint: 'Search user',
+          searchBoxHint: localizations.su_search,
           compareFn: (item1, item2) => item1.id == item2.id,
           filterFn: (_, __) => true,
           keyToString: (key) => key?.name ?? '',

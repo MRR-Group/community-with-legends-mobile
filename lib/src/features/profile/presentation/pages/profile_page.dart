@@ -6,6 +6,7 @@ import 'package:community_with_legends_mobile/src/shared/presentation/widgets/de
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_bottom_app_bar.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/loading_animation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -25,6 +26,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     final profileController = Provider.of<ProfileController>(context);
     Future<User?> futureUserProfile;
 
@@ -53,9 +55,9 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: LoadingAnimation(width: 200, height: 200),
                 );
               } else if (snapshot.hasError) {
-                return Center(child: Text('Error: ${snapshot.error}'));
+                return Center(child: Text(snapshot.error.toString()));
               } else if (!snapshot.hasData) {
-                return const Center(child: Text('Brak danych'));
+                return Center(child: Text(localizations.noData));
               } else {
                 return UserDetails(userProfile: snapshot.data!);
               }

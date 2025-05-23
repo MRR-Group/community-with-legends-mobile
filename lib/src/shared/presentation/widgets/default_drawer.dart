@@ -3,6 +3,7 @@ import 'package:community_with_legends_mobile/src/shared/presentation/widgets/au
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/change_language.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/search_user_dropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DefaultDrawer extends StatelessWidget {
   const DefaultDrawer({
@@ -11,6 +12,8 @@ class DefaultDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+
     return Drawer(
       shape: Border.all(
         color: primaryColor,
@@ -48,8 +51,8 @@ class DefaultDrawer extends StatelessWidget {
                       bottom: BorderSide(color: backgroundLightColor),
                     ),
                   ),
-                  child: const Align(
-                    child: Text('Options'),
+                  child: Align(
+                    child: Text(localizations.settings),
                   ),
                 ),
                 Container(
