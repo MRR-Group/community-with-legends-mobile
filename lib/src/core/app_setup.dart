@@ -44,6 +44,7 @@ import 'package:community_with_legends_mobile/src/features/profile/presentation/
 import 'package:community_with_legends_mobile/src/features/profile/presentation/pages/profile_page.dart';
 import 'package:community_with_legends_mobile/src/shared/data/data_sources/local/local_user_data_source_impl.dart';
 import 'package:community_with_legends_mobile/src/shared/data/data_sources/remote/remote_search_users_data_source_impl.dart';
+import 'package:community_with_legends_mobile/src/shared/data/data_sources/remote/remote_user_data_source_impl.dart';
 import 'package:community_with_legends_mobile/src/shared/data/repositories/search_users_repository_impl.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/usecases/search_users_usecase.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/controllers/localization_controller.dart';
@@ -96,7 +97,10 @@ class AppSetup {
 
   AuthController createAuthController() {
     final api = AuthDataSource(baseUrl: apiUrl);
-    final repository = AuthRepositoryImpl(api);
+    final remoteUserDataSource = UserDataSourceImpl(baseUrl: apiUrl);
+    final localUserDataSource = LocalUserDataSourceImpl();
+
+    final repository = AuthRepositoryImpl(api, remoteUserDataSource, localUserDataSource);
 
     final logoutUseCase = LogoutUseCase(repository);
     final loginUseCase = LoginUseCase(repository);
