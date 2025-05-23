@@ -218,8 +218,9 @@ class AppSetup {
         GetCurrentUserProfileUsecase(repository);
 
     return ProfileController(
-        getUserProfileUsecase: getUserProfileUsecase,
-        getCurrentUserProfileUsecase: getCurrentUserProfileUsecase);
+      getUserProfileUsecase: getUserProfileUsecase,
+      getCurrentUserProfileUsecase: getCurrentUserProfileUsecase,
+    );
   }
 
   UserSearchController createUserSearchController() {
