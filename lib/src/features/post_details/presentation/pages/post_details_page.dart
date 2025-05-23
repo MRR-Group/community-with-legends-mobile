@@ -27,12 +27,10 @@ class _PostDetailsPageState extends State<PostDetailsPage> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final postDetailsController =
-          Provider.of<PostDetailsController>(context, listen: false);
+    final postDetailsController =
+        Provider.of<PostDetailsController>(context, listen: false);
 
-      await postDetailsController.loadPost(context, widget.postId);
-    });
+    postDetailsController.loadPost(context, widget.postId);
   }
 
   @override

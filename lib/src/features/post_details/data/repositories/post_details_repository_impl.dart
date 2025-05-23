@@ -13,7 +13,7 @@ class PostDetailsRepositoryImpl implements PostDetailsRepository{
     final response = await api.getPost(postId);
 
     try {
-      final result = Post.fromJson(response);
+      final result = Post.fromJson(response['data']);
 
       return result;
     } catch (e) {
