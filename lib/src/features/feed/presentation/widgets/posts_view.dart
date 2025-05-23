@@ -1,5 +1,6 @@
 import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/posts_controller.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/widgets/post_widget.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/loading_animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +25,9 @@ class _PostsViewState extends State<PostsView> {
       final postsController =
           Provider.of<PostsController>(context, listen: false);
 
-      await postsController.loadPosts(context);
+      final returnMessage = await postsController.loadPosts(context);
+
+      Alert.of(context).show(text: returnMessage);
     });
   }
 

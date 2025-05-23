@@ -47,7 +47,7 @@ class PostsController extends ChangeNotifier {
     required this.createPost,
   });
 
-  Future<void> loadPosts(BuildContext context) async {
+  Future<String> loadPosts(BuildContext context) async {
     _feedPosts = null;
     _isLoading = true;
 
@@ -59,14 +59,14 @@ class PostsController extends ChangeNotifier {
       _feedPosts = await getPosts.execute();
 
       if (_feedPosts?.posts != null && _feedPosts!.posts.isNotEmpty) {
-        Alert.of(context).show(text: localizations.posts_loaded);
+        return localizations.posts_loaded;
       } else {
-        Alert.of(context).show(text: localizations.posts_noPosts);
+        return localizations.posts_noPosts;
       }
     } on HttpException catch (e) {
-      Alert.of(context).show(text: e.toString());
+      return e.toString();
     } on NoInternetException catch (e){
-      Alert.of(context).show(text: e.toString());
+      return e.toString();
     } finally {
       _isLoading = false;
       notifyListeners();
