@@ -67,15 +67,15 @@ class AppSetup {
 
   String get apiUrl => dotenv.env['API_URL']!;
 
-  String get updateChecking => dotenv.env['CHECK_UPDATE']!;
-
   String get updateUrl => dotenv.env['UPDATE_URL']!;
 
-  bool _updateAvailable = false;
+  String get updateChecking => dotenv.env['CHECK_UPDATE']!;
 
   bool get updateAvailable => _updateAvailable;
+  bool _updateAvailable = false;
 
-  db.AppDatabase get localDatabase => db.AppDatabase();
+  db.AppDatabase get localDatabase => _localDatabase;
+  final _localDatabase = db.AppDatabase();
 
   final Map<String, WidgetBuilder> routes = {
     '/login': (context) => LoginPage(),
@@ -101,9 +101,11 @@ class AppSetup {
   AuthController createAuthController() {
     final api = AuthDataSource(baseUrl: apiUrl);
     final remoteUserDataSource = UserDataSourceImpl(baseUrl: apiUrl);
-    final localUserDataSource = LocalUserDataSourceImpl(localDatabase: localDatabase);
+    final localUserDataSource =
+        LocalUserDataSourceImpl(localDatabase: localDatabase);
 
-    final repository = AuthRepositoryImpl(api, remoteUserDataSource, localUserDataSource);
+    final repository =
+        AuthRepositoryImpl(api, remoteUserDataSource, localUserDataSource);
 
     final logoutUseCase = LogoutUseCase(repository);
     final loginUseCase = LoginUseCase(repository);
@@ -207,13 +209,17 @@ class AppSetup {
 
   ProfileController createProfileController() {
     final api = ProfileDatasource(baseUrl: apiUrl);
-    final localUserDatasource = LocalUserDataSourceImpl(localDatabase: localDatabase);
+    final localUserDatasource =
+        LocalUserDataSourceImpl(localDatabase: localDatabase);
     final repository = ProfileRepositoryImpl(api, localUserDatasource);
 
     final getUserProfileUsecase = GetUserProfileUsecase(repository);
-    final getCurrentUserProfileUsecase = GetCurrentUserProfileUsecase(repository);
+    final getCurrentUserProfileUsecase =
+        GetCurrentUserProfileUsecase(repository);
 
-    return ProfileController(getUserProfileUsecase: getUserProfileUsecase, getCurrentUserProfileUsecase: getCurrentUserProfileUsecase);
+    return ProfileController(
+        getUserProfileUsecase: getUserProfileUsecase,
+        getCurrentUserProfileUsecase: getCurrentUserProfileUsecase);
   }
 
   UserSearchController createUserSearchController() {
