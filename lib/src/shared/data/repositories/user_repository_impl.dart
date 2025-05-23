@@ -1,8 +1,6 @@
-import 'package:community_with_legends_mobile/database/app_database.dart' as db;
-import 'package:community_with_legends_mobile/src/shared/data/data_sources/user_data_source.dart';
+import 'package:community_with_legends_mobile/src/shared/data/data_sources/remote/remote_user_data_source.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/repositories/user_repository.dart';
-import 'package:drift/drift.dart';
 
 class UserRepositoryImpl extends UserRepository {
   UserDataSource userDataSource;

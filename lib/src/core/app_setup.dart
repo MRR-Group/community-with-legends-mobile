@@ -42,7 +42,7 @@ import 'package:community_with_legends_mobile/src/features/profile/domain/usecas
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_profile_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/controllers/profile_controller.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/pages/profile_page.dart';
-import 'package:community_with_legends_mobile/src/shared/data/data_sources/search_users_data_source.dart';
+import 'package:community_with_legends_mobile/src/shared/data/data_sources/remote/remote_search_users_data_source_impl.dart';
 import 'package:community_with_legends_mobile/src/shared/data/repositories/search_users_repository_impl.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/usecases/search_users_usecase.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/controllers/localization_controller.dart';
@@ -208,7 +208,7 @@ class AppSetup {
   }
 
   UserSearchController createUserSearchController() {
-    final api = SearchUsersDataSource(baseUrl: apiUrl);
+    final api = SearchUsersDataSourceImpl(baseUrl: apiUrl);
     final repository = SearchUsersRepositoryImpl(api);
 
     final searchUsersUsecase = SearchUsersUsecase(repository);
