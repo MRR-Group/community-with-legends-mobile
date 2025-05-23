@@ -8,6 +8,7 @@ class NavbarController extends ChangeNotifier {
   void selectPage(BuildContext context, NavbarPages page){
     _selectedPage = page;
 
+    Navigator.of(context).popUntil((route) => route.isFirst);
     Navigator.of(context).pushReplacementNamed(page.routeName);
     notifyListeners();
   }
