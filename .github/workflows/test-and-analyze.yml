@@ -24,6 +24,9 @@ jobs:
       - name: Copy environment
         run: cp .env.example .env
 
+      - name: Generate localizations
+        run: flutter gen-l10n
+
       - name: Run Flutter Analyze
         run: flutter analyze
 
