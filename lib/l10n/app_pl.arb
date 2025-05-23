@@ -86,6 +86,9 @@
 
   "su_searchUserProfile": "Wyszukaj profil użytkownika",
   "su_selectUser": "Wybierz użytkownika",
-  "su_search": "Wyszukaj..."
+  "su_search": "Wyszukaj...",
+
+  "profile_following": "Obserwowani",
+  "profile_followers": "Obserwujących"
 
 }

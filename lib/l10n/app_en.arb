@@ -88,6 +88,9 @@
 
   "su_searchUserProfile": "Search user profile",
   "su_selectUser": "Select user",
-  "su_search": "Search..."
+  "su_search": "Search...",
+
+  "profile_following": "Following",
+  "profile_followers": "Followers"
 
 }

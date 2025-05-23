@@ -1,6 +1,7 @@
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/profile_card_widget.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class UserDetails extends StatelessWidget {
   final User userProfile;
@@ -9,6 +10,8 @@ class UserDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
       width: 500,
@@ -49,13 +52,13 @@ class UserDetails extends StatelessWidget {
                             maxLines: 1,
                           ),
                         ),
-                        const Padding(
-                          padding: EdgeInsets.all(16.0),
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
                           child: Row(
                             children: [
-                              Text('Following: 0'),
-                              Spacer(),
-                              Text('Followers: 0'),
+                              Text('${localizations.profile_following}: 0'),
+                              const Spacer(),
+                              Text('${localizations.profile_followers}: 0'),
                             ],
                           ),
                         ),
