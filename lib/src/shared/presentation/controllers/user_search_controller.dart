@@ -5,7 +5,7 @@ import 'package:community_with_legends_mobile/src/shared/presentation/widgets/al
 import 'package:flutter/cupertino.dart';
 
 class UserSearchController extends ChangeNotifier{
-  SearchUsersUsecase searchUsersUsecase;
+  final SearchUsersUsecase searchUsersUsecase;
 
   UserSearchController(this.searchUsersUsecase);
 
