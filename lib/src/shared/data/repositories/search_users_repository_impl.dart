@@ -1,4 +1,4 @@
-import 'package:community_with_legends_mobile/src/shared/data/data_sources/search_users_data_source.dart';
+import 'package:community_with_legends_mobile/src/shared/data/data_sources/remote/remote_search_users_data_source.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/repositories/search_users_repository.dart';
 
