@@ -10,15 +10,11 @@ class SearchUsersRepositoryImpl extends SearchUsersRepository{
   Future<List<User>> searchUsersByName(String filter) async {
     final response = await searchUsersDataSource.searchUsersByName(filter);
 
-    try {
-      final result = (response['data'] as List<dynamic>)
-          .map((users) => User.fromJson(users))
-          .toList();
+    final result = (response['data'] as List<dynamic>)
+        .map((users) => User.fromJson(users))
+        .toList();
 
-      return result;
-    } catch (e) {
-      rethrow;
-    }
+    return result;
   }
 
 }
