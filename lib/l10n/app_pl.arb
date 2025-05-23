@@ -28,6 +28,7 @@
   "login_resetPasswordCta": "zresetuj je",
   "login_loggedIn": "Zalogowano pomyślnie",
   "login_loggedOut": "Wylogowano pomyślnie",
+  "logout_button": "Wyloguj się",
 
   "register_title": "Rejestracja",
   "register_button": "Zarejestruj się",

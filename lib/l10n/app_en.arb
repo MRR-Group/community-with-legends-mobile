@@ -27,7 +27,6 @@
   "login_dontRemember": "Forgot Your password?",
   "login_resetPasswordCta": "to reset it",
   "login_loggedIn": "Logged in successfully",
-
   "logout_loggedOut": "Logged out successfully",
   "logout_button": "Logout",
 
