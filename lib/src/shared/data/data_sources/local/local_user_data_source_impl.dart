@@ -42,7 +42,7 @@ class LocalUserDataSourceImpl implements UserDataSource {
           ..where((u) => u.id.equals(id)))
         .getSingle();
 
-    return user as User;
+    return User.fromDrift(user);
   }
 
   @override

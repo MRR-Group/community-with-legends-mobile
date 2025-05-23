@@ -3,7 +3,6 @@ import 'package:community_with_legends_mobile/src/features/auth/data/data_source
 import 'package:community_with_legends_mobile/src/features/auth/domain/repositories/auth_repository.dart';
 import 'package:community_with_legends_mobile/src/shared/data/data_sources/local/local_user_data_source_impl.dart';
 import 'package:community_with_legends_mobile/src/shared/data/data_sources/remote/remote_user_data_source_impl.dart';
-import 'package:community_with_legends_mobile/src/shared/data/data_sources/user_data_source.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -12,7 +11,10 @@ class AuthRepositoryImpl implements AuthRepository {
   final LocalUserDataSourceImpl localUserDataSource;
 
   AuthRepositoryImpl(
-      this.api, this.remoteUserDataSource, this.localUserDataSource);
+    this.api,
+    this.remoteUserDataSource,
+    this.localUserDataSource,
+  );
 
   @override
   Future<String> login(String email, String password) async {

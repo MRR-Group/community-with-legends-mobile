@@ -1,4 +1,5 @@
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/http_exception.dart';
+import 'package:community_with_legends_mobile/src/core/errors/exceptions/no_internet_exception.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/asset_types.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/feed_posts_model.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/tag_model.dart';
@@ -63,6 +64,8 @@ class PostsController extends ChangeNotifier {
         Alert.of(context).show(text: localizations.posts_noPosts);
       }
     } on HttpException catch (e) {
+      Alert.of(context).show(text: e.toString());
+    } on NoInternetException catch (e){
       Alert.of(context).show(text: e.toString());
     } finally {
       _isLoading = false;

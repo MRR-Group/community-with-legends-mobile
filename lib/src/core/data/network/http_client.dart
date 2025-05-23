@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/http_exception.dart';
+import 'package:community_with_legends_mobile/src/core/errors/exceptions/no_internet_exception.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -75,7 +77,10 @@ class HttpClient {
       final response = await request;
 
       return _handleHttpResponse(response);
-    } catch (e, stackTrace) {
+    } on SocketException {
+      throw NoInternetException();
+    }
+    catch (e, stackTrace) {
       debugPrint('Error: $e');
       debugPrintStack(stackTrace: stackTrace);
 
