@@ -1,4 +1,5 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
+import 'package:community_with_legends_mobile/src/features/profile/presentation/pages/profile_page.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/controllers/localization_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/controllers/user_search_controller.dart';
@@ -43,6 +44,12 @@ class SearchUserDropdown extends StatelessWidget {
           },
           onChanged: (user) {
             if (user != null) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfilePage(userId: user.id),
+                ),
+              );
             }
           },
         ),

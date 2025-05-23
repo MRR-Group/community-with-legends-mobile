@@ -36,14 +36,28 @@ class DefaultDrawer extends StatelessWidget {
                     vertical: 4,
                     horizontal: 16,
                   ),
-                  child: const ChangeLanguage(),
+                  child: const SearchUserDropdown(),
+                ),
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  margin: const EdgeInsets.only(top: 16),
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      top: BorderSide(color: backgroundLightColor),
+                      bottom: BorderSide(color: backgroundLightColor),
+                    ),
+                  ),
+                  child: const Align(
+                    child: Text('Options'),
+                  ),
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(
                     vertical: 4,
                     horizontal: 16,
                   ),
-                  child: const SearchUserDropdown(),
+                  child: const ChangeLanguage(),
                 ),
               ],
             ),

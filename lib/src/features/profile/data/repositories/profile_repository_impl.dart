@@ -14,4 +14,11 @@ class ProfileRepositoryImpl implements ProfileRepository{
     return User.fromJson(response['data']);
   }
 
+  @override
+  Future<User> getCurrentUserProfile() async {
+    final response = await profileDatasource.getCurrentUserProfile();
+
+    return User.fromJson(response);
+  }
+
 }

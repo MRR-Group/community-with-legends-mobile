@@ -38,6 +38,7 @@ import 'package:community_with_legends_mobile/src/features/post_details/domain/u
 import 'package:community_with_legends_mobile/src/features/post_details/presentation/controllers/post_details_controller.dart';
 import 'package:community_with_legends_mobile/src/features/profile/data/data_sources/profile_datasource.dart';
 import 'package:community_with_legends_mobile/src/features/profile/data/repositories/profile_repository_impl.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_current_user_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_profile_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/controllers/profile_controller.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/pages/profile_page.dart';
@@ -201,8 +202,9 @@ class AppSetup {
     final repository = ProfileRepositoryImpl(api);
 
     final getUserProfileUsecase = GetUserProfileUsecase(repository);
+    final getCurrentUserProfileUsecase = GetCurrentUserProfileUsecase(repository);
 
-    return ProfileController(getUserProfileUsecase: getUserProfileUsecase);
+    return ProfileController(getUserProfileUsecase: getUserProfileUsecase, getCurrentUserProfileUsecase: getCurrentUserProfileUsecase);
   }
 
   UserSearchController createUserSearchController() {

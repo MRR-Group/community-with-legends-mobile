@@ -9,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+  final int? userId;
+  const ProfilePage({super.key, this.userId});
 
   @override
   State<StatefulWidget> createState() => _ProfilePageState();
@@ -25,7 +26,13 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     final profileController = Provider.of<ProfileController>(context);
-    final futureUserProfile = profileController.getUserProfile(context, 1);
+    Future<User?> futureUserProfile;
+
+    if(widget.userId != null){
+      futureUserProfile = profileController.getUserProfileById(context, widget.userId!);
+    }else{
+      futureUserProfile = profileController.getCurrentUserProfile(context);
+    }
 
     return Scaffold(
       backgroundColor: Colors.transparent,
