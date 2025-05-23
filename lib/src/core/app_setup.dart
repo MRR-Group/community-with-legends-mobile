@@ -41,8 +41,12 @@ import 'package:community_with_legends_mobile/src/features/profile/data/reposito
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_profile_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/controllers/profile_controller.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/pages/profile_page.dart';
+import 'package:community_with_legends_mobile/src/shared/data/data_sources/search_users_data_source.dart';
+import 'package:community_with_legends_mobile/src/shared/data/repositories/search_users_repository_impl.dart';
+import 'package:community_with_legends_mobile/src/shared/domain/usecases/search_users_usecase.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/controllers/localization_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/controllers/navbar_controller.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/controllers/user_search_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
@@ -201,6 +205,15 @@ class AppSetup {
     return ProfileController(getUserProfileUsecase: getUserProfileUsecase);
   }
 
+  UserSearchController createUserSearchController() {
+    final api = SearchUsersDataSource(baseUrl: apiUrl);
+    final repository = SearchUsersRepositoryImpl(api);
+
+    final searchUsersUsecase = SearchUsersUsecase(repository);
+
+    return UserSearchController(searchUsersUsecase);
+  }
+
   List<SingleChildWidget> getProviders() {
     final postsController = createPostsController();
 
@@ -237,6 +250,9 @@ class AppSetup {
       ),
       ChangeNotifierProvider<ProfileController>(
         create: (_) => createProfileController(),
+      ),
+      ChangeNotifierProvider<UserSearchController>(
+        create: (_) => createUserSearchController(),
       ),
     ];
   }
