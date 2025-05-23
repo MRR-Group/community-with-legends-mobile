@@ -17,19 +17,15 @@ class AuthRepositoryImpl implements AuthRepository {
   );
 
   @override
-  Future<String> login(String email, String password) async {
+  Future<void> login(String email, String password) async {
     final response = await api.login(email, password);
 
     if (response.containsKey('token')) {
       final token = response['token'];
 
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('auth_token', token);
+      await _saveToken(token);
+      await _cacheUser();
 
-      final user = await remoteUserDataSource.getCurrentUser();
-      localUserDataSource.cacheUser(user);
-
-      return token;
     } else {
       throw AuthException(response['message'] ?? 'Login failed');
     }
@@ -69,5 +65,15 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<void> logout() async {
     api.logout();
+  }
+
+  Future<void> _saveToken(String token) async{
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('auth_token', token);
+  }
+
+  Future<void> _cacheUser() async {
+    final user = await remoteUserDataSource.getCurrentUser();
+    localUserDataSource.cacheUser(user);
   }
 }
