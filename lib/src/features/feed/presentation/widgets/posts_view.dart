@@ -17,8 +17,13 @@ class _PostsViewState extends State<PostsView> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!mounted) {
+        return;
+      }
+
       final postsController =
           Provider.of<PostsController>(context, listen: false);
+
       await postsController.loadPosts(context);
     });
   }

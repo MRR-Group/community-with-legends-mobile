@@ -43,7 +43,7 @@ class SearchUserDropdown extends StatelessWidget {
           },
           onChanged: (user) {
             if (user != null) {
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                   builder: (context) => ProfilePage(userId: user.id),
