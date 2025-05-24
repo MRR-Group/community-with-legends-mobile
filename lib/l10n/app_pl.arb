@@ -14,6 +14,8 @@
   "token": "Token",
   "tokenHint": "Wprowadź token",
   "selectLanguage": "Wybierz język",
+  "noData": "Brak danych",
+  "settings": "Ustawienia",
 
   "login_title": "Logowanie",
   "login_button": "Zaloguj się",
@@ -25,7 +27,8 @@
   "login_dontRemember": "Nie pamiętasz hasła?",
   "login_resetPasswordCta": "zresetuj je",
   "login_loggedIn": "Zalogowano pomyślnie",
-  "login_loggedOut": "Wylogowano pomyślnie",
+  "logout_loggedOut": "Wylogowano pomyślnie",
+  "logout_button": "Wyloguj się",
 
   "register_title": "Rejestracja",
   "register_button": "Zarejestruj się",
@@ -80,6 +83,13 @@
   "navbar_feed": "Aktualności",
   "navbar_following": "Obserwowani",
   "navbar_notifications": "Powiadomienia",
-  "navbar_profile": "Profil"
+  "navbar_profile": "Profil",
+
+  "su_searchUserProfile": "Wyszukaj profil użytkownika",
+  "su_selectUser": "Wybierz użytkownika",
+  "su_search": "Wyszukaj...",
+
+  "profile_following": "Obserwowani",
+  "profile_followers": "Obserwujących"
 
 }

@@ -14,6 +14,8 @@
   "token": "Token",
   "tokenHint": "Enter token",
   "selectLanguage": "Select language",
+  "noData": "No data",
+  "settings": "Settings",
 
   "login_title": "Login",
   "login_button": "Log in",
@@ -25,7 +27,6 @@
   "login_dontRemember": "Forgot Your password?",
   "login_resetPasswordCta": "to reset it",
   "login_loggedIn": "Logged in successfully",
-
   "logout_loggedOut": "Logged out successfully",
   "logout_button": "Logout",
 
@@ -82,6 +83,13 @@
   "navbar_feed": "Feed",
   "navbar_following": "Following",
   "navbar_notifications": "Notification",
-  "navbar_profile": "Profile"
+  "navbar_profile": "Profile",
+
+  "su_searchUserProfile": "Search user profile",
+  "su_selectUser": "Select user",
+  "su_search": "Search...",
+
+  "profile_following": "Following",
+  "profile_followers": "Followers"
 
 }

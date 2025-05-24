@@ -1,3 +1,4 @@
+import 'package:community_with_legends_mobile/database/app_database.dart' as db;
 import 'package:community_with_legends_mobile/src/features/app_update/data/data_sources/update_datasource.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/data/repositories/update_repository_impl.dart';
 import 'package:community_with_legends_mobile/src/features/app_update/domain/usecases/check_update_usecase.dart';
@@ -36,7 +37,20 @@ import 'package:community_with_legends_mobile/src/features/post_details/data/rep
 import 'package:community_with_legends_mobile/src/features/post_details/domain/usecases/create_comment_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/post_details/domain/usecases/get_post_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/post_details/presentation/controllers/post_details_controller.dart';
+import 'package:community_with_legends_mobile/src/features/profile/data/data_sources/profile_datasource.dart';
+import 'package:community_with_legends_mobile/src/features/profile/data/repositories/profile_repository_impl.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_current_user_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_profile_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/presentation/controllers/profile_controller.dart';
+import 'package:community_with_legends_mobile/src/features/profile/presentation/pages/profile_page.dart';
+import 'package:community_with_legends_mobile/src/shared/data/data_sources/local/local_user_data_source_impl.dart';
+import 'package:community_with_legends_mobile/src/shared/data/data_sources/remote/remote_search_users_data_source_impl.dart';
+import 'package:community_with_legends_mobile/src/shared/data/data_sources/remote/remote_user_data_source_impl.dart';
+import 'package:community_with_legends_mobile/src/shared/data/repositories/search_users_repository_impl.dart';
+import 'package:community_with_legends_mobile/src/shared/domain/usecases/search_users_usecase.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/controllers/localization_controller.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/controllers/navbar_controller.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/controllers/user_search_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
@@ -53,13 +67,15 @@ class AppSetup {
 
   String get apiUrl => dotenv.env['API_URL']!;
 
-  String get updateChecking => dotenv.env['CHECK_UPDATE']!;
-
   String get updateUrl => dotenv.env['UPDATE_URL']!;
 
-  bool _updateAvailable = false;
+  String get updateChecking => dotenv.env['CHECK_UPDATE']!;
 
   bool get updateAvailable => _updateAvailable;
+  bool _updateAvailable = false;
+
+  db.AppDatabase get localDatabase => _localDatabase;
+  final _localDatabase = db.AppDatabase();
 
   final Map<String, WidgetBuilder> routes = {
     '/login': (context) => LoginPage(),
@@ -67,6 +83,7 @@ class AppSetup {
     '/feed': (context) => FeedPage(),
     '/forgot-password': (context) => ForgotPasswordPage(),
     '/reset-password': (context) => ResetPasswordPage(),
+    '/profile': (context) => const ProfilePage(),
     '/update': (context) => const UpdatePage(versionInfo: null),
   };
 
@@ -83,7 +100,12 @@ class AppSetup {
 
   AuthController createAuthController() {
     final api = AuthDataSource(baseUrl: apiUrl);
-    final repository = AuthRepositoryImpl(api);
+    final remoteUserDataSource = UserDataSourceImpl(baseUrl: apiUrl);
+    final localUserDataSource =
+        LocalUserDataSourceImpl(localDatabase: localDatabase);
+
+    final repository =
+        AuthRepositoryImpl(api, remoteUserDataSource, localUserDataSource);
 
     final logoutUseCase = LogoutUseCase(repository);
     final loginUseCase = LoginUseCase(repository);
@@ -181,8 +203,38 @@ class AppSetup {
     return LocalizationController();
   }
 
+  NavbarController createNavbarController() {
+    return NavbarController();
+  }
+
+  ProfileController createProfileController() {
+    final api = ProfileDatasource(baseUrl: apiUrl);
+    final localUserDatasource =
+        LocalUserDataSourceImpl(localDatabase: localDatabase);
+    final repository = ProfileRepositoryImpl(api, localUserDatasource);
+
+    final getUserProfileUsecase = GetUserProfileUsecase(repository);
+    final getCurrentUserProfileUsecase =
+        GetCurrentUserProfileUsecase(repository);
+
+    return ProfileController(
+      getUserProfileUsecase: getUserProfileUsecase,
+      getCurrentUserProfileUsecase: getCurrentUserProfileUsecase,
+    );
+  }
+
+  UserSearchController createUserSearchController() {
+    final api = SearchUsersDataSourceImpl(baseUrl: apiUrl);
+    final repository = SearchUsersRepositoryImpl(api);
+
+    final searchUsersUsecase = SearchUsersUsecase(repository);
+
+    return UserSearchController(searchUsersUsecase);
+  }
+
   List<SingleChildWidget> getProviders() {
     final postsController = createPostsController();
+
     return [
       ChangeNotifierProvider<GamesController>(
         create: (_) => createGamesController(),
@@ -210,6 +262,15 @@ class AppSetup {
       ),
       ChangeNotifierProvider<LocalizationController>(
         create: (_) => createLocalizationController(),
+      ),
+      ChangeNotifierProvider<NavbarController>(
+        create: (_) => createNavbarController(),
+      ),
+      ChangeNotifierProvider<ProfileController>(
+        create: (_) => createProfileController(),
+      ),
+      ChangeNotifierProvider<UserSearchController>(
+        create: (_) => createUserSearchController(),
       ),
     ];
   }

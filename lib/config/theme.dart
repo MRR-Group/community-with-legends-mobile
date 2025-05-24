@@ -47,7 +47,7 @@ ThemeData theme = ThemeData(
       color: textColor,
     ),
   ),
-  cardTheme: CardTheme(
+  cardTheme: CardThemeData(
     margin: EdgeInsets.zero,
     color: backgroundColor,
     shape: RoundedRectangleBorder(
