@@ -13,8 +13,6 @@ import 'package:community_with_legends_mobile/src/shared/presentation/widgets/to
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
-
 class CreatePostForm extends StatefulWidget {
   final GlobalKey<FormState> formKey;
   final TextEditingController contentController;
@@ -186,7 +184,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                           Button(
                             text: localizations.posts_post,
                             fontSize: 24,
-                            onPressed: _submitForm(postController),
+                            onPressed: _submitForm(postController, tagsController),
                           ),
                           const Spacer(),
                           Button(
@@ -195,6 +193,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                             onPressed: () {
                               widget.formKey.currentState?.reset();
                               postController.clearForm();
+                              tagsController.clearTags();
                             },
                           ),
                         ],
@@ -210,13 +209,16 @@ class _CreatePostFormState extends State<CreatePostForm> {
     );
   }
 
-  Function() _submitForm(PostsController postController) {
+  Function() _submitForm(PostsController postController, TagsController tagsController) {
     return () {
       if (widget.formKey.currentState!.validate()) {
         widget.formKey.currentState!.save();
+
         postController.submitPost(
           context: context,
         );
+
+        tagsController.clearTags();
       }
     };
   }

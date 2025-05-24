@@ -41,4 +41,9 @@ class TagsController extends ChangeNotifier {
       return [];
     }
   }
+
+  void clearTags() {
+    selectedTags = [];
+    notifyListeners();
+  }
 }

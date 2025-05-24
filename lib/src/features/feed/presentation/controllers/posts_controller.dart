@@ -156,7 +156,6 @@ class PostsController extends ChangeNotifier {
     selectedAssetType = AssetType.image;
     assetLink = null;
 
-    tagsController.selectedTags.clear();
     formKey?.currentState?.reset();
 
     notifyListeners();
