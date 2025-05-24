@@ -8,14 +8,11 @@ import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_filtered_posts_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_posts_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_trending_posts_usecase.dart';
-import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/tags_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/game_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:flutter/material.dart';
 
-
 class PostsController extends ChangeNotifier {
-  final TagsController tagsController;
   final GetPostsUseCase getPosts;
   final GetTrendingPostsUsecase getTrendingPosts;
   final GetFilteredPostsUseCase getFilteredPosts;
@@ -40,7 +37,6 @@ class PostsController extends ChangeNotifier {
   String? assetLink;
 
   PostsController({
-    required this.tagsController,
     required this.getPosts,
     required this.getTrendingPosts,
     required this.getFilteredPosts,
@@ -65,7 +61,7 @@ class PostsController extends ChangeNotifier {
       }
     } on HttpException catch (e) {
       return e.toString();
-    } on NoInternetException catch (e){
+    } on NoInternetException catch (e) {
       return e.toString();
     } finally {
       _isLoading = false;
@@ -124,6 +120,7 @@ class PostsController extends ChangeNotifier {
 
   Future<void> submitPost({
     required BuildContext context,
+    required List<int> selectedTagIds,
   }) async {
     final localizations = AppLocalizations.of(context)!;
     _isCreatingPost = true;
@@ -134,7 +131,7 @@ class PostsController extends ChangeNotifier {
       await createPost.execute(
         content: postContent!,
         gameId: selectedGame?.id,
-        tagIds: tagsController.selectedTagIds,
+        tagIds: selectedTagIds,
         assetId: selectedAssetType.id,
         assetLink: assetLink,
       );
@@ -156,7 +153,6 @@ class PostsController extends ChangeNotifier {
     selectedAssetType = AssetType.image;
     assetLink = null;
 
-    tagsController.selectedTags.clear();
     formKey?.currentState?.reset();
 
     notifyListeners();

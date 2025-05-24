@@ -1,8 +1,9 @@
+import 'package:community_with_legends_mobile/src/features/feed/domain/models/tag_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:flutter/cupertino.dart';
 
 class PostTags extends StatefulWidget {
-  final List<String> tags;
+  final List<Tag> tags;
 
   const PostTags({super.key, required this.tags});
 
@@ -23,7 +24,7 @@ class _PostTagsState extends State<PostTags> {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Button(
-              text: tag,
+              text: tag.name,
               fontSize: 12,
               horizontalPadding: 12,
               onPressed: () {},

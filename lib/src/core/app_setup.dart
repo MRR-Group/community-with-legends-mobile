@@ -147,7 +147,6 @@ class AppSetup {
     final createPostUseCase = CreatePostUseCase(feedRepository);
 
     return PostsController(
-      tagsController: createTagsController(),
       createPost: createPostUseCase,
       getPosts: getPostsUseCase,
       getFilteredPosts: getFilteredPostsUseCase,
