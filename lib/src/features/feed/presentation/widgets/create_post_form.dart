@@ -216,6 +216,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
 
         postController.submitPost(
           context: context,
+          selectedTagIds: tagsController.selectedTagIds
         );
 
         tagsController.clearTags();
