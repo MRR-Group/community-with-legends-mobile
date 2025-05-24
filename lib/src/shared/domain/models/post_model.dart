@@ -1,3 +1,4 @@
+import 'package:community_with_legends_mobile/src/features/feed/domain/models/tag_model.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/comment_model.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/game_model.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
@@ -10,7 +11,7 @@ class Post {
   late bool userReacted;
   final User user;
   final Game? game;
-  final List<String>? tags;
+  final List<Tag>? tags;
   final List<Comment>? comments;
 
   Post({
@@ -34,7 +35,11 @@ class Post {
       userReacted: json['user_reacted'],
       user: User.fromJson(json['user']),
       game: json['game'] == null ? null : Game.fromJson(json['game']),
-      tags: ['tags'],
+      tags: json['tags'] == null
+          ? null
+          : (json['tags'] as List<dynamic>)
+              .map((commentJson) => Tag.fromJson(commentJson))
+              .toList(),
       comments: json['comments'] == null
           ? null
           : (json['comments'] as List<dynamic>)
