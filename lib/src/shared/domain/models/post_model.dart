@@ -38,7 +38,7 @@ class Post {
       tags: json['tags'] == null
           ? null
           : (json['tags'] as List<dynamic>)
-              .map((commentJson) => Tag.fromJson(commentJson))
+              .map((tagJson) => Tag.fromJson(tagJson))
               .toList(),
       comments: json['comments'] == null
           ? null
