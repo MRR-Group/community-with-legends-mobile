@@ -23,6 +23,7 @@
   "tags": "Tags",
   "image": "Image",
   "video": "Video",
+  "unexpectedError": "Something went wrong",
 
   "login_title": "Login",
   "login_button": "Log in",
@@ -86,6 +87,7 @@
   "posts_reply": "Reply",
   "posts_comment": "Create a comment",
   "posts_commentCreated": "Comment has been created",
+  "posts_reported": "Post has been created",
 
   "navbar_feed": "Feed",
   "navbar_following": "Following",

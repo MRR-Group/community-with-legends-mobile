@@ -101,4 +101,9 @@ class FeedRepositoryImpl implements FeedRepository {
   Future<void> removeReactionFromPost(int postId) async{
     await api.removePostReaction(postId);
   }
+
+  @override
+  Future<void> reportPost(int postId) async{
+    await api.reportPost(postId);
+  }
 }

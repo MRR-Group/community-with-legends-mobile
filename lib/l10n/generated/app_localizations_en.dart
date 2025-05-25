@@ -75,6 +75,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get video => 'Video';
 
   @override
+  String get unexpectedError => 'Something went wrong';
+
+  @override
   String get login_title => 'Login';
 
   @override
@@ -247,6 +250,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get posts_commentCreated => 'Comment has been created';
+
+  @override
+  String get posts_reported => 'Post has been created';
 
   @override
   String get navbar_feed => 'Feed';

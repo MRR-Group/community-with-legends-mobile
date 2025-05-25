@@ -26,6 +26,7 @@ import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_tags_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_trending_posts_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/remove_reaction_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/report_post_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/games_controller.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/post_tab_controller.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/posts_controller.dart';
@@ -145,12 +146,14 @@ class AppSetup {
     final getTrendingPosts = GetTrendingPostsUsecase(feedRepository);
     final getFilteredPostsUseCase = GetFilteredPostsUseCase(feedRepository);
     final createPostUseCase = CreatePostUseCase(feedRepository);
+    final reportPostUseCase = ReportPostUseCase(feedRepository);
 
     return PostsController(
-      createPost: createPostUseCase,
-      getPosts: getPostsUseCase,
-      getFilteredPosts: getFilteredPostsUseCase,
-      getTrendingPosts: getTrendingPosts,
+      createPostUseCase: createPostUseCase,
+      getPostsUseCase: getPostsUseCase,
+      getFilteredPostsUseCase: getFilteredPostsUseCase,
+      getTrendingPostsUseCase: getTrendingPosts,
+      reportPostUseCase: reportPostUseCase,
     );
   }
 

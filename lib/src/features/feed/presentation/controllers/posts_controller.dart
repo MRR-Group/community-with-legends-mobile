@@ -8,15 +8,18 @@ import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_filtered_posts_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_posts_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_trending_posts_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/report_post_usecase.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/game_model.dart';
+import 'package:community_with_legends_mobile/src/shared/domain/models/post_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:flutter/material.dart';
 
 class PostsController extends ChangeNotifier {
-  final GetPostsUseCase getPosts;
-  final GetTrendingPostsUsecase getTrendingPosts;
-  final GetFilteredPostsUseCase getFilteredPosts;
-  final CreatePostUseCase createPost;
+  final GetPostsUseCase getPostsUseCase;
+  final GetTrendingPostsUsecase getTrendingPostsUseCase;
+  final GetFilteredPostsUseCase getFilteredPostsUseCase;
+  final CreatePostUseCase createPostUseCase;
+  final ReportPostUseCase reportPostUseCase;
 
   bool get isLoading => _isLoading;
   bool _isLoading = false;
@@ -37,10 +40,11 @@ class PostsController extends ChangeNotifier {
   String? assetLink;
 
   PostsController({
-    required this.getPosts,
-    required this.getTrendingPosts,
-    required this.getFilteredPosts,
-    required this.createPost,
+    required this.getPostsUseCase,
+    required this.getTrendingPostsUseCase,
+    required this.getFilteredPostsUseCase,
+    required this.createPostUseCase,
+    required this.reportPostUseCase,
   });
 
   Future<String> loadPosts(BuildContext context) async {
@@ -52,7 +56,7 @@ class PostsController extends ChangeNotifier {
 
     try {
       final localizations = AppLocalizations.of(context)!;
-      _feedPosts = await getPosts.execute();
+      _feedPosts = await getPostsUseCase.execute();
 
       if (_feedPosts?.posts != null && _feedPosts!.posts.isNotEmpty) {
         return localizations.posts_loaded;
@@ -78,7 +82,7 @@ class PostsController extends ChangeNotifier {
     notifyListeners();
 
     try {
-      _feedPosts = await getTrendingPosts.execute();
+      _feedPosts = await getTrendingPostsUseCase.execute();
 
       if (_feedPosts?.posts != null && _feedPosts!.posts.isNotEmpty) {
         Alert.of(context).show(text: localizations.posts_loaded);
@@ -103,7 +107,7 @@ class PostsController extends ChangeNotifier {
 
     try {
       _feedPosts =
-          await getFilteredPosts.execute(tagFilter?.id, gameFilter?.id);
+          await getFilteredPostsUseCase.execute(tagFilter?.id, gameFilter?.id);
 
       if (_feedPosts?.posts != null && _feedPosts!.posts.isNotEmpty) {
         Alert.of(context).show(text: localizations.posts_loaded);
@@ -128,7 +132,7 @@ class PostsController extends ChangeNotifier {
     notifyListeners();
 
     try {
-      await createPost.execute(
+      await createPostUseCase.execute(
         content: postContent!,
         gameId: selectedGame?.id,
         tagIds: selectedTagIds,
@@ -156,5 +160,30 @@ class PostsController extends ChangeNotifier {
     formKey?.currentState?.reset();
 
     notifyListeners();
+  }
+
+  Future<String> reportPost(BuildContext context, int postId) async {
+    final localizations = AppLocalizations.of(context)!;
+
+    try {
+      await reportPostUseCase.execute(postId);
+    } on HttpException catch (e) {
+      return e.toString();
+    } on NoInternetException catch (e) {
+      return e.toString();
+    }
+
+    return localizations.posts_reported;
+  }
+
+  Future<String> handlePopupMenu(BuildContext context, String value, Post post) async {
+    final localizations = AppLocalizations.of(context)!;
+
+    switch(value){
+      case 'report':
+        return reportPost(context, post.id);
+      default:
+        return localizations.unexpectedError;
+    }
   }
 }

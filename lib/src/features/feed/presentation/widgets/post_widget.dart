@@ -89,7 +89,7 @@ class _PostWidgetState extends State<PostWidget> {
                               ],
                             ),
                           ),
-                          const PostMenuButton(),
+                          PostMenuButton(post: widget.post),
                         ],
                       ),
                       if (widget.post.tags != null &&
@@ -107,10 +107,14 @@ class _PostWidgetState extends State<PostWidget> {
                             onPressed: () async {
                               if (widget.post.userReacted) {
                                 reactionsController.removeReaction(
-                                    context, widget.post);
+                                  context,
+                                  widget.post,
+                                );
                               } else {
                                 reactionsController.addReaction(
-                                    context, widget.post);
+                                  context,
+                                  widget.post,
+                                );
                               }
                             },
                             horizontalPadding: 8,
