@@ -584,6 +584,12 @@ abstract class AppLocalizations {
   /// **'Post has been created'**
   String get posts_reported;
 
+  /// No description provided for @posts_deleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Post has been deleted'**
+  String get posts_deleted;
+
   /// No description provided for @navbar_feed.
   ///
   /// In en, this message translates to:

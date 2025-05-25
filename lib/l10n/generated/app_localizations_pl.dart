@@ -255,6 +255,9 @@ class AppLocalizationsPl extends AppLocalizations {
   String get posts_reported => 'Post został zgłoszony';
 
   @override
+  String get posts_deleted => 'Post has been deleted';
+
+  @override
   String get navbar_feed => 'Aktualności';
 
   @override

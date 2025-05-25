@@ -255,6 +255,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get posts_reported => 'Post has been created';
 
   @override
+  String get posts_deleted => 'Post has been deleted';
+
+  @override
   String get navbar_feed => 'Feed';
 
   @override

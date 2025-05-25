@@ -29,17 +29,12 @@ class PostMenuButton extends StatelessWidget {
         DefaultPopupMenuItem.build(
           value: 'report',
           label: localizations.report_post,
-          icon: Icons.flag,
+          icon: Icons.flag_outlined,
         ),
         DefaultPopupMenuItem.build(
           value: 'delete',
           label: localizations.delete_post,
-          icon: Icons.flag,
-        ),
-        DefaultPopupMenuItem.build(
-          value: 'ban',
-          label: localizations.ban_author,
-          icon: Icons.flag,
+          icon: Icons.delete_outline,
         ),
       ],
     );
