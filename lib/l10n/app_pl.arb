@@ -23,6 +23,7 @@
   "tags": "Tagi",
   "image": "Zdjęcie",
   "video": "Wideo",
+  "unexpectedError": "Coś poszło nie tak",
 
   "login_title": "Logowanie",
   "login_button": "Zaloguj się",
@@ -87,6 +88,7 @@
   "posts_comment": "Dodaj komentarz",
   "posts_commentCreated": "Komentarz został dodany",
   "posts_reported": "Post został zgłoszony",
+  "posts_deleted": "Post został usunięty",
 
   "navbar_feed": "Aktualności",
   "navbar_following": "Obserwowani",

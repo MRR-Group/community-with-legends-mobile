@@ -75,7 +75,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get video => 'Wideo';
 
   @override
-  String get unexpectedError => 'Something went wrong';
+  String get unexpectedError => 'Coś poszło nie tak';
 
   @override
   String get login_title => 'Logowanie';
@@ -255,7 +255,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get posts_reported => 'Post został zgłoszony';
 
   @override
-  String get posts_deleted => 'Post has been deleted';
+  String get posts_deleted => 'Post został usunięty';
 
   @override
   String get navbar_feed => 'Aktualności';
