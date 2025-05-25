@@ -5,6 +5,7 @@ import 'package:community_with_legends_mobile/src/features/feed/domain/models/as
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/feed_posts_model.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/tag_model.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/create_post_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/delete_post_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_filtered_posts_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_posts_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_trending_posts_usecase.dart';
@@ -20,6 +21,7 @@ class PostsController extends ChangeNotifier {
   final GetFilteredPostsUseCase getFilteredPostsUseCase;
   final CreatePostUseCase createPostUseCase;
   final ReportPostUseCase reportPostUseCase;
+  final DeletePostUseCase deletePostUseCase;
 
   bool get isLoading => _isLoading;
   bool _isLoading = false;
@@ -45,6 +47,7 @@ class PostsController extends ChangeNotifier {
     required this.getFilteredPostsUseCase,
     required this.createPostUseCase,
     required this.reportPostUseCase,
+    required this.deletePostUseCase,
   });
 
   Future<String> loadPosts(BuildContext context) async {
@@ -176,12 +179,29 @@ class PostsController extends ChangeNotifier {
     return localizations.posts_reported;
   }
 
+  Future<String> deletePost(BuildContext context, int postId) async {
+    final localizations = AppLocalizations.of(context)!;
+
+    try {
+      await deletePostUseCase.execute(postId);
+    } on HttpException catch (e) {
+      return e.toString();
+    } on NoInternetException catch (e) {
+      return e.toString();
+    }
+
+    loadPosts(context);
+    return localizations.posts_deleted;
+  }
+
   Future<String> handlePopupMenu(BuildContext context, String value, Post post) async {
     final localizations = AppLocalizations.of(context)!;
 
     switch(value){
       case 'report':
         return reportPost(context, post.id);
+      case 'delete':
+        return deletePost(context, post.id);
       default:
         return localizations.unexpectedError;
     }

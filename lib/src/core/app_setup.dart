@@ -20,6 +20,7 @@ import 'package:community_with_legends_mobile/src/features/feed/data/data_source
 import 'package:community_with_legends_mobile/src/features/feed/data/repositories/feed_repository_impl.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/add_reaction_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/create_post_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/delete_post_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_filtered_games_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_filtered_posts_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/get_posts_usecase.dart';
@@ -147,6 +148,7 @@ class AppSetup {
     final getFilteredPostsUseCase = GetFilteredPostsUseCase(feedRepository);
     final createPostUseCase = CreatePostUseCase(feedRepository);
     final reportPostUseCase = ReportPostUseCase(feedRepository);
+    final deletePostUseCase = DeletePostUseCase(feedRepository);
 
     return PostsController(
       createPostUseCase: createPostUseCase,
@@ -154,6 +156,7 @@ class AppSetup {
       getFilteredPostsUseCase: getFilteredPostsUseCase,
       getTrendingPostsUseCase: getTrendingPosts,
       reportPostUseCase: reportPostUseCase,
+      deletePostUseCase: deletePostUseCase,
     );
   }
 

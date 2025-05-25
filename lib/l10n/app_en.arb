@@ -88,6 +88,7 @@
   "posts_comment": "Create a comment",
   "posts_commentCreated": "Comment has been created",
   "posts_reported": "Post has been created",
+  "posts_deleted": "Post has been deleted",
 
   "navbar_feed": "Feed",
   "navbar_following": "Following",
