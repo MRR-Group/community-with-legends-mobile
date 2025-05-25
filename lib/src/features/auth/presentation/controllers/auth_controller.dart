@@ -8,14 +8,12 @@ import 'package:community_with_legends_mobile/src/shared/presentation/widgets/al
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 class AuthController with ChangeNotifier {
   final LoginUseCase loginUseCase;
   final LogoutUseCase logoutUseCase;
   final RegisterUseCase registerUseCase;
   final SendResetTokenUsecase sendResetTokenUsecase;
   final ResetPasswordUsecase resetPasswordUsecase;
-
 
   bool _isLoading = false;
 
@@ -36,11 +34,12 @@ class AuthController with ChangeNotifier {
     return token != null;
   }
 
-  Future<void> login(
-    BuildContext context,
-    String email,
-    String password,
-  ) async {
+  Future<void> login({
+    required BuildContext context,
+    required String email,
+    required String password,
+    required void Function() onLoginSuccess,
+  }) async {
     _isLoading = true;
     notifyListeners();
 
@@ -49,6 +48,8 @@ class AuthController with ChangeNotifier {
 
       if (context.mounted) {
         final localizations = AppLocalizations.of(context)!;
+
+        onLoginSuccess();
 
         Alert.of(context).show(text: localizations.login_loggedIn);
         Navigator.pushReplacementNamed(context, '/feed');

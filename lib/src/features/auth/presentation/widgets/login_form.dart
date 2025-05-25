@@ -3,6 +3,7 @@ import 'package:community_with_legends_mobile/src/features/auth/presentation/con
 import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/auth_text_input.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/auth_via_twitch.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/clickable_auth_text.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/controllers/user_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +23,7 @@ class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<AuthController>(context);
+    final userController = Provider.of<UserController>(context);
     final localizations = AppLocalizations.of(context)!;
 
     return Form(
@@ -65,9 +67,12 @@ class LoginForm extends StatelessWidget {
             onPressed: () {
               if (!controller.isLoading) {
                 controller.login(
-                  context,
-                  emailController.text,
-                  passwordController.text,
+                  context: context,
+                  email: emailController.text,
+                  password: passwordController.text,
+                  onLoginSuccess: () {
+                    userController.refreshUser();
+                  },
                 );
               }
             },

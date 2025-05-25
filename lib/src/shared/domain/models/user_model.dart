@@ -43,7 +43,7 @@ class User {
     );
   }
 
-  bool? hasPermission(Permission permission) {
-    return permissions?.contains(permission);
+  bool hasPermission(Permission permission) {
+    return permissions?.contains(permission) ?? false;
   }
 }

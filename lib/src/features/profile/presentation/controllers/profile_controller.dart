@@ -1,5 +1,5 @@
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/http_exception.dart';
-import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_current_user_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_current_user_profile_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_profile_usecase.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
