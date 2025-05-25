@@ -16,6 +16,13 @@
   "selectLanguage": "Wybierz język",
   "noData": "Brak danych",
   "settings": "Ustawienia",
+  "report_post": "Zgłoś post",
+  "delete_post": "Usuń post",
+  "ban_author": "Zbanuj autora",
+  "assets": "Załączniki",
+  "tags": "Tagi",
+  "image": "Zdjęcie",
+  "video": "Wideo",
 
   "login_title": "Logowanie",
   "login_button": "Zaloguj się",

@@ -54,6 +54,27 @@ class AppLocalizationsPl extends AppLocalizations {
   String get settings => 'Ustawienia';
 
   @override
+  String get report_post => 'Zgłoś post';
+
+  @override
+  String get delete_post => 'Usuń post';
+
+  @override
+  String get ban_author => 'Zbanuj autora';
+
+  @override
+  String get assets => 'Załączniki';
+
+  @override
+  String get tags => 'Tagi';
+
+  @override
+  String get image => 'Zdjęcie';
+
+  @override
+  String get video => 'Wideo';
+
+  @override
   String get login_title => 'Logowanie';
 
   @override

@@ -109,9 +109,9 @@ class _CreatePostFormState extends State<CreatePostForm> {
                         },
                       ),
                     ),
-                    const Text(
-                      'Tags',
-                      style: TextStyle(fontSize: 24),
+                    Text(
+                      localizations.tags,
+                      style: const TextStyle(fontSize: 24),
                     ),
                     const SelectedTags(),
                     Padding(
@@ -138,19 +138,19 @@ class _CreatePostFormState extends State<CreatePostForm> {
                         },
                       ),
                     ),
-                    const Text(
-                      'Assets',
-                      style: TextStyle(fontSize: 24),
+                    Text(
+                      localizations.assets,
+                      style: const TextStyle(fontSize: 24),
                     ),
                     ToggleButtonFormField(
                       initialValue: AssetType.image.displayName,
                       buttons: {
-                        'Image': () {
+                        localizations.image: () {
                           setState(() {
                             postController.selectedAssetType = AssetType.image;
                           });
                         },
-                        'Video': () {
+                        localizations.video: () {
                           setState(() {
                             postController.selectedAssetType = AssetType.video;
                           });

@@ -1,4 +1,5 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
+import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_popup_menu_item.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +8,8 @@ class PostMenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+
     return PopupMenuButton(
       icon: const Icon(
         Icons.more_horiz,
@@ -15,17 +18,17 @@ class PostMenuButton extends StatelessWidget {
       itemBuilder: (context) => <PopupMenuEntry<String>>[
         DefaultPopupMenuItem.build(
           value: 'report',
-          label: 'Report post',
+          label: localizations.report_post,
           icon: Icons.flag,
         ),
         DefaultPopupMenuItem.build(
           value: 'delete',
-          label: 'Delete post',
+          label: localizations.delete_post,
           icon: Icons.flag,
         ),
         DefaultPopupMenuItem.build(
           value: 'ban',
-          label: 'Ban author',
+          label: localizations.ban_author,
           icon: Icons.flag,
         ),
       ],

@@ -16,6 +16,13 @@
   "selectLanguage": "Select language",
   "noData": "No data",
   "settings": "Settings",
+  "report_post": "Report post",
+  "delete_post": "Delete post",
+  "ban_author": "Ban author",
+  "assets": "Assets",
+  "tags": "Tags",
+  "image": "Image",
+  "video": "Video",
 
   "login_title": "Login",
   "login_button": "Log in",

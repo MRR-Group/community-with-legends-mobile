@@ -54,6 +54,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings => 'Settings';
 
   @override
+  String get report_post => 'Report post';
+
+  @override
+  String get delete_post => 'Delete post';
+
+  @override
+  String get ban_author => 'Ban author';
+
+  @override
+  String get assets => 'Assets';
+
+  @override
+  String get tags => 'Tags';
+
+  @override
+  String get image => 'Image';
+
+  @override
+  String get video => 'Video';
+
+  @override
   String get login_title => 'Login';
 
   @override
