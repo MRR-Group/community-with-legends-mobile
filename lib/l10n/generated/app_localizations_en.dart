@@ -252,7 +252,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get posts_commentCreated => 'Comment has been created';
 
   @override
-  String get posts_reported => 'Post has been created';
+  String get posts_reported => 'Post has been reported';
 
   @override
   String get posts_deleted => 'Post has been deleted';

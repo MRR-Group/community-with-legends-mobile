@@ -581,7 +581,7 @@ abstract class AppLocalizations {
   /// No description provided for @posts_reported.
   ///
   /// In en, this message translates to:
-  /// **'Post has been created'**
+  /// **'Post has been reported'**
   String get posts_reported;
 
   /// No description provided for @posts_deleted.

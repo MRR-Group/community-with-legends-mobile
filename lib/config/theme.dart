@@ -78,9 +78,5 @@ ThemeData theme = ThemeData(
       borderRadius: BorderRadius.circular(12),
     ),
     elevation: 8,
-    textStyle: const TextStyle(
-      color: Colors.white,
-      fontSize: 14,
-    ),
   ),
 );
