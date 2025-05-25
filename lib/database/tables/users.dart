@@ -1,3 +1,4 @@
+import 'package:community_with_legends_mobile/database/converters/PermissionListConverter.dart';
 import 'package:drift/drift.dart';
 
 class Users extends Table{
@@ -6,4 +7,5 @@ class Users extends Table{
   TextColumn get email => text()();
   DateTimeColumn get emailVerifiedAt => dateTime().nullable()();
   DateTimeColumn get createdAt => dateTime()();
+  TextColumn get permissions => text().map(const PermissionListConverter())();
 }
