@@ -56,9 +56,19 @@ class _PostWidgetState extends State<PostWidget> {
                     children: [
                       Row(
                         children: [
-                          Image.asset(
-                            'assets/images/loading.gif',
-                            height: 52,
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8, bottom: 8, top: 8),
+                            child: CircleAvatar(
+                              radius: 26,
+                              child: ClipOval(
+                                child: Image.network(
+                                  widget.post.user.avatarUrl,
+                                  width: 52,
+                                  height: 52,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
                           ),
                           Expanded(
                             child: Column(

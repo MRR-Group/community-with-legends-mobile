@@ -21,6 +21,8 @@ class LocalUserDataSourceImpl implements UserDataSource {
             email: user.email,
             emailVerifiedAt: Value(user.emailVerifiedAt),
             createdAt: user.createdAt,
+            avatarUrl: user.avatarUrl,
+            permissions: user.permissions?.map((p) => p.name).toList() ?? [],
           ),
         );
 

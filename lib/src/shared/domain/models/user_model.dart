@@ -5,6 +5,7 @@ class User {
   final int id;
   final String name;
   final String email;
+  final String avatarUrl;
   final DateTime? emailVerifiedAt;
   final DateTime createdAt;
   final List<Permission>? permissions;
@@ -13,6 +14,7 @@ class User {
     required this.id,
     required this.name,
     required this.email,
+    required this.avatarUrl,
     required this.emailVerifiedAt,
     required this.createdAt,
     this.permissions,
@@ -23,6 +25,7 @@ class User {
       id: json['id'],
       name: json['name'],
       email: json['email'],
+      avatarUrl: json['avatar'],
       emailVerifiedAt: DateTime.tryParse(json['email_verified_at'] ?? ''),
       createdAt: DateTime.parse(json['created_at']),
       permissions: json['permissions'] == null
@@ -38,6 +41,7 @@ class User {
       id: data.id,
       name: data.name,
       email: data.email,
+      avatarUrl: data.avatarUrl,
       emailVerifiedAt: data.emailVerifiedAt,
       createdAt: data.createdAt,
     );
