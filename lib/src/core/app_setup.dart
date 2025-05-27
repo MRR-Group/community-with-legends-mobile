@@ -41,6 +41,7 @@ import 'package:community_with_legends_mobile/src/features/post_details/domain/u
 import 'package:community_with_legends_mobile/src/features/post_details/presentation/controllers/post_details_controller.dart';
 import 'package:community_with_legends_mobile/src/features/profile/data/data_sources/profile_datasource.dart';
 import 'package:community_with_legends_mobile/src/features/profile/data/repositories/profile_repository_impl.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_current_user_profile_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_profile_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/controllers/profile_controller.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/pages/profile_page.dart';
@@ -48,7 +49,6 @@ import 'package:community_with_legends_mobile/src/shared/data/data_sources/local
 import 'package:community_with_legends_mobile/src/shared/data/data_sources/remote/remote_search_users_data_source_impl.dart';
 import 'package:community_with_legends_mobile/src/shared/data/data_sources/remote/remote_user_data_source_impl.dart';
 import 'package:community_with_legends_mobile/src/shared/data/repositories/search_users_repository_impl.dart';
-import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_current_user_profile_usecase.dart';
 import 'package:community_with_legends_mobile/src/shared/data/repositories/user_repository_impl.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/usecases/get_current_user_usecase.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/usecases/search_users_usecase.dart';
