@@ -87,9 +87,13 @@ class UserDetails extends StatelessWidget {
             right: 0,
             child: CircleAvatar(
               radius: 100,
-              child: Image.asset(
-                'assets/images/loading.gif',
-                height: 200,
+              child: ClipOval(
+                child: Image.network(
+                  userProfile.avatarUrl,
+                  width: 200,
+                  height: 200,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
