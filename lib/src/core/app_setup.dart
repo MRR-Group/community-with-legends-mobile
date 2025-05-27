@@ -50,7 +50,9 @@ import 'package:community_with_legends_mobile/src/shared/data/data_sources/remot
 import 'package:community_with_legends_mobile/src/shared/data/data_sources/remote/remote_user_data_source_impl.dart';
 import 'package:community_with_legends_mobile/src/shared/data/repositories/search_users_repository_impl.dart';
 import 'package:community_with_legends_mobile/src/shared/data/repositories/user_repository_impl.dart';
+import 'package:community_with_legends_mobile/src/shared/domain/usecases/ban_user_usecase.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/usecases/get_current_user_usecase.dart';
+import 'package:community_with_legends_mobile/src/shared/domain/usecases/report_user_usecase.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/usecases/search_users_usecase.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/controllers/localization_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/controllers/navbar_controller.dart';
@@ -246,9 +248,14 @@ class AppSetup {
     final repository = UserRepositoryImpl(remote);
 
     final getCurrentUserUsecase = GetCurrentUserUsecase(repository);
+    final reportUserUsecase = ReportUserUsecase(repository);
+    final banUserUsecase = BanUserUsecase(repository);
 
-
-    return UserController(getCurrentUserUsecase: getCurrentUserUsecase);
+    return UserController(
+      getCurrentUserUsecase: getCurrentUserUsecase,
+      reportUserUsecase: reportUserUsecase,
+      banUserUsecase: banUserUsecase,
+    );
   }
 
   List<SingleChildWidget> getProviders() {

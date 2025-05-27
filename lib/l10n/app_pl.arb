@@ -18,7 +18,6 @@
   "settings": "Ustawienia",
   "report_post": "Zgłoś post",
   "delete_post": "Usuń post",
-  "ban_author": "Zbanuj autora",
   "assets": "Załączniki",
   "tags": "Tagi",
   "image": "Zdjęcie",
@@ -100,6 +99,9 @@
   "su_search": "Wyszukaj...",
 
   "profile_following": "Obserwowani",
-  "profile_followers": "Obserwujących"
-
+  "profile_followers": "Obserwujących",
+  "user_ban": "Zbanuj użytkownika",
+  "user_report": "Zgłoś użytkownika",
+  "user_reported": "Użytkownik został zgłoszony",
+  "user_banned": "Użytkownik został zbanowany"
 }

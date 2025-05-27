@@ -60,9 +60,6 @@ class AppLocalizationsPl extends AppLocalizations {
   String get delete_post => 'Usuń post';
 
   @override
-  String get ban_author => 'Zbanuj autora';
-
-  @override
   String get assets => 'Załączniki';
 
   @override
@@ -283,4 +280,16 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get profile_followers => 'Obserwujących';
+
+  @override
+  String get user_ban => 'Zbanuj użytkownika';
+
+  @override
+  String get user_report => 'Zgłoś użytkownika';
+
+  @override
+  String get user_reported => 'Użytkownik został zgłoszony';
+
+  @override
+  String get user_banned => 'Użytkownik został zbanowany';
 }
