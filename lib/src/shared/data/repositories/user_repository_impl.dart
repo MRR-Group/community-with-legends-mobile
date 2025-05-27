@@ -19,7 +19,7 @@ class UserRepositoryImpl extends UserRepository {
 
   @override
   Future<void> banUser(int userId) async {
-    userDataSource.banUser(userId);
+    await userDataSource.banUser(userId);
   }
 
   @override
