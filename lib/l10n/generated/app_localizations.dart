@@ -188,6 +188,54 @@ abstract class AppLocalizations {
   /// **'Settings'**
   String get settings;
 
+  /// No description provided for @report_post.
+  ///
+  /// In en, this message translates to:
+  /// **'Report post'**
+  String get report_post;
+
+  /// No description provided for @delete_post.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete post'**
+  String get delete_post;
+
+  /// No description provided for @ban_author.
+  ///
+  /// In en, this message translates to:
+  /// **'Ban author'**
+  String get ban_author;
+
+  /// No description provided for @assets.
+  ///
+  /// In en, this message translates to:
+  /// **'Assets'**
+  String get assets;
+
+  /// No description provided for @tags.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags'**
+  String get tags;
+
+  /// No description provided for @image.
+  ///
+  /// In en, this message translates to:
+  /// **'Image'**
+  String get image;
+
+  /// No description provided for @video.
+  ///
+  /// In en, this message translates to:
+  /// **'Video'**
+  String get video;
+
+  /// No description provided for @unexpectedError.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong'**
+  String get unexpectedError;
+
   /// No description provided for @login_title.
   ///
   /// In en, this message translates to:
@@ -529,6 +577,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Comment has been created'**
   String get posts_commentCreated;
+
+  /// No description provided for @posts_reported.
+  ///
+  /// In en, this message translates to:
+  /// **'Post has been reported'**
+  String get posts_reported;
+
+  /// No description provided for @posts_deleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Post has been deleted'**
+  String get posts_deleted;
 
   /// No description provided for @navbar_feed.
   ///

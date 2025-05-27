@@ -69,4 +69,14 @@ ThemeData theme = ThemeData(
       borderSide: BorderSide.none,
     ),
   ),
+  popupMenuTheme: PopupMenuThemeData(
+    color: backgroundLightColor,
+    shape: RoundedRectangleBorder(
+      side: const BorderSide(
+        color: primaryColor,
+      ),
+      borderRadius: BorderRadius.circular(12),
+    ),
+    elevation: 8,
+  ),
 );

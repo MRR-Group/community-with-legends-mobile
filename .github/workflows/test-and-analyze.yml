@@ -24,9 +24,6 @@ jobs:
       - name: Copy environment
         run: cp .env.example .env
 
-      - name: Build app (to generate everything)
-        run: flutter build apk --debug
-
       - name: Run Flutter Analyze
         run: flutter analyze
 

@@ -1,12 +1,14 @@
+import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
+
 enum AssetType { image, video }
 
 extension AssetTypeExtension on AssetType {
-  String get displayName {
+  String displayName(AppLocalizations localizations) {
     switch (this) {
       case AssetType.image:
-        return 'Image';
+        return localizations.image;
       case AssetType.video:
-        return 'Video';
+        return localizations.video;
     }
   }
 

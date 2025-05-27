@@ -24,7 +24,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
     try{
       final response = await profileDatasource.getCurrentUserProfile();
 
-      user = User.fromJson(response);
+      user = User.fromJson(response['data']);
 
       localUserDataSourceImpl.cacheUser(user);
     } on NoInternetException{

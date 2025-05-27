@@ -69,4 +69,16 @@ class FeedDataSource extends HttpClient {
       urlPath: 'api/posts/$postId/reactions',
     );
   }
+
+  Future<Map<String, dynamic>> reportPost(int postId) async {
+    return postRequest(
+      urlPath: 'api/posts/$postId/report',
+    );
+  }
+
+  Future<Map<String, dynamic>> deletePost(int postId) async {
+    return deleteRequest(
+      urlPath: 'api/posts/$postId',
+    );
+  }
 }

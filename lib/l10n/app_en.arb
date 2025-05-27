@@ -16,6 +16,14 @@
   "selectLanguage": "Select language",
   "noData": "No data",
   "settings": "Settings",
+  "report_post": "Report post",
+  "delete_post": "Delete post",
+  "ban_author": "Ban author",
+  "assets": "Assets",
+  "tags": "Tags",
+  "image": "Image",
+  "video": "Video",
+  "unexpectedError": "Something went wrong",
 
   "login_title": "Login",
   "login_button": "Log in",
@@ -79,6 +87,8 @@
   "posts_reply": "Reply",
   "posts_comment": "Create a comment",
   "posts_commentCreated": "Comment has been created",
+  "posts_reported": "Post has been reported",
+  "posts_deleted": "Post has been deleted",
 
   "navbar_feed": "Feed",
   "navbar_following": "Following",

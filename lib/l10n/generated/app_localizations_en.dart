@@ -54,6 +54,30 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings => 'Settings';
 
   @override
+  String get report_post => 'Report post';
+
+  @override
+  String get delete_post => 'Delete post';
+
+  @override
+  String get ban_author => 'Ban author';
+
+  @override
+  String get assets => 'Assets';
+
+  @override
+  String get tags => 'Tags';
+
+  @override
+  String get image => 'Image';
+
+  @override
+  String get video => 'Video';
+
+  @override
+  String get unexpectedError => 'Something went wrong';
+
+  @override
   String get login_title => 'Login';
 
   @override
@@ -226,6 +250,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get posts_commentCreated => 'Comment has been created';
+
+  @override
+  String get posts_reported => 'Post has been reported';
+
+  @override
+  String get posts_deleted => 'Post has been deleted';
 
   @override
   String get navbar_feed => 'Feed';

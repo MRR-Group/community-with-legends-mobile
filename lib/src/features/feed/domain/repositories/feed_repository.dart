@@ -10,6 +10,8 @@ abstract class FeedRepository {
   Future<List<Tag>> getTags(String filter);
   Future<void> addReactionToPost(int postId);
   Future<void> removeReactionFromPost(int postId);
+  Future<void> reportPost(int postId);
+  Future<void> deletePost(int postId);
 
   Future<void> createPost({
     required String content,

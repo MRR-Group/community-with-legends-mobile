@@ -1,6 +1,7 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/reactions_controller.dart';
+import 'package:community_with_legends_mobile/src/features/feed/presentation/widgets/post_menu_button.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/widgets/post_tags.dart';
 import 'package:community_with_legends_mobile/src/features/post_details/presentation/pages/post_details_page.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/post_model.dart';
@@ -9,7 +10,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
-
 
 class PostWidget extends StatefulWidget {
   final Post post;
@@ -60,7 +60,7 @@ class _PostWidgetState extends State<PostWidget> {
                             'assets/images/loading.gif',
                             height: 52,
                           ),
-                          Flexible(
+                          Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisSize: MainAxisSize.min,
@@ -89,6 +89,7 @@ class _PostWidgetState extends State<PostWidget> {
                               ],
                             ),
                           ),
+                          PostMenuButton(post: widget.post),
                         ],
                       ),
                       if (widget.post.tags != null &&
@@ -105,9 +106,15 @@ class _PostWidgetState extends State<PostWidget> {
                                 : primaryGradient,
                             onPressed: () async {
                               if (widget.post.userReacted) {
-                                reactionsController.removeReaction(context, widget.post);
+                                reactionsController.removeReaction(
+                                  context,
+                                  widget.post,
+                                );
                               } else {
-                                reactionsController.addReaction(context, widget.post);
+                                reactionsController.addReaction(
+                                  context,
+                                  widget.post,
+                                );
                               }
                             },
                             horizontalPadding: 8,

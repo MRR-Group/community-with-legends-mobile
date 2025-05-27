@@ -1,4 +1,5 @@
 import 'package:community_with_legends_mobile/database/app_database.dart' as db;
+import 'package:community_with_legends_mobile/src/shared/domain/models/permissions_enum.dart';
 
 class User {
   final int id;
@@ -6,6 +7,7 @@ class User {
   final String email;
   final DateTime? emailVerifiedAt;
   final DateTime createdAt;
+  final List<Permission>? permissions;
 
   User({
     required this.id,
@@ -13,6 +15,7 @@ class User {
     required this.email,
     required this.emailVerifiedAt,
     required this.createdAt,
+    this.permissions,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -22,6 +25,11 @@ class User {
       email: json['email'],
       emailVerifiedAt: DateTime.tryParse(json['email_verified_at'] ?? ''),
       createdAt: DateTime.parse(json['created_at']),
+      permissions: json['permissions'] == null
+          ? null
+          : (json['permissions'] as List<dynamic>)
+              .map((tagJson) => Permission.fromString(tagJson))
+              .toList(),
     );
   }
 
@@ -33,5 +41,9 @@ class User {
       emailVerifiedAt: data.emailVerifiedAt,
       createdAt: data.createdAt,
     );
+  }
+
+  bool hasPermission(Permission permission) {
+    return permissions?.contains(permission) ?? false;
   }
 }

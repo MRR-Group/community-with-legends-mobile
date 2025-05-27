@@ -109,9 +109,9 @@ class _CreatePostFormState extends State<CreatePostForm> {
                         },
                       ),
                     ),
-                    const Text(
-                      'Tags',
-                      style: TextStyle(fontSize: 24),
+                    Text(
+                      localizations.tags,
+                      style: const TextStyle(fontSize: 24),
                     ),
                     const SelectedTags(),
                     Padding(
@@ -138,19 +138,19 @@ class _CreatePostFormState extends State<CreatePostForm> {
                         },
                       ),
                     ),
-                    const Text(
-                      'Assets',
-                      style: TextStyle(fontSize: 24),
+                    Text(
+                      localizations.assets,
+                      style: const TextStyle(fontSize: 24),
                     ),
                     ToggleButtonFormField(
-                      initialValue: AssetType.image.displayName,
+                      initialValue: AssetType.image.displayName(localizations),
                       buttons: {
-                        'Image': () {
+                        AssetType.image.displayName(localizations): () {
                           setState(() {
                             postController.selectedAssetType = AssetType.image;
                           });
                         },
-                        'Video': () {
+                        AssetType.video.displayName(localizations): () {
                           setState(() {
                             postController.selectedAssetType = AssetType.video;
                           });
@@ -163,7 +163,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.all(12),
                           hintText:
-                              '${localizations.posts_linkTo} ${postController.selectedAssetType.displayName}',
+                              '${localizations.posts_linkTo} ${postController.selectedAssetType.displayName(localizations)}',
                           fillColor: backgroundLightColor,
                           filled: true,
                           suffixIcon: const Icon(Icons.add),
