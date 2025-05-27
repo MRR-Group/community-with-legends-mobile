@@ -24,6 +24,6 @@ class UserRepositoryImpl extends UserRepository {
 
   @override
   Future<void> reportUser(int userId) async {
-    userDataSource.reportUser(userId);
+    await userDataSource.reportUser(userId);
   }
 }
