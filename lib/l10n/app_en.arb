@@ -18,7 +18,6 @@
   "settings": "Settings",
   "report_post": "Report post",
   "delete_post": "Delete post",
-  "ban_author": "Ban author",
   "assets": "Assets",
   "tags": "Tags",
   "image": "Image",
@@ -100,6 +99,10 @@
   "su_search": "Search...",
 
   "profile_following": "Following",
-  "profile_followers": "Followers"
+  "profile_followers": "Followers",
+  "user_ban": "Ban user",
+  "user_report": "Report user",
+  "user_reported": "User has been reported",
+  "user_banned": "User has been banned"
 
 }

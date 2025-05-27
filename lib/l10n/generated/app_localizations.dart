@@ -200,12 +200,6 @@ abstract class AppLocalizations {
   /// **'Delete post'**
   String get delete_post;
 
-  /// No description provided for @ban_author.
-  ///
-  /// In en, this message translates to:
-  /// **'Ban author'**
-  String get ban_author;
-
   /// No description provided for @assets.
   ///
   /// In en, this message translates to:
@@ -643,6 +637,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Followers'**
   String get profile_followers;
+
+  /// No description provided for @user_ban.
+  ///
+  /// In en, this message translates to:
+  /// **'Ban user'**
+  String get user_ban;
+
+  /// No description provided for @user_report.
+  ///
+  /// In en, this message translates to:
+  /// **'Report user'**
+  String get user_report;
+
+  /// No description provided for @user_reported.
+  ///
+  /// In en, this message translates to:
+  /// **'User has been reported'**
+  String get user_reported;
+
+  /// No description provided for @user_banned.
+  ///
+  /// In en, this message translates to:
+  /// **'User has been banned'**
+  String get user_banned;
 }
 
 class _AppLocalizationsDelegate
