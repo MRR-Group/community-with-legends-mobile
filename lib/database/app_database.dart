@@ -1,3 +1,4 @@
+import 'package:community_with_legends_mobile/database/converters/string_list_converter.dart';
 import 'package:community_with_legends_mobile/database/tables/users.dart';
 import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
