@@ -1,4 +1,4 @@
-import 'package:community_with_legends_mobile/database/converters/PermissionListConverter.dart';
+import 'package:community_with_legends_mobile/database/converters/permission_list_converter.dart';
 import 'package:drift/drift.dart';
 
 class Users extends Table{

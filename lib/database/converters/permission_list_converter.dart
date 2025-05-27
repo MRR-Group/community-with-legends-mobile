@@ -8,6 +8,7 @@ class PermissionListConverter extends TypeConverter<List<Permission>, String> {
   @override
   List<Permission> fromSql(String fromDb) {
     final List<dynamic> decoded = jsonDecode(fromDb);
+
     return decoded
         .map(
           (element) => Permission.values.firstWhere(
