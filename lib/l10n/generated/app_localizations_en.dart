@@ -75,6 +75,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get unexpectedError => 'Something went wrong';
 
   @override
+  String get nickname => 'Nickname';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get save => 'Save';
+
+  @override
   String get login_title => 'Login';
 
   @override
@@ -280,6 +289,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profile_followers => 'Followers';
+
+  @override
+  String get profile_edit => 'Edit profile';
+
+  @override
+  String get profile_deleteAvatar => 'Delete avatar';
+
+  @override
+  String get profile_sendAvatar => 'Send avatar';
 
   @override
   String get user_ban => 'Ban user';

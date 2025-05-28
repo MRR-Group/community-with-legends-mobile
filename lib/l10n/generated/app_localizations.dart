@@ -230,6 +230,24 @@ abstract class AppLocalizations {
   /// **'Something went wrong'**
   String get unexpectedError;
 
+  /// No description provided for @nickname.
+  ///
+  /// In en, this message translates to:
+  /// **'Nickname'**
+  String get nickname;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
   /// No description provided for @login_title.
   ///
   /// In en, this message translates to:
@@ -637,6 +655,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Followers'**
   String get profile_followers;
+
+  /// No description provided for @profile_edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit profile'**
+  String get profile_edit;
+
+  /// No description provided for @profile_deleteAvatar.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete avatar'**
+  String get profile_deleteAvatar;
+
+  /// No description provided for @profile_sendAvatar.
+  ///
+  /// In en, this message translates to:
+  /// **'Send avatar'**
+  String get profile_sendAvatar;
 
   /// No description provided for @user_ban.
   ///

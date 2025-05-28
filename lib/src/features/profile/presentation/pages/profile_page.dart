@@ -1,6 +1,7 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/controllers/profile_controller.dart';
+import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/edit_profile_widget.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/user_details_widget.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_app_bar.dart';
@@ -12,6 +13,7 @@ import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
   final int? userId;
+
   const ProfilePage({super.key, this.userId});
 
   @override
@@ -19,7 +21,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-
   @override
   void initState() {
     super.initState();
@@ -31,9 +32,10 @@ class _ProfilePageState extends State<ProfilePage> {
     final profileController = Provider.of<ProfileController>(context);
     Future<User?> futureUserProfile;
 
-    if(widget.userId != null){
-      futureUserProfile = profileController.getUserProfileById(context, widget.userId!);
-    }else{
+    if (widget.userId != null) {
+      futureUserProfile =
+          profileController.getUserProfileById(context, widget.userId!);
+    } else {
       futureUserProfile = profileController.getCurrentUserProfile(context);
     }
 
@@ -61,7 +63,18 @@ class _ProfilePageState extends State<ProfilePage> {
               } else if (!snapshot.hasData) {
                 return Center(child: Text(localizations.noData));
               } else {
-                return UserDetails(userProfile: snapshot.data!);
+                return ListView(
+                  children: [
+                    if (!profileController.isEditingProfile)
+                      UserDetails(
+                        userProfile: snapshot.data!,
+                      ),
+                    if (profileController.isEditingProfile)
+                      EditProfile(
+                        userProfile: snapshot.data!,
+                      ),
+                  ],
+                );
               }
             },
           ),

@@ -1,5 +1,6 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
+import 'package:community_with_legends_mobile/src/features/profile/presentation/controllers/profile_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/permissions_enum.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/controllers/user_controller.dart';
@@ -16,7 +17,6 @@ class UserMenuButton extends StatefulWidget {
     super.key,
     required this.user,
     required this.parentContext,
-
   });
 
   @override
@@ -24,11 +24,11 @@ class UserMenuButton extends StatefulWidget {
 }
 
 class _UserMenuButtonState extends State<UserMenuButton> {
-  
   @override
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
     final userController = Provider.of<UserController>(context);
+    final profileController = Provider.of<ProfileController>(context);
     final currentUser = userController.user;
 
     return PopupMenuButton(
@@ -37,14 +37,23 @@ class _UserMenuButtonState extends State<UserMenuButton> {
         color: textDisabledColor,
       ),
       onSelected: (value) async {
-        final result =
-            await userController.handlePopupMenu(context, value, widget.user);
+        final result = await profileController.handlePopupMenu(
+          context,
+          value,
+          widget.user,
+        );
 
-          if (mounted) {
-            Alert.of(widget.parentContext).show(text: result);
-          }
+        if (mounted && result != null) {
+          Alert.of(widget.parentContext).show(text: result);
+        }
       },
       itemBuilder: (context) => <PopupMenuEntry<String>>[
+        if (currentUser?.id == widget.user.id)
+          DefaultPopupMenuItem.build(
+            value: 'edit',
+            label: localizations.profile_edit,
+            icon: Icons.edit,
+          ),
         DefaultPopupMenuItem.build(
           value: 'report',
           label: localizations.user_report,

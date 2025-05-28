@@ -3,12 +3,13 @@ import 'package:community_with_legends_mobile/l10n/generated/app_localizations.d
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:flutter/material.dart';
 
-class AuthTextInput extends StatelessWidget {
-  const AuthTextInput({
+class TextInputField extends StatelessWidget {
+  const TextInputField({
     super.key,
     required this.hint,
     required this.text,
     this.obscureText = false,
+    this.fillColor = backgroundLightColor,
     required this.controller,
   });
 
@@ -16,6 +17,7 @@ class AuthTextInput extends StatelessWidget {
   final String text;
   final bool obscureText;
   final TextEditingController controller;
+  final Color fillColor;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,7 @@ class AuthTextInput extends StatelessWidget {
             ),
             contentPadding: const EdgeInsets.all(12),
             hintText: hint,
-            fillColor: backgroundLightColor,
+            fillColor: fillColor,
             filled: true,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),

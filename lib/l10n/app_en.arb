@@ -23,6 +23,9 @@
   "image": "Image",
   "video": "Video",
   "unexpectedError": "Something went wrong",
+  "nickname": "Nickname",
+  "cancel": "Cancel",
+  "save": "Save",
 
   "login_title": "Login",
   "login_button": "Log in",
@@ -100,9 +103,12 @@
 
   "profile_following": "Following",
   "profile_followers": "Followers",
+  "profile_edit": "Edit profile",
+  "profile_deleteAvatar": "Delete avatar",
+  "profile_sendAvatar": "Send avatar",
+
   "user_ban": "Ban user",
   "user_report": "Report user",
   "user_reported": "User has been reported",
   "user_banned": "User has been banned"
-
 }
