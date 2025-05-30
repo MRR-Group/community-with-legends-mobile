@@ -106,6 +106,7 @@
   "profile_edit": "Edit profile",
   "profile_deleteAvatar": "Delete avatar",
   "profile_sendAvatar": "Send avatar",
+  "profile_nicknameChanged": "Nickname changed",
 
   "user_ban": "Ban user",
   "user_report": "Report user",

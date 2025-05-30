@@ -300,6 +300,9 @@ class AppLocalizationsPl extends AppLocalizations {
   String get profile_sendAvatar => 'Prześlij zdjęcie';
 
   @override
+  String get profile_nicknameChanged => 'Pseudonim został zmieniony';
+
+  @override
   String get user_ban => 'Zbanuj użytkownika';
 
   @override

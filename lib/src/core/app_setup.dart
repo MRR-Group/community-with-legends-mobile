@@ -41,6 +41,7 @@ import 'package:community_with_legends_mobile/src/features/post_details/domain/u
 import 'package:community_with_legends_mobile/src/features/post_details/presentation/controllers/post_details_controller.dart';
 import 'package:community_with_legends_mobile/src/features/profile/data/data_sources/profile_datasource.dart';
 import 'package:community_with_legends_mobile/src/features/profile/data/repositories/profile_repository_impl.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/change_user_nickname_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_current_user_profile_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_profile_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/controllers/profile_controller.dart';
@@ -226,10 +227,12 @@ class AppSetup {
     final getUserProfileUsecase = GetUserProfileUsecase(repository);
     final getCurrentUserProfileUsecase =
         GetCurrentUserProfileUsecase(repository);
+    final changeUserNicknameUsecase = ChangeUserNicknameUsecase(repository);
 
     return ProfileController(
       getUserProfileUsecase: getUserProfileUsecase,
       getCurrentUserProfileUsecase: getCurrentUserProfileUsecase,
+      changeUserNicknameUsecase: changeUserNicknameUsecase,
     );
   }
 

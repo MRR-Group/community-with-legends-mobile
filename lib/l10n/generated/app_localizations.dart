@@ -674,6 +674,12 @@ abstract class AppLocalizations {
   /// **'Send avatar'**
   String get profile_sendAvatar;
 
+  /// No description provided for @profile_nicknameChanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Nickname changed'**
+  String get profile_nicknameChanged;
+
   /// No description provided for @user_ban.
   ///
   /// In en, this message translates to:

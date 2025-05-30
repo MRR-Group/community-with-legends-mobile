@@ -34,4 +34,9 @@ class ProfileRepositoryImpl implements ProfileRepository {
     return user;
   }
 
+  @override
+  Future<void> changeUserNickname(String nickname) async{
+    await profileDatasource.changeUserNickname(nickname);
+  }
+
 }

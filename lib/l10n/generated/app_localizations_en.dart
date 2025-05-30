@@ -300,6 +300,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile_sendAvatar => 'Send avatar';
 
   @override
+  String get profile_nicknameChanged => 'Nickname changed';
+
+  @override
   String get user_ban => 'Ban user';
 
   @override

@@ -106,6 +106,7 @@
   "profile_edit": "Edytuj profil",
   "profile_deleteAvatar": "Usuń zdjęcie",
   "profile_sendAvatar": "Prześlij zdjęcie",
+  "profile_nicknameChanged": "Pseudonim został zmieniony",
 
   "user_ban": "Zbanuj użytkownika",
   "user_report": "Zgłoś użytkownika",
