@@ -78,7 +78,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get nickname => 'Pseudonim';
 
   @override
-  String get cancel => 'Anuluj';
+  String get done => 'Zakończ';
 
   @override
   String get save => 'Zapisz';
@@ -307,6 +307,13 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get profile_nicknameChanged => 'Pseudonim został zmieniony';
+
+  @override
+  String get profile_avatarUploadFailed =>
+      'Nie udało się przesłać zdjęcia profilowego';
+
+  @override
+  String get profile_avatarUploaded => 'Przesłano zdjęcie profilowe';
 
   @override
   String get user_ban => 'Zbanuj użytkownika';

@@ -24,7 +24,7 @@
   "video": "Video",
   "unexpectedError": "Something went wrong",
   "nickname": "Nickname",
-  "cancel": "Cancel",
+  "done": "Done",
   "save": "Save",
   "change": "Change",
 
@@ -109,6 +109,8 @@
   "profile_uploadAvatar": "Upload avatar",
   "profile_takePhoto": "Take a photo",
   "profile_nicknameChanged": "Nickname changed",
+  "profile_avatarUploadFailed": "Failed to upload an image",
+  "profile_avatarUploaded": "Avatar uploaded successfully",
 
   "user_ban": "Ban user",
   "user_report": "Report user",

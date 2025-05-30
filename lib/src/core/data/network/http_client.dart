@@ -79,8 +79,7 @@ class HttpClient {
       return _handleHttpResponse(response);
     } on SocketException {
       throw NoInternetException();
-    }
-    catch (e, stackTrace) {
+    } catch (e, stackTrace) {
       debugPrint('Error: $e');
       debugPrintStack(stackTrace: stackTrace);
 
@@ -93,8 +92,8 @@ class HttpClient {
   ) async {
     final statusCode = response.statusCode;
     if (statusCode >= 200 && statusCode < 300) {
-        return _handleSuccessResponse(response);
-    }else{
+      return _handleSuccessResponse(response);
+    } else {
       throw HttpException.fromStatusCode(statusCode: statusCode);
     }
   }

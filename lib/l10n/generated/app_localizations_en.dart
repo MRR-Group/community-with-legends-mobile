@@ -78,7 +78,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get nickname => 'Nickname';
 
   @override
-  String get cancel => 'Cancel';
+  String get done => 'Done';
 
   @override
   String get save => 'Save';
@@ -307,6 +307,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profile_nicknameChanged => 'Nickname changed';
+
+  @override
+  String get profile_avatarUploadFailed => 'Failed to upload an image';
+
+  @override
+  String get profile_avatarUploaded => 'Avatar uploaded successfully';
 
   @override
   String get user_ban => 'Ban user';

@@ -3,6 +3,7 @@ import 'package:community_with_legends_mobile/src/features/profile/data/data_sou
 import 'package:community_with_legends_mobile/src/features/profile/domain/repositories/profile_repository.dart';
 import 'package:community_with_legends_mobile/src/shared/data/data_sources/local/local_user_data_source_impl.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileRepositoryImpl implements ProfileRepository {
   ProfileDatasource profileDatasource;
@@ -37,6 +38,11 @@ class ProfileRepositoryImpl implements ProfileRepository {
   @override
   Future<void> changeUserNickname(String nickname) async{
     await profileDatasource.changeUserNickname(nickname);
+  }
+
+  @override
+  Future<bool> changeUserAvatar(XFile avatar) async {
+    return profileDatasource.changeUserAvatar(avatar);
   }
 
 }

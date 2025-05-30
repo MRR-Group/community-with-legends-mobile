@@ -24,7 +24,7 @@
   "video": "Wideo",
   "unexpectedError": "Coś poszło nie tak",
   "nickname": "Pseudonim",
-  "cancel": "Anuluj",
+  "done": "Zakończ",
   "save": "Zapisz",
   "change": "Zmień",
 
@@ -109,6 +109,8 @@
   "profile_uploadAvatar": "Prześlij zdjęcie",
   "profile_takePhoto": "Zrób zdjęcie",
   "profile_nicknameChanged": "Pseudonim został zmieniony",
+  "profile_avatarUploadFailed": "Nie udało się przesłać zdjęcia profilowego",
+  "profile_avatarUploaded": "Przesłano zdjęcie profilowe",
 
   "user_ban": "Zbanuj użytkownika",
   "user_report": "Zgłoś użytkownika",

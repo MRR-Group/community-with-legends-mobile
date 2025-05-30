@@ -55,8 +55,7 @@ class EditProfile extends StatelessWidget {
                         children: [
                           Button(
                             text: localizations.profile_uploadAvatar,
-                            onPressed: () => profileController
-                                .pickAvatar(ImageSource.gallery),
+                            onPressed: () => _onUploadAvatarClick(profileController, context),
                           ),
                           Button(
                             text: localizations.profile_deleteAvatar,
@@ -64,8 +63,7 @@ class EditProfile extends StatelessWidget {
                           ),
                           Button(
                             text: localizations.profile_takePhoto,
-                            onPressed: () => profileController
-                                .pickAvatar(ImageSource.camera),
+                            onPressed: () => _onTakePhotoClick(profileController, context),
                           ),
                         ],
                       ),
@@ -101,7 +99,7 @@ class EditProfile extends StatelessWidget {
                     height: 18,
                   ),
                   Button(
-                    text: localizations.cancel,
+                    text: localizations.done,
                     onPressed: () {
                       profileController.closeUserEditMenu();
                     },
@@ -126,4 +124,38 @@ class EditProfile extends StatelessWidget {
       text: result,
     );
   }
+
+  Future<void> _onUploadAvatarClick(
+      ProfileController profileController,
+      BuildContext context,
+      ) async {
+    final result = await profileController.pickAvatar(
+      context,
+      ImageSource.gallery,
+    );
+
+    if(result != null){
+      Alert.of(context).show(
+        text: result,
+      );
+    }
+  }
+
+  Future<void> _onTakePhotoClick(
+      ProfileController profileController,
+      BuildContext context,
+      ) async {
+    final result = await profileController.pickAvatar(
+      context,
+      ImageSource.camera,
+    );
+
+    if(result != null){
+      Alert.of(context).show(
+        text: result,
+      );
+    }
+  }
+
+
 }

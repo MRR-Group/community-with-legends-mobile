@@ -236,11 +236,11 @@ abstract class AppLocalizations {
   /// **'Nickname'**
   String get nickname;
 
-  /// No description provided for @cancel.
+  /// No description provided for @done.
   ///
   /// In en, this message translates to:
-  /// **'Cancel'**
-  String get cancel;
+  /// **'Done'**
+  String get done;
 
   /// No description provided for @save.
   ///
@@ -691,6 +691,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Nickname changed'**
   String get profile_nicknameChanged;
+
+  /// No description provided for @profile_avatarUploadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to upload an image'**
+  String get profile_avatarUploadFailed;
+
+  /// No description provided for @profile_avatarUploaded.
+  ///
+  /// In en, this message translates to:
+  /// **'Avatar uploaded successfully'**
+  String get profile_avatarUploaded;
 
   /// No description provided for @user_ban.
   ///
