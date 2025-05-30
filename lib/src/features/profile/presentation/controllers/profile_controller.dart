@@ -8,6 +8,7 @@ import 'package:community_with_legends_mobile/src/shared/domain/models/user_mode
 import 'package:community_with_legends_mobile/src/shared/presentation/controllers/user_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class ProfileController extends ChangeNotifier {
@@ -60,6 +61,7 @@ class ProfileController extends ChangeNotifier {
       return e.toString();
     }
 
+    closeUserEditMenu();
     return localizations.profile_nicknameChanged;
   }
 
@@ -76,6 +78,22 @@ class ProfileController extends ChangeNotifier {
   Future<void> editUserProfile(String nickname) async {
     _isEditingProfile = false;
     notifyListeners();
+  }
+
+  Future<void> pickAvatar(ImageSource imageSource) async {
+    final ImagePicker picker = ImagePicker();
+
+    try {
+      final XFile? image = await picker.pickImage(source: imageSource);
+
+      if (image == null) {
+        return;
+      }
+
+      debugPrint('Selected image: ${image.path}');
+    } catch (e) {
+      debugPrint('Error: $e');
+    }
   }
 
   Future<String?> handlePopupMenu(

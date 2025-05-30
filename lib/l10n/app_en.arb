@@ -105,7 +105,8 @@
   "profile_followers": "Followers",
   "profile_edit": "Edit profile",
   "profile_deleteAvatar": "Delete avatar",
-  "profile_sendAvatar": "Send avatar",
+  "profile_uploadAvatar": "Upload avatar",
+  "profile_takePhoto": "Take a photo",
   "profile_nicknameChanged": "Nickname changed",
 
   "user_ban": "Ban user",

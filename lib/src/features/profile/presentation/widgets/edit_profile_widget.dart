@@ -7,6 +7,7 @@ import 'package:community_with_legends_mobile/src/shared/presentation/widgets/al
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/text_input_field.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class EditProfile extends StatelessWidget {
@@ -57,8 +58,14 @@ class EditProfile extends StatelessWidget {
                             onPressed: () {},
                           ),
                           Button(
-                            text: localizations.profile_sendAvatar,
-                            onPressed: () {},
+                            text: localizations.profile_uploadAvatar,
+                            onPressed: () => profileController
+                                .pickAvatar(ImageSource.gallery),
+                          ),
+                          Button(
+                            text: localizations.profile_takePhoto,
+                            onPressed: () => profileController
+                                .pickAvatar(ImageSource.camera),
                           ),
                         ],
                       ),
@@ -114,7 +121,6 @@ class EditProfile extends StatelessWidget {
     String nickname,
   ) async {
     final result = await profileController.changeNickname(context, nickname);
-    profileController.closeUserEditMenu();
 
     Alert.of(context).show(
       text: result,

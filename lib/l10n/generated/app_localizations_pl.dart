@@ -297,7 +297,10 @@ class AppLocalizationsPl extends AppLocalizations {
   String get profile_deleteAvatar => 'Usuń zdjęcie';
 
   @override
-  String get profile_sendAvatar => 'Prześlij zdjęcie';
+  String get profile_uploadAvatar => 'Prześlij zdjęcie';
+
+  @override
+  String get profile_takePhoto => 'Zrób zdjęcie';
 
   @override
   String get profile_nicknameChanged => 'Pseudonim został zmieniony';

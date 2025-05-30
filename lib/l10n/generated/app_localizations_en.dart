@@ -297,7 +297,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile_deleteAvatar => 'Delete avatar';
 
   @override
-  String get profile_sendAvatar => 'Send avatar';
+  String get profile_uploadAvatar => 'Upload avatar';
+
+  @override
+  String get profile_takePhoto => 'Take a photo';
 
   @override
   String get profile_nicknameChanged => 'Nickname changed';

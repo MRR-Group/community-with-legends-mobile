@@ -668,11 +668,17 @@ abstract class AppLocalizations {
   /// **'Delete avatar'**
   String get profile_deleteAvatar;
 
-  /// No description provided for @profile_sendAvatar.
+  /// No description provided for @profile_uploadAvatar.
   ///
   /// In en, this message translates to:
-  /// **'Send avatar'**
-  String get profile_sendAvatar;
+  /// **'Upload avatar'**
+  String get profile_uploadAvatar;
+
+  /// No description provided for @profile_takePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a photo'**
+  String get profile_takePhoto;
 
   /// No description provided for @profile_nicknameChanged.
   ///
