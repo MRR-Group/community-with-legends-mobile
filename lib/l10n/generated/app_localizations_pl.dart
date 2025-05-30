@@ -84,6 +84,9 @@ class AppLocalizationsPl extends AppLocalizations {
   String get save => 'Zapisz';
 
   @override
+  String get change => 'Zmień';
+
+  @override
   String get login_title => 'Logowanie';
 
   @override

@@ -38,7 +38,7 @@ class EditProfile extends StatelessWidget {
                   Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.only(right: 16),
                         child: CircleAvatar(
                           radius: 50,
                           child: ClipOval(
@@ -54,13 +54,13 @@ class EditProfile extends StatelessWidget {
                       Column(
                         children: [
                           Button(
-                            text: localizations.profile_deleteAvatar,
-                            onPressed: () {},
-                          ),
-                          Button(
                             text: localizations.profile_uploadAvatar,
                             onPressed: () => profileController
                                 .pickAvatar(ImageSource.gallery),
+                          ),
+                          Button(
+                            text: localizations.profile_deleteAvatar,
+                            onPressed: () {},
                           ),
                           Button(
                             text: localizations.profile_takePhoto,
@@ -71,40 +71,40 @@ class EditProfile extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
+                  Row(
+                    spacing: 8,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextInputField(
-                        hint: userProfile.name,
-                        text: localizations.nickname,
-                        controller: usernameController,
-                        fillColor: backgroundColor,
+                      SizedBox(
+                        width: 175,
+                        child: TextInputField(
+                          hint: userProfile.name,
+                          text: localizations.nickname,
+                          controller: usernameController,
+                          fillColor: backgroundColor,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 30),
+                        child: Button(
+                          text: localizations.change,
+                          onPressed: () => _onSaveButtonClick(
+                            profileController,
+                            context,
+                            usernameController.value.text,
+                          ),
+                        ),
                       ),
                     ],
                   ),
                   const SizedBox(
                     height: 18,
                   ),
-                  Row(
-                    spacing: 8,
-                    children: [
-                      const Spacer(),
-                      Button(
-                        text: localizations.cancel,
-                        onPressed: () {
-                          profileController.closeUserEditMenu();
-                        },
-                      ),
-                      Button(
-                        text: localizations.save,
-                        onPressed: () => _onSaveButtonClick(
-                          profileController,
-                          context,
-                          usernameController.value.text,
-                        ),
-                      ),
-                    ],
+                  Button(
+                    text: localizations.cancel,
+                    onPressed: () {
+                      profileController.closeUserEditMenu();
+                    },
                   ),
                 ],
               ),

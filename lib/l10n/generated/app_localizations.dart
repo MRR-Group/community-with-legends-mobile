@@ -248,6 +248,12 @@ abstract class AppLocalizations {
   /// **'Save'**
   String get save;
 
+  /// No description provided for @change.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get change;
+
   /// No description provided for @login_title.
   ///
   /// In en, this message translates to:
