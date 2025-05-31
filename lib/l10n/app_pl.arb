@@ -23,6 +23,10 @@
   "image": "Zdjęcie",
   "video": "Wideo",
   "unexpectedError": "Coś poszło nie tak",
+  "nickname": "Pseudonim",
+  "done": "Zakończ",
+  "save": "Zapisz",
+  "change": "Zmień",
 
   "login_title": "Logowanie",
   "login_button": "Zaloguj się",
@@ -100,6 +104,15 @@
 
   "profile_following": "Obserwowani",
   "profile_followers": "Obserwujących",
+  "profile_edit": "Edytuj profil",
+  "profile_deleteAvatar": "Usuń zdjęcie",
+  "profile_uploadAvatar": "Prześlij zdjęcie",
+  "profile_takePhoto": "Zrób zdjęcie",
+  "profile_nicknameChanged": "Pseudonim został zmieniony",
+  "profile_avatarUploadFailed": "Nie udało się przesłać zdjęcia profilowego",
+  "profile_avatarUploaded": "Przesłano zdjęcie profilowe",
+  "profile_avatarDeleted": "Zdjęcie profilowe zostało usunięte",
+
   "user_ban": "Zbanuj użytkownika",
   "user_report": "Zgłoś użytkownika",
   "user_reported": "Użytkownik został zgłoszony",

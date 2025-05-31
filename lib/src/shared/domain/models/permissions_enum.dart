@@ -8,7 +8,11 @@ enum Permission {
   anonymizeUsers,
   manageAdministrators,
   manageModerators,
-  updateGames;
+  updateGames,
+  manageReports,
+  renameUsers,
+  changeUsersAvatar,
+  deleteUserHardware;
 
   static Permission fromString(String value) {
     return Permission.values.firstWhere((e) => e.name == value);

@@ -75,6 +75,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get unexpectedError => 'Something went wrong';
 
   @override
+  String get nickname => 'Nickname';
+
+  @override
+  String get done => 'Done';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get change => 'Change';
+
+  @override
   String get login_title => 'Login';
 
   @override
@@ -280,6 +292,30 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profile_followers => 'Followers';
+
+  @override
+  String get profile_edit => 'Edit profile';
+
+  @override
+  String get profile_deleteAvatar => 'Delete avatar';
+
+  @override
+  String get profile_uploadAvatar => 'Upload avatar';
+
+  @override
+  String get profile_takePhoto => 'Take a photo';
+
+  @override
+  String get profile_nicknameChanged => 'Nickname changed';
+
+  @override
+  String get profile_avatarUploadFailed => 'Failed to upload an image';
+
+  @override
+  String get profile_avatarUploaded => 'Avatar uploaded successfully';
+
+  @override
+  String get profile_avatarDeleted => 'Avatar deleted successfully';
 
   @override
   String get user_ban => 'Ban user';

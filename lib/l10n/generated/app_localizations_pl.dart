@@ -75,6 +75,18 @@ class AppLocalizationsPl extends AppLocalizations {
   String get unexpectedError => 'Coś poszło nie tak';
 
   @override
+  String get nickname => 'Pseudonim';
+
+  @override
+  String get done => 'Zakończ';
+
+  @override
+  String get save => 'Zapisz';
+
+  @override
+  String get change => 'Zmień';
+
+  @override
   String get login_title => 'Logowanie';
 
   @override
@@ -280,6 +292,31 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get profile_followers => 'Obserwujących';
+
+  @override
+  String get profile_edit => 'Edytuj profil';
+
+  @override
+  String get profile_deleteAvatar => 'Usuń zdjęcie';
+
+  @override
+  String get profile_uploadAvatar => 'Prześlij zdjęcie';
+
+  @override
+  String get profile_takePhoto => 'Zrób zdjęcie';
+
+  @override
+  String get profile_nicknameChanged => 'Pseudonim został zmieniony';
+
+  @override
+  String get profile_avatarUploadFailed =>
+      'Nie udało się przesłać zdjęcia profilowego';
+
+  @override
+  String get profile_avatarUploaded => 'Przesłano zdjęcie profilowe';
+
+  @override
+  String get profile_avatarDeleted => 'Zdjęcie profilowe zostało usunięte';
 
   @override
   String get user_ban => 'Zbanuj użytkownika';

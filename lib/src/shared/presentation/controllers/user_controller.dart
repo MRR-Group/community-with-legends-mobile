@@ -67,17 +67,4 @@ class UserController extends ChangeNotifier {
 
     return localizations.user_banned;
   }
-
-  Future<String> handlePopupMenu(BuildContext context, String value, User user) async {
-    final localizations = AppLocalizations.of(context)!;
-
-    switch(value){
-      case 'report':
-        return reportUser(context, user.id);
-      case 'ban':
-        return banUser(context, user.id);
-      default:
-        return localizations.unexpectedError;
-    }
-  }
 }

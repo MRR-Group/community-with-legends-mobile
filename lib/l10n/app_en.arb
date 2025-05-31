@@ -23,6 +23,10 @@
   "image": "Image",
   "video": "Video",
   "unexpectedError": "Something went wrong",
+  "nickname": "Nickname",
+  "done": "Done",
+  "save": "Save",
+  "change": "Change",
 
   "login_title": "Login",
   "login_button": "Log in",
@@ -100,9 +104,17 @@
 
   "profile_following": "Following",
   "profile_followers": "Followers",
+  "profile_edit": "Edit profile",
+  "profile_deleteAvatar": "Delete avatar",
+  "profile_uploadAvatar": "Upload avatar",
+  "profile_takePhoto": "Take a photo",
+  "profile_nicknameChanged": "Nickname changed",
+  "profile_avatarUploadFailed": "Failed to upload an image",
+  "profile_avatarUploaded": "Avatar uploaded successfully",
+  "profile_avatarDeleted": "Avatar deleted successfully",
+
   "user_ban": "Ban user",
   "user_report": "Report user",
   "user_reported": "User has been reported",
   "user_banned": "User has been banned"
-
 }

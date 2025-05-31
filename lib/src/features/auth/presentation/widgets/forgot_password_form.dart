@@ -1,8 +1,8 @@
 import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/controllers/auth_controller.dart';
-import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/auth_text_input.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/widgets/clickable_auth_text.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/widgets/text_input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -33,7 +33,7 @@ class ForgotPasswordForm extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 18),
-          AuthTextInput(
+          TextInputField(
             text: localizations.emailHint,
             hint: localizations.email,
             controller: emailController,

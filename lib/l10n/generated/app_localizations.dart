@@ -230,6 +230,30 @@ abstract class AppLocalizations {
   /// **'Something went wrong'**
   String get unexpectedError;
 
+  /// No description provided for @nickname.
+  ///
+  /// In en, this message translates to:
+  /// **'Nickname'**
+  String get nickname;
+
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @change.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get change;
+
   /// No description provided for @login_title.
   ///
   /// In en, this message translates to:
@@ -637,6 +661,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Followers'**
   String get profile_followers;
+
+  /// No description provided for @profile_edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit profile'**
+  String get profile_edit;
+
+  /// No description provided for @profile_deleteAvatar.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete avatar'**
+  String get profile_deleteAvatar;
+
+  /// No description provided for @profile_uploadAvatar.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload avatar'**
+  String get profile_uploadAvatar;
+
+  /// No description provided for @profile_takePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a photo'**
+  String get profile_takePhoto;
+
+  /// No description provided for @profile_nicknameChanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Nickname changed'**
+  String get profile_nicknameChanged;
+
+  /// No description provided for @profile_avatarUploadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to upload an image'**
+  String get profile_avatarUploadFailed;
+
+  /// No description provided for @profile_avatarUploaded.
+  ///
+  /// In en, this message translates to:
+  /// **'Avatar uploaded successfully'**
+  String get profile_avatarUploaded;
+
+  /// No description provided for @profile_avatarDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Avatar deleted successfully'**
+  String get profile_avatarDeleted;
 
   /// No description provided for @user_ban.
   ///
