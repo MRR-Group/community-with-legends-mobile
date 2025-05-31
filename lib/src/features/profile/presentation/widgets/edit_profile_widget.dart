@@ -61,7 +61,7 @@ class _EditProfileState extends State<EditProfile> {
                           radius: 50,
                           child: ClipOval(
                             child: Image.network(
-                              userProfile.avatarUrl,
+                              widget.userProfile.avatarUrl,
                               width: 100,
                               height: 100,
                               fit: BoxFit.cover,
@@ -103,7 +103,7 @@ class _EditProfileState extends State<EditProfile> {
                       SizedBox(
                         width: 175,
                         child: TextInputField(
-                          hint: userProfile.name,
+                          hint: widget.userProfile.name,
                           text: localizations.nickname,
                           controller: usernameController,
                           fillColor: backgroundColor,
