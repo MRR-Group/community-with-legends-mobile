@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/no_internet_exception.dart';
 import 'package:community_with_legends_mobile/src/features/profile/data/data_sources/profile_datasource.dart';
@@ -53,16 +52,20 @@ class ProfileRepositoryImpl implements ProfileRepository {
     await profileDatasource.deleteUserAvatar();
   }
 
+
+
   @override
-  Future<List<Hardware>?> getUserHardware(int userId) async {
-    List<Hardware>? hardware;
+  Future<List<Hardware>> getUserHardware(int userId) async {
+    List<Hardware> hardware;
     try {
-    final response = await profileDatasource.getUserHardware(userId);
-    final data = response['data'] as List<dynamic>;
+      final response = await profileDatasource.getUserHardware(userId);
+      final data = response['data'] as List<dynamic>;
 
-    hardware = data.map((item) => Hardware.fromJson(item)).toList();
+      hardware = data.map((item) => Hardware.fromJson(item)).toList();
 
+      localUserDataSourceImpl.cacheUserHardware(userId, hardware);
     } on NoInternetException {
+      hardware = await localUserDataSourceImpl.getUserHardwareById(userId);
     }
 
     return hardware;

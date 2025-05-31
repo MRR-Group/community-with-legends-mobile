@@ -33,23 +33,21 @@ class HardwareCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: hardware.map((item) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            item.title,
-                            style: const TextStyle(fontSize: 30),
-                          ),
-                          Text(item.value),
-                          const SizedBox(height: 16),
-                        ],
-                      );
-                    }).toList(),
-                  ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: hardware.map((item) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          item.title,
+                          style: const TextStyle(fontSize: 30),
+                        ),
+                        Text(item.value),
+                        const SizedBox(height: 16),
+                      ],
+                    );
+                  }).toList(),
                 ),
               ],
             ),

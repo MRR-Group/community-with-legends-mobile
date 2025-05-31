@@ -36,7 +36,9 @@ class ProfileController extends ChangeNotifier {
   });
 
   Future<UserProfile?> getUserProfileById(
-      BuildContext context, int userId) async {
+    BuildContext context,
+    int userId,
+  ) async {
     try {
       final user = await getUserProfileUsecase.execute(userId);
 

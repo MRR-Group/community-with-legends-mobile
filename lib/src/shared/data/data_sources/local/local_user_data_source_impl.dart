@@ -1,4 +1,5 @@
 import 'package:community_with_legends_mobile/database/app_database.dart' as db;
+import 'package:community_with_legends_mobile/src/features/profile/domain/models/hardware_model.dart';
 import 'package:community_with_legends_mobile/src/shared/data/data_sources/user_data_source.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
 import 'package:drift/drift.dart';
@@ -29,6 +30,23 @@ class LocalUserDataSourceImpl implements UserDataSource {
     _saveCurrentUserId(user.id);
   }
 
+  Future<void> cacheUserHardware(int userId, List<Hardware> hardware) async {
+    final hardwareTable = localDatabase.hardwareTable;
+
+    await localDatabase.batch((batch) {
+      batch.insertAllOnConflictUpdate(
+        hardwareTable,
+        hardware.map(
+          (element) => db.HardwareTableCompanion.insert(
+            userId: userId,
+            title: element.title,
+            value: element.value,
+          ),
+        ),
+      );
+    });
+  }
+
   Future<void> _saveCurrentUserId(int id) async {
     final prefs = await SharedPreferences.getInstance();
 
@@ -50,6 +68,19 @@ class LocalUserDataSourceImpl implements UserDataSource {
         .getSingle();
 
     return User.fromDrift(user);
+  }
+
+  Future<List<Hardware>> getUserHardwareById(int userId) async {
+    final hardwareTable = localDatabase.hardwareTable;
+    final rows = await (localDatabase.select(hardwareTable)
+          ..where((element) => element.userId.equals(userId)))
+        .get();
+
+    final hardwareList = rows
+        .map((e) => Hardware(id: e.id, title: e.title, value: e.value))
+        .toList();
+
+    return hardwareList;
   }
 
   @override

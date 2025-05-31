@@ -383,15 +383,272 @@ class UsersCompanion extends UpdateCompanion<User> {
   }
 }
 
+class $HardwareTableTable extends HardwareTable
+    with TableInfo<$HardwareTableTable, HardwareTableData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $HardwareTableTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+      'id', aliasedName, false,
+      hasAutoIncrement: true,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+  static const VerificationMeta _userIdMeta = const VerificationMeta('userId');
+  @override
+  late final GeneratedColumn<int> userId = GeneratedColumn<int>(
+      'user_id', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: true);
+  static const VerificationMeta _titleMeta = const VerificationMeta('title');
+  @override
+  late final GeneratedColumn<String> title = GeneratedColumn<String>(
+      'title', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _valueMeta = const VerificationMeta('value');
+  @override
+  late final GeneratedColumn<String> value = GeneratedColumn<String>(
+      'value', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns => [id, userId, title, value];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'hardware_table';
+  @override
+  VerificationContext validateIntegrity(Insertable<HardwareTableData> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('user_id')) {
+      context.handle(_userIdMeta,
+          userId.isAcceptableOrUnknown(data['user_id']!, _userIdMeta));
+    } else if (isInserting) {
+      context.missing(_userIdMeta);
+    }
+    if (data.containsKey('title')) {
+      context.handle(
+          _titleMeta, title.isAcceptableOrUnknown(data['title']!, _titleMeta));
+    } else if (isInserting) {
+      context.missing(_titleMeta);
+    }
+    if (data.containsKey('value')) {
+      context.handle(
+          _valueMeta, value.isAcceptableOrUnknown(data['value']!, _valueMeta));
+    } else if (isInserting) {
+      context.missing(_valueMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  HardwareTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return HardwareTableData(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      userId: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}user_id'])!,
+      title: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}title'])!,
+      value: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}value'])!,
+    );
+  }
+
+  @override
+  $HardwareTableTable createAlias(String alias) {
+    return $HardwareTableTable(attachedDatabase, alias);
+  }
+}
+
+class HardwareTableData extends DataClass
+    implements Insertable<HardwareTableData> {
+  final int id;
+  final int userId;
+  final String title;
+  final String value;
+  const HardwareTableData(
+      {required this.id,
+      required this.userId,
+      required this.title,
+      required this.value});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['user_id'] = Variable<int>(userId);
+    map['title'] = Variable<String>(title);
+    map['value'] = Variable<String>(value);
+    return map;
+  }
+
+  HardwareTableCompanion toCompanion(bool nullToAbsent) {
+    return HardwareTableCompanion(
+      id: Value(id),
+      userId: Value(userId),
+      title: Value(title),
+      value: Value(value),
+    );
+  }
+
+  factory HardwareTableData.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return HardwareTableData(
+      id: serializer.fromJson<int>(json['id']),
+      userId: serializer.fromJson<int>(json['userId']),
+      title: serializer.fromJson<String>(json['title']),
+      value: serializer.fromJson<String>(json['value']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'userId': serializer.toJson<int>(userId),
+      'title': serializer.toJson<String>(title),
+      'value': serializer.toJson<String>(value),
+    };
+  }
+
+  HardwareTableData copyWith(
+          {int? id, int? userId, String? title, String? value}) =>
+      HardwareTableData(
+        id: id ?? this.id,
+        userId: userId ?? this.userId,
+        title: title ?? this.title,
+        value: value ?? this.value,
+      );
+  HardwareTableData copyWithCompanion(HardwareTableCompanion data) {
+    return HardwareTableData(
+      id: data.id.present ? data.id.value : this.id,
+      userId: data.userId.present ? data.userId.value : this.userId,
+      title: data.title.present ? data.title.value : this.title,
+      value: data.value.present ? data.value.value : this.value,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('HardwareTableData(')
+          ..write('id: $id, ')
+          ..write('userId: $userId, ')
+          ..write('title: $title, ')
+          ..write('value: $value')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, userId, title, value);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is HardwareTableData &&
+          other.id == this.id &&
+          other.userId == this.userId &&
+          other.title == this.title &&
+          other.value == this.value);
+}
+
+class HardwareTableCompanion extends UpdateCompanion<HardwareTableData> {
+  final Value<int> id;
+  final Value<int> userId;
+  final Value<String> title;
+  final Value<String> value;
+  const HardwareTableCompanion({
+    this.id = const Value.absent(),
+    this.userId = const Value.absent(),
+    this.title = const Value.absent(),
+    this.value = const Value.absent(),
+  });
+  HardwareTableCompanion.insert({
+    this.id = const Value.absent(),
+    required int userId,
+    required String title,
+    required String value,
+  })  : userId = Value(userId),
+        title = Value(title),
+        value = Value(value);
+  static Insertable<HardwareTableData> custom({
+    Expression<int>? id,
+    Expression<int>? userId,
+    Expression<String>? title,
+    Expression<String>? value,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (userId != null) 'user_id': userId,
+      if (title != null) 'title': title,
+      if (value != null) 'value': value,
+    });
+  }
+
+  HardwareTableCompanion copyWith(
+      {Value<int>? id,
+      Value<int>? userId,
+      Value<String>? title,
+      Value<String>? value}) {
+    return HardwareTableCompanion(
+      id: id ?? this.id,
+      userId: userId ?? this.userId,
+      title: title ?? this.title,
+      value: value ?? this.value,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (userId.present) {
+      map['user_id'] = Variable<int>(userId.value);
+    }
+    if (title.present) {
+      map['title'] = Variable<String>(title.value);
+    }
+    if (value.present) {
+      map['value'] = Variable<String>(value.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('HardwareTableCompanion(')
+          ..write('id: $id, ')
+          ..write('userId: $userId, ')
+          ..write('title: $title, ')
+          ..write('value: $value')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
   late final $UsersTable users = $UsersTable(this);
+  late final $HardwareTableTable hardwareTable = $HardwareTableTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [users];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [users, hardwareTable];
 }
 
 typedef $$UsersTableCreateCompanionBuilder = UsersCompanion Function({
@@ -587,10 +844,164 @@ typedef $$UsersTableProcessedTableManager = ProcessedTableManager<
     (User, BaseReferences<_$AppDatabase, $UsersTable, User>),
     User,
     PrefetchHooks Function()>;
+typedef $$HardwareTableTableCreateCompanionBuilder = HardwareTableCompanion
+    Function({
+  Value<int> id,
+  required int userId,
+  required String title,
+  required String value,
+});
+typedef $$HardwareTableTableUpdateCompanionBuilder = HardwareTableCompanion
+    Function({
+  Value<int> id,
+  Value<int> userId,
+  Value<String> title,
+  Value<String> value,
+});
+
+class $$HardwareTableTableFilterComposer
+    extends Composer<_$AppDatabase, $HardwareTableTable> {
+  $$HardwareTableTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<int> get userId => $composableBuilder(
+      column: $table.userId, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get title => $composableBuilder(
+      column: $table.title, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get value => $composableBuilder(
+      column: $table.value, builder: (column) => ColumnFilters(column));
+}
+
+class $$HardwareTableTableOrderingComposer
+    extends Composer<_$AppDatabase, $HardwareTableTable> {
+  $$HardwareTableTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<int> get userId => $composableBuilder(
+      column: $table.userId, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get title => $composableBuilder(
+      column: $table.title, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get value => $composableBuilder(
+      column: $table.value, builder: (column) => ColumnOrderings(column));
+}
+
+class $$HardwareTableTableAnnotationComposer
+    extends Composer<_$AppDatabase, $HardwareTableTable> {
+  $$HardwareTableTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<int> get userId =>
+      $composableBuilder(column: $table.userId, builder: (column) => column);
+
+  GeneratedColumn<String> get title =>
+      $composableBuilder(column: $table.title, builder: (column) => column);
+
+  GeneratedColumn<String> get value =>
+      $composableBuilder(column: $table.value, builder: (column) => column);
+}
+
+class $$HardwareTableTableTableManager extends RootTableManager<
+    _$AppDatabase,
+    $HardwareTableTable,
+    HardwareTableData,
+    $$HardwareTableTableFilterComposer,
+    $$HardwareTableTableOrderingComposer,
+    $$HardwareTableTableAnnotationComposer,
+    $$HardwareTableTableCreateCompanionBuilder,
+    $$HardwareTableTableUpdateCompanionBuilder,
+    (
+      HardwareTableData,
+      BaseReferences<_$AppDatabase, $HardwareTableTable, HardwareTableData>
+    ),
+    HardwareTableData,
+    PrefetchHooks Function()> {
+  $$HardwareTableTableTableManager(_$AppDatabase db, $HardwareTableTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$HardwareTableTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$HardwareTableTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$HardwareTableTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            Value<int> userId = const Value.absent(),
+            Value<String> title = const Value.absent(),
+            Value<String> value = const Value.absent(),
+          }) =>
+              HardwareTableCompanion(
+            id: id,
+            userId: userId,
+            title: title,
+            value: value,
+          ),
+          createCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            required int userId,
+            required String title,
+            required String value,
+          }) =>
+              HardwareTableCompanion.insert(
+            id: id,
+            userId: userId,
+            title: title,
+            value: value,
+          ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ));
+}
+
+typedef $$HardwareTableTableProcessedTableManager = ProcessedTableManager<
+    _$AppDatabase,
+    $HardwareTableTable,
+    HardwareTableData,
+    $$HardwareTableTableFilterComposer,
+    $$HardwareTableTableOrderingComposer,
+    $$HardwareTableTableAnnotationComposer,
+    $$HardwareTableTableCreateCompanionBuilder,
+    $$HardwareTableTableUpdateCompanionBuilder,
+    (
+      HardwareTableData,
+      BaseReferences<_$AppDatabase, $HardwareTableTable, HardwareTableData>
+    ),
+    HardwareTableData,
+    PrefetchHooks Function()>;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
   $AppDatabaseManager(this._db);
   $$UsersTableTableManager get users =>
       $$UsersTableTableManager(_db, _db.users);
+  $$HardwareTableTableTableManager get hardwareTable =>
+      $$HardwareTableTableTableManager(_db, _db.hardwareTable);
 }
