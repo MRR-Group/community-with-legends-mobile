@@ -56,17 +56,23 @@ class EditProfile extends StatelessWidget {
                           Button(
                             text: localizations.profile_uploadAvatar,
                             onPressed: () => _onUploadAvatarClick(
-                                profileController, context),
+                              profileController,
+                              context,
+                            ),
                           ),
                           Button(
                             text: localizations.profile_deleteAvatar,
                             onPressed: () => _onDeleteAvatarClick(
-                                profileController, context),
+                              profileController,
+                              context,
+                            ),
                           ),
                           Button(
                             text: localizations.profile_takePhoto,
-                            onPressed: () =>
-                                _onTakePhotoClick(profileController, context),
+                            onPressed: () => _onTakePhotoClick(
+                              profileController,
+                              context,
+                            ),
                           ),
                         ],
                       ),
