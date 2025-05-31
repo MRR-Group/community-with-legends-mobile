@@ -1,10 +1,12 @@
 import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/http_exception.dart';
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/no_internet_exception.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/models/user_profile_model.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/change_user_avatar_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/change_user_nickname_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/delete_user_avatar_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_current_user_profile_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_hardware_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_profile_usecase.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/controllers/user_controller.dart';
@@ -19,6 +21,7 @@ class ProfileController extends ChangeNotifier {
   ChangeUserNicknameUsecase changeUserNicknameUsecase;
   ChangeUserAvatarUsecase changeUserAvatarUsecase;
   DeleteUserAvatarUsecase deleteUserAvatarUsecase;
+  GetUserHardwareUsecase getUserHardwareUsecase;
 
   bool get isEditingProfile => _isEditingProfile;
   bool _isEditingProfile = false;
@@ -29,11 +32,17 @@ class ProfileController extends ChangeNotifier {
     required this.changeUserNicknameUsecase,
     required this.changeUserAvatarUsecase,
     required this.deleteUserAvatarUsecase,
+    required this.getUserHardwareUsecase,
   });
 
-  Future<User?> getUserProfileById(BuildContext context, int userId) async {
+  Future<UserProfile?> getUserProfileById(
+      BuildContext context, int userId) async {
     try {
-      return getUserProfileUsecase.execute(userId);
+      final user = await getUserProfileUsecase.execute(userId);
+
+      final userProfile = UserProfile(user: user);
+
+      return userProfile;
     } on HttpException catch (error) {
       if (context.mounted) {
         Alert.of(context).show(text: error.message);
@@ -42,9 +51,17 @@ class ProfileController extends ChangeNotifier {
     }
   }
 
-  Future<User?> getCurrentUserProfile(BuildContext context) async {
+  Future<UserProfile?> getCurrentUserProfile(BuildContext context) async {
     try {
-      return getCurrentUserProfileUsecase.execute();
+      final user = await getCurrentUserProfileUsecase.execute();
+      final hardware = await getUserHardwareUsecase.execute(user.id);
+
+      final userProfile = UserProfile(
+        user: user,
+        hardware: hardware,
+      );
+
+      return userProfile;
     } on HttpException catch (error) {
       if (context.mounted) {
         Alert.of(context).show(text: error.message);

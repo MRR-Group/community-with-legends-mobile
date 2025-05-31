@@ -1,9 +1,10 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/models/user_profile_model.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/controllers/profile_controller.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/edit_profile_widget.dart';
+import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/hardware_card_widget.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/user_details_widget.dart';
-import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_app_bar.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_bottom_app_bar.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_drawer.dart';
@@ -30,7 +31,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
     final profileController = Provider.of<ProfileController>(context);
-    Future<User?> futureUserProfile;
+    Future<UserProfile?> futureUserProfile;
 
     if (widget.userId != null) {
       futureUserProfile =
@@ -51,7 +52,7 @@ class _ProfilePageState extends State<ProfilePage> {
             width: double.infinity,
             height: double.infinity,
           ),
-          FutureBuilder<User?>(
+          FutureBuilder<UserProfile?>(
             future: futureUserProfile,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
@@ -67,11 +68,15 @@ class _ProfilePageState extends State<ProfilePage> {
                   children: [
                     if (!profileController.isEditingProfile)
                       UserDetails(
-                        userProfile: snapshot.data!,
+                        userProfile: snapshot.data!.user,
                       ),
                     if (profileController.isEditingProfile)
                       EditProfile(
-                        userProfile: snapshot.data!,
+                        userProfile: snapshot.data!.user,
+                      ),
+                    if (snapshot.data!.hardware != null)
+                      HardwareCard(
+                        hardware: snapshot.data!.hardware!,
                       ),
                   ],
                 );

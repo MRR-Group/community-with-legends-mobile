@@ -318,6 +318,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile_avatarDeleted => 'Avatar deleted successfully';
 
   @override
+  String get profile_hardware => 'Hardware';
+
+  @override
   String get user_ban => 'Ban user';
 
   @override

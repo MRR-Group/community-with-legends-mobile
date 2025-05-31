@@ -9,7 +9,6 @@ class ProfileCard extends StatelessWidget{
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(2),
-      margin: const EdgeInsets.only(top: 100),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         gradient: secondaryGradient,

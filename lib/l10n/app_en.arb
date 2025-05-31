@@ -112,6 +112,7 @@
   "profile_avatarUploadFailed": "Failed to upload an image",
   "profile_avatarUploaded": "Avatar uploaded successfully",
   "profile_avatarDeleted": "Avatar deleted successfully",
+  "profile_hardware": "Hardware",
 
   "user_ban": "Ban user",
   "user_report": "Report user",

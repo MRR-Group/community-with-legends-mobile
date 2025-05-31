@@ -19,66 +19,69 @@ class UserDetails extends StatelessWidget {
       alignment: Alignment.topCenter,
       child: Stack(
         children: [
-          ProfileCard(
-            child: SizedBox(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: UserMenuButton(
-                      user: userProfile,
-                      parentContext: context,
+          Container(
+            margin: const EdgeInsets.only(top: 100),
+            child: ProfileCard(
+              child: SizedBox(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: UserMenuButton(
+                        user: userProfile,
+                        parentContext: context,
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 100),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SizedBox(
-                              width: double.infinity,
-                              child: Text(
-                                userProfile.name,
-                                style: const TextStyle(
-                                  fontSize: 50,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 100),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SizedBox(
+                                width: double.infinity,
+                                child: Text(
+                                  userProfile.name,
+                                  style: const TextStyle(
+                                    fontSize: 50,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
                                 ),
-                                textAlign: TextAlign.center,
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
                               ),
-                            ),
-                            SizedBox(
-                              width: double.infinity,
-                              child: Text(
-                                userProfile.email,
-                                style: const TextStyle(fontSize: 30),
-                                textAlign: TextAlign.center,
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
+                              SizedBox(
+                                width: double.infinity,
+                                child: Text(
+                                  userProfile.email,
+                                  style: const TextStyle(fontSize: 30),
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Row(
-                                children: [
-                                  Text('${localizations.profile_following}: 0'),
-                                  const Spacer(),
-                                  Text('${localizations.profile_followers}: 0'),
-                                ],
+                              Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Row(
+                                  children: [
+                                    Text('${localizations.profile_following}: 0'),
+                                    const Spacer(),
+                                    Text('${localizations.profile_followers}: 0'),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

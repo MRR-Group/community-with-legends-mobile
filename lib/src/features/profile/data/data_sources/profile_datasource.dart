@@ -55,4 +55,10 @@ class ProfileDatasource extends HttpClient {
 
     return response.statusCode == 200;
   }
+
+  Future<Map<String, dynamic>> getUserHardware(int userId) async {
+    return getRequest(
+      urlPath: 'api/users/$userId/hardware',
+    );
+  }
 }

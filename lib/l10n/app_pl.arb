@@ -112,6 +112,7 @@
   "profile_avatarUploadFailed": "Nie udało się przesłać zdjęcia profilowego",
   "profile_avatarUploaded": "Przesłano zdjęcie profilowe",
   "profile_avatarDeleted": "Zdjęcie profilowe zostało usunięte",
+  "profile_hardware": "Sprzęt",
 
   "user_ban": "Zbanuj użytkownika",
   "user_report": "Zgłoś użytkownika",
