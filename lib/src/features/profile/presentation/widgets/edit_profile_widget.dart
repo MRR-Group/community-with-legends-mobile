@@ -55,15 +55,18 @@ class EditProfile extends StatelessWidget {
                         children: [
                           Button(
                             text: localizations.profile_uploadAvatar,
-                            onPressed: () => _onUploadAvatarClick(profileController, context),
+                            onPressed: () => _onUploadAvatarClick(
+                                profileController, context),
                           ),
                           Button(
                             text: localizations.profile_deleteAvatar,
-                            onPressed: () {},
+                            onPressed: () => _onDeleteAvatarClick(
+                                profileController, context),
                           ),
                           Button(
                             text: localizations.profile_takePhoto,
-                            onPressed: () => _onTakePhotoClick(profileController, context),
+                            onPressed: () =>
+                                _onTakePhotoClick(profileController, context),
                           ),
                         ],
                       ),
@@ -126,15 +129,15 @@ class EditProfile extends StatelessWidget {
   }
 
   Future<void> _onUploadAvatarClick(
-      ProfileController profileController,
-      BuildContext context,
-      ) async {
+    ProfileController profileController,
+    BuildContext context,
+  ) async {
     final result = await profileController.pickAvatar(
       context,
       ImageSource.gallery,
     );
 
-    if(result != null){
+    if (result != null) {
       Alert.of(context).show(
         text: result,
       );
@@ -142,20 +145,31 @@ class EditProfile extends StatelessWidget {
   }
 
   Future<void> _onTakePhotoClick(
-      ProfileController profileController,
-      BuildContext context,
-      ) async {
+    ProfileController profileController,
+    BuildContext context,
+  ) async {
     final result = await profileController.pickAvatar(
       context,
       ImageSource.camera,
     );
 
-    if(result != null){
+    if (result != null) {
       Alert.of(context).show(
         text: result,
       );
     }
   }
 
+  Future<void> _onDeleteAvatarClick(
+    ProfileController profileController,
+    BuildContext context,
+  ) async {
+    final result = await profileController.deleteAvatar(
+      context,
+    );
 
+    Alert.of(context).show(
+      text: result,
+    );
+  }
 }

@@ -3,6 +3,7 @@ import 'package:community_with_legends_mobile/src/core/errors/exceptions/http_ex
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/no_internet_exception.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/change_user_avatar_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/change_user_nickname_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/delete_user_avatar_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_current_user_profile_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_profile_usecase.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
@@ -17,6 +18,7 @@ class ProfileController extends ChangeNotifier {
   GetCurrentUserProfileUsecase getCurrentUserProfileUsecase;
   ChangeUserNicknameUsecase changeUserNicknameUsecase;
   ChangeUserAvatarUsecase changeUserAvatarUsecase;
+  DeleteUserAvatarUsecase deleteUserAvatarUsecase;
 
   bool get isEditingProfile => _isEditingProfile;
   bool _isEditingProfile = false;
@@ -26,6 +28,7 @@ class ProfileController extends ChangeNotifier {
     required this.getCurrentUserProfileUsecase,
     required this.changeUserNicknameUsecase,
     required this.changeUserAvatarUsecase,
+    required this.deleteUserAvatarUsecase,
   });
 
   Future<User?> getUserProfileById(BuildContext context, int userId) async {
@@ -111,6 +114,25 @@ class ProfileController extends ChangeNotifier {
     }
 
     return localizations.profile_avatarUploaded;
+  }
+
+  Future<String> deleteAvatar(
+    BuildContext context,
+  ) async {
+    final localizations = AppLocalizations.of(context)!;
+
+    try {
+      deleteUserAvatarUsecase.execute();
+    } on HttpException catch (e) {
+      return e.toString();
+    } on NoInternetException catch (e) {
+      return e.toString();
+    }
+
+    imageCache.clear();
+    closeUserEditMenu();
+
+    return localizations.profile_avatarDeleted;
   }
 
   Future<String?> handlePopupMenu(

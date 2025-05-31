@@ -45,4 +45,9 @@ class ProfileRepositoryImpl implements ProfileRepository {
     return profileDatasource.changeUserAvatar(avatar);
   }
 
+  @override
+  Future<void> deleteUserAvatar() async{
+    await profileDatasource.deleteUserAvatar();
+  }
+
 }

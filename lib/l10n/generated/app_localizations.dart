@@ -704,6 +704,12 @@ abstract class AppLocalizations {
   /// **'Avatar uploaded successfully'**
   String get profile_avatarUploaded;
 
+  /// No description provided for @profile_avatarDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Avatar deleted successfully'**
+  String get profile_avatarDeleted;
+
   /// No description provided for @user_ban.
   ///
   /// In en, this message translates to:

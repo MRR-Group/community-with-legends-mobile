@@ -316,6 +316,9 @@ class AppLocalizationsPl extends AppLocalizations {
   String get profile_avatarUploaded => 'Przesłano zdjęcie profilowe';
 
   @override
+  String get profile_avatarDeleted => 'Zdjęcie profilowe zostało usunięte';
+
+  @override
   String get user_ban => 'Zbanuj użytkownika';
 
   @override

@@ -23,11 +23,20 @@ class ProfileDatasource extends HttpClient {
     );
   }
 
-  Future<bool> changeUserAvatar(XFile avatar) async {
-    return updateAvatarRequest(urlPath: 'api/user/avatar', filePath: avatar.path);
+  Future<Map<String, dynamic>> deleteUserAvatar() async {
+    return deleteRequest(
+      urlPath: 'api/user/avatar',
+    );
   }
 
-  Future<bool> updateAvatarRequest({
+  Future<bool> changeUserAvatar(XFile avatar) async {
+    return _updateAvatarRequest(
+      urlPath: 'api/user/avatar',
+      filePath: avatar.path,
+    );
+  }
+
+  Future<bool> _updateAvatarRequest({
     required String urlPath,
     required String filePath,
   }) async {

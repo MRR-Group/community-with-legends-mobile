@@ -111,6 +111,7 @@
   "profile_nicknameChanged": "Pseudonim został zmieniony",
   "profile_avatarUploadFailed": "Nie udało się przesłać zdjęcia profilowego",
   "profile_avatarUploaded": "Przesłano zdjęcie profilowe",
+  "profile_avatarDeleted": "Zdjęcie profilowe zostało usunięte",
 
   "user_ban": "Zbanuj użytkownika",
   "user_report": "Zgłoś użytkownika",
