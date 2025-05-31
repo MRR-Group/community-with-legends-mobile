@@ -10,16 +10,34 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
-class EditProfile extends StatelessWidget {
+class EditProfile extends StatefulWidget {
   final User userProfile;
 
   const EditProfile({super.key, required this.userProfile});
 
   @override
+  State<EditProfile> createState() => _EditProfileState();
+}
+
+class _EditProfileState extends State<EditProfile> {
+  late final TextEditingController usernameController;
+  final formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    usernameController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    usernameController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
     final localizations = AppLocalizations.of(context)!;
-    final TextEditingController usernameController = TextEditingController();
     final profileController = Provider.of<ProfileController>(context);
 
     return Container(
