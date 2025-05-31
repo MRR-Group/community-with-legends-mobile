@@ -7,14 +7,14 @@ class TextInputField extends StatelessWidget {
   const TextInputField({
     super.key,
     required this.hint,
-    required this.text,
+    this.text,
     this.obscureText = false,
     this.fillColor = backgroundLightColor,
     required this.controller,
   });
 
   final String hint;
-  final String text;
+  final String? text;
   final bool obscureText;
   final TextEditingController controller;
   final Color fillColor;
@@ -24,16 +24,17 @@ class TextInputField extends StatelessWidget {
     final localizations = AppLocalizations.of(context)!;
     return Column(
       children: [
-        Row(
-          children: [
-            Text(
-              text,
-              style: const TextStyle(fontSize: 18),
-            ),
-            const Spacer(),
-          ],
-        ),
-        const SizedBox(height: 8),
+        if (text != null)
+          Row(
+            children: [
+              Text(
+                text!,
+                style: const TextStyle(fontSize: 18),
+              ),
+              const Spacer(),
+            ],
+          ),
+        if (text != null) const SizedBox(height: 8),
         TextFormField(
           controller: controller,
           obscureText: obscureText,

@@ -26,6 +26,9 @@ class ProfileController extends ChangeNotifier {
   bool get isEditingProfile => _isEditingProfile;
   bool _isEditingProfile = false;
 
+  bool get isEditingHardware => _isEditingHardware;
+  bool _isEditingHardware = false;
+
   ProfileController({
     required this.getUserProfileUsecase,
     required this.getCurrentUserProfileUsecase,
@@ -41,8 +44,12 @@ class ProfileController extends ChangeNotifier {
   ) async {
     try {
       final user = await getUserProfileUsecase.execute(userId);
+      final hardware = await getUserHardwareUsecase.execute(userId);
 
-      final userProfile = UserProfile(user: user);
+      final userProfile = UserProfile(
+        user: user,
+        hardware: hardware,
+      );
 
       return userProfile;
     } on HttpException catch (error) {
@@ -100,8 +107,13 @@ class ProfileController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> editUserProfile(String nickname) async {
-    _isEditingProfile = false;
+  Future<void> openHardwareEditMenu() async {
+    _isEditingHardware = true;
+    notifyListeners();
+  }
+
+  Future<void> closeHardwareEditMenu() async {
+    _isEditingHardware = false;
     notifyListeners();
   }
 

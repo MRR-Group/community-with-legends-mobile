@@ -1,12 +1,14 @@
+import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/hardware_model.dart';
+import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/hardware_component_widget.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/profile_card_widget.dart';
 import 'package:flutter/material.dart';
 
-class HardwareCard extends StatelessWidget {
+class EditHardware extends StatelessWidget {
   final List<Hardware> hardware;
 
-  const HardwareCard({
+  const EditHardware({
     super.key,
     required this.hardware,
   });
@@ -39,20 +41,14 @@ class HardwareCard extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: hardware.map((item) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          item.title,
-                        ),
-                        Text(
-                          item.value,
-                          style: const TextStyle(fontSize: 24),
-                        ),
-                        const SizedBox(height: 16),
-                      ],
-                    );
+                    return HardwareComponent(hardwareItem: item);
                   }).toList(),
+                ),
+                const Align(
+                  child: Icon(
+                    Icons.add,
+                    color: textColor,
+                  ),
                 ),
               ],
             ),

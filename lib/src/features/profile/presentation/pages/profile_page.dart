@@ -2,6 +2,7 @@ import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/user_profile_model.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/controllers/profile_controller.dart';
+import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/edit_hardware_widget.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/edit_profile_widget.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/hardware_card_widget.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/user_details_widget.dart';
@@ -32,11 +33,13 @@ class _ProfilePageState extends State<ProfilePage> {
     final localizations = AppLocalizations.of(context)!;
     final profileController = Provider.of<ProfileController>(context);
     Future<UserProfile?> futureUserProfile;
+    bool canEdit = false;
 
     if (widget.userId != null) {
       futureUserProfile =
           profileController.getUserProfileById(context, widget.userId!);
     } else {
+      canEdit = true;
       futureUserProfile = profileController.getCurrentUserProfile(context);
     }
 
@@ -75,9 +78,13 @@ class _ProfilePageState extends State<ProfilePage> {
                         userProfile: snapshot.data!.user,
                       ),
                     if (snapshot.data!.hardware != null)
-                      HardwareCard(
-                        hardware: snapshot.data!.hardware!,
-                      ),
+                      canEdit
+                          ? EditHardware(
+                              hardware: snapshot.data!.hardware!,
+                            )
+                          : HardwareCard(
+                              hardware: snapshot.data!.hardware!,
+                            ),
                   ],
                 );
               }
