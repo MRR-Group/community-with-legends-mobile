@@ -331,6 +331,12 @@ class AppLocalizationsPl extends AppLocalizations {
   String get profile_componentDeleted => 'Podzespół został usunięty';
 
   @override
+  String get profile_componentTitle => 'Typ podzespołu';
+
+  @override
+  String get profile_componentValue => 'Model pozdespołu';
+
+  @override
   String get user_ban => 'Zbanuj użytkownika';
 
   @override

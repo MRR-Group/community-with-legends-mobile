@@ -62,31 +62,8 @@ class _HardwareComponentState extends State<HardwareComponent> {
                       child: Row(
                         children: [
                           InkWell(
-                            onTap: () async {
-                              final title = titleController.text.isNotEmpty
-                                  ? titleController.text
-                                  : widget.hardwareItem.title;
-                              final value = valueController.text.isNotEmpty
-                                  ? valueController.text
-                                  : widget.hardwareItem.value;
-                              final newHardware = Hardware(
-                                id: widget.hardwareItem.id,
-                                title: title,
-                                value: value,
-                              );
-
-                              final response =
-                                  await profileController.updateUserHardware(
-                                context,
-                                newHardware,
-                              );
-
-                              Alert.of(context).show(text: response);
-
-                              setState(() {
-                                isEditing = false;
-                              });
-                            },
+                            onTap: () =>
+                                _onUpdateButtonClick(profileController),
                             child: const Icon(
                               Icons.check,
                               color: textColor,
@@ -145,7 +122,7 @@ class _HardwareComponentState extends State<HardwareComponent> {
                       onTap: () {
                         profileController.deleteHardwareComponent(
                           context,
-                          widget.hardwareItem.id,
+                          widget.hardwareItem,
                         );
                       },
                       child: const Icon(
@@ -164,5 +141,31 @@ class _HardwareComponentState extends State<HardwareComponent> {
               ],
             ),
     );
+  }
+
+  Future<void> _onUpdateButtonClick(ProfileController profileController) async {
+    final title = titleController.text.isNotEmpty
+        ? titleController.text
+        : widget.hardwareItem.title;
+    final value = valueController.text.isNotEmpty
+        ? valueController.text
+        : widget.hardwareItem.value;
+    final newHardware = Hardware(
+      id: widget.hardwareItem.id,
+      title: title,
+      value: value,
+    );
+
+    final response = await profileController.updateUserHardware(
+      context,
+      newHardware,
+      widget.hardwareItem,
+    );
+
+    Alert.of(context).show(text: response);
+
+    setState(() {
+      isEditing = false;
+    });
   }
 }

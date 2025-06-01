@@ -1,10 +1,10 @@
 class Hardware {
-  final int id;
+  final int? id;
   final String title;
   final String value;
 
   Hardware({
-    required this.id,
+    this.id,
     required this.title,
     required this.value,
   });

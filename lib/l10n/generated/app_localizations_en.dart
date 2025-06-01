@@ -330,6 +330,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile_componentDeleted => 'Component has been deleted';
 
   @override
+  String get profile_componentTitle => 'Component type';
+
+  @override
+  String get profile_componentValue => 'Component model';
+
+  @override
   String get user_ban => 'Ban user';
 
   @override

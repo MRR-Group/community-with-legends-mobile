@@ -18,4 +18,6 @@ abstract class ProfileRepository {
   Future<void> updateUserHardware(Hardware hardware);
 
   Future<void> deleteUserHardware(int id);
+
+  Future<Hardware> addUserHardware(Hardware hardware);
 }

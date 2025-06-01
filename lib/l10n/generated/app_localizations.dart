@@ -734,6 +734,18 @@ abstract class AppLocalizations {
   /// **'Component has been deleted'**
   String get profile_componentDeleted;
 
+  /// No description provided for @profile_componentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Component type'**
+  String get profile_componentTitle;
+
+  /// No description provided for @profile_componentValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Component model'**
+  String get profile_componentValue;
+
   /// No description provided for @user_ban.
   ///
   /// In en, this message translates to:

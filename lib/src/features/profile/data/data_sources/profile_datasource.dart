@@ -80,4 +80,14 @@ class ProfileDatasource extends HttpClient {
       urlPath: 'api/user/hardware/$id',
     );
   }
+
+  Future<Map<String, dynamic>> addUserHardware(Hardware hardware) async {
+    return postRequest(
+      urlPath: 'api/user/hardware',
+      body: {
+        'title': hardware.title,
+        'value': hardware.value,
+      },
+    );
+  }
 }

@@ -3,6 +3,7 @@ import 'package:community_with_legends_mobile/src/core/errors/exceptions/http_ex
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/no_internet_exception.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/hardware_model.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/user_profile_model.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/add_user_hardware_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/change_user_avatar_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/change_user_nickname_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/delete_user_avatar_usecase.dart';
@@ -27,6 +28,7 @@ class ProfileController extends ChangeNotifier {
   GetUserHardwareUsecase getUserHardwareUsecase;
   UpdateUserHardwareUsecase updateUserHardwareUsecase;
   DeleteUserHardwareUsecase deleteUserHardwareUsecase;
+  AddUserHardwareUsecase addUserHardwareUsecase;
 
   bool get isEditingProfile => _isEditingProfile;
   bool _isEditingProfile = false;
@@ -45,6 +47,7 @@ class ProfileController extends ChangeNotifier {
     required this.getUserHardwareUsecase,
     required this.updateUserHardwareUsecase,
     required this.deleteUserHardwareUsecase,
+    required this.addUserHardwareUsecase,
   });
 
   Future<UserProfile?> getUserProfileById(
@@ -71,42 +74,52 @@ class ProfileController extends ChangeNotifier {
 
   Future<String> updateUserHardware(
     BuildContext context,
-    Hardware hardware,
+    Hardware newHardware,
+    Hardware oldHardware,
   ) async {
     final localizations = AppLocalizations.of(context)!;
 
     try {
-      await updateUserHardwareUsecase.execute(hardware);
+      if (newHardware.id != null) {
+        await updateUserHardwareUsecase.execute(newHardware);
+      } else {
+        newHardware = await addUserHardwareUsecase.execute(newHardware);
+      }
     } on HttpException catch (e) {
       return e.message;
     } on NoInternetException catch (e) {
       return e.toString();
     }
 
-    final index = _getHardwareIndexById(hardware.id);
+    final index = _getHardwareIndex(oldHardware);
 
     if (index == -1) {
       return localizations.profile_componentNotFound;
     }
 
-    userProfile!.hardware![index] = hardware;
+    userProfile!.hardware![index] = newHardware;
     notifyListeners();
 
     return localizations.profile_componentUpdated;
   }
 
-  Future<String> deleteHardwareComponent(BuildContext context, int id) async {
+  Future<String> deleteHardwareComponent(
+    BuildContext context,
+    Hardware hardware,
+  ) async {
     final localizations = AppLocalizations.of(context)!;
 
     try {
-      await deleteUserHardwareUsecase.execute(id);
+      if (hardware.id != null) {
+        await deleteUserHardwareUsecase.execute(hardware.id!);
+      }
     } on HttpException catch (e) {
       return e.message;
     } on NoInternetException catch (e) {
       return e.toString();
     }
 
-    final index = _getHardwareIndexById(id);
+    final index = _getHardwareIndex(hardware);
 
     if (index == -1) {
       return localizations.profile_componentNotFound;
@@ -246,11 +259,11 @@ class ProfileController extends ChangeNotifier {
     }
   }
 
-  int _getHardwareIndexById(int id) {
+  int _getHardwareIndex(Hardware hardware) {
     if (userProfile?.hardware == null) {
       return -1;
     }
 
-    return userProfile!.hardware!.indexWhere((hw) => hw.id == id);
+    return userProfile!.hardware!.indexOf(hardware);
   }
 }

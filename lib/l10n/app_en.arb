@@ -116,6 +116,8 @@
   "profile_componentUpdated": "Component has been updated",
   "profile_componentNotFound": "Component not found",
   "profile_componentDeleted": "Component has been deleted",
+  "profile_componentTitle": "Component type",
+  "profile_componentValue": "Component model",
 
   "user_ban": "Ban user",
   "user_report": "Report user",

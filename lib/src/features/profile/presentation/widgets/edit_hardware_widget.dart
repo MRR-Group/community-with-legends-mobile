@@ -5,13 +5,18 @@ import 'package:community_with_legends_mobile/src/features/profile/presentation/
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/profile_card_widget.dart';
 import 'package:flutter/material.dart';
 
-class EditHardware extends StatelessWidget {
+class EditHardware extends StatefulWidget {
   final List<Hardware> hardware;
 
-  const EditHardware({
-    super.key,
-    required this.hardware,
-  });
+  const EditHardware({super.key,
+    required this.hardware,});
+
+  @override
+  State<StatefulWidget> createState() => _EditHardwareState();
+
+}
+
+class _EditHardwareState extends State<EditHardware> {
 
   @override
   Widget build(BuildContext context) {
@@ -40,14 +45,26 @@ class EditHardware extends StatelessWidget {
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: hardware.map((item) {
+                  children: widget.hardware.map((item) {
                     return HardwareComponent(hardwareItem: item);
                   }).toList(),
                 ),
-                const Align(
-                  child: Icon(
-                    Icons.add,
-                    color: textColor,
+                Align(
+                  child: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        widget.hardware.add(
+                          Hardware(
+                            title: localizations.profile_componentTitle,
+                            value: localizations.profile_componentValue,
+                          ),
+                        );
+                      });
+                    },
+                    icon: const Icon(
+                      Icons.add,
+                      color: textColor,
+                    ),
                   ),
                 ),
               ],

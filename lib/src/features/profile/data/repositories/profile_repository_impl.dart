@@ -1,4 +1,3 @@
-
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/no_internet_exception.dart';
 import 'package:community_with_legends_mobile/src/features/profile/data/data_sources/profile_datasource.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/hardware_model.dart';
@@ -70,12 +69,22 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<void> updateUserHardware(Hardware hardware) async{
+  Future<void> updateUserHardware(Hardware hardware) async {
     await profileDatasource.updateUserHardware(hardware);
   }
 
   @override
-  Future<void> deleteUserHardware(int id) async{
+  Future<void> deleteUserHardware(int id) async {
     await profileDatasource.deleteUserHardware(id);
+  }
+
+  @override
+  Future<Hardware> addUserHardware(Hardware hardware) async {
+    final response = await profileDatasource.addUserHardware(hardware);
+    final data = response;
+
+    hardware = Hardware.fromJson(data);
+
+    return hardware;
   }
 }
