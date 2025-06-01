@@ -115,6 +115,7 @@
   "profile_hardware": "Sprzęt",
   "profile_componentUpdated": "Podzespół został zaktualizowany",
   "profile_componentNotFound": "Nie znaleziono podzespołu",
+  "profile_componentDeleted": "Podzespół został usunięty",
 
   "user_ban": "Zbanuj użytkownika",
   "user_report": "Zgłoś użytkownika",

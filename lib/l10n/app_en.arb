@@ -115,6 +115,7 @@
   "profile_hardware": "Hardware",
   "profile_componentUpdated": "Component has been updated",
   "profile_componentNotFound": "Component not found",
+  "profile_componentDeleted": "Component has been deleted",
 
   "user_ban": "Ban user",
   "user_report": "Report user",

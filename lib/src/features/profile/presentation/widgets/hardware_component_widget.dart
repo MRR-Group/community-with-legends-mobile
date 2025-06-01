@@ -75,7 +75,8 @@ class _HardwareComponentState extends State<HardwareComponent> {
                                 value: value,
                               );
 
-                              final response = await profileController.updateUserHardware(
+                              final response =
+                                  await profileController.updateUserHardware(
                                 context,
                                 newHardware,
                               );
@@ -141,7 +142,12 @@ class _HardwareComponentState extends State<HardwareComponent> {
                       ),
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        profileController.deleteHardwareComponent(
+                          context,
+                          widget.hardwareItem.id,
+                        );
+                      },
                       child: const Icon(
                         Icons.delete_outline,
                         color: textColor,

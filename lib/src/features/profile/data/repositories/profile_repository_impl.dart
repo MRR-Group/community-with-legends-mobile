@@ -73,4 +73,9 @@ class ProfileRepositoryImpl implements ProfileRepository {
   Future<void> updateUserHardware(Hardware hardware) async{
     await profileDatasource.updateUserHardware(hardware);
   }
+
+  @override
+  Future<void> deleteUserHardware(int id) async{
+    await profileDatasource.deleteUserHardware(id);
+  }
 }

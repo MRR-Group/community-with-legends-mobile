@@ -328,6 +328,9 @@ class AppLocalizationsPl extends AppLocalizations {
   String get profile_componentNotFound => 'Nie znaleziono podzespołu';
 
   @override
+  String get profile_componentDeleted => 'Podzespół został usunięty';
+
+  @override
   String get user_ban => 'Zbanuj użytkownika';
 
   @override

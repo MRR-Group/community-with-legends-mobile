@@ -6,6 +6,7 @@ import 'package:community_with_legends_mobile/src/features/profile/domain/models
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/change_user_avatar_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/change_user_nickname_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/delete_user_avatar_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/delete_user_hardware_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_current_user_profile_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_hardware_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_profile_usecase.dart';
@@ -25,6 +26,7 @@ class ProfileController extends ChangeNotifier {
   DeleteUserAvatarUsecase deleteUserAvatarUsecase;
   GetUserHardwareUsecase getUserHardwareUsecase;
   UpdateUserHardwareUsecase updateUserHardwareUsecase;
+  DeleteUserHardwareUsecase deleteUserHardwareUsecase;
 
   bool get isEditingProfile => _isEditingProfile;
   bool _isEditingProfile = false;
@@ -42,6 +44,7 @@ class ProfileController extends ChangeNotifier {
     required this.deleteUserAvatarUsecase,
     required this.getUserHardwareUsecase,
     required this.updateUserHardwareUsecase,
+    required this.deleteUserHardwareUsecase,
   });
 
   Future<UserProfile?> getUserProfileById(
@@ -92,6 +95,29 @@ class ProfileController extends ChangeNotifier {
     return localizations.profile_componentUpdated;
   }
 
+  Future<String> deleteHardwareComponent(BuildContext context, int id) async {
+    final localizations = AppLocalizations.of(context)!;
+
+    try {
+      await deleteUserHardwareUsecase.execute(id);
+    } on HttpException catch (e) {
+      return e.message;
+    } on NoInternetException catch (e) {
+      return e.toString();
+    }
+
+    final index = _getHardwareIndexById(id);
+
+    if (index == -1) {
+      return localizations.profile_componentNotFound;
+    }
+
+    userProfile!.hardware!.removeAt(index);
+    notifyListeners();
+
+    return localizations.profile_componentDeleted;
+  }
+
   Future<UserProfile?> getCurrentUserProfile(BuildContext context) async {
     try {
       final user = await getCurrentUserProfileUsecase.execute();
@@ -107,6 +133,7 @@ class ProfileController extends ChangeNotifier {
       if (context.mounted) {
         Alert.of(context).show(text: error.message);
       }
+
       return null;
     }
   }

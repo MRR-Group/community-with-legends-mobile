@@ -327,6 +327,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile_componentNotFound => 'Component not found';
 
   @override
+  String get profile_componentDeleted => 'Component has been deleted';
+
+  @override
   String get user_ban => 'Ban user';
 
   @override

@@ -74,4 +74,10 @@ class ProfileDatasource extends HttpClient {
       },
     );
   }
+
+  Future<Map<String, dynamic>> deleteUserHardware(int id) async {
+    return deleteRequest(
+      urlPath: 'api/user/hardware/$id',
+    );
+  }
 }
