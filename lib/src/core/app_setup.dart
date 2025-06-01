@@ -47,6 +47,7 @@ import 'package:community_with_legends_mobile/src/features/profile/domain/usecas
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_current_user_profile_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_hardware_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_profile_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/update_user_hardware_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/controllers/profile_controller.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/pages/profile_page.dart';
 import 'package:community_with_legends_mobile/src/shared/data/data_sources/local/local_user_data_source_impl.dart';
@@ -234,6 +235,7 @@ class AppSetup {
     final changeUserAvatarUsecase = ChangeUserAvatarUsecase(repository);
     final deleteUserAvatarUsecase = DeleteUserAvatarUsecase(repository);
     final getUserHardwareUsecase = GetUserHardwareUsecase(repository);
+    final updateUserHardwareUsecase = UpdateUserHardwareUsecase(repository);
 
     return ProfileController(
       getUserProfileUsecase: getUserProfileUsecase,
@@ -242,6 +244,7 @@ class AppSetup {
       changeUserAvatarUsecase: changeUserAvatarUsecase,
       deleteUserAvatarUsecase: deleteUserAvatarUsecase,
       getUserHardwareUsecase: getUserHardwareUsecase,
+      updateUserHardwareUsecase: updateUserHardwareUsecase,
     );
   }
 

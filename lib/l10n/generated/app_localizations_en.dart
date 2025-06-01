@@ -321,6 +321,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile_hardware => 'Hardware';
 
   @override
+  String get profile_componentUpdated => 'Component has been updated';
+
+  @override
+  String get profile_componentNotFound => 'Component not found';
+
+  @override
   String get user_ban => 'Ban user';
 
   @override

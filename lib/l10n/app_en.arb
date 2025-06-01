@@ -113,6 +113,8 @@
   "profile_avatarUploaded": "Avatar uploaded successfully",
   "profile_avatarDeleted": "Avatar deleted successfully",
   "profile_hardware": "Hardware",
+  "profile_componentUpdated": "Component has been updated",
+  "profile_componentNotFound": "Component not found",
 
   "user_ban": "Ban user",
   "user_report": "Report user",

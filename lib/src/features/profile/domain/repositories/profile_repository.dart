@@ -14,4 +14,6 @@ abstract class ProfileRepository {
   Future<void> deleteUserAvatar();
 
   Future<List<Hardware>?> getUserHardware(int userId);
+
+  Future<void> updateUserHardware(Hardware hardware);
 }

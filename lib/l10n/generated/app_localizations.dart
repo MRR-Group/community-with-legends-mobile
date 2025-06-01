@@ -716,6 +716,18 @@ abstract class AppLocalizations {
   /// **'Hardware'**
   String get profile_hardware;
 
+  /// No description provided for @profile_componentUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Component has been updated'**
+  String get profile_componentUpdated;
+
+  /// No description provided for @profile_componentNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Component not found'**
+  String get profile_componentNotFound;
+
   /// No description provided for @user_ban.
   ///
   /// In en, this message translates to:

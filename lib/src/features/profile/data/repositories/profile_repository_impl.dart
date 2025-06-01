@@ -52,8 +52,6 @@ class ProfileRepositoryImpl implements ProfileRepository {
     await profileDatasource.deleteUserAvatar();
   }
 
-
-
   @override
   Future<List<Hardware>> getUserHardware(int userId) async {
     List<Hardware> hardware;
@@ -69,5 +67,10 @@ class ProfileRepositoryImpl implements ProfileRepository {
     }
 
     return hardware;
+  }
+
+  @override
+  Future<void> updateUserHardware(Hardware hardware) async{
+    await profileDatasource.updateUserHardware(hardware);
   }
 }

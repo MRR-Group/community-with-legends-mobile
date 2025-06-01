@@ -1,6 +1,7 @@
 import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/http_exception.dart';
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/no_internet_exception.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/models/hardware_model.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/user_profile_model.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/change_user_avatar_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/change_user_nickname_usecase.dart';
@@ -8,6 +9,7 @@ import 'package:community_with_legends_mobile/src/features/profile/domain/usecas
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_current_user_profile_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_hardware_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_profile_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/update_user_hardware_usecase.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/controllers/user_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
@@ -22,12 +24,15 @@ class ProfileController extends ChangeNotifier {
   ChangeUserAvatarUsecase changeUserAvatarUsecase;
   DeleteUserAvatarUsecase deleteUserAvatarUsecase;
   GetUserHardwareUsecase getUserHardwareUsecase;
+  UpdateUserHardwareUsecase updateUserHardwareUsecase;
 
   bool get isEditingProfile => _isEditingProfile;
   bool _isEditingProfile = false;
 
   bool get isEditingHardware => _isEditingHardware;
   bool _isEditingHardware = false;
+
+  UserProfile? userProfile;
 
   ProfileController({
     required this.getUserProfileUsecase,
@@ -36,6 +41,7 @@ class ProfileController extends ChangeNotifier {
     required this.changeUserAvatarUsecase,
     required this.deleteUserAvatarUsecase,
     required this.getUserHardwareUsecase,
+    required this.updateUserHardwareUsecase,
   });
 
   Future<UserProfile?> getUserProfileById(
@@ -46,7 +52,7 @@ class ProfileController extends ChangeNotifier {
       final user = await getUserProfileUsecase.execute(userId);
       final hardware = await getUserHardwareUsecase.execute(userId);
 
-      final userProfile = UserProfile(
+      userProfile = UserProfile(
         user: user,
         hardware: hardware,
       );
@@ -60,12 +66,38 @@ class ProfileController extends ChangeNotifier {
     }
   }
 
+  Future<String> updateUserHardware(
+    BuildContext context,
+    Hardware hardware,
+  ) async {
+    final localizations = AppLocalizations.of(context)!;
+
+    try {
+      await updateUserHardwareUsecase.execute(hardware);
+    } on HttpException catch (e) {
+      return e.message;
+    } on NoInternetException catch (e) {
+      return e.toString();
+    }
+
+    final index = _getHardwareIndexById(hardware.id);
+
+    if (index == -1) {
+      return localizations.profile_componentNotFound;
+    }
+
+    userProfile!.hardware![index] = hardware;
+    notifyListeners();
+
+    return localizations.profile_componentUpdated;
+  }
+
   Future<UserProfile?> getCurrentUserProfile(BuildContext context) async {
     try {
       final user = await getCurrentUserProfileUsecase.execute();
       final hardware = await getUserHardwareUsecase.execute(user.id);
 
-      final userProfile = UserProfile(
+      userProfile = UserProfile(
         user: user,
         hardware: hardware,
       );
@@ -185,5 +217,13 @@ class ProfileController extends ChangeNotifier {
       default:
         return localizations.unexpectedError;
     }
+  }
+
+  int _getHardwareIndexById(int id) {
+    if (userProfile?.hardware == null) {
+      return -1;
+    }
+
+    return userProfile!.hardware!.indexWhere((hw) => hw.id == id);
   }
 }

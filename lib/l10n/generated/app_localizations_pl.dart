@@ -322,6 +322,12 @@ class AppLocalizationsPl extends AppLocalizations {
   String get profile_hardware => 'Sprzęt';
 
   @override
+  String get profile_componentUpdated => 'Podzespół został zaktualizowany';
+
+  @override
+  String get profile_componentNotFound => 'Nie znaleziono podzespołu';
+
+  @override
   String get user_ban => 'Zbanuj użytkownika';
 
   @override

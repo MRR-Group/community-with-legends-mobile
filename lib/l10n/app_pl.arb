@@ -113,6 +113,8 @@
   "profile_avatarUploaded": "Przesłano zdjęcie profilowe",
   "profile_avatarDeleted": "Zdjęcie profilowe zostało usunięte",
   "profile_hardware": "Sprzęt",
+  "profile_componentUpdated": "Podzespół został zaktualizowany",
+  "profile_componentNotFound": "Nie znaleziono podzespołu",
 
   "user_ban": "Zbanuj użytkownika",
   "user_report": "Zgłoś użytkownika",
