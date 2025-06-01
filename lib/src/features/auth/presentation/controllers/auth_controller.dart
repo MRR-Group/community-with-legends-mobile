@@ -67,7 +67,7 @@ class AuthController with ChangeNotifier {
       }
     }
 
-    _endIsLoading();
+    _endLoading();
   }
 
   Future<void> logout(
@@ -114,7 +114,7 @@ class AuthController with ChangeNotifier {
       }
     }
 
-    _endIsLoading();
+    _endLoading();
   }
 
   Future<void> sendResetTokenEmail(
@@ -139,7 +139,7 @@ class AuthController with ChangeNotifier {
       }
     }
 
-    _endIsLoading();
+    _endLoading();
   }
 
   Future<void> resetPassword({
@@ -188,11 +188,11 @@ class AuthController with ChangeNotifier {
         passwordConfirmation: passwordConfirmation,
       );
     } on NoInternetException catch (e) {
-      _endIsLoading();
+      _endLoading();
 
       return e.toString();
     } on HttpException catch (e) {
-      _endIsLoading();
+      _endLoading();
 
       return e.toString();
     }
@@ -200,12 +200,12 @@ class AuthController with ChangeNotifier {
     final userController = Provider.of<UserController>(context, listen: false);
     await userController.refreshUser();
 
-    _endIsLoading();
+    _endLoading();
     Navigator.of(context).pushReplacementNamed('/feed');
 
     return localizations.passwordSet;
   }
-  void _endIsLoading(){
+  void _endLoading(){
     _isLoading = false;
     notifyListeners();
   }
