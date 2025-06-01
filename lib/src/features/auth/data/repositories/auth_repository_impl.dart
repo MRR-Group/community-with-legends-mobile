@@ -77,7 +77,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Map<String, dynamic>> setPassword({
+  Future<void> setPassword({
     required String password,
     required String passwordConfirmation,
   }) async {

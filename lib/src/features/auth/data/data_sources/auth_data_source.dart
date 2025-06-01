@@ -64,11 +64,11 @@ class AuthDataSource extends HttpClient {
       body: body,
     );
   }
-  Future<Map<String, dynamic>> setPassword({
+  Future<void> setPassword({
     required String password,
     required String passwordConfirmation,
   }) async {
-    return postRequest(
+    await postRequest(
       urlPath: 'api/user/set-password',
       body: {
         'password': password,

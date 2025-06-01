@@ -22,7 +22,6 @@ class SetPasswordOption extends StatelessWidget {
           ListTile(
             title: Text(localizations.setPasswordTitle),
             textColor: textColor,
-            onTap: () {},
           ),
           Button(
             text: localizations.setPasswordButton,
