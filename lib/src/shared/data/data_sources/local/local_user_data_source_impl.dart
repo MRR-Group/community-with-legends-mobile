@@ -23,6 +23,9 @@ class LocalUserDataSourceImpl implements UserDataSource {
             emailVerifiedAt: Value(user.emailVerifiedAt),
             createdAt: user.createdAt,
             avatarUrl: user.avatarUrl,
+            isBanned: user.isBanned,
+            hasPassword: user.hasPassword,
+            hasTwitchAccount: user.hasTwitchAccount,
             permissions: user.permissions?.map((p) => p.name).toList() ?? [],
           ),
         );

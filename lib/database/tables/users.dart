@@ -6,6 +6,9 @@ class Users extends Table{
   TextColumn get name => text()();
   TextColumn get email => text()();
   TextColumn get avatarUrl => text()();
+  BoolColumn get isBanned => boolean()();
+  BoolColumn get hasPassword => boolean()();
+  BoolColumn get hasTwitchAccount => boolean()();
   DateTimeColumn get emailVerifiedAt => dateTime().nullable()();
   DateTimeColumn get createdAt => dateTime()();
   TextColumn get permissions => text().map(const StringListConverter())();
