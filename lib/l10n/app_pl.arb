@@ -28,7 +28,9 @@
   "save": "Zapisz",
   "change": "Zmień",
   "setPasswordTitle": "Nie ustwiłeś jeszcze hasła dla swojego konta",
+  "setPasswordFormTitle": "Ustaw swoje hasło",
   "setPasswordButton": "Ustaw hasło",
+  "passwordSet": "Ustawiono zostało hasło",
 
   "login_title": "Logowanie",
   "login_button": "Zaloguj się",

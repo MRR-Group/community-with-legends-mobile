@@ -28,7 +28,9 @@
   "save": "Save",
   "change": "Change",
   "setPasswordTitle": "You don't have a password set for your account yet",
+  "setPasswordFormTitle": "Set your password",
   "setPasswordButton": "Set password",
+  "passwordSet": "The password has been set",
 
   "login_title": "Login",
   "login_button": "Log in",

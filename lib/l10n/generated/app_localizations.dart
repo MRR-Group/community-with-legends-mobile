@@ -260,11 +260,23 @@ abstract class AppLocalizations {
   /// **'You don\'t have a password set for your account yet'**
   String get setPasswordTitle;
 
+  /// No description provided for @setPasswordFormTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Set your password'**
+  String get setPasswordFormTitle;
+
   /// No description provided for @setPasswordButton.
   ///
   /// In en, this message translates to:
   /// **'Set password'**
   String get setPasswordButton;
+
+  /// No description provided for @passwordSet.
+  ///
+  /// In en, this message translates to:
+  /// **'The password has been set'**
+  String get passwordSet;
 
   /// No description provided for @login_title.
   ///

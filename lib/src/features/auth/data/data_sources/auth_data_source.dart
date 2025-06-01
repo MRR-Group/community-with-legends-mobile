@@ -64,6 +64,18 @@ class AuthDataSource extends HttpClient {
       body: body,
     );
   }
+  Future<Map<String, dynamic>> setPassword({
+    required String password,
+    required String passwordConfirmation,
+  }) async {
+    return postRequest(
+      urlPath: 'api/user/set-password',
+      body: {
+        'password': password,
+        'password_confirmation': passwordConfirmation,
+      },
+    );
+  }
 
   void logout() {
     postRequest(

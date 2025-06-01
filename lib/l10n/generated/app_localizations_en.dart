@@ -91,7 +91,13 @@ class AppLocalizationsEn extends AppLocalizations {
       'You don\'t have a password set for your account yet';
 
   @override
+  String get setPasswordFormTitle => 'Set your password';
+
+  @override
   String get setPasswordButton => 'Set password';
+
+  @override
+  String get passwordSet => 'The password has been set';
 
   @override
   String get login_title => 'Login';

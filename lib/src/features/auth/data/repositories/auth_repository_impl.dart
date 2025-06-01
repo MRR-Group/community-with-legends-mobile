@@ -25,7 +25,6 @@ class AuthRepositoryImpl implements AuthRepository {
 
       await _saveToken(token);
       await _cacheUser();
-
     } else {
       throw AuthException(response['message'] ?? 'Login failed');
     }
@@ -67,7 +66,7 @@ class AuthRepositoryImpl implements AuthRepository {
     api.logout();
   }
 
-  Future<void> _saveToken(String token) async{
+  Future<void> _saveToken(String token) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('auth_token', token);
   }
@@ -75,5 +74,16 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<void> _cacheUser() async {
     final user = await remoteUserDataSource.getCurrentUser();
     localUserDataSource.cacheUser(user);
+  }
+
+  @override
+  Future<Map<String, dynamic>> setPassword({
+    required String password,
+    required String passwordConfirmation,
+  }) async {
+    return api.setPassword(
+      password: password,
+      passwordConfirmation: passwordConfirmation,
+    );
   }
 }

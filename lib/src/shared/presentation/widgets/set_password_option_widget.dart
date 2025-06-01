@@ -26,7 +26,9 @@ class SetPasswordOption extends StatelessWidget {
           ),
           Button(
             text: localizations.setPasswordButton,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed('/set-password');
+            },
           ),
         ],
       );

@@ -11,11 +11,13 @@ import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/register_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/reset_password_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/send_reset_token_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/set_password_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/forgot_password_page.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/login_page.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/register_page.dart';
 import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/reset_password_page.dart';
+import 'package:community_with_legends_mobile/src/features/auth/presentation/pages/set_password_page.dart';
 import 'package:community_with_legends_mobile/src/features/feed/data/data_sources/feed_data_source.dart';
 import 'package:community_with_legends_mobile/src/features/feed/data/repositories/feed_repository_impl.dart';
 import 'package:community_with_legends_mobile/src/features/feed/domain/usecases/add_reaction_usecase.dart';
@@ -97,6 +99,7 @@ class AppSetup {
     '/feed': (context) => FeedPage(),
     '/forgot-password': (context) => ForgotPasswordPage(),
     '/reset-password': (context) => ResetPasswordPage(),
+    '/set-password': (context) => SetPasswordPage(),
     '/profile': (context) => const ProfilePage(),
     '/update': (context) => const UpdatePage(versionInfo: null),
   };
@@ -126,6 +129,7 @@ class AppSetup {
     final registerUseCase = RegisterUseCase(repository);
     final resetPasswordUsecase = ResetPasswordUsecase(repository);
     final sendResetTokenUsecase = SendResetTokenUsecase(repository);
+    final setPasswordUsecase = SetPasswordUsecase(repository);
 
     return AuthController(
       loginUseCase: loginUseCase,
@@ -133,6 +137,7 @@ class AppSetup {
       registerUseCase: registerUseCase,
       resetPasswordUsecase: resetPasswordUsecase,
       sendResetTokenUsecase: sendResetTokenUsecase,
+      setPasswordUsecase: setPasswordUsecase,
     );
   }
 

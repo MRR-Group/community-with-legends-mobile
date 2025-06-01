@@ -1,11 +1,16 @@
 import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
+import 'package:community_with_legends_mobile/src/core/errors/exceptions/http_exception.dart';
+import 'package:community_with_legends_mobile/src/core/errors/exceptions/no_internet_exception.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/login_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/logout_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/register_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/reset_password_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/send_reset_token_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/auth/domain/usecases/set_password_usecase.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/controllers/user_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthController with ChangeNotifier {
@@ -14,6 +19,7 @@ class AuthController with ChangeNotifier {
   final RegisterUseCase registerUseCase;
   final SendResetTokenUsecase sendResetTokenUsecase;
   final ResetPasswordUsecase resetPasswordUsecase;
+  final SetPasswordUsecase setPasswordUsecase;
 
   bool _isLoading = false;
 
@@ -25,6 +31,7 @@ class AuthController with ChangeNotifier {
     required this.registerUseCase,
     required this.resetPasswordUsecase,
     required this.sendResetTokenUsecase,
+    required this.setPasswordUsecase,
   });
 
   Future<bool> get isLoggedIn async {
@@ -60,8 +67,7 @@ class AuthController with ChangeNotifier {
       }
     }
 
-    _isLoading = false;
-    notifyListeners();
+    _endIsLoading();
   }
 
   Future<void> logout(
@@ -108,8 +114,7 @@ class AuthController with ChangeNotifier {
       }
     }
 
-    _isLoading = false;
-    notifyListeners();
+    _endIsLoading();
   }
 
   Future<void> sendResetTokenEmail(
@@ -134,8 +139,7 @@ class AuthController with ChangeNotifier {
       }
     }
 
-    _isLoading = false;
-    notifyListeners();
+    _endIsLoading();
   }
 
   Future<void> resetPassword({
@@ -167,7 +171,41 @@ class AuthController with ChangeNotifier {
         Alert.of(context).show(text: '$error');
       }
     }
+  }
 
+  Future<String> setPassword({
+    required BuildContext context,
+    required String password,
+    required String passwordConfirmation,
+  }) async {
+    final localizations = AppLocalizations.of(context)!;
+    _isLoading = true;
+    notifyListeners();
+
+    try {
+      await setPasswordUsecase.execute(
+        password: password,
+        passwordConfirmation: passwordConfirmation,
+      );
+    } on NoInternetException catch (e) {
+      _endIsLoading();
+
+      return e.toString();
+    } on HttpException catch (e) {
+      _endIsLoading();
+
+      return e.toString();
+    }
+
+    final userController = Provider.of<UserController>(context, listen: false);
+    await userController.refreshUser();
+
+    _endIsLoading();
+    Navigator.of(context).pushReplacementNamed('/feed');
+
+    return localizations.passwordSet;
+  }
+  void _endIsLoading(){
     _isLoading = false;
     notifyListeners();
   }
