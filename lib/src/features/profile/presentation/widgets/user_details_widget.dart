@@ -45,14 +45,31 @@ class UserDetails extends StatelessWidget {
                             children: [
                               SizedBox(
                                 width: double.infinity,
-                                child: Text(
-                                  userProfile.name,
-                                  style: const TextStyle(
-                                    fontSize: 50,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      userProfile.name,
+                                      style: const TextStyle(
+                                        fontSize: 50,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 1,
+                                    ),
+                                    if (userProfile.hasTwitchAccount)
+                                      const Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: Image(
+                                          image: AssetImage(
+                                            'assets/images/verified.png',
+                                          ),
+                                          width: 25,
+                                          height: 25,
+                                        ),
+                                      ),
+                                  ],
                                 ),
                               ),
                               SizedBox(
@@ -69,9 +86,11 @@ class UserDetails extends StatelessWidget {
                                 padding: const EdgeInsets.all(16.0),
                                 child: Row(
                                   children: [
-                                    Text('${localizations.profile_following}: 0'),
+                                    Text(
+                                        '${localizations.profile_following}: 0'),
                                     const Spacer(),
-                                    Text('${localizations.profile_followers}: 0'),
+                                    Text(
+                                        '${localizations.profile_followers}: 0'),
                                   ],
                                 ),
                               ),
