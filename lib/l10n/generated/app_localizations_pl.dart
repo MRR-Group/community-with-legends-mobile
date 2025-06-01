@@ -87,6 +87,18 @@ class AppLocalizationsPl extends AppLocalizations {
   String get change => 'Zmień';
 
   @override
+  String get setPasswordTitle => 'Nie ustwiłeś jeszcze hasła dla swojego konta';
+
+  @override
+  String get setPasswordFormTitle => 'Ustaw swoje hasło';
+
+  @override
+  String get setPasswordButton => 'Ustaw hasło';
+
+  @override
+  String get passwordSet => 'Ustawiono zostało hasło';
+
+  @override
   String get login_title => 'Logowanie';
 
   @override

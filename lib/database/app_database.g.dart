@@ -33,6 +33,33 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   late final GeneratedColumn<String> avatarUrl = GeneratedColumn<String>(
       'avatar_url', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _isBannedMeta =
+      const VerificationMeta('isBanned');
+  @override
+  late final GeneratedColumn<bool> isBanned = GeneratedColumn<bool>(
+      'is_banned', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: true,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('CHECK ("is_banned" IN (0, 1))'));
+  static const VerificationMeta _hasPasswordMeta =
+      const VerificationMeta('hasPassword');
+  @override
+  late final GeneratedColumn<bool> hasPassword = GeneratedColumn<bool>(
+      'has_password', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: true,
+      defaultConstraints: GeneratedColumn.constraintIsAlways(
+          'CHECK ("has_password" IN (0, 1))'));
+  static const VerificationMeta _hasTwitchAccountMeta =
+      const VerificationMeta('hasTwitchAccount');
+  @override
+  late final GeneratedColumn<bool> hasTwitchAccount = GeneratedColumn<bool>(
+      'has_twitch_account', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: true,
+      defaultConstraints: GeneratedColumn.constraintIsAlways(
+          'CHECK ("has_twitch_account" IN (0, 1))'));
   static const VerificationMeta _emailVerifiedAtMeta =
       const VerificationMeta('emailVerifiedAt');
   @override
@@ -51,8 +78,18 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
               type: DriftSqlType.string, requiredDuringInsert: true)
           .withConverter<List<String>>($UsersTable.$converterpermissions);
   @override
-  List<GeneratedColumn> get $columns =>
-      [id, name, email, avatarUrl, emailVerifiedAt, createdAt, permissions];
+  List<GeneratedColumn> get $columns => [
+        id,
+        name,
+        email,
+        avatarUrl,
+        isBanned,
+        hasPassword,
+        hasTwitchAccount,
+        emailVerifiedAt,
+        createdAt,
+        permissions
+      ];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -84,6 +121,28 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
     } else if (isInserting) {
       context.missing(_avatarUrlMeta);
     }
+    if (data.containsKey('is_banned')) {
+      context.handle(_isBannedMeta,
+          isBanned.isAcceptableOrUnknown(data['is_banned']!, _isBannedMeta));
+    } else if (isInserting) {
+      context.missing(_isBannedMeta);
+    }
+    if (data.containsKey('has_password')) {
+      context.handle(
+          _hasPasswordMeta,
+          hasPassword.isAcceptableOrUnknown(
+              data['has_password']!, _hasPasswordMeta));
+    } else if (isInserting) {
+      context.missing(_hasPasswordMeta);
+    }
+    if (data.containsKey('has_twitch_account')) {
+      context.handle(
+          _hasTwitchAccountMeta,
+          hasTwitchAccount.isAcceptableOrUnknown(
+              data['has_twitch_account']!, _hasTwitchAccountMeta));
+    } else if (isInserting) {
+      context.missing(_hasTwitchAccountMeta);
+    }
     if (data.containsKey('email_verified_at')) {
       context.handle(
           _emailVerifiedAtMeta,
@@ -113,6 +172,12 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
           .read(DriftSqlType.string, data['${effectivePrefix}email'])!,
       avatarUrl: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}avatar_url'])!,
+      isBanned: attachedDatabase.typeMapping
+          .read(DriftSqlType.bool, data['${effectivePrefix}is_banned'])!,
+      hasPassword: attachedDatabase.typeMapping
+          .read(DriftSqlType.bool, data['${effectivePrefix}has_password'])!,
+      hasTwitchAccount: attachedDatabase.typeMapping.read(
+          DriftSqlType.bool, data['${effectivePrefix}has_twitch_account'])!,
       emailVerifiedAt: attachedDatabase.typeMapping.read(
           DriftSqlType.dateTime, data['${effectivePrefix}email_verified_at']),
       createdAt: attachedDatabase.typeMapping
@@ -137,6 +202,9 @@ class User extends DataClass implements Insertable<User> {
   final String name;
   final String email;
   final String avatarUrl;
+  final bool isBanned;
+  final bool hasPassword;
+  final bool hasTwitchAccount;
   final DateTime? emailVerifiedAt;
   final DateTime createdAt;
   final List<String> permissions;
@@ -145,6 +213,9 @@ class User extends DataClass implements Insertable<User> {
       required this.name,
       required this.email,
       required this.avatarUrl,
+      required this.isBanned,
+      required this.hasPassword,
+      required this.hasTwitchAccount,
       this.emailVerifiedAt,
       required this.createdAt,
       required this.permissions});
@@ -155,6 +226,9 @@ class User extends DataClass implements Insertable<User> {
     map['name'] = Variable<String>(name);
     map['email'] = Variable<String>(email);
     map['avatar_url'] = Variable<String>(avatarUrl);
+    map['is_banned'] = Variable<bool>(isBanned);
+    map['has_password'] = Variable<bool>(hasPassword);
+    map['has_twitch_account'] = Variable<bool>(hasTwitchAccount);
     if (!nullToAbsent || emailVerifiedAt != null) {
       map['email_verified_at'] = Variable<DateTime>(emailVerifiedAt);
     }
@@ -172,6 +246,9 @@ class User extends DataClass implements Insertable<User> {
       name: Value(name),
       email: Value(email),
       avatarUrl: Value(avatarUrl),
+      isBanned: Value(isBanned),
+      hasPassword: Value(hasPassword),
+      hasTwitchAccount: Value(hasTwitchAccount),
       emailVerifiedAt: emailVerifiedAt == null && nullToAbsent
           ? const Value.absent()
           : Value(emailVerifiedAt),
@@ -188,6 +265,9 @@ class User extends DataClass implements Insertable<User> {
       name: serializer.fromJson<String>(json['name']),
       email: serializer.fromJson<String>(json['email']),
       avatarUrl: serializer.fromJson<String>(json['avatarUrl']),
+      isBanned: serializer.fromJson<bool>(json['isBanned']),
+      hasPassword: serializer.fromJson<bool>(json['hasPassword']),
+      hasTwitchAccount: serializer.fromJson<bool>(json['hasTwitchAccount']),
       emailVerifiedAt: serializer.fromJson<DateTime?>(json['emailVerifiedAt']),
       createdAt: serializer.fromJson<DateTime>(json['createdAt']),
       permissions: serializer.fromJson<List<String>>(json['permissions']),
@@ -201,6 +281,9 @@ class User extends DataClass implements Insertable<User> {
       'name': serializer.toJson<String>(name),
       'email': serializer.toJson<String>(email),
       'avatarUrl': serializer.toJson<String>(avatarUrl),
+      'isBanned': serializer.toJson<bool>(isBanned),
+      'hasPassword': serializer.toJson<bool>(hasPassword),
+      'hasTwitchAccount': serializer.toJson<bool>(hasTwitchAccount),
       'emailVerifiedAt': serializer.toJson<DateTime?>(emailVerifiedAt),
       'createdAt': serializer.toJson<DateTime>(createdAt),
       'permissions': serializer.toJson<List<String>>(permissions),
@@ -212,6 +295,9 @@ class User extends DataClass implements Insertable<User> {
           String? name,
           String? email,
           String? avatarUrl,
+          bool? isBanned,
+          bool? hasPassword,
+          bool? hasTwitchAccount,
           Value<DateTime?> emailVerifiedAt = const Value.absent(),
           DateTime? createdAt,
           List<String>? permissions}) =>
@@ -220,6 +306,9 @@ class User extends DataClass implements Insertable<User> {
         name: name ?? this.name,
         email: email ?? this.email,
         avatarUrl: avatarUrl ?? this.avatarUrl,
+        isBanned: isBanned ?? this.isBanned,
+        hasPassword: hasPassword ?? this.hasPassword,
+        hasTwitchAccount: hasTwitchAccount ?? this.hasTwitchAccount,
         emailVerifiedAt: emailVerifiedAt.present
             ? emailVerifiedAt.value
             : this.emailVerifiedAt,
@@ -232,6 +321,12 @@ class User extends DataClass implements Insertable<User> {
       name: data.name.present ? data.name.value : this.name,
       email: data.email.present ? data.email.value : this.email,
       avatarUrl: data.avatarUrl.present ? data.avatarUrl.value : this.avatarUrl,
+      isBanned: data.isBanned.present ? data.isBanned.value : this.isBanned,
+      hasPassword:
+          data.hasPassword.present ? data.hasPassword.value : this.hasPassword,
+      hasTwitchAccount: data.hasTwitchAccount.present
+          ? data.hasTwitchAccount.value
+          : this.hasTwitchAccount,
       emailVerifiedAt: data.emailVerifiedAt.present
           ? data.emailVerifiedAt.value
           : this.emailVerifiedAt,
@@ -248,6 +343,9 @@ class User extends DataClass implements Insertable<User> {
           ..write('name: $name, ')
           ..write('email: $email, ')
           ..write('avatarUrl: $avatarUrl, ')
+          ..write('isBanned: $isBanned, ')
+          ..write('hasPassword: $hasPassword, ')
+          ..write('hasTwitchAccount: $hasTwitchAccount, ')
           ..write('emailVerifiedAt: $emailVerifiedAt, ')
           ..write('createdAt: $createdAt, ')
           ..write('permissions: $permissions')
@@ -256,8 +354,8 @@ class User extends DataClass implements Insertable<User> {
   }
 
   @override
-  int get hashCode => Object.hash(
-      id, name, email, avatarUrl, emailVerifiedAt, createdAt, permissions);
+  int get hashCode => Object.hash(id, name, email, avatarUrl, isBanned,
+      hasPassword, hasTwitchAccount, emailVerifiedAt, createdAt, permissions);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -266,6 +364,9 @@ class User extends DataClass implements Insertable<User> {
           other.name == this.name &&
           other.email == this.email &&
           other.avatarUrl == this.avatarUrl &&
+          other.isBanned == this.isBanned &&
+          other.hasPassword == this.hasPassword &&
+          other.hasTwitchAccount == this.hasTwitchAccount &&
           other.emailVerifiedAt == this.emailVerifiedAt &&
           other.createdAt == this.createdAt &&
           other.permissions == this.permissions);
@@ -276,6 +377,9 @@ class UsersCompanion extends UpdateCompanion<User> {
   final Value<String> name;
   final Value<String> email;
   final Value<String> avatarUrl;
+  final Value<bool> isBanned;
+  final Value<bool> hasPassword;
+  final Value<bool> hasTwitchAccount;
   final Value<DateTime?> emailVerifiedAt;
   final Value<DateTime> createdAt;
   final Value<List<String>> permissions;
@@ -284,6 +388,9 @@ class UsersCompanion extends UpdateCompanion<User> {
     this.name = const Value.absent(),
     this.email = const Value.absent(),
     this.avatarUrl = const Value.absent(),
+    this.isBanned = const Value.absent(),
+    this.hasPassword = const Value.absent(),
+    this.hasTwitchAccount = const Value.absent(),
     this.emailVerifiedAt = const Value.absent(),
     this.createdAt = const Value.absent(),
     this.permissions = const Value.absent(),
@@ -293,12 +400,18 @@ class UsersCompanion extends UpdateCompanion<User> {
     required String name,
     required String email,
     required String avatarUrl,
+    required bool isBanned,
+    required bool hasPassword,
+    required bool hasTwitchAccount,
     this.emailVerifiedAt = const Value.absent(),
     required DateTime createdAt,
     required List<String> permissions,
   })  : name = Value(name),
         email = Value(email),
         avatarUrl = Value(avatarUrl),
+        isBanned = Value(isBanned),
+        hasPassword = Value(hasPassword),
+        hasTwitchAccount = Value(hasTwitchAccount),
         createdAt = Value(createdAt),
         permissions = Value(permissions);
   static Insertable<User> custom({
@@ -306,6 +419,9 @@ class UsersCompanion extends UpdateCompanion<User> {
     Expression<String>? name,
     Expression<String>? email,
     Expression<String>? avatarUrl,
+    Expression<bool>? isBanned,
+    Expression<bool>? hasPassword,
+    Expression<bool>? hasTwitchAccount,
     Expression<DateTime>? emailVerifiedAt,
     Expression<DateTime>? createdAt,
     Expression<String>? permissions,
@@ -315,6 +431,9 @@ class UsersCompanion extends UpdateCompanion<User> {
       if (name != null) 'name': name,
       if (email != null) 'email': email,
       if (avatarUrl != null) 'avatar_url': avatarUrl,
+      if (isBanned != null) 'is_banned': isBanned,
+      if (hasPassword != null) 'has_password': hasPassword,
+      if (hasTwitchAccount != null) 'has_twitch_account': hasTwitchAccount,
       if (emailVerifiedAt != null) 'email_verified_at': emailVerifiedAt,
       if (createdAt != null) 'created_at': createdAt,
       if (permissions != null) 'permissions': permissions,
@@ -326,6 +445,9 @@ class UsersCompanion extends UpdateCompanion<User> {
       Value<String>? name,
       Value<String>? email,
       Value<String>? avatarUrl,
+      Value<bool>? isBanned,
+      Value<bool>? hasPassword,
+      Value<bool>? hasTwitchAccount,
       Value<DateTime?>? emailVerifiedAt,
       Value<DateTime>? createdAt,
       Value<List<String>>? permissions}) {
@@ -334,6 +456,9 @@ class UsersCompanion extends UpdateCompanion<User> {
       name: name ?? this.name,
       email: email ?? this.email,
       avatarUrl: avatarUrl ?? this.avatarUrl,
+      isBanned: isBanned ?? this.isBanned,
+      hasPassword: hasPassword ?? this.hasPassword,
+      hasTwitchAccount: hasTwitchAccount ?? this.hasTwitchAccount,
       emailVerifiedAt: emailVerifiedAt ?? this.emailVerifiedAt,
       createdAt: createdAt ?? this.createdAt,
       permissions: permissions ?? this.permissions,
@@ -355,6 +480,15 @@ class UsersCompanion extends UpdateCompanion<User> {
     if (avatarUrl.present) {
       map['avatar_url'] = Variable<String>(avatarUrl.value);
     }
+    if (isBanned.present) {
+      map['is_banned'] = Variable<bool>(isBanned.value);
+    }
+    if (hasPassword.present) {
+      map['has_password'] = Variable<bool>(hasPassword.value);
+    }
+    if (hasTwitchAccount.present) {
+      map['has_twitch_account'] = Variable<bool>(hasTwitchAccount.value);
+    }
     if (emailVerifiedAt.present) {
       map['email_verified_at'] = Variable<DateTime>(emailVerifiedAt.value);
     }
@@ -375,6 +509,9 @@ class UsersCompanion extends UpdateCompanion<User> {
           ..write('name: $name, ')
           ..write('email: $email, ')
           ..write('avatarUrl: $avatarUrl, ')
+          ..write('isBanned: $isBanned, ')
+          ..write('hasPassword: $hasPassword, ')
+          ..write('hasTwitchAccount: $hasTwitchAccount, ')
           ..write('emailVerifiedAt: $emailVerifiedAt, ')
           ..write('createdAt: $createdAt, ')
           ..write('permissions: $permissions')
@@ -656,6 +793,9 @@ typedef $$UsersTableCreateCompanionBuilder = UsersCompanion Function({
   required String name,
   required String email,
   required String avatarUrl,
+  required bool isBanned,
+  required bool hasPassword,
+  required bool hasTwitchAccount,
   Value<DateTime?> emailVerifiedAt,
   required DateTime createdAt,
   required List<String> permissions,
@@ -665,6 +805,9 @@ typedef $$UsersTableUpdateCompanionBuilder = UsersCompanion Function({
   Value<String> name,
   Value<String> email,
   Value<String> avatarUrl,
+  Value<bool> isBanned,
+  Value<bool> hasPassword,
+  Value<bool> hasTwitchAccount,
   Value<DateTime?> emailVerifiedAt,
   Value<DateTime> createdAt,
   Value<List<String>> permissions,
@@ -689,6 +832,16 @@ class $$UsersTableFilterComposer extends Composer<_$AppDatabase, $UsersTable> {
 
   ColumnFilters<String> get avatarUrl => $composableBuilder(
       column: $table.avatarUrl, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<bool> get isBanned => $composableBuilder(
+      column: $table.isBanned, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<bool> get hasPassword => $composableBuilder(
+      column: $table.hasPassword, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<bool> get hasTwitchAccount => $composableBuilder(
+      column: $table.hasTwitchAccount,
+      builder: (column) => ColumnFilters(column));
 
   ColumnFilters<DateTime> get emailVerifiedAt => $composableBuilder(
       column: $table.emailVerifiedAt,
@@ -724,6 +877,16 @@ class $$UsersTableOrderingComposer
   ColumnOrderings<String> get avatarUrl => $composableBuilder(
       column: $table.avatarUrl, builder: (column) => ColumnOrderings(column));
 
+  ColumnOrderings<bool> get isBanned => $composableBuilder(
+      column: $table.isBanned, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<bool> get hasPassword => $composableBuilder(
+      column: $table.hasPassword, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<bool> get hasTwitchAccount => $composableBuilder(
+      column: $table.hasTwitchAccount,
+      builder: (column) => ColumnOrderings(column));
+
   ColumnOrderings<DateTime> get emailVerifiedAt => $composableBuilder(
       column: $table.emailVerifiedAt,
       builder: (column) => ColumnOrderings(column));
@@ -755,6 +918,15 @@ class $$UsersTableAnnotationComposer
 
   GeneratedColumn<String> get avatarUrl =>
       $composableBuilder(column: $table.avatarUrl, builder: (column) => column);
+
+  GeneratedColumn<bool> get isBanned =>
+      $composableBuilder(column: $table.isBanned, builder: (column) => column);
+
+  GeneratedColumn<bool> get hasPassword => $composableBuilder(
+      column: $table.hasPassword, builder: (column) => column);
+
+  GeneratedColumn<bool> get hasTwitchAccount => $composableBuilder(
+      column: $table.hasTwitchAccount, builder: (column) => column);
 
   GeneratedColumn<DateTime> get emailVerifiedAt => $composableBuilder(
       column: $table.emailVerifiedAt, builder: (column) => column);
@@ -794,6 +966,9 @@ class $$UsersTableTableManager extends RootTableManager<
             Value<String> name = const Value.absent(),
             Value<String> email = const Value.absent(),
             Value<String> avatarUrl = const Value.absent(),
+            Value<bool> isBanned = const Value.absent(),
+            Value<bool> hasPassword = const Value.absent(),
+            Value<bool> hasTwitchAccount = const Value.absent(),
             Value<DateTime?> emailVerifiedAt = const Value.absent(),
             Value<DateTime> createdAt = const Value.absent(),
             Value<List<String>> permissions = const Value.absent(),
@@ -803,6 +978,9 @@ class $$UsersTableTableManager extends RootTableManager<
             name: name,
             email: email,
             avatarUrl: avatarUrl,
+            isBanned: isBanned,
+            hasPassword: hasPassword,
+            hasTwitchAccount: hasTwitchAccount,
             emailVerifiedAt: emailVerifiedAt,
             createdAt: createdAt,
             permissions: permissions,
@@ -812,6 +990,9 @@ class $$UsersTableTableManager extends RootTableManager<
             required String name,
             required String email,
             required String avatarUrl,
+            required bool isBanned,
+            required bool hasPassword,
+            required bool hasTwitchAccount,
             Value<DateTime?> emailVerifiedAt = const Value.absent(),
             required DateTime createdAt,
             required List<String> permissions,
@@ -821,6 +1002,9 @@ class $$UsersTableTableManager extends RootTableManager<
             name: name,
             email: email,
             avatarUrl: avatarUrl,
+            isBanned: isBanned,
+            hasPassword: hasPassword,
+            hasTwitchAccount: hasTwitchAccount,
             emailVerifiedAt: emailVerifiedAt,
             createdAt: createdAt,
             permissions: permissions,

@@ -6,6 +6,9 @@ class User {
   final String name;
   final String email;
   final String avatarUrl;
+  final bool isBanned;
+  final bool hasPassword;
+  final bool hasTwitchAccount;
   final DateTime? emailVerifiedAt;
   final DateTime createdAt;
   final List<Permission>? permissions;
@@ -15,6 +18,9 @@ class User {
     required this.name,
     required this.email,
     required this.avatarUrl,
+    required this.isBanned,
+    required this.hasPassword,
+    required this.hasTwitchAccount,
     required this.emailVerifiedAt,
     required this.createdAt,
     this.permissions,
@@ -26,6 +32,9 @@ class User {
       name: json['name'],
       email: json['email'],
       avatarUrl: json['avatar'],
+      isBanned: json['isBanned'],
+      hasPassword: json['hasPassword'],
+      hasTwitchAccount: json['hasTwitchAccount'],
       emailVerifiedAt: DateTime.tryParse(json['email_verified_at'] ?? ''),
       createdAt: DateTime.parse(json['created_at']),
       permissions: json['permissions'] == null
@@ -42,6 +51,9 @@ class User {
       name: data.name,
       email: data.email,
       avatarUrl: data.avatarUrl,
+      isBanned: data.isBanned,
+      hasPassword: data.hasPassword,
+      hasTwitchAccount: data.hasTwitchAccount,
       emailVerifiedAt: data.emailVerifiedAt,
       createdAt: data.createdAt,
     );
