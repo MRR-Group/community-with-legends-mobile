@@ -14,6 +14,9 @@ class HardwareCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
+    if(hardware.isEmpty){
+      return Container();
+    }
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
