@@ -710,6 +710,42 @@ abstract class AppLocalizations {
   /// **'Avatar deleted successfully'**
   String get profile_avatarDeleted;
 
+  /// No description provided for @profile_hardware.
+  ///
+  /// In en, this message translates to:
+  /// **'Hardware'**
+  String get profile_hardware;
+
+  /// No description provided for @profile_componentUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Component has been updated'**
+  String get profile_componentUpdated;
+
+  /// No description provided for @profile_componentNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Component not found'**
+  String get profile_componentNotFound;
+
+  /// No description provided for @profile_componentDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Component has been deleted'**
+  String get profile_componentDeleted;
+
+  /// No description provided for @profile_componentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Component type'**
+  String get profile_componentTitle;
+
+  /// No description provided for @profile_componentValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Component model'**
+  String get profile_componentValue;
+
   /// No description provided for @user_ban.
   ///
   /// In en, this message translates to:
