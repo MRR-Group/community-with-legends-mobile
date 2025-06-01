@@ -254,6 +254,18 @@ abstract class AppLocalizations {
   /// **'Change'**
   String get change;
 
+  /// No description provided for @setPasswordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You don\'t have a password set for your account yet'**
+  String get setPasswordTitle;
+
+  /// No description provided for @setPasswordButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Set password'**
+  String get setPasswordButton;
+
   /// No description provided for @login_title.
   ///
   /// In en, this message translates to:

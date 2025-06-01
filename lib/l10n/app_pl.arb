@@ -27,6 +27,8 @@
   "done": "Zakończ",
   "save": "Zapisz",
   "change": "Zmień",
+  "setPasswordTitle": "Nie ustwiłeś jeszcze hasła dla swojego konta",
+  "setPasswordButton": "Ustaw hasło",
 
   "login_title": "Logowanie",
   "login_button": "Zaloguj się",

@@ -87,10 +87,12 @@ class UserDetails extends StatelessWidget {
                                 child: Row(
                                   children: [
                                     Text(
-                                        '${localizations.profile_following}: 0'),
+                                      '${localizations.profile_following}: 0',
+                                    ),
                                     const Spacer(),
                                     Text(
-                                        '${localizations.profile_followers}: 0'),
+                                      '${localizations.profile_followers}: 0',
+                                    ),
                                   ],
                                 ),
                               ),

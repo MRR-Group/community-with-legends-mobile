@@ -3,6 +3,7 @@ import 'package:community_with_legends_mobile/l10n/generated/app_localizations.d
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/auth_button.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/change_language.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/search_user_dropdown.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/widgets/set_password_option_widget.dart';
 import 'package:flutter/material.dart';
 
 class DefaultDrawer extends StatelessWidget {
@@ -61,6 +62,13 @@ class DefaultDrawer extends StatelessWidget {
                     horizontal: 16,
                   ),
                   child: const ChangeLanguage(),
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(
+                    vertical: 4,
+                    horizontal: 16,
+                  ),
+                  child: const SetPasswordOption(),
                 ),
               ],
             ),
