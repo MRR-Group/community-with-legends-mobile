@@ -123,6 +123,13 @@
   "profile_componentTitle": "Component type",
   "profile_componentValue": "Component model",
 
+  "tfa_title": "Two-factory authentication",
+  "tfa_dontShareCode": "Do not share this code with anyone.\nIt is valid for a limited time only.",
+  "tfa_generateCode": "Generate new code",
+  "tfa_getCode": "Get code",
+  "tfa_codeExpired": "Code expired",
+  "tfa_codeExpiresIn": "Code expires in",
+
   "user_ban": "Ban user",
   "user_report": "Report user",
   "user_reported": "User has been reported",

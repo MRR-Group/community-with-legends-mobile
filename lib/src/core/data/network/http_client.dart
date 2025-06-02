@@ -67,6 +67,7 @@ class HttpClient {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
+      'X-Client-Platform': 'mobile',
     };
   }
 

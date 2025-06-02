@@ -349,6 +349,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile_componentValue => 'Component model';
 
   @override
+  String get tfa_title => 'Two-factory authentication';
+
+  @override
+  String get tfa_dontShareCode =>
+      'Do not share this code with anyone.\nIt is valid for a limited time only.';
+
+  @override
+  String get tfa_generateCode => 'Generate new code';
+
+  @override
+  String get tfa_getCode => 'Get code';
+
+  @override
+  String get tfa_codeExpired => 'Code expired';
+
+  @override
+  String get tfa_codeExpiresIn => 'Code expires in';
+
+  @override
   String get user_ban => 'Ban user';
 
   @override
