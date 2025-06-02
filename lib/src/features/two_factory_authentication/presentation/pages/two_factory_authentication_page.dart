@@ -2,11 +2,15 @@ import 'dart:async';
 
 import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
+import 'package:community_with_legends_mobile/src/core/errors/exceptions/message_exception.dart';
+import 'package:community_with_legends_mobile/src/features/two_factory_authentication/presentation/controllers/tfa_controller.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/background_image.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_app_bar.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class TwoFactoryAuthentication extends StatefulWidget {
   const TwoFactoryAuthentication({super.key});
@@ -16,33 +20,22 @@ class TwoFactoryAuthentication extends StatefulWidget {
 }
 
 class _TwoFactoryAuthenticationState extends State<TwoFactoryAuthentication> {
-  int codeValiditySeconds = 10;
-  late int secondsLeft;
+  int secondsLeft = 0;
   Timer? _timer;
+  String? code;
 
   @override
-  void initState() {
-    super.initState();
-    secondsLeft = codeValiditySeconds;
-    startCountdown();
-  }
-
-  void startCountdown() {
+  void dispose() {
     _timer?.cancel();
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (mounted) {
-        setState(() {
-          secondsLeft--;
-          if (secondsLeft <= 0) {
-            timer.cancel();
-          }
-        });
-      }
-    });
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final controller = Provider.of<TFAuthenticationController>(
+      context,
+      listen: false,
+    );
     final localizations = AppLocalizations.of(context)!;
 
     return Scaffold(
@@ -91,7 +84,7 @@ class _TwoFactoryAuthenticationState extends State<TwoFactoryAuthentication> {
                               padding: const EdgeInsets.all(8.0),
                               child: Align(
                                 child: Text(
-                                  secondsLeft > 0 ? '213769' : '------',
+                                  code ?? '------',
                                   style: const TextStyle(
                                     fontSize: 32,
                                     letterSpacing: 12,
@@ -112,7 +105,7 @@ class _TwoFactoryAuthenticationState extends State<TwoFactoryAuthentication> {
                           ),
                           Button(
                             text: localizations.tfa_generateCode,
-                            onPressed: () {},
+                            onPressed: () => _getTfaCode(context, controller),
                           ),
                         ],
                       ),
@@ -125,5 +118,39 @@ class _TwoFactoryAuthenticationState extends State<TwoFactoryAuthentication> {
         ],
       ),
     );
+  }
+
+  Future<void> _getTfaCode(
+    BuildContext context,
+    TFAuthenticationController controller,
+  ) async {
+    try {
+      final tfa = await controller.generateTfaCode();
+
+      setState(() {
+        secondsLeft = tfa.expiresAt.difference(DateTime.now()).inSeconds;
+        code = tfa.code;
+      });
+
+      _startCountdown();
+    } on MessageException catch (e) {
+      Alert.of(context).show(text: e.toString());
+    }
+  }
+
+  void _startCountdown() {
+    _timer?.cancel();
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (mounted) {
+        setState(() {
+          secondsLeft--;
+
+          if (secondsLeft <= 0) {
+            code = null;
+            timer.cancel();
+          }
+        });
+      }
+    });
   }
 }

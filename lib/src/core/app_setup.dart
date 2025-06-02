@@ -54,6 +54,10 @@ import 'package:community_with_legends_mobile/src/features/profile/domain/usecas
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/update_user_hardware_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/controllers/profile_controller.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/pages/profile_page.dart';
+import 'package:community_with_legends_mobile/src/features/two_factory_authentication/data/data_sources/two_factory_authentication_datasource.dart';
+import 'package:community_with_legends_mobile/src/features/two_factory_authentication/data/repositories/two_factory_authentication_repository_impl.dart';
+import 'package:community_with_legends_mobile/src/features/two_factory_authentication/domain/usecases/get_tfa_code_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/two_factory_authentication/presentation/controllers/tfa_controller.dart';
 import 'package:community_with_legends_mobile/src/features/two_factory_authentication/presentation/pages/two_factory_authentication_page.dart';
 import 'package:community_with_legends_mobile/src/shared/data/data_sources/local/local_user_data_source_impl.dart';
 import 'package:community_with_legends_mobile/src/shared/data/data_sources/remote/remote_search_users_data_source_impl.dart';
@@ -103,7 +107,8 @@ class AppSetup {
     '/set-password': (context) => SetPasswordPage(),
     '/profile': (context) => const ProfilePage(),
     '/update': (context) => const UpdatePage(versionInfo: null),
-    '/two-factory-authentication': (context) => const TwoFactoryAuthentication(),
+    '/two-factory-authentication': (context) =>
+        const TwoFactoryAuthentication(),
   };
 
   Future<void> checkUpdate(BuildContext context) async {
@@ -286,6 +291,20 @@ class AppSetup {
     );
   }
 
+  TFAuthenticationController createTfaController() {
+    final remoteDatasource =
+        TwoFactoryAuthenticationDatasource(baseUrl: apiUrl);
+
+    final repository = TwoFactoryAuthenticationRepositoryImpl(
+        remoteDatasource: remoteDatasource);
+
+    final getTfaCodeUsecase = GetTfaCodeUsecase(repository);
+
+    return TFAuthenticationController(
+      getTfaCodeUsecase: getTfaCodeUsecase,
+    );
+  }
+
   List<SingleChildWidget> getProviders() {
     final postsController = createPostsController();
 
@@ -328,6 +347,9 @@ class AppSetup {
       ),
       ChangeNotifierProvider<UserController>(
         create: (_) => createUserController(),
+      ),
+      ChangeNotifierProvider<TFAuthenticationController>(
+        create: (_) => createTfaController(),
       ),
     ];
   }
