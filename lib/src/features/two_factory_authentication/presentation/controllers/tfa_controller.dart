@@ -14,9 +14,7 @@ class TFAuthenticationController extends ChangeNotifier {
 
   Future<TwoFactoryAuthentication> generateTfaCode() async {
     try {
-      final tfa = getTfaCodeUsecase.execute();
-
-      return tfa;
+      return getTfaCodeUsecase.execute();
     } on HttpException catch (error) {
       throw MessageException(error.message);
     } on NoInternetException catch (error) {
