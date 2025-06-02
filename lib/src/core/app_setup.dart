@@ -296,7 +296,8 @@ class AppSetup {
         TwoFactoryAuthenticationDatasource(baseUrl: apiUrl);
 
     final repository = TwoFactoryAuthenticationRepositoryImpl(
-        remoteDatasource: remoteDatasource);
+      remoteDatasource: remoteDatasource,
+    );
 
     final getTfaCodeUsecase = GetTfaCodeUsecase(repository);
 
