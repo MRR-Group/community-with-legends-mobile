@@ -770,6 +770,42 @@ abstract class AppLocalizations {
   /// **'Component model'**
   String get profile_componentValue;
 
+  /// No description provided for @tfa_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Two-factory authentication'**
+  String get tfa_title;
+
+  /// No description provided for @tfa_dontShareCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Do not share this code with anyone.\nIt is valid for a limited time only.'**
+  String get tfa_dontShareCode;
+
+  /// No description provided for @tfa_generateCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate new code'**
+  String get tfa_generateCode;
+
+  /// No description provided for @tfa_getCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Get code'**
+  String get tfa_getCode;
+
+  /// No description provided for @tfa_codeExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Code expired'**
+  String get tfa_codeExpired;
+
+  /// No description provided for @tfa_codeExpiresIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Code expires in'**
+  String get tfa_codeExpiresIn;
+
   /// No description provided for @user_ban.
   ///
   /// In en, this message translates to:

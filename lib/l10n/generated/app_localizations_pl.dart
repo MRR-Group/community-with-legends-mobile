@@ -349,6 +349,25 @@ class AppLocalizationsPl extends AppLocalizations {
   String get profile_componentValue => 'Model pozdespołu';
 
   @override
+  String get tfa_title => 'Uwierzytelnianie dwuskładnikowe';
+
+  @override
+  String get tfa_dontShareCode =>
+      'Nie udostępniaj tego kodu nikomu.\nKod ważny jest przez ograniczony czas.';
+
+  @override
+  String get tfa_generateCode => 'Wygeneruj nowy kod';
+
+  @override
+  String get tfa_getCode => 'Uzyskaj kod';
+
+  @override
+  String get tfa_codeExpired => 'Kod wygasł';
+
+  @override
+  String get tfa_codeExpiresIn => 'Kod wygasa za';
+
+  @override
   String get user_ban => 'Zbanuj użytkownika';
 
   @override

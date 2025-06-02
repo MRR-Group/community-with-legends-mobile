@@ -54,6 +54,7 @@ import 'package:community_with_legends_mobile/src/features/profile/domain/usecas
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/update_user_hardware_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/controllers/profile_controller.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/pages/profile_page.dart';
+import 'package:community_with_legends_mobile/src/features/two_factory_authentication/presentation/pages/two_factory_authentication_page.dart';
 import 'package:community_with_legends_mobile/src/shared/data/data_sources/local/local_user_data_source_impl.dart';
 import 'package:community_with_legends_mobile/src/shared/data/data_sources/remote/remote_search_users_data_source_impl.dart';
 import 'package:community_with_legends_mobile/src/shared/data/data_sources/remote/remote_user_data_source_impl.dart';
@@ -102,6 +103,7 @@ class AppSetup {
     '/set-password': (context) => SetPasswordPage(),
     '/profile': (context) => const ProfilePage(),
     '/update': (context) => const UpdatePage(versionInfo: null),
+    '/two-factory-authentication': (context) => const TwoFactoryAuthentication(),
   };
 
   Future<void> checkUpdate(BuildContext context) async {
