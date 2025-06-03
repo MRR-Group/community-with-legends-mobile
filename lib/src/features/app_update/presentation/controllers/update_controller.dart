@@ -12,12 +12,15 @@ class UpdateController extends ChangeNotifier {
     final packageInfo = await PackageInfo.fromPlatform();
     final currentVersion = packageInfo.version;
 
-    final latestVersion = await checkUpdateUsecase.execute();
+    try {
+      final latestVersion = await checkUpdateUsecase.execute();
 
-    if (_isNewerVersion(remote: latestVersion.name, local: currentVersion)) {
-      return latestVersion;
+      if (_isNewerVersion(remote: latestVersion.name, local: currentVersion)) {
+        return latestVersion;
+      }
+    } catch (e){
+      return null;
     }
-
     return null;
   }
 
