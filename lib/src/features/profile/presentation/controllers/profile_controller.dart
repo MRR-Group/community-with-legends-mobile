@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/http_exception.dart';
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/no_internet_exception.dart';
