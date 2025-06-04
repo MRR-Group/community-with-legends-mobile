@@ -66,7 +66,7 @@ class _TwoFactoryAuthenticationState extends State<TwoFactoryAuthentication> {
                           Text(
                             localizations.tfa_title,
                             style: const TextStyle(
-                              fontSize: 36,
+                              fontSize: 32,
                             ),
                             textAlign: TextAlign.center,
                           ),
