@@ -130,6 +130,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get login_loggedIn => 'Logged in successfully';
 
   @override
+  String get login_invalidCredentials => 'Invalid email or password';
+
+  @override
   String get logout_loggedOut => 'Logged out successfully';
 
   @override

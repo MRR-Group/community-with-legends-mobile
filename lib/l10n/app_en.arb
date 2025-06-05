@@ -42,6 +42,7 @@
   "login_dontRemember": "Forgot Your password?",
   "login_resetPasswordCta": "to reset it",
   "login_loggedIn": "Logged in successfully",
+  "login_invalidCredentials": "Invalid email or password",
   "logout_loggedOut": "Logged out successfully",
   "logout_button": "Logout",
 

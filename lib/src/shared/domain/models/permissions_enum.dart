@@ -12,7 +12,8 @@ enum Permission {
   manageReports,
   renameUsers,
   changeUsersAvatar,
-  deleteUserHardware;
+  deleteUserHardware,
+  viewLogs;
 
   static Permission fromString(String value) {
     return Permission.values.firstWhere((e) => e.name == value);
