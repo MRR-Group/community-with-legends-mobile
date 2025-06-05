@@ -47,6 +47,7 @@ class AuthController with ChangeNotifier {
     required String password,
     required void Function() onLoginSuccess,
   }) async {
+    final localizations = AppLocalizations.of(context)!;
     _isLoading = true;
     notifyListeners();
 
@@ -60,6 +61,23 @@ class AuthController with ChangeNotifier {
 
         Alert.of(context).show(text: localizations.login_loggedIn);
         Navigator.pushReplacementNamed(context, '/feed');
+      }
+    } on NoInternetException catch (e) {
+      _endLoading();
+
+      if (context.mounted) {
+        Alert.of(context).show(text: e.toString());
+      }
+    } on HttpException catch (e) {
+      _endLoading();
+
+      if(e.statusCode == 403){
+        Alert.of(context).show(text: localizations.login_invalidCredentials);
+        return;
+      }
+
+      if (context.mounted) {
+        Alert.of(context).show(text: e.toString());
       }
     } catch (error) {
       if (context.mounted) {

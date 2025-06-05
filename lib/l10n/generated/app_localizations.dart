@@ -338,6 +338,12 @@ abstract class AppLocalizations {
   /// **'Logged in successfully'**
   String get login_loggedIn;
 
+  /// No description provided for @login_invalidCredentials.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid email or password'**
+  String get login_invalidCredentials;
+
   /// No description provided for @logout_loggedOut.
   ///
   /// In en, this message translates to:

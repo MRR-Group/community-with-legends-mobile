@@ -129,6 +129,10 @@ class AppLocalizationsPl extends AppLocalizations {
   String get login_loggedIn => 'Zalogowano pomyślnie';
 
   @override
+  String get login_invalidCredentials =>
+      'Podane dane logowania są nieprawidłowe';
+
+  @override
   String get logout_loggedOut => 'Wylogowano pomyślnie';
 
   @override
