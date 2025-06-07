@@ -60,7 +60,7 @@ To run the app locally:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-org/community-with-legends-mobile.git
+   git clone https://github.com/MRR-Group/community-with-legends-mobile.git
    cd community-with-legends-mobile
    ```
 
