@@ -611,7 +611,7 @@ abstract class AppLocalizations {
   /// No description provided for @posts_reply.
   ///
   /// In en, this message translates to:
-  /// **'Reply'**
+  /// **'Comment'**
   String get posts_reply;
 
   /// No description provided for @posts_comment.

@@ -47,14 +47,14 @@ class FeedDataSource extends HttpClient {
   Future<Map<String, dynamic>> getFilteredGames(String filter) {
     return getRequest(
       urlPath: 'api/games/search',
-      queryParams: {'filter': filter},
+      queryParams: {'search': filter},
     );
   }
 
   Future<Map<String, dynamic>> getTags(String filter) {
     return getRequest(
       urlPath: 'api/tags/search',
-      queryParams: {'filter': filter},
+      queryParams: {'search': filter},
     );
   }
 
