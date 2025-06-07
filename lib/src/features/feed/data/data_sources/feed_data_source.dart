@@ -3,9 +3,12 @@ import 'package:community_with_legends_mobile/src/core/data/network/http_client.
 class FeedDataSource extends HttpClient {
   FeedDataSource({required super.baseUrl});
 
-  Future<Map<String, dynamic>> getPosts() async {
+  Future<Map<String, dynamic>> getPosts(int? page) async {
     return getRequest(
       urlPath: 'api/posts',
+      queryParams: {
+        'page': page.toString(),
+      },
     );
   }
 

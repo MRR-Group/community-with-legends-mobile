@@ -6,7 +6,7 @@ class GetPostsUseCase {
 
   GetPostsUseCase(this.repository);
 
-  Future<FeedPosts> execute() {
-    return repository.getPosts();
+  Future<FeedPosts> execute(int? page) {
+    return repository.getPosts(page);
   }
 }
