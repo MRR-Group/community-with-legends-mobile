@@ -3,7 +3,7 @@ import 'package:community_with_legends_mobile/src/features/feed/domain/models/ta
 import 'package:community_with_legends_mobile/src/shared/domain/models/game_model.dart';
 
 abstract class FeedRepository {
-  Future<FeedPosts> getPosts();
+  Future<FeedPosts> getPosts(int? page);
   Future<FeedPosts> getTrendingPosts();
   Future<FeedPosts> getFilteredPosts(int? tagId, int? gameId);
   Future<List<Game>> getFilteredGames(String filter);

@@ -10,8 +10,8 @@ class FeedRepositoryImpl implements FeedRepository {
   FeedRepositoryImpl(this.api);
 
   @override
-  Future<FeedPosts> getPosts() async {
-    final response = await api.getPosts();
+  Future<FeedPosts> getPosts(int? page) async {
+    final response = await api.getPosts(page);
 
     try {
       final result = FeedPosts.fromJson(response);

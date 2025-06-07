@@ -50,6 +50,11 @@ class PostsController extends ChangeNotifier {
     required this.deletePostUseCase,
   });
 
+  Future<List<Post>> getPosts(int? page) async {
+    final feedPosts = await  getPostsUseCase.execute(page);
+    return feedPosts.posts;
+  }
+
   Future<String> loadPosts(BuildContext context) async {
     _feedPosts = null;
     _isLoading = true;
@@ -59,7 +64,7 @@ class PostsController extends ChangeNotifier {
 
     try {
       final localizations = AppLocalizations.of(context)!;
-      _feedPosts = await getPostsUseCase.execute();
+      _feedPosts = await getPostsUseCase.execute(null);
 
       if (_feedPosts?.posts != null && _feedPosts!.posts.isNotEmpty) {
         return localizations.posts_loaded;

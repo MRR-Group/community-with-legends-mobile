@@ -27,43 +27,45 @@ class FeedPage extends StatelessWidget {
       appBar: const DefaultAppBar(),
       bottomNavigationBar: const DefaultBottomAppBar(),
       endDrawer: const DefaultDrawer(),
-      body: Stack(
-        children: [
-          const BackgroundImage(bottomMargin: 0),
-          CustomScrollView(
-            slivers: [
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    localizations.posts_discover,
-                    style: const TextStyle(fontSize: 42),
-                    textAlign: TextAlign.center,
+      body: SizedBox.expand(
+        child: Stack(
+          children: [
+            const BackgroundImage(bottomMargin: 0),
+            CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      localizations.posts_discover,
+                      style: const TextStyle(fontSize: 42),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
-              ),
-              const SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.only(bottom: 24),
-                  child: FeedMenu(),
-                ),
-              ),
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CreatePostForm(
-                    formKey: formKey,
-                    contentController: contentController,
-                    assetController: assetController,
-                    gameController: gameController,
-                    tagController: tagController,
+                const SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 24),
+                    child: FeedMenu(),
                   ),
                 ),
-              ),
-              const PostsView(),
-            ],
-          ),
-        ],
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CreatePostForm(
+                      formKey: formKey,
+                      contentController: contentController,
+                      assetController: assetController,
+                      gameController: gameController,
+                      tagController: tagController,
+                    ),
+                  ),
+                ),
+                const PostsView(),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
