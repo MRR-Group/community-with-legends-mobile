@@ -6,6 +6,7 @@ import 'package:community_with_legends_mobile/src/features/profile/presentation/
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/edit_profile_widget.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/hardware_card_widget.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/user_details_widget.dart';
+import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/want_to_play_card_widget.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_app_bar.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_bottom_app_bar.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_drawer.dart';
@@ -85,6 +86,10 @@ class _ProfilePageState extends State<ProfilePage> {
                           : HardwareCard(
                               hardware: snapshot.data!.hardware!,
                             ),
+                    if (snapshot.data!.userGames != null)
+                      WantToPlayCard(
+                        userGames: snapshot.data!.userGames!,
+                      ),
                   ],
                 );
               }

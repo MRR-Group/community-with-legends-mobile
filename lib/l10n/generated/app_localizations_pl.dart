@@ -353,6 +353,9 @@ class AppLocalizationsPl extends AppLocalizations {
   String get profile_componentValue => 'Model pozdespołu';
 
   @override
+  String get profile_wantToPlay => 'Chcę zagrać';
+
+  @override
   String get tfa_title => 'Uwierzytelnianie dwuskładnikowe';
 
   @override

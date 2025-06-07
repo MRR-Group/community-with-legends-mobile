@@ -776,6 +776,12 @@ abstract class AppLocalizations {
   /// **'Component model'**
   String get profile_componentValue;
 
+  /// No description provided for @profile_wantToPlay.
+  ///
+  /// In en, this message translates to:
+  /// **'Want to play'**
+  String get profile_wantToPlay;
+
   /// No description provided for @tfa_title.
   ///
   /// In en, this message translates to:

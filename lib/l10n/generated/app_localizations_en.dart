@@ -352,6 +352,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile_componentValue => 'Component model';
 
   @override
+  String get profile_wantToPlay => 'Want to play';
+
+  @override
   String get tfa_title => 'Two-factory authentication';
 
   @override

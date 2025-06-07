@@ -1,6 +1,7 @@
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/no_internet_exception.dart';
 import 'package:community_with_legends_mobile/src/features/profile/data/data_sources/profile_datasource.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/hardware_model.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/models/user_game_model.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/repositories/profile_repository.dart';
 import 'package:community_with_legends_mobile/src/shared/data/data_sources/local/local_user_data_source_impl.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
@@ -86,5 +87,14 @@ class ProfileRepositoryImpl implements ProfileRepository {
     hardware = Hardware.fromJson(data);
 
     return hardware;
+  }
+
+  @override
+  Future<List<UserGame>?> getUserGames(int userId) async {
+    final response = await profileDatasource.getUserGames(userId);
+    final data = response['data'] as List<dynamic>;
+    final userGames = data.map((item) => UserGame.fromJson(item)).toList();
+
+    return userGames;
   }
 }
