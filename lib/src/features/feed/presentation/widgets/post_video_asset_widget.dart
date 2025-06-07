@@ -1,4 +1,3 @@
-import 'package:community_with_legends_mobile/src/features/feed/domain/models/asset_types.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/widgets/invalid_post_asset_widget.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/post_asset_model.dart';
 import 'package:flutter/material.dart';
