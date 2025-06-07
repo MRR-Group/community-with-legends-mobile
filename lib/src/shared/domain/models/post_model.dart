@@ -1,6 +1,7 @@
 import 'package:community_with_legends_mobile/src/features/feed/domain/models/tag_model.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/comment_model.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/game_model.dart';
+import 'package:community_with_legends_mobile/src/shared/domain/models/post_asset_model.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
 
 class Post {
@@ -13,6 +14,7 @@ class Post {
   final Game? game;
   final List<Tag>? tags;
   final List<Comment>? comments;
+  final PostAsset? postAsset;
 
   Post({
     required this.id,
@@ -24,6 +26,7 @@ class Post {
     this.game,
     this.tags,
     this.comments,
+    this.postAsset,
   });
 
   factory Post.fromJson(Map<String, dynamic> json) {
@@ -35,6 +38,7 @@ class Post {
       userReacted: json['user_reacted'],
       user: User.fromJson(json['user']),
       game: json['game'] == null ? null : Game.fromJson(json['game']),
+      postAsset: json['asset'] == null ? null : PostAsset.fromJson(json['asset']),
       tags: json['tags'] == null
           ? null
           : (json['tags'] as List<dynamic>)
