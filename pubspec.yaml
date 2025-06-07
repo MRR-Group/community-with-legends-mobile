@@ -61,6 +61,7 @@ dependencies:
   flutter_image_compress: ^2.4.0
   youtube_player_iframe: ^5.2.1
   infinite_scroll_pagination: ^5.0.0
+  dio: ^5.8.0+1
 
 dev_dependencies:
   flutter_test:
