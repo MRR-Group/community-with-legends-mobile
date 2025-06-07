@@ -268,7 +268,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get posts_search => 'Search';
 
   @override
-  String get posts_reply => 'Reply';
+  String get posts_reply => 'Comment';
 
   @override
   String get posts_comment => 'Create a comment';
