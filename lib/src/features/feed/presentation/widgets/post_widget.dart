@@ -1,9 +1,11 @@
 import 'package:community_with_legends_mobile/config/colors.dart';
 import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
+import 'package:community_with_legends_mobile/src/features/feed/domain/models/asset_types.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/controllers/reactions_controller.dart';
-import 'package:community_with_legends_mobile/src/features/feed/presentation/widgets/post_asset_widget.dart';
+import 'package:community_with_legends_mobile/src/features/feed/presentation/widgets/post_image_asset_widget.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/widgets/post_menu_button.dart';
 import 'package:community_with_legends_mobile/src/features/feed/presentation/widgets/post_tags.dart';
+import 'package:community_with_legends_mobile/src/features/feed/presentation/widgets/post_video_asset_widget.dart';
 import 'package:community_with_legends_mobile/src/features/post_details/presentation/pages/post_details_page.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/post_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
@@ -59,7 +61,10 @@ class _PostWidgetState extends State<PostWidget> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(
-                                right: 8, bottom: 8, top: 8),
+                              right: 8,
+                              bottom: 8,
+                              top: 8,
+                            ),
                             child: CircleAvatar(
                               radius: 26,
                               child: ClipOval(
@@ -109,9 +114,12 @@ class _PostWidgetState extends State<PostWidget> {
                         PostTags(tags: widget.post.tags!),
                       Text(widget.post.content),
                       if (widget.post.postAsset != null)
-                        PostAssetWidget(
-                          postAsset: widget.post.postAsset!,
-                        ),
+                        if (widget.post.postAsset!.type == AssetType.image)
+                          PostImageAssetWidget(
+                            postAsset: widget.post.postAsset!,
+                          )
+                        else
+                          PostVideoAsset(postAsset: widget.post.postAsset!),
                       Row(
                         children: [
                           Button(
