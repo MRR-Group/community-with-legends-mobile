@@ -96,6 +96,6 @@ class EditGames extends StatelessWidget {
   }
 
   void _displayResponseAlert(BuildContext context, String response) {
-    Alert.of(context).show(text: response);
+    Alert.showGlobal(text: response);
   }
 }

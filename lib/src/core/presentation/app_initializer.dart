@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:community_with_legends_mobile/config/theme.dart';
 import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
+import 'package:community_with_legends_mobile/main.dart';
 import 'package:community_with_legends_mobile/src/core/app_setup.dart';
 import 'package:community_with_legends_mobile/src/core/deep_links/twitch_deep_link.dart';
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/check_update_exception.dart';
@@ -70,6 +71,7 @@ class _AppInitializerState extends State<AppInitializer> {
 
     final app = MaterialApp(
       navigatorKey: _navigatorKey,
+      scaffoldMessengerKey: scaffoldMessengerKey,
       title: 'Community with Legends',
       debugShowCheckedModeBanner: false,
       theme: theme,
