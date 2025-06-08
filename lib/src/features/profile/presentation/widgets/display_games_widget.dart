@@ -13,14 +13,16 @@ class DisplayGames extends StatelessWidget{
       crossAxisSpacing: 8,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      childAspectRatio: 0.6,
+      childAspectRatio: 0.7,
       children: userGames.map((userGame) {
         return Column(
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(5),
-              child: Image.network(
-                userGame.game.cover,
+            Expanded(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: Image.network(
+                  userGame.game.cover,
+                ),
               ),
             ),
             Padding(
