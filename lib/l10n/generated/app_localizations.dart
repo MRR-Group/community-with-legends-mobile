@@ -788,6 +788,18 @@ abstract class AppLocalizations {
   /// **'Want to play'**
   String get profile_wantToPlay;
 
+  /// No description provided for @profile_playing.
+  ///
+  /// In en, this message translates to:
+  /// **'Playing'**
+  String get profile_playing;
+
+  /// No description provided for @profile_played.
+  ///
+  /// In en, this message translates to:
+  /// **'Played'**
+  String get profile_played;
+
   /// No description provided for @profile_gameDeleted.
   ///
   /// In en, this message translates to:

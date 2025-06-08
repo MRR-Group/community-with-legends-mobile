@@ -358,6 +358,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile_wantToPlay => 'Want to play';
 
   @override
+  String get profile_playing => 'Playing';
+
+  @override
+  String get profile_played => 'Played';
+
+  @override
   String get profile_gameDeleted => 'Game deleted successfully';
 
   @override

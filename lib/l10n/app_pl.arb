@@ -125,6 +125,8 @@
   "profile_componentTitle": "Typ podzespołu",
   "profile_componentValue": "Model pozdespołu",
   "profile_wantToPlay": "Chcę zagrać",
+  "profile_playing": "Gram",
+  "profile_played": "Grałem",
   "profile_gameDeleted": "Gra została usunięta",
   "profile_gameAdded": "Gra została dodana",
 

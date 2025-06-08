@@ -47,6 +47,12 @@ class ProfileController extends ChangeNotifier {
   bool get isEditingWantToPlay => _isEditingWantToPlay;
   bool _isEditingWantToPlay = false;
 
+  bool get isEditingPlaying => _isEditingPlaying;
+  bool _isEditingPlaying = false;
+
+  bool get isEditingPlayed => _isEditingPlayed;
+  bool _isEditingPlayed = false;
+
   UserProfile? userProfile;
 
   ProfileController({
@@ -169,6 +175,7 @@ class ProfileController extends ChangeNotifier {
     }
   }
 
+
   Future<String> changeNickname(
     BuildContext context,
     String nickname,
@@ -207,13 +214,35 @@ class ProfileController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> openWantToPlayEditMenu() async {
-    _isEditingWantToPlay = true;
+  Future<void> openGameCategoryEditMenu(UserGameStatus status) async {
+    switch(status){
+      case UserGameStatus.to_play:
+        _isEditingWantToPlay = true;
+        break;
+      case UserGameStatus.playing:
+        _isEditingPlaying = true;
+        break;
+      case UserGameStatus.played:
+        _isEditingPlayed = true;
+        break;
+    }
+
     notifyListeners();
   }
 
-  Future<void> closeWantToPlayEditMenu() async {
-    _isEditingWantToPlay = false;
+  Future<void> closeGameCategoryEditMenu(UserGameStatus status) async {
+    switch(status){
+      case UserGameStatus.to_play:
+        _isEditingWantToPlay = false;
+        break;
+      case UserGameStatus.playing:
+        _isEditingPlaying = false;
+        break;
+      case UserGameStatus.played:
+        _isEditingPlayed = false;
+        break;
+    }
+
     notifyListeners();
   }
 
@@ -274,6 +303,7 @@ class ProfileController extends ChangeNotifier {
   Future<String> deleteGame(
     BuildContext context,
     int userGameId,
+    UserGameStatus status,
   ) async {
     final localizations = AppLocalizations.of(context)!;
 
@@ -285,7 +315,7 @@ class ProfileController extends ChangeNotifier {
       return e.toString();
     }
 
-    closeWantToPlayEditMenu();
+    closeGameCategoryEditMenu(status);
 
     return localizations.profile_gameDeleted;
   }
@@ -305,7 +335,7 @@ class ProfileController extends ChangeNotifier {
       return e.toString();
     }
 
-    closeWantToPlayEditMenu();
+    closeGameCategoryEditMenu(status);
 
     return localizations.profile_gameAdded;
   }

@@ -47,7 +47,7 @@ class EditGames extends StatelessWidget {
                   text: localizations.remove,
                   onPressed: () async => _displayResponseAlert(
                     context,
-                    await profileController.deleteGame(context, userGame.id!),
+                    await profileController.deleteGame(context, userGame.id!, userGameStatus),
                   ),
                 ),
               ),
@@ -87,7 +87,7 @@ class EditGames extends StatelessWidget {
             alignment: Alignment.centerRight,
             child: Button(
               text: localizations.done,
-              onPressed: () => profileController.closeWantToPlayEditMenu(),
+              onPressed: () => profileController.closeGameCategoryEditMenu(userGameStatus),
             ),
           ),
         ),

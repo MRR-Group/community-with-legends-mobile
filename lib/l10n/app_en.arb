@@ -125,6 +125,8 @@
   "profile_componentTitle": "Component type",
   "profile_componentValue": "Component model",
   "profile_wantToPlay": "Want to play",
+  "profile_playing": "Playing",
+  "profile_played": "Played",
   "profile_gameDeleted": "Game deleted successfully",
   "profile_gameAdded": "Game uploaded successfully",
 

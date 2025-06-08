@@ -359,6 +359,12 @@ class AppLocalizationsPl extends AppLocalizations {
   String get profile_wantToPlay => 'Chcę zagrać';
 
   @override
+  String get profile_playing => 'Gram';
+
+  @override
+  String get profile_played => 'Grałem';
+
+  @override
   String get profile_gameDeleted => 'Gra została usunięta';
 
   @override
