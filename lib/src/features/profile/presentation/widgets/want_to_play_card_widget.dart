@@ -2,6 +2,7 @@ import 'package:community_with_legends_mobile/l10n/generated/app_localizations.d
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/user_game_model.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/profile_card_widget.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class WantToPlayCard extends StatelessWidget {
   final List<UserGame> userGames;
@@ -31,15 +32,34 @@ class WantToPlayCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          GridView.count(
-            crossAxisCount: 2,
-            crossAxisSpacing: 8,
-            mainAxisSpacing: 8,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            children: userGames.map((userGame) {
-              return Image.network(userGame.game.cover);
-            }).toList(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GridView.count(
+              crossAxisCount: 2,
+              crossAxisSpacing: 8,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              childAspectRatio: 0.6,
+              children: userGames.map((userGame) {
+                return Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(5),
+                      child: Image.network(
+                        userGame.game.cover,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Text(
+                        userGame.game.name,
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                    ),
+                  ],
+                );
+              }).toList(),
+            ),
           ),
         ],
       ),
