@@ -32,12 +32,17 @@ class EditGames extends StatelessWidget {
           return Row(
             children: [
               Expanded(
-                child: Text(
-                  userGame.game.name,
-                  style: const TextStyle(
-                    fontSize: 16,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8,
                   ),
-                  softWrap: true,
+                  child: Text(
+                    userGame.game.name,
+                    style: const TextStyle(
+                      fontSize: 16,
+                    ),
+                    softWrap: true,
+                  ),
                 ),
               ),
               const Spacer(),
@@ -47,7 +52,8 @@ class EditGames extends StatelessWidget {
                   text: localizations.remove,
                   onPressed: () async => _displayResponseAlert(
                     context,
-                    await profileController.deleteGame(context, userGame.id!, userGameStatus),
+                    await profileController.deleteGame(
+                        context, userGame.id!, userGameStatus),
                   ),
                 ),
               ),
@@ -87,7 +93,8 @@ class EditGames extends StatelessWidget {
             alignment: Alignment.centerRight,
             child: Button(
               text: localizations.done,
-              onPressed: () => profileController.closeGameCategoryEditMenu(userGameStatus),
+              onPressed: () =>
+                  profileController.closeGameCategoryEditMenu(userGameStatus),
             ),
           ),
         ),
