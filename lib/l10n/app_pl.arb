@@ -31,6 +31,7 @@
   "setPasswordFormTitle": "Ustaw swoje hasło",
   "setPasswordButton": "Ustaw hasło",
   "passwordSet": "Ustawiono zostało hasło",
+  "remove": "Usuń",
 
   "login_title": "Logowanie",
   "login_button": "Zaloguj się",
@@ -124,6 +125,8 @@
   "profile_componentTitle": "Typ podzespołu",
   "profile_componentValue": "Model pozdespołu",
   "profile_wantToPlay": "Chcę zagrać",
+  "profile_gameDeleted": "Gra została usunięta",
+  "profile_gameAdded": "Gra została dodana",
 
   "tfa_title": "Uwierzytelnianie dwuskładnikowe",
   "tfa_dontShareCode": "Nie udostępniaj tego kodu nikomu.\nKod ważny jest przez ograniczony czas.",

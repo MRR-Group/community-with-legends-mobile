@@ -89,6 +89,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     if (snapshot.data!.userGames != null)
                       WantToPlayCard(
                         userGames: snapshot.data!.userGames!,
+                        canEdit: canEdit,
                       ),
                   ],
                 );

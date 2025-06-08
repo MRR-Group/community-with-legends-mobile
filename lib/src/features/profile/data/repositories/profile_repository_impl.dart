@@ -2,6 +2,7 @@ import 'package:community_with_legends_mobile/src/core/errors/exceptions/no_inte
 import 'package:community_with_legends_mobile/src/features/profile/data/data_sources/profile_datasource.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/hardware_model.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/user_game_model.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/models/user_game_status_enum.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/repositories/profile_repository.dart';
 import 'package:community_with_legends_mobile/src/shared/data/data_sources/local/local_user_data_source_impl.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
@@ -96,5 +97,15 @@ class ProfileRepositoryImpl implements ProfileRepository {
     final userGames = data.map((item) => UserGame.fromJson(item)).toList();
 
     return userGames;
+  }
+
+  @override
+  Future<void> deleteUserGame(int id) async {
+    await profileDatasource.deleteUserGame(id);
+  }
+
+  @override
+  Future<void> addUserGame(int gameId, UserGameStatus status) async {
+    await profileDatasource.addGameToUserList(gameId, status);
   }
 }

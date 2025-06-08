@@ -2,11 +2,14 @@ import 'package:community_with_legends_mobile/l10n/generated/app_localizations.d
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/http_exception.dart';
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/no_internet_exception.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/hardware_model.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/models/user_game_status_enum.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/user_profile_model.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/add_user_game_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/add_user_hardware_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/change_user_avatar_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/change_user_nickname_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/delete_user_avatar_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/delete_user_game_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/delete_user_hardware_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_current_user_profile_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_games_usecase.dart';
@@ -32,12 +35,17 @@ class ProfileController extends ChangeNotifier {
   DeleteUserHardwareUsecase deleteUserHardwareUsecase;
   AddUserHardwareUsecase addUserHardwareUsecase;
   GetUserGamesUsecase getUserGamesUsecase;
+  DeleteUserGameUsecase deleteUserGameUsecase;
+  AddUserGameUsecase addUserGameUsecase;
 
   bool get isEditingProfile => _isEditingProfile;
   bool _isEditingProfile = false;
 
   bool get isEditingHardware => _isEditingHardware;
   bool _isEditingHardware = false;
+
+  bool get isEditingWantToPlay => _isEditingWantToPlay;
+  bool _isEditingWantToPlay = false;
 
   UserProfile? userProfile;
 
@@ -52,6 +60,8 @@ class ProfileController extends ChangeNotifier {
     required this.deleteUserHardwareUsecase,
     required this.addUserHardwareUsecase,
     required this.getUserGamesUsecase,
+    required this.deleteUserGameUsecase,
+    required this.addUserGameUsecase,
   });
 
   Future<UserProfile?> getUserProfileById(
@@ -197,6 +207,16 @@ class ProfileController extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> openWantToPlayEditMenu() async {
+    _isEditingWantToPlay = true;
+    notifyListeners();
+  }
+
+  Future<void> closeWantToPlayEditMenu() async {
+    _isEditingWantToPlay = false;
+    notifyListeners();
+  }
+
   Future<String?> pickAvatar(
     BuildContext context,
     ImageSource imageSource,
@@ -251,6 +271,45 @@ class ProfileController extends ChangeNotifier {
     return localizations.profile_avatarDeleted;
   }
 
+  Future<String> deleteGame(
+    BuildContext context,
+    int userGameId,
+  ) async {
+    final localizations = AppLocalizations.of(context)!;
+
+    try {
+      deleteUserGameUsecase.execute(userGameId);
+    } on HttpException catch (e) {
+      return e.toString();
+    } on NoInternetException catch (e) {
+      return e.toString();
+    }
+
+    closeWantToPlayEditMenu();
+
+    return localizations.profile_gameDeleted;
+  }
+
+  Future<String> addGame(
+      BuildContext context,
+      int gameId,
+      UserGameStatus status,
+      ) async {
+    final localizations = AppLocalizations.of(context)!;
+
+    try {
+      await addUserGameUsecase.execute(gameId, status);
+    } on HttpException catch (e) {
+      return e.toString();
+    } on NoInternetException catch (e) {
+      return e.toString();
+    }
+
+    closeWantToPlayEditMenu();
+
+    return localizations.profile_gameAdded;
+  }
+
   Future<String?> handlePopupMenu(
     BuildContext context,
     String value,
@@ -279,6 +338,7 @@ class ProfileController extends ChangeNotifier {
 
     return userProfile!.hardware!.indexOf(hardware);
   }
+
   Future<XFile?> _compressImage(XFile file) async {
     final result = await FlutterImageCompress.compressAndGetFile(
       file.path,

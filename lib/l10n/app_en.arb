@@ -31,6 +31,7 @@
   "setPasswordFormTitle": "Set your password",
   "setPasswordButton": "Set password",
   "passwordSet": "The password has been set",
+  "remove": "Remove",
 
   "login_title": "Login",
   "login_button": "Log in",
@@ -124,6 +125,8 @@
   "profile_componentTitle": "Component type",
   "profile_componentValue": "Component model",
   "profile_wantToPlay": "Want to play",
+  "profile_gameDeleted": "Game deleted successfully",
+  "profile_gameAdded": "Game uploaded successfully",
 
   "tfa_title": "Two-factory authentication",
   "tfa_dontShareCode": "Do not share this code with anyone.\nIt is valid for a limited time only.",

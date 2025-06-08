@@ -278,6 +278,12 @@ abstract class AppLocalizations {
   /// **'The password has been set'**
   String get passwordSet;
 
+  /// No description provided for @remove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get remove;
+
   /// No description provided for @login_title.
   ///
   /// In en, this message translates to:
@@ -781,6 +787,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Want to play'**
   String get profile_wantToPlay;
+
+  /// No description provided for @profile_gameDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Game deleted successfully'**
+  String get profile_gameDeleted;
+
+  /// No description provided for @profile_gameAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'Game uploaded successfully'**
+  String get profile_gameAdded;
 
   /// No description provided for @tfa_title.
   ///

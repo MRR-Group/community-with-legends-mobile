@@ -1,4 +1,5 @@
 enum UserGameStatus {
+  // ignore: constant_identifier_names
   to_play,
   playing,
   played;
