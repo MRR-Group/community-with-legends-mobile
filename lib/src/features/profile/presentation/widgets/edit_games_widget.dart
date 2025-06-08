@@ -53,7 +53,10 @@ class EditGames extends StatelessWidget {
                   onPressed: () async => _displayResponseAlert(
                     context,
                     await profileController.deleteGame(
-                        context, userGame.id!, userGameStatus),
+                      context,
+                      userGame.id!,
+                      userGameStatus,
+                    ),
                   ),
                 ),
               ),
