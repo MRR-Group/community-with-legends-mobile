@@ -308,7 +308,7 @@ class ProfileController extends ChangeNotifier {
     final localizations = AppLocalizations.of(context)!;
 
     try {
-      deleteUserGameUsecase.execute(userGameId);
+      await deleteUserGameUsecase.execute(userGameId);
     } on HttpException catch (e) {
       return e.toString();
     } on NoInternetException catch (e) {
