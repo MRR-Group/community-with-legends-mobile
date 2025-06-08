@@ -362,7 +362,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get profile_playing => 'Gram';
 
   @override
-  String get profile_played => 'Grałem';
+  String get profile_played => 'Zagrane';
 
   @override
   String get profile_gameDeleted => 'Gra została usunięta';
