@@ -119,7 +119,7 @@ class ProfileDatasource extends HttpClient {
       urlPath: 'api/user-games/$userGameId',
       body: {
         'game_id': gameId,
-        'status': status,
+        'status': status.name,
       },
     );
   }
