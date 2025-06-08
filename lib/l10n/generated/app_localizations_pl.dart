@@ -99,6 +99,9 @@ class AppLocalizationsPl extends AppLocalizations {
   String get passwordSet => 'Ustawiono zostało hasło';
 
   @override
+  String get remove => 'Usuń';
+
+  @override
   String get login_title => 'Logowanie';
 
   @override
@@ -351,6 +354,21 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get profile_componentValue => 'Model pozdespołu';
+
+  @override
+  String get profile_wantToPlay => 'Chcę zagrać';
+
+  @override
+  String get profile_playing => 'Gram';
+
+  @override
+  String get profile_played => 'Zagrane';
+
+  @override
+  String get profile_gameDeleted => 'Gra została usunięta';
+
+  @override
+  String get profile_gameAdded => 'Gra została dodana';
 
   @override
   String get tfa_title => 'Uwierzytelnianie dwuskładnikowe';

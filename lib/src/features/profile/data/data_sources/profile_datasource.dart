@@ -1,5 +1,6 @@
 import 'package:community_with_legends_mobile/src/core/data/network/http_client.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/hardware_model.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/models/user_game_status_enum.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -88,6 +89,44 @@ class ProfileDatasource extends HttpClient {
         'title': hardware.title,
         'value': hardware.value,
       },
+    );
+  }
+
+  Future<Map<String, dynamic>> getUserGames(int userId) async {
+    return getRequest(
+      urlPath: 'api/users/$userId/games',
+    );
+  }
+
+  Future<Map<String, dynamic>> getUserGame(int userGameId) async {
+    return getRequest(
+      urlPath: 'api/user-games/$userGameId',
+    );
+  }
+
+  Future<Map<String, dynamic>> addGameToUserList(int gameId, UserGameStatus status) async {
+    return postRequest(
+      urlPath: 'api/user-games',
+      body: {
+        'game_id': gameId,
+        'status': status.name,
+      },
+    );
+  }
+
+  Future<Map<String, dynamic>> modifyUserGame(int userGameId, int gameId, UserGameStatus status) async {
+    return postRequest(
+      urlPath: 'api/user-games/$userGameId',
+      body: {
+        'game_id': gameId,
+        'status': status.name,
+      },
+    );
+  }
+
+  Future<Map<String, dynamic>> deleteUserGame(int userGameId) async {
+    return deleteRequest(
+      urlPath: 'api/user-games/$userGameId',
     );
   }
 }

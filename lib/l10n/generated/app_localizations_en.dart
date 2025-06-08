@@ -100,6 +100,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get passwordSet => 'The password has been set';
 
   @override
+  String get remove => 'Remove';
+
+  @override
   String get login_title => 'Login';
 
   @override
@@ -350,6 +353,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profile_componentValue => 'Component model';
+
+  @override
+  String get profile_wantToPlay => 'Want to play';
+
+  @override
+  String get profile_playing => 'Playing';
+
+  @override
+  String get profile_played => 'Played';
+
+  @override
+  String get profile_gameDeleted => 'Game deleted successfully';
+
+  @override
+  String get profile_gameAdded => 'Game uploaded successfully';
 
   @override
   String get tfa_title => 'Two-factory authentication';

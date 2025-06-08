@@ -4,6 +4,7 @@ import 'package:community_with_legends_mobile/src/features/profile/domain/models
 import 'package:community_with_legends_mobile/src/features/profile/presentation/controllers/profile_controller.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/edit_hardware_widget.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/edit_profile_widget.dart';
+import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/games_card_list_widget.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/hardware_card_widget.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/user_details_widget.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_app_bar.dart';
@@ -85,6 +86,11 @@ class _ProfilePageState extends State<ProfilePage> {
                           : HardwareCard(
                               hardware: snapshot.data!.hardware!,
                             ),
+                    if (snapshot.data!.userGames != null)
+                      GamesCardList(
+                        userGames: snapshot.data!.userGames,
+                        canEdit: canEdit,
+                      ),
                   ],
                 );
               }
