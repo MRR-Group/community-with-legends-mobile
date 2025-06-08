@@ -26,7 +26,7 @@ class GameCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (userGames == null) {
+    if (userGames == null || userGames!.isEmpty) {
       return Container();
     }
 
