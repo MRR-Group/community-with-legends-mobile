@@ -1,3 +1,4 @@
+import 'package:community_with_legends_mobile/src/core/data/notifications.dart';
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/auth_exception.dart';
 import 'package:community_with_legends_mobile/src/features/auth/data/data_sources/auth_data_source.dart';
 import 'package:community_with_legends_mobile/src/features/auth/domain/repositories/auth_repository.dart';
@@ -22,7 +23,10 @@ class AuthRepositoryImpl implements AuthRepository {
 
     if (response.containsKey('token')) {
       final token = response['token'];
+      final userId = response['user_id'];
 
+
+      PusherService().initialize(token, userId);
       await _saveToken(token);
       await _cacheUser();
     } else {
