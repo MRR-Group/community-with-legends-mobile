@@ -409,6 +409,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile_suggestionRemoveVote => 'Vote removed';
 
   @override
+  String get profile_suggestionCreated => 'Suggestion sent';
+
+  @override
   String get tfa_title => 'Two-factory authentication';
 
   @override

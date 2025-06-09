@@ -890,6 +890,12 @@ abstract class AppLocalizations {
   /// **'Vote removed'**
   String get profile_suggestionRemoveVote;
 
+  /// No description provided for @profile_suggestionCreated.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggestion sent'**
+  String get profile_suggestionCreated;
+
   /// No description provided for @tfa_title.
   ///
   /// In en, this message translates to:

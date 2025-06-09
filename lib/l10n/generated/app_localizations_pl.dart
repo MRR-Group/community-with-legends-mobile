@@ -410,6 +410,9 @@ class AppLocalizationsPl extends AppLocalizations {
   String get profile_suggestionRemoveVote => 'Głos został usunięty';
 
   @override
+  String get profile_suggestionCreated => 'Sugestia została wysłana';
+
+  @override
   String get tfa_title => 'Uwierzytelnianie dwuskładnikowe';
 
   @override

@@ -481,7 +481,7 @@ class ProfileController extends ChangeNotifier {
 
     notifyListeners();
 
-    return localizations.profile_suggestionRemoveVote;
+    return localizations.profile_suggestionCreated;
   }
 
   Future<String?> handlePopupMenu(

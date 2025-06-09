@@ -142,6 +142,7 @@
   "profile_suggestionVotedFor": "Voted for suggestion",
   "profile_suggestionVotedAgainst": "Voted against suggestion",
   "profile_suggestionRemoveVote": "Vote removed",
+  "profile_suggestionCreated": "Suggestion sent",
 
   "tfa_title": "Two-factory authentication",
   "tfa_dontShareCode": "Do not share this code with anyone.\nIt is valid for a limited time only.",
