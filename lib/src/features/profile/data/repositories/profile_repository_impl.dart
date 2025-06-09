@@ -118,4 +118,34 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
     return gameProposals;
   }
+
+  @override
+  Future<void> acceptProposal(int proposalId) async {
+    await profileDatasource.acceptProposal(proposalId);
+  }
+
+  @override
+  Future<void> createProposal(int userId, int gameId) async {
+    await profileDatasource.createProposal(userId, gameId);
+  }
+
+  @override
+  Future<void> dislikeProposal(int proposalId) async {
+    await profileDatasource.dislikeProposal(proposalId);
+  }
+
+  @override
+  Future<void> likeProposal(int proposalId) async {
+    await profileDatasource.likeProposal(proposalId);
+  }
+
+  @override
+  Future<void> rejectProposal(int proposalId) async {
+    await profileDatasource.rejectProposal(proposalId);
+  }
+
+  @override
+  Future<void> removeProposalVote(int proposalId) async {
+    await profileDatasource.removeProposalVote(proposalId);
+  }
 }

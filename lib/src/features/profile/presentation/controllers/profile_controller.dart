@@ -4,18 +4,24 @@ import 'package:community_with_legends_mobile/src/core/errors/exceptions/no_inte
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/hardware_model.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/user_game_status_enum.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/user_profile_model.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/accept_proposal_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/add_user_game_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/add_user_hardware_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/change_user_avatar_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/change_user_nickname_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/create_proposal_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/delete_user_avatar_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/delete_user_game_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/delete_user_hardware_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/dislike_proposal_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_current_user_profile_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_games_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_hardware_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_profile_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_proposals_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/like_proposal_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/reject_proposal_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/remove_proposal_vote_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/update_user_hardware_usecase.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/controllers/user_controller.dart';
@@ -39,6 +45,12 @@ class ProfileController extends ChangeNotifier {
   DeleteUserGameUsecase deleteUserGameUsecase;
   AddUserGameUsecase addUserGameUsecase;
   GetUserProposalsUsecase getUserProposalsUsecase;
+  AcceptProposalUsecase acceptProposalUsecase;
+  CreateProposalUsecase createProposalUsecase;
+  DislikeProposalUsecase dislikeProposalUsecase;
+  LikeProposalUsecase likeProposalUsecase;
+  RejectProposalUsecase rejectProposalUsecase;
+  RemoveProposalVoteUsecase removeProposalVoteUsecase;
 
   bool get isEditingProfile => _isEditingProfile;
   bool _isEditingProfile = false;
@@ -71,6 +83,12 @@ class ProfileController extends ChangeNotifier {
     required this.deleteUserGameUsecase,
     required this.addUserGameUsecase,
     required this.getUserProposalsUsecase,
+    required this.acceptProposalUsecase,
+    required this.createProposalUsecase,
+    required this.dislikeProposalUsecase,
+    required this.likeProposalUsecase,
+    required this.rejectProposalUsecase,
+    required this.removeProposalVoteUsecase,
   });
 
   Future<UserProfile?> getUserProfileById(

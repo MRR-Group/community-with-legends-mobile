@@ -31,4 +31,16 @@ abstract class ProfileRepository {
   Future<void> addUserGame(int gameId, UserGameStatus status);
 
   Future<List<GameProposal>?> getUserProposals(int userId);
+
+  Future<void> createProposal(int userId, int gameId);
+
+  Future<void> acceptProposal(int proposalId);
+
+  Future<void> rejectProposal(int proposalId);
+
+  Future<void> likeProposal(int proposalId);
+
+  Future<void> dislikeProposal(int proposalId);
+
+  Future<void> removeProposalVote(int proposalId);
 }
