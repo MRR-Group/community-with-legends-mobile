@@ -18,6 +18,7 @@ class SuggestedGameButtons extends StatelessWidget {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         if (canEdit)
           ..._ownerButtons(localizations)
@@ -31,55 +32,40 @@ class SuggestedGameButtons extends StatelessWidget {
 
   List<Widget> _ownerButtons(AppLocalizations localizations) {
     return [
-      Padding(
-        padding: const EdgeInsets.only(top: 8),
-        child: Button(
-          text: localizations.accept,
-          onPressed: () {},
-          fontSize: 14,
-        ),
+      Button(
+        text: localizations.accept,
+        onPressed: () {},
+        fontSize: 14,
       ),
-      Padding(
-        padding: const EdgeInsets.only(bottom: 4),
-        child: Button(
-          text: localizations.reject,
-          onPressed: () {},
-          fontSize: 14,
-        ),
+      Button(
+        text: localizations.reject,
+        onPressed: () {},
+        fontSize: 14,
       ),
     ];
   }
 
   List<Widget> _userButtons(AppLocalizations localizations) {
     return [
-      Padding(
-        padding: const EdgeInsets.only(top: 8),
-        child: Button(
-          text: localizations.profile_voteFor,
-          onPressed: () {},
-          fontSize: 14,
-        ),
+      Button(
+        text: localizations.profile_voteFor,
+        onPressed: () {},
+        fontSize: 14,
       ),
-      Padding(
-        padding: const EdgeInsets.only(bottom: 4),
-        child: Button(
-          text: localizations.profile_voteAgainst,
-          onPressed: () {},
-          fontSize: 14,
-        ),
+      Button(
+        text: localizations.profile_voteAgainst,
+        onPressed: () {},
+        fontSize: 14,
       ),
     ];
   }
 
   List<Widget> _rejectButton(AppLocalizations localizations) {
     return [
-      Padding(
-        padding: const EdgeInsets.only(bottom: 4),
-        child: Button(
-          text: localizations.profile_cancelVote,
-          onPressed: () {},
-          fontSize: 14,
-        ),
+      Button(
+        text: localizations.profile_cancelVote,
+        onPressed: () {},
+        fontSize: 14,
       ),
     ];
   }

@@ -40,12 +40,14 @@ class SuggestedGame extends StatelessWidget {
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
                         '${localizations.profile_suggester}:',
                         style: const TextStyle(
                           fontSize: 24,
                         ),
+                        softWrap: true,
                       ),
                       SuggestedGameButtons(
                         canEdit: canEdit,
@@ -62,20 +64,30 @@ class SuggestedGame extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 4, left: 16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(90),
-                    child: Image.network(
-                      gameProposal.user.avatarUrl,
-                      height: 50,
+            SizedBox(
+              width: 100,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 4, left: 16),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Align(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(90),
+                        child: Image.network(
+                          gameProposal.user.avatarUrl,
+                          height: 50,
+                        ),
+                      ),
                     ),
-                  ),
-                  Text(gameProposal.user.name),
-                ],
+                    const SizedBox(height: 4),
+                    Text(
+                      gameProposal.user.name,
+                      softWrap: true,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
