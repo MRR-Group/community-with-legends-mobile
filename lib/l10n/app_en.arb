@@ -32,6 +32,8 @@
   "setPasswordButton": "Set password",
   "passwordSet": "The password has been set",
   "remove": "Remove",
+  "accept": "Accept",
+  "reject": "Reject",
 
   "login_title": "Login",
   "login_button": "Log in",
@@ -129,6 +131,11 @@
   "profile_played": "Played",
   "profile_gameDeleted": "Game deleted successfully",
   "profile_gameAdded": "Game uploaded successfully",
+  "profile_suggested": "Suggested",
+  "profile_voteFor": "Vote for",
+  "profile_voteAgainst": "Vote against",
+  "profile_suggester": "Suggester",
+  "profile_votes": "Votes",
 
   "tfa_title": "Two-factory authentication",
   "tfa_dontShareCode": "Do not share this code with anyone.\nIt is valid for a limited time only.",

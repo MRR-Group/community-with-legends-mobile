@@ -6,6 +6,7 @@ import 'package:community_with_legends_mobile/src/features/profile/presentation/
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/edit_profile_widget.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/games_card_list_widget.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/hardware_card_widget.dart';
+import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/suggested_games_card_widget.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/user_details_widget.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_app_bar.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_bottom_app_bar.dart';
@@ -91,6 +92,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         userGames: snapshot.data!.userGames,
                         canEdit: canEdit,
                       ),
+                    SuggestedGamesCard(
+                      gameProposals: snapshot.data!.gameProposals,
+                      canEdit: canEdit,
+                    ),
                   ],
                 );
               }

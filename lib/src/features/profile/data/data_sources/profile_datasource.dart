@@ -129,4 +129,10 @@ class ProfileDatasource extends HttpClient {
       urlPath: 'api/user-games/$userGameId',
     );
   }
+
+  Future<Map<String, dynamic>> getUserProposals(int userId) async {
+    return getRequest(
+      urlPath: 'api/users/$userId/proposals',
+    );
+  }
 }

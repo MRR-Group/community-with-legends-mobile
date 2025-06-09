@@ -27,7 +27,7 @@ class GamesCardList extends StatelessWidget {
 
     return Column(
       children: [
-        GameCard(
+        GameCategoryCard(
           userGames: userGames,
           canEdit: canEdit,
           isEditing: profileController.isEditingWantToPlay,
@@ -35,7 +35,7 @@ class GamesCardList extends StatelessWidget {
           onEditClick: () => profileController.openGameCategoryEditMenu(UserGameStatus.to_play),
           userGameStatus: UserGameStatus.to_play,
         ),
-        GameCard(
+        GameCategoryCard(
           userGames: userGames,
           canEdit: canEdit,
           isEditing: profileController.isEditingPlaying,
@@ -43,7 +43,7 @@ class GamesCardList extends StatelessWidget {
           onEditClick: () => profileController.openGameCategoryEditMenu(UserGameStatus.playing),
           userGameStatus: UserGameStatus.playing,
         ),
-        GameCard(
+        GameCategoryCard(
           userGames: userGames,
           canEdit: canEdit,
           isEditing: profileController.isEditingPlayed,

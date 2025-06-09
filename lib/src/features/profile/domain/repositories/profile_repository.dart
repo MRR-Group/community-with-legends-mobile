@@ -1,3 +1,4 @@
+import 'package:community_with_legends_mobile/src/features/profile/domain/models/game_proposal_model.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/hardware_model.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/user_game_model.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/user_game_status_enum.dart';
@@ -28,4 +29,6 @@ abstract class ProfileRepository {
   Future<void> deleteUserGame(int id);
 
   Future<void> addUserGame(int gameId, UserGameStatus status);
+
+  Future<List<GameProposal>?> getUserProposals(int userId);
 }

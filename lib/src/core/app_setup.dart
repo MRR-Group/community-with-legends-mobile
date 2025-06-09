@@ -54,6 +54,7 @@ import 'package:community_with_legends_mobile/src/features/profile/domain/usecas
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_games_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_hardware_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_profile_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_proposals_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/update_user_hardware_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/controllers/profile_controller.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/pages/profile_page.dart';
@@ -258,6 +259,7 @@ class AppSetup {
     final getUserGamesUsecase = GetUserGamesUsecase(repository);
     final deleteUserGameUsecase = DeleteUserGameUsecase(repository);
     final addUserGameUsecase = AddUserGameUsecase(repository);
+    final getUserProposalsUsecase = GetUserProposalsUsecase(repository);
 
     return ProfileController(
       getUserProfileUsecase: getUserProfileUsecase,
@@ -272,6 +274,7 @@ class AppSetup {
       getUserGamesUsecase: getUserGamesUsecase,
       deleteUserGameUsecase: deleteUserGameUsecase,
       addUserGameUsecase: addUserGameUsecase,
+      getUserProposalsUsecase: getUserProposalsUsecase,
     );
   }
 

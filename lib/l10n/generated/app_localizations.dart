@@ -284,6 +284,18 @@ abstract class AppLocalizations {
   /// **'Remove'**
   String get remove;
 
+  /// No description provided for @accept.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept'**
+  String get accept;
+
+  /// No description provided for @reject.
+  ///
+  /// In en, this message translates to:
+  /// **'Reject'**
+  String get reject;
+
   /// No description provided for @login_title.
   ///
   /// In en, this message translates to:
@@ -811,6 +823,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Game uploaded successfully'**
   String get profile_gameAdded;
+
+  /// No description provided for @profile_suggested.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggested'**
+  String get profile_suggested;
+
+  /// No description provided for @profile_voteFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Vote for'**
+  String get profile_voteFor;
+
+  /// No description provided for @profile_voteAgainst.
+  ///
+  /// In en, this message translates to:
+  /// **'Vote against'**
+  String get profile_voteAgainst;
+
+  /// No description provided for @profile_suggester.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggester'**
+  String get profile_suggester;
+
+  /// No description provided for @profile_votes.
+  ///
+  /// In en, this message translates to:
+  /// **'Votes'**
+  String get profile_votes;
 
   /// No description provided for @tfa_title.
   ///

@@ -103,6 +103,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get remove => 'Remove';
 
   @override
+  String get accept => 'Accept';
+
+  @override
+  String get reject => 'Reject';
+
+  @override
   String get login_title => 'Login';
 
   @override
@@ -368,6 +374,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profile_gameAdded => 'Game uploaded successfully';
+
+  @override
+  String get profile_suggested => 'Suggested';
+
+  @override
+  String get profile_voteFor => 'Vote for';
+
+  @override
+  String get profile_voteAgainst => 'Vote against';
+
+  @override
+  String get profile_suggester => 'Suggester';
+
+  @override
+  String get profile_votes => 'Votes';
 
   @override
   String get tfa_title => 'Two-factory authentication';

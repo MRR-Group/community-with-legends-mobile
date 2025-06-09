@@ -102,6 +102,12 @@ class AppLocalizationsPl extends AppLocalizations {
   String get remove => 'Usuń';
 
   @override
+  String get accept => 'Akceptuj';
+
+  @override
+  String get reject => 'Odrzuć';
+
+  @override
   String get login_title => 'Logowanie';
 
   @override
@@ -369,6 +375,21 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get profile_gameAdded => 'Gra została dodana';
+
+  @override
+  String get profile_suggested => 'Sugestie';
+
+  @override
+  String get profile_voteFor => 'Głosuj za';
+
+  @override
+  String get profile_voteAgainst => 'Głosuj przeciw';
+
+  @override
+  String get profile_suggester => 'Sugerujący';
+
+  @override
+  String get profile_votes => 'Głosów';
 
   @override
   String get tfa_title => 'Uwierzytelnianie dwuskładnikowe';

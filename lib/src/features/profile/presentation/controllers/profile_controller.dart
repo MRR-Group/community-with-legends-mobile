@@ -15,6 +15,7 @@ import 'package:community_with_legends_mobile/src/features/profile/domain/usecas
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_games_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_hardware_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_profile_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_proposals_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/update_user_hardware_usecase.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/controllers/user_controller.dart';
@@ -37,6 +38,7 @@ class ProfileController extends ChangeNotifier {
   GetUserGamesUsecase getUserGamesUsecase;
   DeleteUserGameUsecase deleteUserGameUsecase;
   AddUserGameUsecase addUserGameUsecase;
+  GetUserProposalsUsecase getUserProposalsUsecase;
 
   bool get isEditingProfile => _isEditingProfile;
   bool _isEditingProfile = false;
@@ -68,6 +70,7 @@ class ProfileController extends ChangeNotifier {
     required this.getUserGamesUsecase,
     required this.deleteUserGameUsecase,
     required this.addUserGameUsecase,
+    required this.getUserProposalsUsecase,
   });
 
   Future<UserProfile?> getUserProfileById(
@@ -78,11 +81,13 @@ class ProfileController extends ChangeNotifier {
       final user = await getUserProfileUsecase.execute(userId);
       final hardware = await getUserHardwareUsecase.execute(userId);
       final userGames = await getUserGamesUsecase.execute(userId);
+      final userProposals = await getUserProposalsUsecase.execute(userId);
 
       userProfile = UserProfile(
         user: user,
         hardware: hardware,
         userGames: userGames,
+        gameProposals: userProposals,
       );
 
       return userProfile;
@@ -158,11 +163,13 @@ class ProfileController extends ChangeNotifier {
       final user = await getCurrentUserProfileUsecase.execute();
       final hardware = await getUserHardwareUsecase.execute(user.id);
       final userGames = await getUserGamesUsecase.execute(user.id);
+      final userProposals = await getUserProposalsUsecase.execute(user.id);
 
       userProfile = UserProfile(
         user: user,
         hardware: hardware,
         userGames: userGames,
+        gameProposals: userProposals,
       );
 
       return userProfile;
