@@ -95,6 +95,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     SuggestedGamesCard(
                       gameProposals: snapshot.data!.gameProposals,
                       canEdit: canEdit,
+                      userProfile: snapshot.data!.user,
                     ),
                   ],
                 );

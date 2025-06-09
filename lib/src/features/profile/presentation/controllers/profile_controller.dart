@@ -24,6 +24,7 @@ import 'package:community_with_legends_mobile/src/features/profile/domain/usecas
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/reject_proposal_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/remove_proposal_vote_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/update_user_hardware_usecase.dart';
+import 'package:community_with_legends_mobile/src/shared/domain/models/game_model.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/controllers/user_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
@@ -201,7 +202,6 @@ class ProfileController extends ChangeNotifier {
     }
   }
 
-
   Future<String> changeNickname(
     BuildContext context,
     String nickname,
@@ -241,7 +241,7 @@ class ProfileController extends ChangeNotifier {
   }
 
   Future<void> openGameCategoryEditMenu(UserGameStatus status) async {
-    switch(status){
+    switch (status) {
       case UserGameStatus.to_play:
         _isEditingWantToPlay = true;
         break;
@@ -257,7 +257,7 @@ class ProfileController extends ChangeNotifier {
   }
 
   Future<void> closeGameCategoryEditMenu(UserGameStatus status) async {
-    switch(status){
+    switch (status) {
       case UserGameStatus.to_play:
         _isEditingWantToPlay = false;
         break;
@@ -347,10 +347,10 @@ class ProfileController extends ChangeNotifier {
   }
 
   Future<String> addGame(
-      BuildContext context,
-      int gameId,
-      UserGameStatus status,
-      ) async {
+    BuildContext context,
+    int gameId,
+    UserGameStatus status,
+  ) async {
     final localizations = AppLocalizations.of(context)!;
 
     try {
@@ -367,9 +367,9 @@ class ProfileController extends ChangeNotifier {
   }
 
   Future<String> acceptProposal(
-      BuildContext context,
-      GameProposal gameProposal,
-      ) async {
+    BuildContext context,
+    GameProposal gameProposal,
+  ) async {
     final localizations = AppLocalizations.of(context)!;
 
     try {
@@ -386,9 +386,9 @@ class ProfileController extends ChangeNotifier {
   }
 
   Future<String> rejectProposal(
-      BuildContext context,
-      GameProposal gameProposal,
-      ) async {
+    BuildContext context,
+    GameProposal gameProposal,
+  ) async {
     final localizations = AppLocalizations.of(context)!;
 
     try {
@@ -405,9 +405,9 @@ class ProfileController extends ChangeNotifier {
   }
 
   Future<String> voteForProposal(
-      BuildContext context,
-      GameProposal gameProposal,
-      ) async {
+    BuildContext context,
+    GameProposal gameProposal,
+  ) async {
     final localizations = AppLocalizations.of(context)!;
 
     try {
@@ -424,9 +424,9 @@ class ProfileController extends ChangeNotifier {
   }
 
   Future<String> voteAgainstProposal(
-      BuildContext context,
-      GameProposal gameProposal,
-      ) async {
+    BuildContext context,
+    GameProposal gameProposal,
+  ) async {
     final localizations = AppLocalizations.of(context)!;
 
     try {
@@ -443,9 +443,9 @@ class ProfileController extends ChangeNotifier {
   }
 
   Future<String> removeProposalVote(
-      BuildContext context,
-      GameProposal gameProposal,
-      ) async {
+    BuildContext context,
+    GameProposal gameProposal,
+  ) async {
     final localizations = AppLocalizations.of(context)!;
 
     try {
@@ -461,8 +461,28 @@ class ProfileController extends ChangeNotifier {
     return localizations.profile_suggestionRemoveVote;
   }
 
+  Future<String> suggestGame(
+    BuildContext context,
+    Game game,
+    User user,
+  ) async {
+    final localizations = AppLocalizations.of(context)!;
 
+    try {
+      await createProposalUsecase.execute(
+        user.id,
+        game.id,
+      );
+    } on HttpException catch (e) {
+      return e.toString();
+    } on NoInternetException catch (e) {
+      return e.toString();
+    }
 
+    notifyListeners();
+
+    return localizations.profile_suggestionRemoveVote;
+  }
 
   Future<String?> handlePopupMenu(
     BuildContext context,
