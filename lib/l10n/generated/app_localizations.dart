@@ -833,13 +833,13 @@ abstract class AppLocalizations {
   /// No description provided for @profile_voteFor.
   ///
   /// In en, this message translates to:
-  /// **'Vote for'**
+  /// **'Like'**
   String get profile_voteFor;
 
   /// No description provided for @profile_voteAgainst.
   ///
   /// In en, this message translates to:
-  /// **'Vote against'**
+  /// **'Dislike'**
   String get profile_voteAgainst;
 
   /// No description provided for @profile_suggester.
@@ -859,6 +859,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Cancel vote'**
   String get profile_cancelVote;
+
+  /// No description provided for @profile_suggestionAccepted.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggestion accepted'**
+  String get profile_suggestionAccepted;
+
+  /// No description provided for @profile_suggestionRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggestion rejected'**
+  String get profile_suggestionRejected;
+
+  /// No description provided for @profile_suggestionVotedFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Voted for suggestion'**
+  String get profile_suggestionVotedFor;
+
+  /// No description provided for @profile_suggestionVotedAgainst.
+  ///
+  /// In en, this message translates to:
+  /// **'Voted against suggestion'**
+  String get profile_suggestionVotedAgainst;
+
+  /// No description provided for @profile_suggestionRemoveVote.
+  ///
+  /// In en, this message translates to:
+  /// **'Vote removed'**
+  String get profile_suggestionRemoveVote;
 
   /// No description provided for @tfa_title.
   ///

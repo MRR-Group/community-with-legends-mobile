@@ -379,10 +379,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile_suggested => 'Suggested';
 
   @override
-  String get profile_voteFor => 'Vote for';
+  String get profile_voteFor => 'Like';
 
   @override
-  String get profile_voteAgainst => 'Vote against';
+  String get profile_voteAgainst => 'Dislike';
 
   @override
   String get profile_suggester => 'Suggester';
@@ -392,6 +392,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profile_cancelVote => 'Cancel vote';
+
+  @override
+  String get profile_suggestionAccepted => 'Suggestion accepted';
+
+  @override
+  String get profile_suggestionRejected => 'Suggestion rejected';
+
+  @override
+  String get profile_suggestionVotedFor => 'Voted for suggestion';
+
+  @override
+  String get profile_suggestionVotedAgainst => 'Voted against suggestion';
+
+  @override
+  String get profile_suggestionRemoveVote => 'Vote removed';
 
   @override
   String get tfa_title => 'Two-factory authentication';

@@ -1,6 +1,7 @@
 import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/http_exception.dart';
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/no_internet_exception.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/models/game_proposal_model.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/hardware_model.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/user_game_status_enum.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/user_profile_model.dart';
@@ -364,6 +365,104 @@ class ProfileController extends ChangeNotifier {
 
     return localizations.profile_gameAdded;
   }
+
+  Future<String> acceptProposal(
+      BuildContext context,
+      GameProposal gameProposal,
+      ) async {
+    final localizations = AppLocalizations.of(context)!;
+
+    try {
+      await acceptProposalUsecase.execute(gameProposal.id);
+    } on HttpException catch (e) {
+      return e.toString();
+    } on NoInternetException catch (e) {
+      return e.toString();
+    }
+
+    notifyListeners();
+
+    return localizations.profile_suggestionAccepted;
+  }
+
+  Future<String> rejectProposal(
+      BuildContext context,
+      GameProposal gameProposal,
+      ) async {
+    final localizations = AppLocalizations.of(context)!;
+
+    try {
+      await rejectProposalUsecase.execute(gameProposal.id);
+    } on HttpException catch (e) {
+      return e.toString();
+    } on NoInternetException catch (e) {
+      return e.toString();
+    }
+
+    notifyListeners();
+
+    return localizations.profile_suggestionRejected;
+  }
+
+  Future<String> voteForProposal(
+      BuildContext context,
+      GameProposal gameProposal,
+      ) async {
+    final localizations = AppLocalizations.of(context)!;
+
+    try {
+      await likeProposalUsecase.execute(gameProposal.id);
+    } on HttpException catch (e) {
+      return e.toString();
+    } on NoInternetException catch (e) {
+      return e.toString();
+    }
+
+    notifyListeners();
+
+    return localizations.profile_suggestionVotedFor;
+  }
+
+  Future<String> voteAgainstProposal(
+      BuildContext context,
+      GameProposal gameProposal,
+      ) async {
+    final localizations = AppLocalizations.of(context)!;
+
+    try {
+      await dislikeProposalUsecase.execute(gameProposal.id);
+    } on HttpException catch (e) {
+      return e.toString();
+    } on NoInternetException catch (e) {
+      return e.toString();
+    }
+
+    notifyListeners();
+
+    return localizations.profile_suggestionVotedAgainst;
+  }
+
+  Future<String> removeProposalVote(
+      BuildContext context,
+      GameProposal gameProposal,
+      ) async {
+    final localizations = AppLocalizations.of(context)!;
+
+    try {
+      await removeProposalVoteUsecase.execute(gameProposal.id);
+    } on HttpException catch (e) {
+      return e.toString();
+    } on NoInternetException catch (e) {
+      return e.toString();
+    }
+
+    notifyListeners();
+
+    return localizations.profile_suggestionRemoveVote;
+  }
+
+
+
 
   Future<String?> handlePopupMenu(
     BuildContext context,

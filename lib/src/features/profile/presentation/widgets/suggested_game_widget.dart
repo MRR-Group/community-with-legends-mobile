@@ -51,7 +51,7 @@ class SuggestedGame extends StatelessWidget {
                       ),
                       SuggestedGameButtons(
                         canEdit: canEdit,
-                        alreadyVoted: gameProposal.userVote,
+                        gameProposal: gameProposal,
                       ),
                       Text(
                         '${localizations.profile_votes}: ${gameProposal.votes}',
