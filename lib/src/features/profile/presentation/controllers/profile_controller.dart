@@ -1,21 +1,30 @@
 import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/http_exception.dart';
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/no_internet_exception.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/models/game_proposal_model.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/hardware_model.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/user_game_status_enum.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/user_profile_model.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/accept_proposal_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/add_user_game_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/add_user_hardware_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/change_user_avatar_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/change_user_nickname_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/create_proposal_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/delete_user_avatar_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/delete_user_game_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/delete_user_hardware_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/dislike_proposal_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_current_user_profile_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_games_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_hardware_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_profile_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_proposals_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/like_proposal_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/reject_proposal_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/remove_proposal_vote_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/update_user_hardware_usecase.dart';
+import 'package:community_with_legends_mobile/src/shared/domain/models/game_model.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/controllers/user_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
@@ -37,6 +46,13 @@ class ProfileController extends ChangeNotifier {
   GetUserGamesUsecase getUserGamesUsecase;
   DeleteUserGameUsecase deleteUserGameUsecase;
   AddUserGameUsecase addUserGameUsecase;
+  GetUserProposalsUsecase getUserProposalsUsecase;
+  AcceptProposalUsecase acceptProposalUsecase;
+  CreateProposalUsecase createProposalUsecase;
+  DislikeProposalUsecase dislikeProposalUsecase;
+  LikeProposalUsecase likeProposalUsecase;
+  RejectProposalUsecase rejectProposalUsecase;
+  RemoveProposalVoteUsecase removeProposalVoteUsecase;
 
   bool get isEditingProfile => _isEditingProfile;
   bool _isEditingProfile = false;
@@ -68,6 +84,13 @@ class ProfileController extends ChangeNotifier {
     required this.getUserGamesUsecase,
     required this.deleteUserGameUsecase,
     required this.addUserGameUsecase,
+    required this.getUserProposalsUsecase,
+    required this.acceptProposalUsecase,
+    required this.createProposalUsecase,
+    required this.dislikeProposalUsecase,
+    required this.likeProposalUsecase,
+    required this.rejectProposalUsecase,
+    required this.removeProposalVoteUsecase,
   });
 
   Future<UserProfile?> getUserProfileById(
@@ -78,11 +101,13 @@ class ProfileController extends ChangeNotifier {
       final user = await getUserProfileUsecase.execute(userId);
       final hardware = await getUserHardwareUsecase.execute(userId);
       final userGames = await getUserGamesUsecase.execute(userId);
+      final userProposals = await getUserProposalsUsecase.execute(userId);
 
       userProfile = UserProfile(
         user: user,
         hardware: hardware,
         userGames: userGames,
+        gameProposals: userProposals,
       );
 
       return userProfile;
@@ -158,11 +183,13 @@ class ProfileController extends ChangeNotifier {
       final user = await getCurrentUserProfileUsecase.execute();
       final hardware = await getUserHardwareUsecase.execute(user.id);
       final userGames = await getUserGamesUsecase.execute(user.id);
+      final userProposals = await getUserProposalsUsecase.execute(user.id);
 
       userProfile = UserProfile(
         user: user,
         hardware: hardware,
         userGames: userGames,
+        gameProposals: userProposals,
       );
 
       return userProfile;
@@ -174,7 +201,6 @@ class ProfileController extends ChangeNotifier {
       return null;
     }
   }
-
 
   Future<String> changeNickname(
     BuildContext context,
@@ -215,7 +241,7 @@ class ProfileController extends ChangeNotifier {
   }
 
   Future<void> openGameCategoryEditMenu(UserGameStatus status) async {
-    switch(status){
+    switch (status) {
       case UserGameStatus.to_play:
         _isEditingWantToPlay = true;
         break;
@@ -231,7 +257,7 @@ class ProfileController extends ChangeNotifier {
   }
 
   Future<void> closeGameCategoryEditMenu(UserGameStatus status) async {
-    switch(status){
+    switch (status) {
       case UserGameStatus.to_play:
         _isEditingWantToPlay = false;
         break;
@@ -321,10 +347,10 @@ class ProfileController extends ChangeNotifier {
   }
 
   Future<String> addGame(
-      BuildContext context,
-      int gameId,
-      UserGameStatus status,
-      ) async {
+    BuildContext context,
+    int gameId,
+    UserGameStatus status,
+  ) async {
     final localizations = AppLocalizations.of(context)!;
 
     try {
@@ -338,6 +364,124 @@ class ProfileController extends ChangeNotifier {
     closeGameCategoryEditMenu(status);
 
     return localizations.profile_gameAdded;
+  }
+
+  Future<String> acceptProposal(
+    BuildContext context,
+    GameProposal gameProposal,
+  ) async {
+    final localizations = AppLocalizations.of(context)!;
+
+    try {
+      await acceptProposalUsecase.execute(gameProposal.id);
+    } on HttpException catch (e) {
+      return e.toString();
+    } on NoInternetException catch (e) {
+      return e.toString();
+    }
+
+    notifyListeners();
+
+    return localizations.profile_suggestionAccepted;
+  }
+
+  Future<String> rejectProposal(
+    BuildContext context,
+    GameProposal gameProposal,
+  ) async {
+    final localizations = AppLocalizations.of(context)!;
+
+    try {
+      await rejectProposalUsecase.execute(gameProposal.id);
+    } on HttpException catch (e) {
+      return e.toString();
+    } on NoInternetException catch (e) {
+      return e.toString();
+    }
+
+    notifyListeners();
+
+    return localizations.profile_suggestionRejected;
+  }
+
+  Future<String> voteForProposal(
+    BuildContext context,
+    GameProposal gameProposal,
+  ) async {
+    final localizations = AppLocalizations.of(context)!;
+
+    try {
+      await likeProposalUsecase.execute(gameProposal.id);
+    } on HttpException catch (e) {
+      return e.toString();
+    } on NoInternetException catch (e) {
+      return e.toString();
+    }
+
+    notifyListeners();
+
+    return localizations.profile_suggestionVotedFor;
+  }
+
+  Future<String> voteAgainstProposal(
+    BuildContext context,
+    GameProposal gameProposal,
+  ) async {
+    final localizations = AppLocalizations.of(context)!;
+
+    try {
+      await dislikeProposalUsecase.execute(gameProposal.id);
+    } on HttpException catch (e) {
+      return e.toString();
+    } on NoInternetException catch (e) {
+      return e.toString();
+    }
+
+    notifyListeners();
+
+    return localizations.profile_suggestionVotedAgainst;
+  }
+
+  Future<String> removeProposalVote(
+    BuildContext context,
+    GameProposal gameProposal,
+  ) async {
+    final localizations = AppLocalizations.of(context)!;
+
+    try {
+      await removeProposalVoteUsecase.execute(gameProposal.id);
+    } on HttpException catch (e) {
+      return e.toString();
+    } on NoInternetException catch (e) {
+      return e.toString();
+    }
+
+    notifyListeners();
+
+    return localizations.profile_suggestionRemoveVote;
+  }
+
+  Future<String> suggestGame(
+    BuildContext context,
+    Game game,
+    User user,
+  ) async {
+    final localizations = AppLocalizations.of(context)!;
+
+    try {
+      await createProposalUsecase.execute(
+        user.id,
+        game.id,
+      );
+    } on HttpException catch (e) {
+      return e.toString();
+    } on NoInternetException catch (e) {
+      return e.toString();
+    }
+
+    notifyListeners();
+
+    return localizations.profile_suggestionCreated;
   }
 
   Future<String?> handlePopupMenu(

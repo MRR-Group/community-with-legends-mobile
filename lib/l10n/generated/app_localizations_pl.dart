@@ -102,6 +102,12 @@ class AppLocalizationsPl extends AppLocalizations {
   String get remove => 'Usuń';
 
   @override
+  String get accept => 'Akceptuj';
+
+  @override
+  String get reject => 'Odrzuć';
+
+  @override
   String get login_title => 'Logowanie';
 
   @override
@@ -369,6 +375,42 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get profile_gameAdded => 'Gra została dodana';
+
+  @override
+  String get profile_suggested => 'Sugestie';
+
+  @override
+  String get profile_voteFor => 'Za';
+
+  @override
+  String get profile_voteAgainst => 'Przeciw';
+
+  @override
+  String get profile_suggester => 'Sugerujący';
+
+  @override
+  String get profile_votes => 'Głosów';
+
+  @override
+  String get profile_cancelVote => 'Anuluj głos';
+
+  @override
+  String get profile_suggestionAccepted => 'Sugestia zaakceptowana';
+
+  @override
+  String get profile_suggestionRejected => 'Sugestia odrzucona';
+
+  @override
+  String get profile_suggestionVotedFor => 'Zagłosowano za sugestią';
+
+  @override
+  String get profile_suggestionVotedAgainst => 'Zagłosowano przeciwko sugesti';
+
+  @override
+  String get profile_suggestionRemoveVote => 'Głos został usunięty';
+
+  @override
+  String get profile_suggestionCreated => 'Sugestia została wysłana';
 
   @override
   String get tfa_title => 'Uwierzytelnianie dwuskładnikowe';

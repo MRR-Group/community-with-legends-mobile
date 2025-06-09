@@ -129,4 +129,46 @@ class ProfileDatasource extends HttpClient {
       urlPath: 'api/user-games/$userGameId',
     );
   }
+
+  Future<Map<String, dynamic>> getUserProposals(int userId) async {
+    return getRequest(
+      urlPath: 'api/users/$userId/proposals',
+    );
+  }
+
+  Future<Map<String, dynamic>> createProposal(int userId, int gameId) async {
+    return postRequest(
+      urlPath: 'api/users/$userId/games/$gameId/propose',
+    );
+  }
+
+  Future<Map<String, dynamic>> acceptProposal(int proposalId) async {
+    return postRequest(
+      urlPath: 'api/proposals/$proposalId/accept',
+    );
+  }
+
+  Future<Map<String, dynamic>> rejectProposal(int proposalId) async {
+    return postRequest(
+      urlPath: 'api/proposals/$proposalId/reject',
+    );
+  }
+
+  Future<Map<String, dynamic>> likeProposal(int proposalId) async {
+    return postRequest(
+      urlPath: 'api/proposals/$proposalId/like',
+    );
+  }
+
+  Future<Map<String, dynamic>> dislikeProposal(int proposalId) async {
+    return postRequest(
+      urlPath: 'api/proposals/$proposalId/dislike',
+    );
+  }
+
+  Future<Map<String, dynamic>> removeProposalVote(int proposalId) async {
+    return deleteRequest(
+      urlPath: 'api/proposals/$proposalId/like',
+    );
+  }
 }

@@ -1,5 +1,6 @@
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/no_internet_exception.dart';
 import 'package:community_with_legends_mobile/src/features/profile/data/data_sources/profile_datasource.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/models/game_proposal_model.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/hardware_model.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/user_game_model.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/user_game_status_enum.dart';
@@ -107,5 +108,44 @@ class ProfileRepositoryImpl implements ProfileRepository {
   @override
   Future<void> addUserGame(int gameId, UserGameStatus status) async {
     await profileDatasource.addGameToUserList(gameId, status);
+  }
+
+  @override
+  Future<List<GameProposal>?> getUserProposals(int userId) async {
+    final response = await profileDatasource.getUserProposals(userId);
+    final data = response['data'] as List<dynamic>;
+    final gameProposals = data.map((item) => GameProposal.fromJson(item)).toList();
+
+    return gameProposals;
+  }
+
+  @override
+  Future<void> acceptProposal(int proposalId) async {
+    await profileDatasource.acceptProposal(proposalId);
+  }
+
+  @override
+  Future<void> createProposal(int userId, int gameId) async {
+    await profileDatasource.createProposal(userId, gameId);
+  }
+
+  @override
+  Future<void> dislikeProposal(int proposalId) async {
+    await profileDatasource.dislikeProposal(proposalId);
+  }
+
+  @override
+  Future<void> likeProposal(int proposalId) async {
+    await profileDatasource.likeProposal(proposalId);
+  }
+
+  @override
+  Future<void> rejectProposal(int proposalId) async {
+    await profileDatasource.rejectProposal(proposalId);
+  }
+
+  @override
+  Future<void> removeProposalVote(int proposalId) async {
+    await profileDatasource.removeProposalVote(proposalId);
   }
 }

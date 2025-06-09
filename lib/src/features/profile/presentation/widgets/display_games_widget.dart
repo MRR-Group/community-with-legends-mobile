@@ -1,4 +1,5 @@
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/user_game_model.dart';
+import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/game_card_widget.dart';
 import 'package:flutter/cupertino.dart';
 
 class DisplayGames extends StatelessWidget{
@@ -15,25 +16,7 @@ class DisplayGames extends StatelessWidget{
       physics: const NeverScrollableScrollPhysics(),
       childAspectRatio: 0.7,
       children: userGames.map((userGame) {
-        return Column(
-          children: [
-            Expanded(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(5),
-                child: Image.network(
-                  userGame.game.cover,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Text(
-                userGame.game.name,
-                style: const TextStyle(fontSize: 16),
-              ),
-            ),
-          ],
-        );
+        return GameCard(game: userGame.game);
       }).toList(),
     );
   }

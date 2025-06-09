@@ -43,17 +43,24 @@ import 'package:community_with_legends_mobile/src/features/post_details/domain/u
 import 'package:community_with_legends_mobile/src/features/post_details/presentation/controllers/post_details_controller.dart';
 import 'package:community_with_legends_mobile/src/features/profile/data/data_sources/profile_datasource.dart';
 import 'package:community_with_legends_mobile/src/features/profile/data/repositories/profile_repository_impl.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/accept_proposal_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/add_user_game_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/add_user_hardware_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/change_user_avatar_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/change_user_nickname_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/create_proposal_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/delete_user_avatar_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/delete_user_game_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/delete_user_hardware_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/dislike_proposal_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_current_user_profile_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_games_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_hardware_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_profile_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/get_user_proposals_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/like_proposal_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/reject_proposal_usecase.dart';
+import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/remove_proposal_vote_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/usecases/update_user_hardware_usecase.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/controllers/profile_controller.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/pages/profile_page.dart';
@@ -258,6 +265,13 @@ class AppSetup {
     final getUserGamesUsecase = GetUserGamesUsecase(repository);
     final deleteUserGameUsecase = DeleteUserGameUsecase(repository);
     final addUserGameUsecase = AddUserGameUsecase(repository);
+    final getUserProposalsUsecase = GetUserProposalsUsecase(repository);
+    final acceptProposalUsecase = AcceptProposalUsecase(repository);
+    final createProposalUsecase = CreateProposalUsecase(repository);
+    final dislikeProposalUsecase = DislikeProposalUsecase(repository);
+    final likeProposalUsecase = LikeProposalUsecase(repository);
+    final rejectProposalUsecase = RejectProposalUsecase(repository);
+    final removeProposalVoteUsecase = RemoveProposalVoteUsecase(repository);
 
     return ProfileController(
       getUserProfileUsecase: getUserProfileUsecase,
@@ -272,6 +286,13 @@ class AppSetup {
       getUserGamesUsecase: getUserGamesUsecase,
       deleteUserGameUsecase: deleteUserGameUsecase,
       addUserGameUsecase: addUserGameUsecase,
+      getUserProposalsUsecase: getUserProposalsUsecase,
+      acceptProposalUsecase: acceptProposalUsecase,
+      createProposalUsecase: createProposalUsecase,
+      dislikeProposalUsecase: dislikeProposalUsecase,
+      likeProposalUsecase: likeProposalUsecase,
+      rejectProposalUsecase: rejectProposalUsecase,
+      removeProposalVoteUsecase: removeProposalVoteUsecase,
     );
   }
 

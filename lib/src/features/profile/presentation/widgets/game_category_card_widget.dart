@@ -6,7 +6,7 @@ import 'package:community_with_legends_mobile/src/features/profile/presentation/
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/profile_card_widget.dart';
 import 'package:flutter/material.dart';
 
-class GameCard extends StatelessWidget {
+class GameCategoryCard extends StatelessWidget {
   final List<UserGame>? userGames;
   final bool canEdit;
   final bool isEditing;
@@ -14,7 +14,7 @@ class GameCard extends StatelessWidget {
   final Function onEditClick;
   final UserGameStatus userGameStatus;
 
-  const GameCard({
+  const GameCategoryCard({
     super.key,
     required this.userGames,
     required this.canEdit,

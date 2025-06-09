@@ -49,14 +49,15 @@ class UserDetails extends StatelessWidget {
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text(
-                                      userProfile.name,
-                                      style: const TextStyle(
-                                        fontSize: 50,
+                                    Expanded(
+                                      child: Text(
+                                        userProfile.name,
+                                        style: const TextStyle(
+                                          fontSize: 50,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                        softWrap: true,
                                       ),
-                                      textAlign: TextAlign.center,
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 1,
                                     ),
                                     if (userProfile.hasTwitchAccount)
                                       const Padding(
