@@ -392,6 +392,9 @@ class AppLocalizationsPl extends AppLocalizations {
   String get profile_votes => 'Głosów';
 
   @override
+  String get profile_cancelVote => 'Anuluj głos';
+
+  @override
   String get tfa_title => 'Uwierzytelnianie dwuskładnikowe';
 
   @override

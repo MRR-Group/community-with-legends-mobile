@@ -1,7 +1,7 @@
 import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/game_proposal_model.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/game_card_widget.dart';
-import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
+import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/suggested_game_buttons_widget.dart';
 import 'package:flutter/material.dart';
 
 class SuggestedGame extends StatelessWidget {
@@ -31,12 +31,11 @@ class SuggestedGame extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(right: 8),
-                    child: SizedBox(
-                      height: 200,
-                      child: GameCard(
-                        game: gameProposal.game,
-                      ),
+                    padding: const EdgeInsets.only(
+                      right: 8,
+                    ),
+                    child: GameCard(
+                      game: gameProposal.game,
                     ),
                   ),
                   Column(
@@ -48,21 +47,9 @@ class SuggestedGame extends StatelessWidget {
                           fontSize: 24,
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8),
-                        child: Button(
-                          text: localizations.accept,
-                          onPressed: () {},
-                          fontSize: 14,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 4),
-                        child: Button(
-                          text: localizations.reject,
-                          onPressed: () {},
-                          fontSize: 14,
-                        ),
+                      SuggestedGameButtons(
+                        canEdit: canEdit,
+                        alreadyVoted: gameProposal.userVote,
                       ),
                       Text(
                         '${localizations.profile_votes}: ${gameProposal.votes}',

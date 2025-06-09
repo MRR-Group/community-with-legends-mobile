@@ -11,22 +11,28 @@ class GameCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Expanded(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(5),
-            child: Image.network(
-              game.cover,
-            ),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(5),
+          child: Image.network(
+            game.cover,
+            width: 100,
+            fit: BoxFit.cover,
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(4.0),
+        const SizedBox(height: 4),
+        SizedBox(
+          width: 100,
           child: Text(
             game.name,
             style: const TextStyle(fontSize: 16),
+            textAlign: TextAlign.center,
+            softWrap: true,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
           ),
         ),
       ],

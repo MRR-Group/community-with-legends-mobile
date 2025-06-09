@@ -391,6 +391,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile_votes => 'Votes';
 
   @override
+  String get profile_cancelVote => 'Cancel vote';
+
+  @override
   String get tfa_title => 'Two-factory authentication';
 
   @override

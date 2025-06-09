@@ -854,6 +854,12 @@ abstract class AppLocalizations {
   /// **'Votes'**
   String get profile_votes;
 
+  /// No description provided for @profile_cancelVote.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel vote'**
+  String get profile_cancelVote;
+
   /// No description provided for @tfa_title.
   ///
   /// In en, this message translates to:
