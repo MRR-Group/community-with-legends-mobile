@@ -441,4 +441,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get user_banned => 'User has been banned';
+
+  @override
+  String get notifications_publishedPost => 'published a new post';
 }

@@ -154,5 +154,7 @@
   "user_ban": "Zbanuj użytkownika",
   "user_report": "Zgłoś użytkownika",
   "user_reported": "Użytkownik został zgłoszony",
-  "user_banned": "Użytkownik został zbanowany"
+  "user_banned": "Użytkownik został zbanowany",
+
+  "notifications_publishedPost": "opublikował nowy post"
 }

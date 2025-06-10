@@ -13,20 +13,20 @@ Future<void> main() async {
   await dotenv.load();
 
   final prefs = await SharedPreferences.getInstance();
-  final hasAuthToken = prefs.getString('auth_token') != null;
+  final authToken = prefs.getString('auth_token');
 
   runApp(
     MyApp(
-      hasAuthToken: hasAuthToken,
+      authToken: authToken,
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  final bool hasAuthToken;
+  final String? authToken;
   final AppSetup appSetup = AppSetup();
 
-  MyApp({super.key, required this.hasAuthToken});
+  MyApp({super.key, required this.authToken});
 
   @override
   Widget build(
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       providers: appSetup.getProviders(),
       child: AppInitializer(
         appSetup: appSetup,
-        hasAuthToken: hasAuthToken,
+        authToken: authToken,
       ),
     );
   }

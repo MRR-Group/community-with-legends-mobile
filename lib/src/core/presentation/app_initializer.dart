@@ -4,23 +4,26 @@ import 'package:community_with_legends_mobile/config/theme.dart';
 import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
 import 'package:community_with_legends_mobile/main.dart';
 import 'package:community_with_legends_mobile/src/core/app_setup.dart';
+import 'package:community_with_legends_mobile/src/core/data/notifications.dart';
 import 'package:community_with_legends_mobile/src/core/deep_links/twitch_deep_link.dart';
 import 'package:community_with_legends_mobile/src/core/errors/exceptions/check_update_exception.dart';
+import 'package:community_with_legends_mobile/src/core/presentation/post_notification_initializer.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/controllers/localization_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/controllers/user_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AppInitializer extends StatefulWidget {
   final AppSetup appSetup;
-  final bool hasAuthToken;
+  final String? authToken;
 
   const AppInitializer({
     super.key,
     required this.appSetup,
-    required this.hasAuthToken,
+    required this.authToken,
   });
 
   @override
@@ -37,7 +40,7 @@ class _AppInitializerState extends State<AppInitializer> {
   String getRoute() {
     if (widget.appSetup.updateAvailable) {
       return '/update';
-    } else if (widget.hasAuthToken) {
+    } else if (widget.authToken != null) {
       return '/feed';
     }
 
@@ -49,6 +52,16 @@ class _AppInitializerState extends State<AppInitializer> {
     super.initState();
     _initAsync();
     twitchDeepLink.registerTwitchCallback(_navigatorKey);
+    _initNotifications();
+  }
+
+  Future<void> _initNotifications() async {
+    final prefs = await SharedPreferences.getInstance();
+    final userId = prefs.getInt('current_user_id');
+
+    if (widget.authToken != null && userId != null) {
+      NotificationService().initialize(widget.authToken!, userId);
+    }
   }
 
   Future<void> _initAsync() async {
@@ -87,6 +100,14 @@ class _AppInitializerState extends State<AppInitializer> {
         Locale('en'),
         Locale('pl'),
       ],
+      builder: (context, child) {
+        return Stack(
+          children: [
+            if (child != null) child,
+            const PostNotificationInitializer(),
+          ],
+        );
+      },
       home: _initialized
           ? widget.appSetup.routes[initialRoute]!(context)
           : const Scaffold(

@@ -671,6 +671,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.9.0"
+  laravel_echo_null:
+    dependency: "direct main"
+    description:
+      name: laravel_echo_null
+      sha256: "42d0aa5aa6547c3b1c6b6d895b7238c8d61015cf1582bd4fe98479f1d7969018"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.1"
   leak_tracker:
     dependency: transitive
     description:
@@ -847,6 +855,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.0"
+  pinenacl:
+    dependency: transitive
+    description:
+      name: pinenacl
+      sha256: "57e907beaacbc3c024a098910b6240758e899674de07d6949a67b52fd984cbdf"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.6.0"
   platform:
     dependency: transitive
     description:
@@ -903,6 +919,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.0"
+  pusher_client_socket:
+    dependency: "direct main"
+    description:
+      name: pusher_client_socket
+      sha256: "8645dd3f45c69442757d44f1f086f3a47b5e3a42bf595334ca8f8d3bd34cd8dd"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.5"
   recase:
     dependency: transitive
     description:
@@ -996,6 +1020,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.12"
+  socket_io_client:
+    dependency: "direct main"
+    description:
+      name: socket_io_client
+      sha256: c8471c2c6843cf308a5532ff653f2bcdb7fa9ae79d84d1179920578a06624f0d
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.2"
+  socket_io_common:
+    dependency: transitive
+    description:
+      name: socket_io_common
+      sha256: "162fbaecbf4bf9a9372a62a341b3550b51dcef2f02f3e5830a297fd48203d45b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.1"
   source_gen:
     dependency: transitive
     description:
@@ -1244,6 +1284,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
+  web_socket_client:
+    dependency: transitive
+    description:
+      name: web_socket_client
+      sha256: "394789177aa3bc1b7b071622a1dbf52a4631d7ce23c555c39bb2523e92316b07"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.1"
   webview_flutter:
     dependency: transitive
     description:
