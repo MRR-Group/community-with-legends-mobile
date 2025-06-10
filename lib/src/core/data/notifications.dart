@@ -1,8 +1,7 @@
-import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:laravel_echo_null/laravel_echo_null.dart';
-import 'package:pusher_client_socket/pusher_client_socket.dart' as PUSHER;
+import 'package:pusher_client_socket/pusher_client_socket.dart' as pusher;
 
 class PusherService {
   static final PusherService _instance = PusherService._internal();
@@ -11,15 +10,27 @@ class PusherService {
 
   PusherService._internal();
 
-  late Echo<PUSHER.PusherClient, Channel> echo;
+  late Echo<pusher.PusherClient, Channel> echo;
   bool _initialized = false;
+
+  void Function(String author)? onNewPost;
+
+  void _handleNewPost(dynamic data) {
+    final author = data['author_name'] ?? '???';
+
+    if (onNewPost != null) {
+      onNewPost!(author);
+    }
+  }
 
   void initialize(String token, int userId) {
     if (_initialized) {
       return;
     }
+
     _initialized = true;
-    echo = Echo<PUSHER.PusherClient, Channel>(
+
+    echo = Echo<pusher.PusherClient, Channel>(
       PusherConnector(
         dotenv.env['PUSHER_API_KEY']!,
         host: 'ws-eu.pusher.com',
@@ -34,22 +45,7 @@ class PusherService {
 
     echo.connect();
 
-    echo.connector.onConnect((e) {
-      debugPrint('Connected to pusher: $e');
-    });
-
-    echo.connector.onError((error) {
-      debugPrint('Błąd Pusher: $error');
-    });
-
-    echo.connector.onDisconnect((_) {
-      debugPrint('Rozłączono z Pusherem!');
-    });
-
-    echo.channel('public-posts').listen('.post.created', (data) {
-      debugPrint('Received .post.created event: $data');
-      Alert.showGlobal(text: 'Użytkownik ${data['author_name']} dodał nowy post');
-    });
+    echo.channel('public-posts').listen('.post.created', _handleNewPost);
   }
 
   void disconnect() {

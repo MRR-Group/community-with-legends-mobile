@@ -955,6 +955,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'User has been banned'**
   String get user_banned;
+
+  /// No description provided for @notifications_publishedPost.
+  ///
+  /// In en, this message translates to:
+  /// **'published a new post'**
+  String get notifications_publishedPost;
 }
 
 class _AppLocalizationsDelegate
