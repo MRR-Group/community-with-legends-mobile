@@ -1,4 +1,6 @@
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:laravel_echo_null/laravel_echo_null.dart';
 import 'package:pusher_client_socket/pusher_client_socket.dart' as PUSHER;
 
@@ -13,15 +15,14 @@ class PusherService {
   bool _initialized = false;
 
   void initialize(String token, int userId) {
-    print('initializing');
     if (_initialized) {
       return;
     }
     _initialized = true;
-    print('connecting to token: $token, userid: $userId');
     echo = Echo<PUSHER.PusherClient, Channel>(
       PusherConnector(
-        'xxx', // todo change to env apikey
+        dotenv.env['PUSHER_API_KEY']!,
+        host: 'ws-eu.pusher.com',
         authEndPoint: 'https://cwl.legnica.pl/api/broadcasting/auth',
         authHeaders: {
           'Authorization': 'Bearer $token',
@@ -33,22 +34,22 @@ class PusherService {
 
     echo.connect();
 
-    final channel = echo.private('user.$userId');
-
-    channel.listen('proposal.added', (data) {
-      print('event: $data');
-      Alert.showGlobal(text: 'Nowa propozycja: ${data.toString()}');
-    });
-    channel.listen('pusher:subscription_succeeded', (_) {
-      print('Subscribed to channel successfully');
+    echo.connector.onConnect((e) {
+      debugPrint('Connected to pusher: $e');
     });
 
-    channel.listen('pusher:subscription_error', (error) {
-      print('Subscription error: $error');
+    echo.connector.onError((error) {
+      debugPrint('Błąd Pusher: $error');
     });
 
-    print('Subscribed to private-user.1 channel: $channel');
-    print('State: ${echo.socketId} ');
+    echo.connector.onDisconnect((_) {
+      debugPrint('Rozłączono z Pusherem!');
+    });
+
+    echo.channel('public-posts').listen('.post.created', (data) {
+      debugPrint('Received .post.created event: $data');
+      Alert.showGlobal(text: 'Użytkownik ${data['author_name']} dodał nowy post');
+    });
   }
 
   void disconnect() {
