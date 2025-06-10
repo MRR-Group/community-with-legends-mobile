@@ -60,7 +60,7 @@ class _AppInitializerState extends State<AppInitializer> {
     final userId = prefs.getInt('current_user_id');
 
     if (widget.authToken != null && userId != null) {
-      PusherService().initialize(widget.authToken!, userId);
+      NotificationService().initialize(widget.authToken!, userId);
     }
   }
 

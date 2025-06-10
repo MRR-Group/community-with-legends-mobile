@@ -2,12 +2,12 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:laravel_echo_null/laravel_echo_null.dart';
 import 'package:pusher_client_socket/pusher_client_socket.dart' as pusher;
 
-class PusherService {
-  static final PusherService _instance = PusherService._internal();
+class NotificationService {
+  static final NotificationService _instance = NotificationService._internal();
 
-  factory PusherService() => _instance;
+  factory NotificationService() => _instance;
 
-  PusherService._internal();
+  NotificationService._internal();
 
   late Echo<pusher.PusherClient, Channel> echo;
   bool _initialized = false;

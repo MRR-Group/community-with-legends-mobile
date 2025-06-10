@@ -20,7 +20,7 @@ class _PostNotificationInitializerState
     final localizations = AppLocalizations.of(context);
 
     if (localizations != null) {
-      PusherService().onNewPost = (authorName) {
+      NotificationService().onNewPost = (authorName) {
         final message = localizations.notifications_publishedPost;
         Alert.showGlobal(text: '$authorName $message');
       };
