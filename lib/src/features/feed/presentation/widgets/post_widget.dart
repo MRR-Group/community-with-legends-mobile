@@ -36,144 +36,163 @@ class _PostWidgetState extends State<PostWidget> {
     final localizations = AppLocalizations.of(context)!;
     final reactionsController = Provider.of<ReactionsController>(context);
 
-    return Stack(
-      children: [
-        Center(
-          child: Container(
-            padding: const EdgeInsets.all(2),
-            margin: const EdgeInsets.only(bottom: 20),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              gradient: secondaryGradient,
-            ),
-            child: Card(
-              child: SizedBox(
-                width: 300,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 8,
-                    horizontal: 18,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              right: 8,
-                              bottom: 8,
-                              top: 8,
-                            ),
-                            child: CircleAvatar(
-                              radius: 26,
-                              child: ClipOval(
-                                child: Image.network(
-                                  widget.post.user.avatarUrl,
-                                  width: 52,
-                                  height: 52,
-                                  fit: BoxFit.cover,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: Center(
+        child: Stack(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(2),
+              margin: const EdgeInsets.only(bottom: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                gradient: secondaryGradient,
+              ),
+              child: Card(
+                child: SizedBox(
+                  width: 300,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 16,
+                      horizontal: 18,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                right: 8,
+                                bottom: 8,
+                                top: 8,
+                              ),
+                              child: CircleAvatar(
+                                radius: 26,
+                                child: ClipOval(
+                                  child: Image.network(
+                                    widget.post.user.avatarUrl,
+                                    width: 52,
+                                    height: 52,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  widget.post.user.name,
-                                  style: const TextStyle(fontSize: 20),
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
-                                ),
-                                if (widget.post.game != null)
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
                                   Text(
-                                    widget.post.game!.name,
+                                    widget.post.user.name,
+                                    style: const TextStyle(fontSize: 20),
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
+                                  ),
+                                  if (widget.post.game != null)
+                                    Text(
+                                      widget.post.game!.name,
+                                      style: const TextStyle(
+                                        color: primaryColor,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  Text(
+                                    timeago.format(widget.post.createdAt),
                                     style: const TextStyle(
-                                      color: primaryColor,
-                                      fontSize: 12,
+                                      color: textDisabledColor,
+                                      fontSize: 8,
                                     ),
                                   ),
-                                Text(
-                                  timeago.format(widget.post.createdAt),
-                                  style: const TextStyle(
-                                    color: textDisabledColor,
-                                    fontSize: 8,
-                                  ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
+                            PostMenuButton(post: widget.post),
+                          ],
+                        ),
+                        if (widget.post.tags != null &&
+                            widget.post.tags!.isNotEmpty)
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8),
+                            child: PostTags(tags: widget.post.tags!),
                           ),
-                          PostMenuButton(post: widget.post),
-                        ],
-                      ),
-                      if (widget.post.tags != null &&
-                          widget.post.tags!.isNotEmpty)
-                        PostTags(tags: widget.post.tags!),
-                      Text(widget.post.content),
-                      if (widget.post.postAsset != null)
-                        if (widget.post.postAsset!.type == AssetType.image)
-                          PostImageAssetWidget(
-                            postAsset: widget.post.postAsset!,
-                          )
-                        else
-                          PostVideoAsset(postAsset: widget.post.postAsset!),
-                      Row(
-                        children: [
-                          Button(
-                            text: '👍 x ${widget.post.reactionsCount}',
-                            fontSize: 10,
-                            gradient: widget.post.userReacted
-                                ? secondaryGradient
-                                : primaryGradient,
-                            onPressed: () async {
-                              if (widget.post.userReacted) {
-                                reactionsController.removeReaction(
-                                  context,
-                                  widget.post,
-                                );
-                              } else {
-                                reactionsController.addReaction(
-                                  context,
-                                  widget.post,
-                                );
-                              }
-                            },
-                            horizontalPadding: 8,
-                          ),
-                        ],
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Text(widget.post.content),
+                        ),
+                        if (widget.post.postAsset != null)
+                          if (widget.post.postAsset!.type == AssetType.image)
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: PostImageAssetWidget(
+                                postAsset: widget.post.postAsset!,
+                              ),
+                            )
+                          else
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: PostVideoAsset(
+                                  postAsset: widget.post.postAsset!),
+                            ),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Button(
+                                text: '👍 x ${widget.post.reactionsCount}',
+                                fontSize: 10,
+                                gradient: widget.post.userReacted
+                                    ? secondaryGradient
+                                    : primaryGradient,
+                                onPressed: () async {
+                                  if (widget.post.userReacted) {
+                                    reactionsController.removeReaction(
+                                      context,
+                                      widget.post,
+                                    );
+                                  } else {
+                                    reactionsController.addReaction(
+                                      context,
+                                      widget.post,
+                                    );
+                                  }
+                                },
+                                horizontalPadding: 8,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ),
-        if (!widget.disableReplyButton)
-          Positioned(
-            right: 75,
-            bottom: 0,
-            child: Button.iconLeft(
-              icon: const Icon(
-                CupertinoIcons.chat_bubble_text_fill,
-                color: textColor,
-              ),
-              horizontalPadding: 12,
-              text: localizations.posts_reply,
-              fontSize: 16,
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => PostDetailsPage(postId: widget.post.id),
+            if (!widget.disableReplyButton)
+              Positioned(
+                right: 25,
+                bottom: 0,
+                child: Button.iconLeft(
+                  icon: const Icon(
+                    CupertinoIcons.chat_bubble_text_fill,
+                    color: textColor,
                   ),
-                );
-              },
-            ),
-          ),
-      ],
+                  horizontalPadding: 12,
+                  text: localizations.posts_reply,
+                  fontSize: 16,
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => PostDetailsPage(postId: widget.post.id),
+                      ),
+                    );
+                  },
+                ),
+              ),
+          ],
+        ),
+      ),
     );
   }
 }
