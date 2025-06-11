@@ -6,6 +6,7 @@ import 'package:community_with_legends_mobile/src/features/profile/presentation/
 import 'package:community_with_legends_mobile/src/features/profile/presentation/widgets/suggested_game_widget.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/game_model.dart';
 import 'package:community_with_legends_mobile/src/shared/domain/models/user_model.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/controllers/user_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/default_dropdown_search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,6 +28,7 @@ class SuggestedGamesCard extends StatelessWidget {
     final localizations = AppLocalizations.of(context)!;
     final gamesController = Provider.of<GamesController>(context);
     final profileController = Provider.of<ProfileController>(context);
+    final userController = Provider.of<UserController>(context);
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
@@ -51,7 +53,7 @@ class SuggestedGamesCard extends StatelessWidget {
             );
           }),
           const SizedBox(height: 16),
-          if (!canEdit)
+          if (!canEdit && userController.user != null)
             DefaultDropdownSearch<Game>(
               showSearchBox: true,
               searchBoxHint: localizations.posts_searchGame,
