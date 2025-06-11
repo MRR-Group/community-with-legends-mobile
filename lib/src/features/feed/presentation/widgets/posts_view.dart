@@ -39,11 +39,22 @@ class _PostsViewState extends State<PostsView> {
 
       Alert.of(context).show(text: returnMessage);
     });
+
+    postsController.addListener(() {
+      if (mounted) {
+        _pagingController.refresh();
+      }
+    });
   }
 
   @override
   void dispose() {
+    final postsController =
+        Provider.of<PostsController>(context, listen: false);
+
     _pagingController.dispose();
+    postsController.removeListener(() {});
+
     super.dispose();
   }
 
