@@ -437,7 +437,7 @@ abstract class AppLocalizations {
   /// No description provided for @fp_resetPassword.
   ///
   /// In en, this message translates to:
-  /// **'Register via'**
+  /// **'To reset password'**
   String get fp_resetPassword;
 
   /// No description provided for @fp_rememberPassword.

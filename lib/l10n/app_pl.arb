@@ -60,7 +60,7 @@
   "fp_button": "Wyślij kod",
   "fp_haveResetToken": "Masz już token resetujący?",
   "fp_haveResetTokenCta": "zresetuj hasło",
-  "fp_resetPassword": "Zarejestruj się przez",
+  "fp_resetPassword": "Aby zresetować hasło",
   "fp_rememberPassword": "Przypomniałeś sobie hasło?",
   "fp_rememberPasswordCta": "zaloguj się",
 

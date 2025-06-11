@@ -32,7 +32,7 @@ class ResetPasswordForm extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            localizations.register_title,
+            localizations.rp_title,
             style: const TextStyle(
               fontSize: 42,
             ),

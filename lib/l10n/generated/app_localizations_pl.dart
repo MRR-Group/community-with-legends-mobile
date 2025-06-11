@@ -179,7 +179,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get fp_haveResetTokenCta => 'zresetuj hasło';
 
   @override
-  String get fp_resetPassword => 'Zarejestruj się przez';
+  String get fp_resetPassword => 'Aby zresetować hasło';
 
   @override
   String get fp_rememberPassword => 'Przypomniałeś sobie hasło?';
