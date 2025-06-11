@@ -51,7 +51,7 @@ class SuggestedGamesCard extends StatelessWidget {
             );
           }),
           const SizedBox(height: 16),
-          if(!canEdit)
+          if (!canEdit)
             DefaultDropdownSearch<Game>(
               showSearchBox: true,
               searchBoxHint: localizations.posts_searchGame,
