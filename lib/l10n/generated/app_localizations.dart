@@ -494,6 +494,12 @@ abstract class AppLocalizations {
   /// **'Success! You can now log in with your new password'**
   String get rp_passwordReset;
 
+  /// No description provided for @rp_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset password'**
+  String get rp_button;
+
   /// No description provided for @update_title.
   ///
   /// In en, this message translates to:

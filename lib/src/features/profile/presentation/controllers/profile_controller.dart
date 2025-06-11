@@ -29,7 +29,7 @@ import 'package:community_with_legends_mobile/src/shared/domain/models/user_mode
 import 'package:community_with_legends_mobile/src/shared/presentation/controllers/user_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
+//import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
@@ -287,12 +287,13 @@ class ProfileController extends ChangeNotifier {
       }
 
       debugPrint('Selected image: ${image.path}');
-      final compressedImage = await _compressImage(image);
+      //final compressedImage = await _compressImage(image);
 
-      if (compressedImage == null) {
-        return localizations.profile_avatarUploadFailed;
-      }
-      final result = await changeUserAvatarUsecase.execute(compressedImage);
+      //if (compressedImage == null) {
+      //  return localizations.profile_avatarUploadFailed;
+      //}
+
+      final result = await changeUserAvatarUsecase.execute(image);
 
       if (result == false) {
         return localizations.profile_avatarUploadFailed;
@@ -513,14 +514,14 @@ class ProfileController extends ChangeNotifier {
     return userProfile!.hardware!.indexOf(hardware);
   }
 
-  Future<XFile?> _compressImage(XFile file) async {
-    final result = await FlutterImageCompress.compressAndGetFile(
-      file.path,
-      '${file.path}_compressed.jpg',
-      quality: 100,
-      minWidth: 256,
-      minHeight: 256,
-    );
-    return result;
-  }
+  //Future<XFile?> _compressImage(XFile file) async {
+  //  final result = await FlutterImageCompress.compressAndGetFile(
+  //    file.path,
+  //    '${file.path}_compressed.jpg',
+  //    quality: 100,
+  //    minWidth: 256,
+  //    minHeight: 256,
+  //  );
+  //  return result;
+  //}
 }

@@ -1,6 +1,7 @@
 import 'package:community_with_legends_mobile/l10n/generated/app_localizations.dart';
 import 'package:community_with_legends_mobile/src/features/profile/domain/models/game_proposal_model.dart';
 import 'package:community_with_legends_mobile/src/features/profile/presentation/controllers/profile_controller.dart';
+import 'package:community_with_legends_mobile/src/shared/presentation/controllers/user_controller.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/alert.dart';
 import 'package:community_with_legends_mobile/src/shared/presentation/widgets/button.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,8 @@ class SuggestedGameButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
     final profileController = Provider.of<ProfileController>(context);
+    final userController = Provider.of<UserController>(context);
+    final currentUserId = userController.user?.id;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +41,7 @@ class SuggestedGameButtons extends StatelessWidget {
             localizations,
             profileController,
           )
-        else
+        else if (currentUserId != gameProposal.user.id)
           ..._userButtons(
             context,
             localizations,

@@ -73,10 +73,11 @@ class SuggestedGame extends StatelessWidget {
                   children: [
                     Align(
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(90),
+                        borderRadius: BorderRadius.circular(25),
                         child: Image.network(
                           gameProposal.user.avatarUrl,
                           height: 50,
+                          width: 50,
                         ),
                       ),
                     ),
