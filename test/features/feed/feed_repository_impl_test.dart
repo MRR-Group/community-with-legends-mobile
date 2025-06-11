@@ -147,7 +147,7 @@ void main() {
     'data': [
       {'id': 1, 'name': 'Game 1', 'cover': 'linktToImage'},
       {'id': 2, 'name': 'Game 2', 'cover': 'linktToImage2'},
-    ]
+    ],
   };
 
   test('FeedRepository returns list of filtered games', () async {
@@ -170,7 +170,7 @@ void main() {
     'data': [
       {'id': 1, 'name': 'Tag1'},
       {'id': 2, 'name': 'Tag2'},
-    ]
+    ],
   };
 
   test('FeedRepository returns list of tags', () async {
@@ -196,7 +196,7 @@ void main() {
       tagIds: [1, 2],
       assetId: 3,
       assetLink: 'link',
-    )).thenAnswer((_) async => {});
+    ),).thenAnswer((_) async => {});
 
     await repository.createPost(
       content: 'Hello',
