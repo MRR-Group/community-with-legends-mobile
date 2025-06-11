@@ -17,6 +17,7 @@ class PostsView extends StatefulWidget {
 
 class _PostsViewState extends State<PostsView> {
   late final PagingController<int, Post> _pagingController;
+  late final VoidCallback _listener;
 
   @override
   void initState() {
@@ -39,11 +40,24 @@ class _PostsViewState extends State<PostsView> {
 
       Alert.of(context).show(text: returnMessage);
     });
+
+    _listener = () {
+      if (mounted) {
+        _pagingController.refresh();
+      }
+    };
+
+    postsController.addListener(_listener);
   }
 
   @override
   void dispose() {
+    final postsController =
+        Provider.of<PostsController>(context, listen: false);
+
     _pagingController.dispose();
+    postsController.removeListener(_listener);
+
     super.dispose();
   }
 

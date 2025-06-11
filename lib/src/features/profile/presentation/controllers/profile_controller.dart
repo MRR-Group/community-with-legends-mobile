@@ -209,7 +209,7 @@ class ProfileController extends ChangeNotifier {
     final localizations = AppLocalizations.of(context)!;
 
     try {
-      changeUserNicknameUsecase.execute(nickname);
+      await changeUserNicknameUsecase.execute(nickname);
     } on HttpException catch (e) {
       return e.toString();
     } on NoInternetException catch (e) {
@@ -313,7 +313,7 @@ class ProfileController extends ChangeNotifier {
     final localizations = AppLocalizations.of(context)!;
 
     try {
-      deleteUserAvatarUsecase.execute();
+      await deleteUserAvatarUsecase.execute();
     } on HttpException catch (e) {
       return e.toString();
     } on NoInternetException catch (e) {

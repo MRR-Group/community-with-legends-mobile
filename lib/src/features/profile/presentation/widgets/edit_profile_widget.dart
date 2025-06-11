@@ -70,6 +70,7 @@ class _EditProfileState extends State<EditProfile> {
                         ),
                       ),
                       Column(
+                        spacing: 8,
                         children: [
                           Button(
                             text: localizations.profile_uploadAvatar,
@@ -110,7 +111,7 @@ class _EditProfileState extends State<EditProfile> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 30),
+                        padding: const EdgeInsets.only(top: 37),
                         child: Button(
                           text: localizations.change,
                           onPressed: () => _onSaveButtonClick(

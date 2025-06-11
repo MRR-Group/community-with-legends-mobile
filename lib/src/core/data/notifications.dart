@@ -44,7 +44,7 @@ class NotificationService {
 
     echo.connect();
 
-    echo.channel('public-posts').listen('.post.created', _handleNewPost);
+    echo.channel('posts').listen('.post.created', _handleNewPost);
   }
 
   void disconnect() {

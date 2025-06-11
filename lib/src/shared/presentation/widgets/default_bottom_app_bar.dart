@@ -17,25 +17,13 @@ class DefaultBottomAppBar extends StatelessWidget
       height: 55,
       padding: const EdgeInsets.only(left: 24, right: 24, top: 10,),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           NavbarButton(
             navbarPage: NavbarPages.feed,
             icon: Icons.public,
             buttonText: localizations.navbar_feed,
           ),
-          const Spacer(),
-          NavbarButton(
-            navbarPage: NavbarPages.following,
-            icon: Icons.favorite_border_outlined,
-            buttonText: localizations.navbar_following,
-          ),
-          const Spacer(),
-          NavbarButton(
-            navbarPage: NavbarPages.notification,
-            icon: Icons.notifications_none_outlined,
-            buttonText: localizations.navbar_notifications,
-          ),
-          const Spacer(),
           NavbarButton(
             navbarPage: NavbarPages.profile,
             icon: Icons.person_outline,

@@ -179,7 +179,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fp_haveResetTokenCta => 'to reset password';
 
   @override
-  String get fp_resetPassword => 'Register via';
+  String get fp_resetPassword => 'To reset password';
 
   @override
   String get fp_rememberPassword => 'Did you remember Your password?';

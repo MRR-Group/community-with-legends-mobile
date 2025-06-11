@@ -51,33 +51,34 @@ class SuggestedGamesCard extends StatelessWidget {
             );
           }),
           const SizedBox(height: 16),
-          DefaultDropdownSearch<Game>(
-            showSearchBox: true,
-            searchBoxHint: localizations.posts_searchGame,
-            listTitle: localizations.posts_addGame,
-            compareFn: (item1, item2) => item1.name == item2.name,
-            filterFn: (_, __) => true,
-            items: (filter, infiniteScrollProps) async {
-              return gamesController.loadFilteredGames(
-                context: context,
-                filter: filter,
-              );
-            },
-            onChanged: (value) async {
-              if (value == null) {
-                return;
-              }
+          if (!canEdit)
+            DefaultDropdownSearch<Game>(
+              showSearchBox: true,
+              searchBoxHint: localizations.posts_searchGame,
+              listTitle: localizations.posts_addGame,
+              compareFn: (item1, item2) => item1.name == item2.name,
+              filterFn: (_, __) => true,
+              items: (filter, infiniteScrollProps) async {
+                return gamesController.loadFilteredGames(
+                  context: context,
+                  filter: filter,
+                );
+              },
+              onChanged: (value) async {
+                if (value == null) {
+                  return;
+                }
 
-              await profileController.suggestGame(
-                context,
-                value,
-                userProfile,
-              );
-            },
-            keyToString: (key) {
-              return key?.name ?? '';
-            },
-          ),
+                await profileController.suggestGame(
+                  context,
+                  value,
+                  userProfile,
+                );
+              },
+              keyToString: (key) {
+                return key?.name ?? '';
+              },
+            ),
         ],
       ),
     );
