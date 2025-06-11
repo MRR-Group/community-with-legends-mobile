@@ -211,6 +211,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'Success! You can now log in with your new password';
 
   @override
+  String get rp_button => 'Reset password';
+
+  @override
   String get update_title => 'Update available';
 
   @override

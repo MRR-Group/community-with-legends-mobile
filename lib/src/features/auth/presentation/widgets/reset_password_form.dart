@@ -78,7 +78,7 @@ class ResetPasswordForm extends StatelessWidget {
           ),
           const SizedBox(height: 18),
           Button(
-            text: localizations.fp_button,
+            text: localizations.rp_button,
             onPressed: () {
               if (!controller.isLoading) {
                 controller.resetPassword(

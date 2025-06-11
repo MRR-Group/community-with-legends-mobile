@@ -188,7 +188,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get fp_rememberPasswordCta => 'zaloguj się';
 
   @override
-  String get rp_title => 'Zresetuj hasło';
+  String get rp_title => 'Zresetuj swoje hasło';
 
   @override
   String get rp_noResetToken => 'Nie masz tokena resetującego?';
@@ -209,6 +209,9 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get rp_passwordReset =>
       'Sukces! Możesz teraz zalogować się przy użyciu nowego hasła';
+
+  @override
+  String get rp_button => 'Zresetuj hasło';
 
   @override
   String get update_title => 'Dostępna aktualizacja';

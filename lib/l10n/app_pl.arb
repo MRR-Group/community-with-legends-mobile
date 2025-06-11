@@ -64,13 +64,14 @@
   "fp_rememberPassword": "Przypomniałeś sobie hasło?",
   "fp_rememberPasswordCta": "zaloguj się",
 
-  "rp_title": "Zresetuj hasło",
+  "rp_title": "Zresetuj swoje hasło",
   "rp_noResetToken": "Nie masz tokena resetującego?",
   "rp_noResetTokenCta": "aby go uzyskać",
   "rp_rememberPassword": "Przypomniałeś sobie hasło?",
   "rp_rememberPasswordCta": "zaloguj się",
   "rp_tokenSent": "Jeśli adres e-mail jest poprawny, zostanie na niego wysłany token do resetowania hasła",
   "rp_passwordReset": "Sukces! Możesz teraz zalogować się przy użyciu nowego hasła",
+  "rp_button": "Zresetuj hasło",
 
   "update_title": "Dostępna aktualizacja",
   "update_updateButton": "Aktualizuj",
