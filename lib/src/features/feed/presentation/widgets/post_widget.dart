@@ -133,7 +133,8 @@ class _PostWidgetState extends State<PostWidget> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: PostVideoAsset(
-                                  postAsset: widget.post.postAsset!),
+                                postAsset: widget.post.postAsset!,
+                              ),
                             ),
                         Row(
                           children: [
