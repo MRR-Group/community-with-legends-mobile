@@ -30,8 +30,6 @@ The mobile app supports a wide range of user and moderator functionalities, incl
 - 📚 Multilingual support (English & Polish)  
 - 🧹 Content moderation tools (for moderators/admins)  
 - 🚫 User banning (for moderators/admins)  
-- 📈 View platform stats (for administrators)  
-- 🧑‍💼 Admin features like promoting/demoting moderators, anonymizing users, editing game lists  
 
 ---
 
